@@ -1,0 +1,22 @@
+{
+  "name": "Kai - Assistente Pessoal",
+  "short_name": "Kai",
+  "description": "Assistente virtual Kai pronto para te ajudar.",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#C8D0E7",
+  "theme_color": "#3498DB",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
