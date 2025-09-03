@@ -1,7 +1,7 @@
 {
-  "name": "Kai - Assistente Pessoal",
-  "short_name": "Kai",
-  "description": "Assistente virtual Kai pronto para te ajudar.",
+  "name": "Studio Tsukiyo Platforms",
+  "short_name": "Studio Tsukiyo",
+  "description": "Platforms",
   "start_url": "index.html",
   "display": "standalone",
   "background_color": "#C8D0E7",
