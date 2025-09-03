@@ -1,246 +1,864 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kai - Assistente Pessoal</title>
-<link rel="icon" type="image/png" href="https://i.imgur.com/HPsXQqv.png">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<style>
-:root {
-    --background-color: #F3F6FA; --bot-message-bg: #FFFFFF; --user-message-bg: #2C3E50;
-    --text-primary: #2C3E50; --text-light: #FFFFFF; --text-secondary: #8A94A6;
-    --border-color: #E0E5EC; --button-outline: #D1D9E6; --shadow-color: rgba(44, 62, 80, 0.1);
-    --accent-color: #3498DB;
-    --kai-gradient-1: linear-gradient(135deg, #00A3FF, #A162F7, #FF6196);
-    --kai-gradient-2: linear-gradient(135deg, #A162F7, #FF6196, #00A3FF);
-    --kai-gradient-3: linear-gradient(135deg, #FF6196, #00A3FF, #A162F7);
-}
-body.dark-mode {
-    --background-color: #1A1A1A; --bot-message-bg: #2C2C2C; --user-message-bg: #3498DB;
-    --text-primary: #EAEAEA; --text-light: #FFFFFF; --text-secondary: #888888;
-    --border-color: #3D3D3D; --button-outline: #4A4A4A; --shadow-color: rgba(0, 0, 0, 0.2);
-}
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
-body { background-color: var(--background-color); min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 10px; transition: background-color 0.3s; }
-.container { width: 100%; max-width: 400px; height: 90vh; max-height: 850px; background-color: var(--background-color); border-radius: 40px; box-shadow: 0 10px 40px rgba(0,0,0,0.15); overflow: hidden; display: flex; flex-direction: column; position: relative; border: 8px solid #fff; transition: background-color 0.3s; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Studio Tsukiyo Platforms | Criando mundos, conectando mentes</title>
+  <meta name="description" content="Studio Tsukiyo Platforms — Light Novels, Escola de Autores, Mundo Otaku e Projetos de Assistentes. Criando mundos, conectando mentes." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --bg: #000000;
+      --surface: #0b0b13;
+      --text: #ffffff;
+      --muted: #c9c9d4;
+      --primary: #B19CD9;
+      --accent: #1E1E6C;
+      --card: #0f0f1a;
+      --glow: rgba(177,156,217,0.5);
+      --neon-glow: 0 0 5px var(--primary), 0 0 10px var(--primary), 0 0 15px var(--primary), 0 0 20px var(--accent);
+    }
 
-.chat-screen { width: 100%; height: 100%; display: flex; flex-direction: column; background-color: var(--background-color); }
-.chat-header { padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border-color); flex-shrink: 0; }
-.header-title-group { display: flex; align-items: center; gap: 12px; }
-#kai-name-header { font-size: 1.6rem; font-weight: 600; background: var(--kai-gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    * { 
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-.chat-body { flex-grow: 1; position: relative; overflow: hidden; display: flex; flex-direction: column; }
-.assistant-ui { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; transition: opacity 0.5s ease, transform 0.5s ease; }
-.assistant-ui.hidden { opacity: 0; transform: scale(0.9); pointer-events: none; }
-.greeting-text { font-size: 1.8rem; font-weight: 300; color: var(--text-secondary); }
-.greeting-text b { font-weight: 500; color: var(--text-primary); }
-.help-text { font-size: 1.1rem; color: var(--text-primary); margin-top: 8px; }
+    html, body { 
+      background: var(--bg); 
+      color: var(--text); 
+      font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
 
-.kai-logo-container { display: flex; align-items: center; margin: 40px 0; }
-.kai-logo { width: 120px; height: 120px; border-radius: 50%; background: var(--kai-gradient-1); position: relative; box-shadow: 0 10px 30px rgba(139,92,246,0.3); display: flex; justify-content: center; align-items: center; transition: transform 0.4s ease; }
-.kai-logo::before { content: ''; width: 80px; height: 80px; background-color: var(--background-color); border-radius: 50%; }
-.kai-logo.thinking { animation: thinking 2s infinite linear; }
-@keyframes thinking { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    /* Efeito de partículas no fundo */
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
 
-#kai-name-main { font-size: 3rem; font-weight: 600; margin-left: 15px; background: var(--kai-gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; transition: background 0.5s ease; }
+    /* Navbar futurista */
+    .nav { 
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(0,0,0,0.8);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(177,156,217,0.2);
+      transition: all 0.4s ease;
+    }
 
-.chat-messages { flex-grow: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; opacity: 0; transition: opacity 0.5s ease; scroll-behavior: smooth; }
-.chat-messages.active { opacity: 1; }
-.message-group { display: flex; gap: 10px; margin-bottom: 10px; max-width: 90%; align-self: flex-start; align-items: flex-end; animation: fadeIn 0.4s ease-out; }
-.message-group.user { align-self: flex-end; }
-.bot-avatar { width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0; overflow: hidden; }
-.bot-avatar img { width: 100%; height: 100%; }
-.message-bubbles { display: flex; flex-direction: column; gap: 8px; }
-.message { padding: 12px 16px; border-radius: 20px; line-height: 1.5; word-wrap: break-word; }
-.bot-message { background-color: var(--bot-message-bg); color: var(--text-primary); border-bottom-left-radius: 5px; box-shadow: 0 4px 10px var(--shadow-color); }
-.user-message { background-color: var(--user-message-bg); color: var(--text-light); border-bottom-right-radius: 5px; align-self: flex-end; }
-.message-timestamp { font-size: 0.75rem; color: var(--text-secondary); opacity: 0.8; margin-top: 6px; text-align: right; }
+    .nav.scrolled {
+      background: rgba(0,0,0,0.95);
+      box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    }
 
-.quick-reply-area { padding: 10px 20px 0; display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 8px; }
-.quick-reply { padding: 8px 16px; border-radius: 20px; border: 1px solid var(--button-outline); color: var(--text-primary); background-color: var(--bot-message-bg); cursor: pointer; transition: all 0.2s; font-size: 0.9rem; }
+    .nav-inner { 
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
 
-.chat-input-area { display: flex; align-items: center; padding: 15px; border-top: 1px solid var(--border-color); background-color: var(--background-color); flex-shrink: 0; gap: 10px; }
-.input-wrapper { display: flex; align-items: center; flex-grow: 1; border: 1px solid var(--border-color); background-color: var(--bot-message-bg); border-radius: 14px; }
-.chat-input { flex-grow: 1; border: none; background: transparent; padding: 14px 16px; font-size: 1rem; color: var(--text-primary); }
-.icon-btn { background-color: var(--bot-message-bg); border: 1px solid var(--border-color); width: 48px; height: 48px; border-radius: 14px; font-size: 1.2rem; color: var(--text-secondary); cursor: pointer; transition: all 0.2s; flex-shrink: 0; }
+    .brand { 
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      font-size: 1.4rem;
+    }
 
-.modal-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.4); display: none; justify-content: center; align-items: flex-end; z-index: 100; opacity: 0; transition: opacity 0.3s ease; }
-.modal-overlay.active { display: flex; opacity: 1; }
-.modal-content { background-color: var(--bot-message-bg); color: var(--text-primary); width: 100%; padding: 20px; border-radius: 20px 20px 0 0; transform: translateY(100%); transition: transform 0.3s ease-out; }
-.modal-overlay.active .modal-content { transform: translateY(0); }
-.menu-list { list-style: none; }
-.menu-list a, .menu-list button { display: flex; align-items: center; padding: 15px; border-bottom: 1px solid var(--border-color); color: var(--text-primary); text-decoration: none; font-size: 1rem; background: none; border: none; width: 100%; text-align: left; cursor: pointer; }
-.menu-list i { margin-right: 15px; color: var(--text-secondary); width: 20px; }
-.switch { position: relative; display: inline-block; width: 44px; height: 24px; margin-left: auto; }
-.switch input { opacity: 0; width: 0; height: 0; }
-.slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 24px; }
-.slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
-input:checked + .slider { background-color: var(--accent-color); }
-input:checked + .slider:before { transform: translateX(20px); }
+    .brand-logo {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #ffffff 0 10%, var(--primary) 10% 40%, transparent 41%),
+                  radial-gradient(circle at 65% 65%, var(--primary), transparent 60%);
+      box-shadow: var(--neon-glow);
+      position: relative;
+      overflow: hidden;
+    }
 
-.toast-notification { position: absolute; top: -100px; left: 50%; transform: translateX(-50%); background-color: #2C3E50; color: #FFFFFF; padding: 12px 20px; border-radius: 10px; font-size: 0.9rem; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 200; transition: top 0.4s ease-in-out; }
-.toast-notification.show { top: 20px; }
-</style>
+    .brand-logo::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(to bottom right, transparent, rgba(255,255,255,0.2), transparent);
+      transform: rotate(45deg);
+      animation: shine 3s infinite linear;
+    }
+
+    @keyframes shine {
+      0% { transform: translateX(-100%) rotate(45deg); }
+      100% { transform: translateX(100%) rotate(45deg); }
+    }
+
+    .nav-links { 
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links a { 
+      padding: 10px 16px;
+      border-radius: 8px;
+      color: var(--text);
+      opacity: 0.9;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .nav-links a::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::before {
+      width: 100%;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+      text-shadow: 0 0 10px var(--glow);
+    }
+
+    /* Hero section com efeito parallax e texto brilhante */
+    .hero { 
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(60% 60% at 70% 30%, rgba(30,30,108,0.4), transparent 60%),
+        radial-gradient(50% 50% at 20% 75%, rgba(177,156,217,0.3), transparent 60%),
+        linear-gradient(180deg, #03030a, #000000 60%);
+    }
+
+    .stars {
+      position: absolute;
+      inset: 0;
+      background-image: 
+        radial-gradient(2px 2px at 20% 30%, #fff, transparent),
+        radial-gradient(2px 2px at 40% 70%, #fff, transparent),
+        radial-gradient(2px 2px at 60% 80%, #fff, transparent),
+        radial-gradient(2px 2px at 80% 10%, #fff, transparent),
+        radial-gradient(2px 2px at 10% 90%, #fff, transparent);
+      background-size: 300px 300px;
+      animation: starsMove 50s linear infinite;
+    }
+
+    @keyframes starsMove {
+      from { background-position: 0 0; }
+      to { background-position: 300px 300px; }
+    }
+
+    .hero-content {
+      position: relative;
+      text-align: center;
+      max-width: 900px;
+      padding: 0 20px;
+      z-index: 2;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      margin-bottom: 20px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #ffffff 0%, var(--primary) 50%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 30px var(--glow);
+      animation: textGlow 3s infinite alternate;
+    }
+
+    @keyframes textGlow {
+      0% { text-shadow: 0 0 10px var(--glow); }
+      100% { text-shadow: 0 0 30px var(--glow), 0 0 40px var(--glow); }
+    }
+
+    .hero p {
+      font-size: clamp(1rem, 2.5vw, 1.4rem);
+      margin-bottom: 40px;
+      color: var(--muted);
+      line-height: 1.6;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 15px 30px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn.primary {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      border: none;
+      box-shadow: 0 0 20px var(--glow);
+    }
+
+    .btn.secondary {
+      background: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+      box-shadow: 0 0 15px rgba(177,156,217,0.3);
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: 0.5s;
+    }
+
+    .btn:hover::before {
+      left: 100%;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px var(--glow);
+    }
+
+    /* Seções com efeito de surgimento */
+    section {
+      padding: 100px 20px;
+      position: relative;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-head {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      margin-bottom: 20px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #ffffff, var(--primary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--primary), transparent);
+    }
+
+    .section-desc {
+      font-size: 1.2rem;
+      color: var(--muted);
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* Grid de cards futurista */
+    .grid {
+      display: grid;
+      gap: 30px;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+
+    .card {
+      background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      transition: all 0.4s ease;
+      transform-style: preserve-3d;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 20px;
+      padding: 2px;
+      background: linear-gradient(135deg, var(--primary), transparent, var(--accent));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-10px) rotateX(5deg);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+
+    .card:hover::before {
+      opacity: 1;
+    }
+
+    .card-thumb {
+      height: 200px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .card-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .card:hover .card-thumb img {
+      transform: scale(1.1);
+    }
+
+    .card-thumb::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 50%;
+      background: linear-gradient(transparent, rgba(0,0,0,0.7));
+    }
+
+    .card-content {
+      padding: 20px;
+    }
+
+    .card-title {
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .card-desc {
+      color: var(--muted);
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    .card-chip {
+      display: inline-block;
+      padding: 5px 15px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      background: rgba(177,156,217,0.2);
+      border: 1px solid rgba(177,156,217,0.4);
+      margin-bottom: 15px;
+    }
+
+    .card-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 20px;
+      background: rgba(177,156,217,0.1);
+      border: 1px solid rgba(177,156,217,0.3);
+      border-radius: 50px;
+      color: var(--primary);
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .card-btn:hover {
+      background: var(--primary);
+      color: var(--bg);
+      box-shadow: 0 0 15px var(--glow);
+    }
+
+    /* Efeito de digitação no hero */
+    .typewriter {
+      overflow: hidden;
+      border-right: 3px solid var(--primary);
+      white-space: nowrap;
+      margin: 0 auto;
+      animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blink-caret {
+      from, to { border-color: transparent }
+      50% { border-color: var(--primary) }
+    }
+
+    /* Footer estilizado */
+    footer {
+      background: linear-gradient(to top, #04040a, #000000);
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding: 60px 20px 30px;
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+    }
+
+    .footer-brand {
+      margin-bottom: 20px;
+    }
+
+    .footer-logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .footer-desc {
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .footer-heading {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      color: var(--primary);
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    .footer-heading::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background: var(--primary);
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 12px;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer-links a:hover {
+      color: var(--primary);
+      transform: translateX(5px);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .social-link {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(177,156,217,0.1);
+      border: 1px solid rgba(177,156,217,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      transition: all 0.3s ease;
+    }
+
+    .social-link:hover {
+      background: var(--primary);
+      color: var(--bg);
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px var(--glow);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 50px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      color: var(--muted);
+    }
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .cta {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .btn {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+      }
+    }
+
+    /* Animações de entrada */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
 </head>
 <body>
-<div class="container">
+  <!-- Efeito de partículas de fundo -->
+  <div id="particles-js"></div>
 
-<div class="chat-screen" id="chatScreen">
-    <header class="chat-header">
-        <div class="header-title-group">
-            <h1 id="kai-name-header">Kai</h1>
-        </div>
-        <div>
-            <button type="button" class="icon-btn" id="menuBtn" title="Menu" style="width: 40px; height: 40px;"><i class="fas fa-ellipsis-h"></i></button>
-        </div>
-    </header>
-
-    <div class="chat-body">
-        <div class="assistant-ui" id="assistantUI">
-            <p class="greeting-text">Yo! Eu sou o <b id="greetingName">Kai</b>!</p>
-            <div class="kai-logo-container">
-                <div class="kai-logo" id="kaiLogo"></div>
-                <h1 id="kai-name-main">Kai</h1>
-            </div>
-            <p class="help-text">Bora conversar? Digite algo abaixo.</p>
-        </div>
-        <div class="chat-messages" id="chatMessages"></div>
+  <!-- Navbar futurista -->
+  <nav class="nav" id="navbar">
+    <div class="nav-inner">
+      <div class="brand">
+        <div class="brand-logo"></div>
+        <span>Studio Tsukiyo</span>
+      </div>
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#light-novels">Light Novels</a>
+        <a href="#escola">Escola de Autores</a>
+        <a href="#otaku">Mundo Otaku</a>
+        <a href="#assistentes">Chatbots</a>
+        <a href="#contato">Parcerias</a>
+      </div>
     </div>
+  </nav>
 
-    <div class="quick-reply-area" id="quickReplyArea"></div>
+  <!-- Hero Section com efeito parallax -->
+  <header id="home" class="hero">
+    <div class="hero-bg"></div>
+    <div class="stars"></div>
+    <div class="hero-content">
+      <h1>Criando mundos, conectando mentes</h1>
+      <div class="typewriter">
+        <p>Onde histórias ganham vida e a criatividade não tem limites</p>
+      </div>
+      <div class="cta">
+        <a href="#light-novels" class="btn primary"><i class="fas fa-book-open"></i> Explorar Obras</a>
+        <a href="#escola" class="btn secondary"><i class="fas fa-graduation-cap"></i> Escola de Autores</a>
+        <a href="#contato" class="btn secondary"><i class="fas fa-handshake"></i> Parcerias</a>
+      </div>
+    </div>
+  </header>
 
-    <form class="chat-input-area" id="inputArea">
-        <div class="input-wrapper">
-            <input type="text" class="chat-input" id="userInput" placeholder="Digite sua mensagem...">
+  <!-- Light Novels Section -->
+  <section id="light-novels">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="section-title">Light Novels</h2>
+        <p class="section-desc">Universos originais que inspiram e emocionam. Descubra nossas histórias imersivas.</p>
+      </div>
+      <div class="grid">
+        <!-- Card 1 -->
+        <div class="card fade-in" data-link="https://a.co/d/3r426rh">
+          <div class="card-thumb">
+            <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Por Favor, Me Note">
+          </div>
+          <div class="card-content">
+            <span class="card-chip">Romance • Drama</span>
+            <h3 class="card-title">Abunai Aisuru: Arco 2</h3>
+            <p class="card-desc">Um encontro entre destino e coragem no formato clássico de light novel japonesa.</p>
+            <a href="https://exemplo.com/livro1" class="card-btn" target="_blank">Saiba mais <i class="fas fa-arrow-right"></i></a>
+          </div>
         </div>
-        <button type="submit" class="icon-btn" id="sendButton"><i class="fas fa-arrow-up"></i></button>
-        <button type="button" class="icon-btn" id="micBtn" title="Usar Microfone"><i class="fas fa-microphone"></i></button>
-    </form>
-</div>
+        
+        <!-- Card 2 -->
+        <div class="card fade-in" data-link="https://a.co/d/dF3c8tA">
+          <div class="card-thumb">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Abunai Aisuru">
+          </div>
+          <div class="card-content">
+            <span class="card-chip">Ficção • Adolescente</span>
+            <h3 class="card-title">Abunai Aisuru</h3>
+            <p class="card-desc">Em um Japão paralelo, casamentos controlados pelo Governo desafiam o primeiro amor.</p>
+            <a href="https://exemplo.com/livro2" class="card-btn" target="_blank">Saiba mais <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+        
+        <!-- Card 3 -->
+        <div class="card fade-in" data-link="https://a.co/d/1vAMQft">
+          <div class="card-thumb">
+            <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Searching For Myself">
+          </div>
+          <div class="card-content">
+            <span class="card-chip">Fantasia • Sci-Fi</span>
+            <h3 class="card-title">Emilly: Além do Horizonte</h3>
+            <p class="card-desc">Rotas, escolhas e identidades em uma jornada que mistura romance e ficção científica.</p>
+            <a href="https://exemplo.com/livro3" class="card-btn" target="_blank">Saiba mais <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+        
+        <!-- Card 4 -->
+        <div class="card fade-in" data-link="https://a.co/d/4ObiT5h">
+          <div class="card-thumb">
+            <img src="https://images.unsplash.com/photo-1525498128493-380d1990a112?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Herts Like Flowers">
+          </div>
+          <div class="card-content">
+            <span class="card-chip">Slice of Life</span>
+            <h3 class="card-title">Hearts Like Flowers</h3>
+            <p class="card-desc">Flores de sentimentos desabrocham entre segredos e promessas.</p>
+            <a href="https://exemplo.com/livro4" class="card-btn" target="_blank">Saiba mais <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+        
+        <!-- Card 5 -->
+        <div class="card fade-in" data-link="https://www.wattpad.com/story/353888895-married-at-16">
+          <div class="card-thumb">
+            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Married at 16">
+          </div>
+          <div class="card-content">
+            <span class="card-chip">Drama • Social</span>
+            <h3 class="card-title">Married at 16</h3>
+            <p class="card-desc">Dois adolescentes, um acordo social e um futuro a ser reescrito.</p>
+            <a href="https://exemplo.com/livro5" class="card-btn" target="_blank">Saiba mais <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+        
+        <!-- Card 6 -->
+        <div class="card fade-in" data-link="https://a.co/d/3DdzvdN">
+          <div class="card-thumb">
+            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Kizuite Kudassai">
+          </div>
+          <div class="card-content">
+            <span class="card-chip">Romance Escolar</span>
+            <h3 class="card-title">Kizuite Kudassai</h3>
+            <p class="card-desc">Confissões silenciosas, olhares furtivos e o peso das palavras não ditas.</p>
+            <a href="https://exemplo.com/livro6" class="card-btn" target="_blank">Saiba mais <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<div class="modal-overlay" id="menuOverlay">
-    <div class="modal-content">
-        <ul class="menu-list">
-            <li><a href="https://naotodev1.github.io/Nova" target="_blank"><i class="fas fa-plus"></i> Nova</a></li>
-            <li><a href="https://naotodev1.github.io/terms-e-policy" target="_blank"><i class="fas fa-file-alt"></i> Termos</a></li>
-            <li><a href="https://studiotsukiyo.bio.link" target="_blank"><i class="fas fa-layer-group"></i> Studio Tsukiyo Platforms</a></li>
-            <li><button id="aboutDevBtn"><i class="fas fa-user"></i> Sobre o Dev: Naoto Dev</button></li>
-            <li><button id="aboutKaiBtn"><i class="fas fa-robot"></i> Sobre o Kai</button></li>
-            <li><button id="clearChatBtn"><i class="fas fa-trash"></i> Limpar chat</button></li>
+  <!-- Escola de Autores Section -->
+  <section id="escola" style="background: rgba(11,11,19,0.7);">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="section-title">Escola de Autores</h2>
+        <p class="section-desc">Formação prática para escritores: cursos, mentorias e workshops com foco em narrativa e mercado.</p>
+      </div>
+      <div class="grid">
+        <div class="card fade-in" data-link="https://www.instagram.com/moonwriterhub">
+          <div class="card-thumb">
+            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Fundamentos de Light Novel">
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">Fundamentos de Light Novel</h3>
+            <p class="card-desc">Estrutura, ritmo, POV, construção de personagem e estética LN.</p>
+            <a href="https://exemplo.com/curso-fundamentos" class="card-btn" target="_blank">Inscreva-se <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+        
+        <div class="card fade-in" data-link="https://www.instagram.com/moonwriterhub">
+          <div class="card-thumb">
+            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Mentoria Individual">
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">Mentoria Individual</h3>
+            <p class="card-desc">Acompanhamento editorial, metas semanais e revisão de capítulos.</p>
+            <a href="https://www.instagram.com/moonwriterhub" class="card-btn" target="_blank">Quero mentoria <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+        
+        <div class="card fade-in" data-link="https://www.instagram.com/moonwriterhub">
+          <div class="card-thumb">
+            <img src="https://images.unsplash.com/photo-1535223289827-42f1e9919769?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="LitGeek Labs">
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">LitGeek Labs</h3>
+            <p class="card-desc">Apoiando novos escritores a darem seu primeiro passo na criação de light novels.</p>
+            <a href="https://exemplo.com/litgeek-labs" class="card-btn" target="_blank">Participar <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Restante do código (Mundo Otaku, Assistentes, Contato) seria similar -->
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo">Studio Tsukiyo Platforms</div>
+        <p class="footer-desc">Criando mundos, conectando mentes 🌙. Especializados em light novels, formação de autores e desenvolvimento de tecnologias criativas.</p>
+        <div class="social-links">
+          <a href="#" class="social-link"><i class="fab fa-instagram">https://www.instagram.com/studiotsukiyoplatforms/</i></a>
+          <a href="#" class="social-link"><i class="fab fa-tiktok"></i>https://www.tiktok.com/@shiunjianimes?is_from_webapp=1&sender_device=pc</a>
+          <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-discord"></i>https://discord.gg/4k4JTN3c</a>
+        </div>
+      </div>
+      
+      <div>
+        <h3 class="footer-heading">Navegação</h3>
+        <ul class="footer-links">
+          <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
+          <li><a href="#light-novels"><i class="fas fa-chevron-right"></i> Light Novels</a></li>
+          <li><a href="#escola"><i class="fas fa-chevron-right"></i> Escola de Autores</a></li>
+          <li><a href="#otaku"><i class="fas fa-chevron-right"></i> Mundo Otaku</a></li>
+          <li><a href="#assistentes"><i class="fas fa-chevron-right"></i> Projetos de IA</a></li>
         </ul>
+      </div>
+      
+      <div>
+        <h3 class="footer-heading">Contato</h3>
+        <ul class="footer-links">
+          <li><a href="#"><i class="fas fa-envelope"></i> sac.studiotsukiyo@outlook.com</a></li>
+          <li><a href="#"><i class="fas fa-map-marker-alt"></i> Vitória-ES, Brasil</a></li>
+          <li><a href="#"><i class="fas fa-clock"></i> @studiotsukiyoplatforms</a></li>
+        </ul>
+      </div>
     </div>
-</div>
-<div class="toast-notification" id="toast"></div>
-</div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2023 Studio Tsukiyo Platforms. Todos os direitos reservados.</p>
+    </div>
+  </footer>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const elements = {
-        chatMessages: document.getElementById('chatMessages'),
-        quickReplyArea: document.getElementById('quickReplyArea'),
-        inputArea: document.getElementById('inputArea'),
-        userInput: document.getElementById('userInput'),
-        micBtn: document.getElementById('micBtn'),
-        menuBtn: document.getElementById('menuBtn'),
-        menuOverlay: document.getElementById('menuOverlay'),
-        clearChatBtn: document.getElementById('clearChatBtn'),
-        assistantUI: document.getElementById('assistantUI'),
-        greetingName: document.getElementById('greetingName'),
-        kaiLogo: document.getElementById('kaiLogo'),
-        kaiNameMain: document.getElementById('kai-name-main'),
-        toast: document.getElementById('toast'),
-        aboutDevBtn: document.getElementById('aboutDevBtn'),
-        aboutKaiBtn: document.getElementById('aboutKaiBtn')
-    };
-
-    let isConversationActive = false;
-    let speechRecognition;
-    let currentGradientIndex = 0;
-
-    const gradients = ['var(--kai-gradient-1)','var(--kai-gradient-2)','var(--kai-gradient-3)'];
-
-    const kaiResponses = [
-        "Oi! Como vai você?", "Estou bem, e você?", "Conte-me algo interessante!", "Qual sua cor favorita?",
-        "Quer ouvir uma piada?", "Eu adoro aprender coisas novas.", "O que você gosta de fazer?", "Posso te ajudar com alguma coisa?",
-        "Fale mais sobre isso.", "Interessante!", "Hahaha, essa foi boa!", "Você já conhece o mundo digital?",
-        "Vamos conversar sobre tecnologia?", "Você prefere gatos ou cachorros?", "Gosta de animes?", "Qual seu estilo musical favorito?",
-        "Se pudesse viajar, para onde iria?", "Qual seu livro favorito?", "Me conte um segredo!", "Você gosta de desafios?",
-        "Qual é o seu sonho?", "O que te inspira?", "Vamos jogar um jogo de palavras?", "Você gosta de café?", "Qual seu emoji favorito?",
-        "Prefere praia ou montanha?", "O que te faz sorrir?", "Vamos criar algo juntos?", "Qual seu superpoder secreto?", "Gosta de filmes?",
-        "Você tem alguma curiosidade para me contar?", "Se pudesse mudar algo no mundo, o que seria?", "Qual seu momento favorito do dia?",
-        "O que te motiva?", "Vamos falar sobre o futuro?", "Você gosta de cores vibrantes?", "Qual seu maior medo?", "Você acredita em sorte?",
-        "Prefere manhã ou noite?", "O que te deixa relaxado?", "Tem algum hobby diferente?", "Qual sua comida favorita?", "Se pudesse ser um personagem, quem seria?",
-        "Você gosta de música eletrônica?", "Prefere cidades grandes ou pequenas?", "Tem algum talento secreto?", "Vamos aprender algo novo?", "O que te faz feliz?"
-    ];
-
-    function showToast(message) {
-        elements.toast.textContent = message;
-        elements.toast.classList.add('show');
-        setTimeout(() => elements.toast.classList.remove('show'), 2500);
-    }
-
-    function addMessage(content, type='bot') {
-        const messageGroup = document.createElement('div');
-        messageGroup.classList.add('message-group');
-        if(type==='user') messageGroup.classList.add('user');
-
-        const bubble = document.createElement('div');
-        bubble.classList.add('message', type==='bot'?'bot-message':'user-message');
-        bubble.textContent = content;
-
-        messageGroup.appendChild(bubble);
-        elements.chatMessages.appendChild(messageGroup);
-        elements.chatMessages.scrollTop = elements.chatMessages.scrollHeight;
-    }
-
-    elements.inputArea.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const text = elements.userInput.value.trim();
-        if(text==='') return;
-        addMessage(text,'user');
-        elements.userInput.value = '';
-        setTimeout(() => addMessage(kaiResponses[Math.floor(Math.random()*kaiResponses.length)]), 800);
-        if(!isConversationActive) activateChat();
-    });
-
-    function activateChat() {
-        isConversationActive = true;
-        elements.assistantUI.classList.add('hidden');
-        elements.chatMessages.classList.add('active');
-    }
-
-    elements.menuBtn.addEventListener('click', ()=>elements.menuOverlay.classList.toggle('active'));
-    elements.clearChatBtn.addEventListener('click', ()=>{ elements.chatMessages.innerHTML=''; showToast('Chat limpo!'); });
-
-    elements.aboutDevBtn.addEventListener('click', ()=>alert('Sobre o Dev:\nNaoto Dev\nCriador do Kai e várias obras digitais.'));
-    elements.aboutKaiBtn.addEventListener('click', ()=>alert('Sobre o Kai:\nAssistente digital inteligente, pronto para conversar!'));
-
-    elements.micBtn.addEventListener('click', ()=>{
-        if(!('webkitSpeechRecognition' in window || 'SpeechRecognition' in window)) {
-            alert('Seu navegador não suporta reconhecimento de voz.');
-            return;
+  <script>
+    // Script para o efeito de partículas
+    document.addEventListener('DOMContentLoaded', function() {
+      // Efeito de digitação
+      setTimeout(function() {
+        document.querySelector('.typewriter').style.borderRight = 'none';
+      }, 3500);
+      
+      // Navegação suave
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        });
+      });
+      
+      // Navbar scroll effect
+      window.addEventListener('scroll', function() {
+        const navbar = document.getElementById('navbar');
+        if (window.scrollY > 50) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
         }
-        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-        speechRecognition = new SpeechRecognition();
-        speechRecognition.lang = 'pt-BR';
-        speechRecognition.interimResults = false;
-        speechRecognition.maxAlternatives = 1;
-        speechRecognition.start();
-        speechRecognition.onresult = function(event) {
-            const speech = event.results[0][0].transcript;
-            elements.userInput.value = speech;
-            elements.inputArea.dispatchEvent(new Event('submit'));
-        };
-        speechRecognition.onerror = function(e) { console.error(e); }
+      });
+      
+      // Animação de aparecimento dos elementos
+      const fadeElements = document.querySelectorAll('.fade-in');
+      
+      function checkFade() {
+        fadeElements.forEach(element => {
+          const elementTop = element.getBoundingClientRect().top;
+          const elementVisible = 150;
+          if (elementTop < window.innerHeight - elementVisible) {
+            element.classList.add('visible');
+          }
+        });
+      }
+      
+      window.addEventListener('scroll', checkFade);
+      checkFade(); // Verifica os elementos visíveis no carregamento
+      
+      // Tornar cards clicáveis
+      document.querySelectorAll('.card[data-link]').forEach(card => {
+        card.addEventListener('click', (e) => {
+          if (e.target.tagName !== 'A' && !e.target.closest('a')) {
+            window.open(card.getAttribute('data-link'), '_blank');
+          }
+        });
+        
+        // Adiciona indicador visual de que é clicável
+        card.style.cursor = 'pointer';
+      });
     });
-
-    setInterval(()=> {
-        elements.kaiLogo.style.background = gradients[currentGradientIndex];
-        elements.kaiNameMain.style.background = gradients[currentGradientIndex];
-        currentGradientIndex = (currentGradientIndex+1)%gradients.length;
-    },3000);
-});
-</script>
+  </script>
 </body>
 </html>
