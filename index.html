@@ -217,6 +217,31 @@
         radial-gradient(50% 50% at 20% 75%, rgba(177,156,217,0.3), transparent 60%),
         linear-gradient(180deg, #03030a, #000000 60%);
     }
+    
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: repeating-linear-gradient(
+        0deg,
+        rgba(0,0,0,0) 0,
+        rgba(0,0,0,0) 1px,
+        rgba(255,255,255,0.05) 1px,
+        rgba(255,255,255,0.05) 2px
+      );
+      opacity: 0.5;
+      pointer-events: none;
+      animation: scanlines 5s linear infinite;
+    }
+    
+    @keyframes scanlines {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(20px); }
+    }
+
 
     .stars {
       position: absolute;
@@ -280,7 +305,7 @@
 
     .btn {
       padding: 15px 30px;
-      border-radius: 8px; /* Bordas mais retas */
+      border-radius: 8px;
       font-weight: 600;
       font-size: 1.1rem;
       transition: all 0.3s ease;
@@ -291,7 +316,7 @@
       gap: 10px;
       cursor: pointer;
       text-decoration: none;
-      border: 2px solid transparent; /* Borda inicial transparente */
+      border: 2px solid transparent;
     }
 
     .btn.primary {
@@ -309,10 +334,11 @@
     }
 
     .btn:hover {
-      transform: translateY(-3px);
+      transform: translateY(-3px) scale(1.05);
       filter: brightness(1.1);
       box-shadow: 0 10px 25px var(--glow);
     }
+
 
     /* Efeito de digitação */
     .typewriter-container {
@@ -366,6 +392,12 @@
       color: transparent;
       position: relative;
       display: inline-block;
+      animation: title-glow 2s infinite alternate;
+    }
+    
+    @keyframes title-glow {
+        from { text-shadow: 0 0 5px var(--glow); }
+        to { text-shadow: 0 0 20px var(--glow); }
     }
 
     .section-title::after {
@@ -399,6 +431,8 @@
       text-decoration: none;
       color: inherit;
       height: 100%;
+      transform-style: preserve-3d;
+      perspective: 1000px;
     }
 
     .card {
@@ -413,15 +447,33 @@
       display: flex;
       flex-direction: column;
     }
+    
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, var(--primary), transparent, var(--accent));
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      z-index: -1;
+      animation: rotate-glow 5s linear infinite;
+    }
+    
+    @keyframes rotate-glow {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
 
-    .card:hover {
-      transform: translateY(-10px);
+    .card-link:hover .card {
+      transform: translateY(-10px) rotateY(5deg) scale(1.02);
       box-shadow: 0 20px 40px rgba(0,0,0,0.3);
     }
-
-    .card:hover::before {
-      opacity: 1;
+    
+    .card-link:hover .card::before {
+        opacity: 0.7;
     }
+
 
     .card-thumb {
       height: 200px;
@@ -436,7 +488,7 @@
       transition: transform 0.5s ease;
     }
 
-    .card:hover .card-thumb img {
+    .card-link:hover .card-thumb img {
       transform: scale(1.1);
     }
 
@@ -494,13 +546,14 @@
       font-weight: 600;
       transition: all 0.3s ease;
       text-decoration: none;
-      margin-top: auto; /* Alinha o botão na parte inferior */
+      margin-top: auto;
     }
 
-    .card-btn:hover {
+    .card-link:hover .card-btn {
       filter: brightness(1.1);
       box-shadow: 0 0 20px var(--glow);
     }
+
 
     /* Footer estilizado */
     footer {
@@ -716,7 +769,7 @@
         <a href="#escola">Escola de Autores</a>
         <a href="#otaku">Mundo Otaku</a>
         <a href="#assistentes">Chatbots</a>
-        <a href="#contato">Parcerias</a>
+        <a href="#contato">Contato</a>
       </div>
       <button class="mobile-menu-btn" id="mobileMenuBtn">
         <i class="fas fa-bars"></i>
@@ -727,7 +780,7 @@
         <a href="#escola">Escola de Autores</a>
         <a href="#otaku">Mundo Otaku</a>
         <a href="#assistentes">Chatbots</a>
-        <a href="#contato">Parcerias</a>
+        <a href="#contato">Contato</a>
       </div>
     </div>
   </nav>
@@ -903,7 +956,7 @@
         </div>
 
         <div class="fade-in">
-          <a href="https://www.instagram.com/moonwriterhub" class="card-link" target="_blank" rel="noopener noreferrer">
+          <a href="https://studiotsukiyo.bio.link" class="card-link" target="_blank" rel="noopener noreferrer">
             <div class="card">
               <div class="card-thumb">
                 <img src="https://images.unsplash.com/photo-1535223289827-42f1e9919769?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="LitGeek Labs" loading="lazy">
@@ -929,7 +982,7 @@
       </div>
       <div class="grid">
         <div class="fade-in">
-          <a href="https://www.instagram.com/studiotsukiyoplatforms/" class="card-link" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.instagram.com/kenjianimezone/" class="card-link" target="_blank" rel="noopener noreferrer">
             <div class="card">
               <div class="card-thumb">
                 <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Instagram" loading="lazy">
@@ -970,13 +1023,13 @@
       </div>
       <div class="grid">
         <div class="fade-in">
-          <a href="https://naotodev1.github.io/sophia" class="card-link" target="_blank" rel="noopener noreferrer">
+          <a href="https://naotodev1.github.io/yuki" class="card-link" target="_blank" rel="noopener noreferrer">
             <div class="card">
               <div class="card-thumb">
-                <img src="https://images.unsplash.com/photo-1589254065878-42c9da997008?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Sophia" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1589254065878-42c9da997008?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Yuki" loading="lazy">
               </div>
               <div class="card-content">
-                <h3 class="card-title">Sophia — Assistente Criativa</h3>
+                <h3 class="card-title">Yuki — Assistente Criativa</h3>
                 <p class="card-desc">Auxilia em ideias de enredo, personagens e worldbuilding com foco em light novels.</p>
                 <div class="card-btn">Explorar <i class="fas fa-arrow-right"></i></div>
               </div>
@@ -991,7 +1044,7 @@
                 <img src="https://images.unsplash.com/photo-1589254066216-2b4a3f6db8d2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Nova" loading="lazy">
               </div>
               <div class="card-content">
-                <h3 class="card-title">Nova — Curadoria Otaku</h3>
+                <h3 class="card-title">Nova</h3>
                 <p class="card-desc">Recomenda obras, cria listas temáticas e conecta tendências da cultura otaku.</p>
                 <div class="card-btn">Explorar <i class="fas fa-arrow-right"></i></div>
               </div>
@@ -1007,9 +1060,24 @@
     <div class="container">
       <div class="section-head">
         <h2 class="section-title">Parcerias & Contato</h2>
-        <p class="section-desc">Tem uma proposta? Envie sua ideia e vamos construir algo juntos.</p>
+        <p class="section-desc">Tem uma proposta ou quer conhecer nossos projetos? Envie sua ideia e vamos construir algo juntos.</p>
       </div>
       <div class="grid">
+        <div class="fade-in">
+            <a href="https://studiotsukiyo.bio.link/" class="card-link" target="_blank" rel="noopener noreferrer">
+              <div class="card">
+                <div class="card-thumb">
+                  <img src="https://images.unsplash.com/photo-1554486858-6a2c24637207?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="LitGeek Labs" loading="lazy">
+                </div>
+                <div class="card-content">
+                  <h3 class="card-title">LitGeek Labs</h3>
+                  <p class="card-desc">Nossa incubadora de talentos e projetos inovadores. Acesse nosso portal para saber mais.</p>
+                  <div class="card-btn">Acessar <i class="fas fa-arrow-right"></i></div>
+                </div>
+              </div>
+            </a>
+          </div>
+
         <div class="fade-in">
           <a href="https://docs.google.com/forms/d/e/1FAIpQLSdTXKHA2mPA57j0bjUlOY5LihuYxgcSTlYvy0CUCOhJB8fgxw/viewform?usp=header" class="card-link" target="_blank" rel="noopener noreferrer">
             <div class="card">
@@ -1029,7 +1097,7 @@
           <a href="mailto:sac.studiotsukiyo@outlook.com" class="card-link">
             <div class="card">
               <div class="card-thumb">
-                <img src="https://images.unsplash.com/photo-1611605698335-8b1569810432?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format=fit&crop&w=800&q=80" alt="Contato Direto" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1557205465-f3293e6b29e3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Contato Direto" loading="lazy">
               </div>
               <div class="card-content">
                 <h3 class="card-title">Contato Direto</h3>
@@ -1050,17 +1118,17 @@
         <div class="footer-logo">Studio Tsukiyo Platforms</div>
         <p class="footer-desc">Criando mundos, conectando mentes 🌙. Especializados em light novels, formação de autores e desenvolvimento de tecnologias criativas.</p>
         <div class="social-links">
-          <a href="https://www.instagram.com/studiotsukiyoplatforms/" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.instagram.com/studiotsukiyo/" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
           <a href="https://www.tiktok.com/@shiunjianimes" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-          <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-discord"></i></a>
           <a href="https://discord.gg/4k4JTN3c" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Discord"><i class="fab fa-discord"></i></a>
         </div>
 
         <div class="social-text">
-          <a href="https://www.instagram.com/studiotsukiyoplatforms/" target="_blank" rel="noopener noreferrer">
-            <i class="fab fa-instagram"></i> @studiotsukiyoplatforms
+          <a href="https://www.instagram.com/studiotsukiyo/" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-instagram"></i> @studiotsukiyo
           </a>
-          <a href="https://www.tiktok.com/@shiunjianimes" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.tiktok.com/@kenjianimezone" target="_blank" rel="noopener noreferrer">
             <i class="fab fa-tiktok"></i> @shiunjianimes
           </a>
           <a href="https://discord.gg/4k4JTN3c" target="_blank" rel="noopener noreferrer">
@@ -1085,7 +1153,7 @@
         <ul class="footer-links">
           <li><a href="mailto:sac.studiotsukiyo@outlook.com"><i class="fas fa-envelope"></i> sac.studiotsukiyo@outlook.com</a></li>
           <li><a href="#"><i class="fas fa-map-marker-alt"></i> Vitória-ES, Brasil</a></li>
-          <li><a href="https://www.instagram.com/studiotsukiyoplatforms/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i> @studiotsukiyoplatforms</a></li>
+          <li><a href="https://www.instagram.com/studiotsukiyo/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i> @studiotsukiyo</a></li>
         </ul>
       </div>
     </div>
@@ -1140,7 +1208,6 @@
         anchor.addEventListener('click', function(e) {
           const href = this.getAttribute('href');
 
-          // Verifica se é um link interno (começa com #)
           if (href.startsWith('#') && href !== '#') {
             e.preventDefault();
             const target = document.querySelector(href);
@@ -1152,7 +1219,6 @@
               });
             }
           }
-          // Links externos (que não começam com #) não serão afetados
         });
       });
 
@@ -1170,62 +1236,23 @@
 
       // Animação de aparecimento dos elementos
       const fadeElements = document.querySelectorAll('.fade-in');
-
-      function checkFade() {
-        fadeElements.forEach(element => {
-          const elementTop = element.getBoundingClientRect().top;
-          const elementVisible = 150;
-          if (elementTop < window.innerHeight - elementVisible) {
-            element.classList.add('visible');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
           }
         });
-      }
-
-      // Throttle da função de scroll para performance
-      let ticking = false;
-      function requestTick() {
-        if (!ticking) {
-          requestAnimationFrame(function() {
-            checkFade();
-            ticking = false;
-          });
-          ticking = true;
-        }
-      }
-
-      window.addEventListener('scroll', requestTick);
-
-      checkFade(); // Verifica os elementos visíveis no carregamento inicial
-
-      // Lazy loading para imagens (fallback para navegadores que não suportam loading="lazy")
-      const images = document.querySelectorAll('img[loading="lazy"]');
-      if ('IntersectionObserver' in window) {
-        const imageObserver = new IntersectionObserver((entries, observer) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              const img = entry.target;
-              img.src = img.src; // Força o carregamento
-              img.classList.add('loaded');
-              observer.unobserve(img);
-            }
-          });
-        });
-
-        images.forEach(img => imageObserver.observe(img));
-      }
+      }, {
+        threshold: 0.1
+      });
+      
+      fadeElements.forEach(el => {
+        observer.observe(el);
+      });
 
       // Prevenção de FOUC (Flash of Unstyled Content)
       document.body.style.visibility = 'visible';
-    });
-
-    // Tratamento de erros globais
-    window.addEventListener('error', function(e) {
-      console.warn('Erro capturado:', e.error);
-    });
-
-    // Performance: Remover listeners desnecessários quando a página for fechada
-    window.addEventListener('beforeunload', function() {
-      // Cleanup se necessário
     });
   </script>
 </body>
