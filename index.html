@@ -34,6 +34,12 @@
       font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
       overflow-x: hidden;
       scroll-behavior: smooth;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
     }
 
     /* Efeito de partículas no fundo */
@@ -42,6 +48,19 @@
       width: 100%;
       height: 100%;
       z-index: -1;
+      background: 
+        radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,0.3), transparent),
+        radial-gradient(2px 2px at 40% 70%, rgba(255,255,255,0.3), transparent),
+        radial-gradient(1px 1px at 60% 80%, rgba(255,255,255,0.2), transparent),
+        radial-gradient(1px 1px at 80% 10%, rgba(255,255,255,0.2), transparent),
+        radial-gradient(2px 2px at 10% 90%, rgba(255,255,255,0.3), transparent);
+      background-size: 250px 250px, 300px 300px, 200px 200px, 350px 350px, 280px 280px;
+      animation: particles 60s linear infinite;
+    }
+
+    @keyframes particles {
+      0% { background-position: 0 0, 50px 50px, 100px 100px, 150px 150px, 200px 200px; }
+      100% { background-position: 250px 250px, 350px 350px, 300px 300px, 500px 500px, 480px 480px; }
     }
 
     /* Navbar futurista */
@@ -142,6 +161,44 @@
       text-shadow: 0 0 10px var(--glow);
     }
 
+    /* Menu mobile */
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .mobile-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background: rgba(0,0,0,0.95);
+      border-top: 1px solid rgba(177,156,217,0.2);
+      flex-direction: column;
+      padding: 20px;
+      gap: 15px;
+    }
+
+    .mobile-menu.active {
+      display: flex;
+    }
+
+    .mobile-menu a {
+      padding: 15px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      text-align: center;
+      transition: color 0.3s ease;
+    }
+
+    .mobile-menu a:hover {
+      color: var(--primary);
+    }
+
     /* Hero section com efeito parallax e texto brilhante */
     .hero { 
       position: relative;
@@ -200,11 +257,11 @@
     }
 
     @keyframes textGlow {
-      0% { text-shadow: 0 0 10px var(--glow); }
-      100% { text-shadow: 0 0 30px var(--glow), 0 0 40px var(--glow); }
+      0% { filter: drop-shadow(0 0 10px var(--glow)); }
+      100% { filter: drop-shadow(0 0 30px var(--glow)) drop-shadow(0 0 40px var(--glow)); }
     }
 
-    .hero p {
+    .hero-subtitle {
       font-size: clamp(1rem, 2.5vw, 1.4rem);
       margin-bottom: 40px;
       color: var(--muted);
@@ -232,6 +289,8 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
+      cursor: pointer;
+      text-decoration: none;
     }
 
     .btn.primary {
@@ -266,6 +325,32 @@
     .btn:hover {
       transform: translateY(-3px);
       box-shadow: 0 10px 25px var(--glow);
+    }
+
+    /* Efeito de digitação */
+    .typewriter-container {
+      height: 2em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+
+    .typewriter {
+      overflow: hidden;
+      border-right: 3px solid var(--primary);
+      white-space: nowrap;
+      animation: typing 3.5s steps(50, end), blink-caret 0.75s step-end infinite;
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    @keyframes blink-caret {
+      from, to { border-color: transparent; }
+      50% { border-color: var(--primary); }
     }
 
     /* Seções com efeito de surgimento */
@@ -319,7 +404,7 @@
     .grid {
       display: grid;
       gap: 30px;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     }
 
     .card {
@@ -420,31 +505,13 @@
       color: var(--primary);
       font-weight: 500;
       transition: all 0.3s ease;
+      text-decoration: none;
     }
 
     .card-btn:hover {
       background: var(--primary);
       color: var(--bg);
       box-shadow: 0 0 15px var(--glow);
-    }
-
-    /* Efeito de digitação no hero */
-    .typewriter {
-      overflow: hidden;
-      border-right: 3px solid var(--primary);
-      white-space: nowrap;
-      margin: 0 auto;
-      animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
-    }
-
-    @keyframes typing {
-      from { width: 0 }
-      to { width: 100% }
-    }
-
-    @keyframes blink-caret {
-      from, to { border-color: transparent }
-      50% { border-color: var(--primary) }
     }
 
     /* Footer estilizado */
@@ -514,6 +581,7 @@
       display: flex;
       align-items: center;
       gap: 10px;
+      text-decoration: none;
     }
 
     .footer-links a:hover {
@@ -538,6 +606,7 @@
       justify-content: center;
       color: var(--primary);
       transition: all 0.3s ease;
+      text-decoration: none;
     }
 
     .social-link:hover {
@@ -575,24 +644,6 @@
       color: var(--muted);
     }
 
-    /* Responsividade */
-    @media (max-width: 768px) {
-      .nav-links {
-        display: none;
-      }
-
-      .cta {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .btn {
-        width: 100%;
-        text-align: center;
-        justify-content: center;
-      }
-    }
-
     /* Animações de entrada */
     .fade-in {
       opacity: 0;
@@ -603,6 +654,60 @@
     .fade-in.visible {
       opacity: 1;
       transform: translateY(0);
+    }
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      .cta {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .btn {
+        width: 100%;
+        max-width: 300px;
+        text-align: center;
+        justify-content: center;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: 100vh;
+        padding-top: 80px;
+      }
+
+      section {
+        padding: 60px 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .hero-subtitle {
+        font-size: 1rem;
+      }
+      
+      .section-title {
+        font-size: 1.5rem;
+      }
+      
+      .section-desc {
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
@@ -625,6 +730,17 @@
         <a href="#assistentes">Chatbots</a>
         <a href="#contato">Parcerias</a>
       </div>
+      <button class="mobile-menu-btn" id="mobileMenuBtn">
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="mobile-menu" id="mobileMenu">
+        <a href="#home">Home</a>
+        <a href="#light-novels">Light Novels</a>
+        <a href="#escola">Escola de Autores</a>
+        <a href="#otaku">Mundo Otaku</a>
+        <a href="#assistentes">Chatbots</a>
+        <a href="#contato">Parcerias</a>
+      </div>
     </div>
   </nav>
 
@@ -634,8 +750,10 @@
     <div class="stars"></div>
     <div class="hero-content">
       <h1>Criando mundos, conectando mentes</h1>
-      <div class="typewriter">
-        <p>Onde histórias ganham vida e a criatividade não tem limites</p>
+      <div class="typewriter-container">
+        <div class="typewriter">
+          <p class="hero-subtitle">Onde histórias ganham vida e a criatividade não tem limites</p>
+        </div>
       </div>
       <div class="cta">
         <a href="#light-novels" class="btn primary"><i class="fas fa-book-open"></i> Explorar Obras</a>
@@ -656,78 +774,78 @@
         <!-- Card 1 -->
         <div class="card fade-in">
           <div class="card-thumb">
-            <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Por Favor, Me Note">
+            <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Por Favor, Me Note" loading="lazy">
           </div>
           <div class="card-content">
             <span class="card-chip">Romance • Drama</span>
             <h3 class="card-title">Abunai Aisuru: Arco 2</h3>
             <p class="card-desc">Um encontro entre destino e coragem no formato clássico de light novel japonesa.</p>
-            <a href="https://a.co/d/3r426rh" class="card-btn" target="_blank">Saiba mais <i class="fas fa-arrow-right"></i></a>
+            <a href="https://a.co/d/3r426rh" class="card-btn" target="_blank" rel="noopener noreferrer">Saiba mais <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
         
         <!-- Card 2 -->
         <div class="card fade-in">
           <div class="card-thumb">
-            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Abunai Aisuru">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Abunai Aisuru" loading="lazy">
           </div>
           <div class="card-content">
             <span class="card-chip">Ficção • Adolescente</span>
             <h3 class="card-title">Abunai Aisuru</h3>
             <p class="card-desc">Em um Japão paralelo, casamentos controlados pelo Governo desafiam o primeiro amor.</p>
-            <a href="https://a.co/d/dF3c8tA" class="card-btn" target="_blank">Saiba mais <i class="fas fa-arrow-right"></i></a>
+            <a href="https://a.co/d/dF3c8tA" class="card-btn" target="_blank" rel="noopener noreferrer">Saiba mais <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
         
         <!-- Card 3 -->
         <div class="card fade-in">
           <div class="card-thumb">
-            <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Searching For Myself">
+            <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Searching For Myself" loading="lazy">
           </div>
           <div class="card-content">
             <span class="card-chip">Fantasia • Sci-Fi</span>
             <h3 class="card-title">Emilly: Além do Horizonte</h3>
             <p class="card-desc">Rotas, escolhas e identidades em uma jornada que mistura romance e ficção científica.</p>
-            <a href="https://a.co/d/1vAMQft" class="card-btn" target="_blank">Saiba mais <i class="fas fa-arrow-right"></i></a>
+            <a href="https://a.co/d/1vAMQft" class="card-btn" target="_blank" rel="noopener noreferrer">Saiba mais <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
         
         <!-- Card 4 -->
         <div class="card fade-in">
           <div class="card-thumb">
-            <img src="https://images.unsplash.com/photo-1525498128493-380d1990a112?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Herts Like Flowers">
+            <img src="https://images.unsplash.com/photo-1525498128493-380d1990a112?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Herts Like Flowers" loading="lazy">
           </div>
           <div class="card-content">
             <span class="card-chip">Slice of Life</span>
             <h3 class="card-title">Hearts Like Flowers</h3>
             <p class="card-desc">Flores de sentimentos desabrocham entre segredos e promessas.</p>
-            <a href="https://a.co/d/4ObiT5h" class="card-btn" target="_blank">Saiba mais <i class="fas fa-arrow-right"></i></a>
+            <a href="https://a.co/d/4ObiT5h" class="card-btn" target="_blank" rel="noopener noreferrer">Saiba mais <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
         
         <!-- Card 5 -->
         <div class="card fade-in">
           <div class="card-thumb">
-            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Married at 16">
+            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Married at 16" loading="lazy">
           </div>
           <div class="card-content">
             <span class="card-chip">Drama • Social</span>
             <h3 class="card-title">Married at 16</h3>
             <p class="card-desc">Dois adolescentes, um acordo social e um futuro a ser reescrito.</p>
-            <a href="https://www.wattpad.com/story/353888895-married-at-16" class="card-btn" target="_blank">Saiba mais <i class="fas fa-arrow-right"></i></a>
+            <a href="https://www.wattpad.com/story/353888895-married-at-16" class="card-btn" target="_blank" rel="noopener noreferrer">Saiba mais <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
         
         <!-- Card 6 -->
         <div class="card fade-in">
           <div class="card-thumb">
-            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Kizuite Kudassai">
+            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Kizuite Kudassai" loading="lazy">
           </div>
           <div class="card-content">
             <span class="card-chip">Romance Escolar</span>
             <h3 class="card-title">Kizuite Kudassai</h3>
             <p class="card-desc">Confissões silenciosas, olhares furtivos e o peso das palavras não ditas.</p>
-            <a href="https://a.co/d/3DdzvdN" class="card-btn" target="_blank">Saiba mais <i class="fas fa-arrow-right"></i></a>
+            <a href="https://a.co/d/3DdzvdN" class="card-btn" target="_blank" rel="noopener noreferrer">Saiba mais <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
       </div>
@@ -739,39 +857,39 @@
     <div class="container">
       <div class="section-head">
         <h2 class="section-title">Escola de Autores</h2>
-        <p class="section-desc">Formação prática para escritores: cursos, mentorias e workshops com focus em narrativa e mercado.</p>
+        <p class="section-desc">Formação prática para escritores: cursos, mentorias e workshops com foco em narrativa e mercado.</p>
       </div>
       <div class="grid">
         <div class="card fade-in">
           <div class="card-thumb">
-            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Fundamentos de Light Novel">
+            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Fundamentos de Light Novel" loading="lazy">
           </div>
           <div class="card-content">
             <h3 class="card-title">Fundamentos de Light Novel</h3>
             <p class="card-desc">Estrutura, ritmo, POV, construção de personagem e estética LN.</p>
-            <a href="https://www.instagram.com/moonwriterhub" class="card-btn" target="_blank">Inscreva-se <i class="fas fa-arrow-right"></i></a>
+            <a href="https://www.instagram.com/moonwriterhub" class="card-btn" target="_blank" rel="noopener noreferrer">Inscreva-se <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
         
         <div class="card fade-in">
           <div class="card-thumb">
-            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Mentoria Individual">
+            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Mentoria Individual" loading="lazy">
           </div>
           <div class="card-content">
             <h3 class="card-title">Mentoria Individual</h3>
             <p class="card-desc">Acompanhamento editorial, metas semanais e revisão de capítulos.</p>
-            <a href="https://www.instagram.com/moonwriterhub" class="card-btn" target="_blank">Quero mentoria <i class="fas fa-arrow-right"></i></a>
+            <a href="https://www.instagram.com/moonwriterhub" class="card-btn" target="_blank" rel="noopener noreferrer">Quero mentoria <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
         
         <div class="card fade-in">
           <div class="card-thumb">
-            <img src="https://images.unsplash.com/photo-1535223289827-42f1e9919769?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="LitGeek Labs">
+            <img src="https://images.unsplash.com/photo-1535223289827-42f1e9919769?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="LitGeek Labs" loading="lazy">
           </div>
           <div class="card-content">
             <h3 class="card-title">LitGeek Labs</h3>
             <p class="card-desc">Apoiando novos escritores a darem seu primeiro passo na criação de light novels.</p>
-            <a href="https://www.instagram.com/moonwriterhub" class="card-btn" target="_blank">Participar <i class="fas fa-arrow-right"></i></a>
+            <a href="https://www.instagram.com/moonwriterhub" class="card-btn" target="_blank" rel="noopener noreferrer">Participar <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
       </div>
@@ -788,23 +906,23 @@
       <div class="grid">
         <div class="card fade-in">
           <div class="card-thumb">
-            <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Instagram">
+            <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Instagram" loading="lazy">
           </div>
           <div class="card-content">
             <h3 class="card-title">Instagram</h3>
             <p class="card-desc">Conteúdos visuais, teasers, bastidores e drops da Studio Tsukiyo.</p>
-            <a href="https://www.instagram.com/studiotsukiyoplatforms/" class="card-btn" target="_blank">Seguir <i class="fas fa-arrow-right"></i></a>
+            <a href="https://www.instagram.com/studiotsukiyoplatforms/" class="card-btn" target="_blank" rel="noopener noreferrer">Seguir <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
         
         <div class="card fade-in">
           <div class="card-thumb">
-            <img src="https://images.unsplash.com/photo-1611605698335-8b1569810432?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="TikTok">
+            <img src="https://images.unsplash.com/photo-1611605698335-8b1569810432?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="TikTok" loading="lazy">
           </div>
           <div class="card-content">
             <h3 class="card-title">TikTok</h3>
             <p class="card-desc">Clipes rápidos, trends otaku e anúncios estilo editora japonesa.</p>
-            <a href="https://www.tiktok.com/@shiunjianimes" class="card-btn" target="_blank">Seguir <i class="fas fa-arrow-right"></i></a>
+            <a href="https://www.tiktok.com/@shiunjianimes" class="card-btn" target="_blank" rel="noopener noreferrer">Seguir <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
       </div>
@@ -821,23 +939,23 @@
       <div class="grid">
         <div class="card fade-in">
           <div class="card-thumb">
-            <img src="https://images.unsplash.com/photo-1589254065878-42c9da997008?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Sophia">
+            <img src="https://images.unsplash.com/photo-1589254065878-42c9da997008?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Sophia" loading="lazy">
           </div>
           <div class="card-content">
             <h3 class="card-title">Sophia — Assistente Criativa</h3>
             <p class="card-desc">Auxilia em ideias de enredo, personagens e worldbuilding com foco em light novels.</p>
-            <a href="https://naotodev1.github.io/sophia" class="card-btn" target="_blank">Explorar <i class="fas fa-arrow-right"></i></a>
+            <a href="https://naotodev1.github.io/sophia" class="card-btn" target="_blank" rel="noopener noreferrer">Explorar <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
         
         <div class="card fade-in">
           <div class="card-thumb">
-            <img src="https://images.unsplash.com/photo-1589254066216-2b4a3f6db8d2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Nova">
+            <img src="https://images.unsplash.com/photo-1589254066216-2b4a3f6db8d2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Nova" loading="lazy">
           </div>
           <div class="card-content">
             <h3 class="card-title">Nova — Curadoria Otaku</h3>
             <p class="card-desc">Recomenda obras, cria listas temáticas e conecta tendências da cultura otaku.</p>
-            <a href="https://naotodev1.github.io/Nova" class="card-btn" target="_blank">Explorar <i class="fas fa-arrow-right"></i></a>
+            <a href="https://naotodev1.github.io/Nova" class="card-btn" target="_blank" rel="noopener noreferrer">Explorar <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
       </div>
@@ -854,18 +972,18 @@
       <div class="grid">
         <div class="card fade-in">
           <div class="card-thumb">
-            <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Formulário de Parcerias">
+            <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Formulário de Parcerias" loading="lazy">
           </div>
           <div class="card-content">
             <h3 class="card-title">Propostas de Parcerias</h3>
             <p class="card-desc">Preencha nosso formulário para parcerias, colabs, patrocínios, eventos e mais.</p>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdTXKHA2mPA57j0bjUlOY5LihuYxgcSTlYvy0CUCOhJB8fgxw/viewform?usp=header" class="card-btn" target="_blank">Abrir Formulário <i class="fas fa-arrow-right"></i></a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdTXKHA2mPA57j0bjUlOY5LihuYxgcSTlYvy0CUCOhJB8fgxw/viewform?usp=header" class="card-btn" target="_blank" rel="noopener noreferrer">Abrir Formulário <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
         
         <div class="card fade-in">
           <div class="card-thumb">
-            <img src="https://images.unsplash.com/photo-1611605698335-8b1569810432?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Contato Direto">
+            <img src="https://images.unsplash.com/photo-1611605698335-8b1569810432?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Contato Direto" loading="lazy">
           </div>
           <div class="card-content">
             <h3 class="card-title">Contato Direto</h3>
@@ -877,26 +995,27 @@
     </div>
   </section>
 
+  <!-- Footer -->
   <footer>
     <div class="footer-inner">
       <div class="footer-brand">
         <div class="footer-logo">Studio Tsukiyo Platforms</div>
         <p class="footer-desc">Criando mundos, conectando mentes 🌙. Especializados em light novels, formação de autores e desenvolvimento de tecnologias criativas.</p>
         <div class="social-links">
-          <a href="https://www.instagram.com/studiotsukiyoplatforms/" class="social-link" target="_blank"><i class="fab fa-instagram"></i></a>
-          <a href="https://www.tiktok.com/@shiunjianimes" class="social-link" target="_blank"><i class="fab fa-tiktok"></i></a>
-          <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-          <a href="https://discord.gg/4k4JTN3c" class="social-link" target="_blank"><i class="fab fa-discord"></i></a>
+          <a href="https://www.instagram.com/studiotsukiyoplatforms/" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.tiktok.com/@shiunjianimes" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+          <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="https://discord.gg/4k4JTN3c" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Discord"><i class="fab fa-discord"></i></a>
         </div>
         
         <div class="social-text">
-          <a href="https://www.instagram.com/studiotsukiyoplatforms/" target="_blank">
+          <a href="https://www.instagram.com/studiotsukiyoplatforms/" target="_blank" rel="noopener noreferrer">
             <i class="fab fa-instagram"></i> @studiotsukiyoplatforms
           </a>
-          <a href="https://www.tiktok.com/@shiunjianimes" target="_blank">
+          <a href="https://www.tiktok.com/@shiunjianimes" target="_blank" rel="noopener noreferrer">
             <i class="fab fa-tiktok"></i> @shiunjianimes
           </a>
-          <a href="https://discord.gg/4k4JTN3c" target="_blank">
+          <a href="https://discord.gg/4k4JTN3c" target="_blank" rel="noopener noreferrer">
             <i class="fab fa-discord"></i> Discord Studio Tsukiyo
           </a>
         </div>
@@ -918,23 +1037,55 @@
         <ul class="footer-links">
           <li><a href="mailto:sac.studiotsukiyo@outlook.com"><i class="fas fa-envelope"></i> sac.studiotsukiyo@outlook.com</a></li>
           <li><a href="#"><i class="fas fa-map-marker-alt"></i> Vitória-ES, Brasil</a></li>
-          <li><a href="https://www.instagram.com/studiotsukiyoplatforms/" target="_blank"><i class="fab fa-instagram"></i> @studiotsukiyoplatforms</a></li>
+          <li><a href="https://www.instagram.com/studiotsukiyoplatforms/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i> @studiotsukiyoplatforms</a></li>
         </ul>
       </div>
     </div>
     
     <div class="footer-bottom">
-      <p>&copy; 2023 Studio Tsukiyo Platforms. Todos os direitos reservados.</p>
+      <p>&copy; 2024 Studio Tsukiyo Platforms. Todos os direitos reservados.</p>
     </div>
   </footer>
 
   <script>
-    // Script para o efeito de partículas
+    // Script principal
     document.addEventListener('DOMContentLoaded', function() {
-      // Efeito de digitação
-      setTimeout(function() {
-        document.querySelector('.typewriter').style.borderRight = 'none';
-      }, 3500);
+      // Menu mobile toggle
+      const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      
+      if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener('click', function() {
+          mobileMenu.classList.toggle('active');
+          const icon = mobileMenuBtn.querySelector('i');
+          if (mobileMenu.classList.contains('active')) {
+            icon.classList.remove('fa-bars');
+            icon.classList.add('fa-times');
+          } else {
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+          }
+        });
+
+        // Fechar menu ao clicar em um link
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+          link.addEventListener('click', function() {
+            mobileMenu.classList.remove('active');
+            const icon = mobileMenuBtn.querySelector('i');
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+          });
+        });
+      }
+      
+      // Remover efeito de digitação após completar
+      const typewriter = document.querySelector('.typewriter');
+      if (typewriter) {
+        setTimeout(function() {
+          typewriter.style.borderRight = 'none';
+        }, 4000);
+      }
       
       // Navegação suave
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -942,23 +1093,26 @@
           e.preventDefault();
           const target = document.querySelector(this.getAttribute('href'));
           if (target) {
-            target.scrollIntoView({
-              behavior: 'smooth',
-              block: 'start'
+            const offsetTop = target.offsetTop - 80; // Compensar altura do navbar
+            window.scrollTo({
+              top: offsetTop,
+              behavior: 'smooth'
             });
           }
         });
       });
       
       // Navbar scroll effect
-      window.addEventListener('scroll', function() {
-        const navbar = document.getElementById('navbar');
-        if (window.scrollY > 50) {
-          navbar.classList.add('scrolled');
-        } else {
-          navbar.classList.remove('scrolled');
-        }
-      });
+      const navbar = document.getElementById('navbar');
+      if (navbar) {
+        window.addEventListener('scroll', function() {
+          if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+          } else {
+            navbar.classList.remove('scrolled');
+          }
+        });
+      }
       
       // Animação de aparecimento dos elementos
       const fadeElements = document.querySelectorAll('.fade-in');
@@ -973,8 +1127,51 @@
         });
       }
       
-      window.addEventListener('scroll', checkFade);
-      checkFade(); // Verifica os elementos visíveis no carregamento
+      // Throttle da função de scroll para performance
+      let ticking = false;
+      function requestTick() {
+        if (!ticking) {
+          requestAnimationFrame(checkFade);
+          ticking = true;
+        }
+      }
+      
+      window.addEventListener('scroll', function() {
+        requestTick();
+        ticking = false;
+      });
+      
+      checkFade(); // Verifica os elementos visíveis no carregamento inicial
+      
+      // Lazy loading para imagens (fallback para navegadores que não suportam loading="lazy")
+      const images = document.querySelectorAll('img[loading="lazy"]');
+      if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const img = entry.target;
+              img.src = img.src; // Força o carregamento
+              img.classList.add('loaded');
+              observer.unobserve(img);
+            }
+          });
+        });
+        
+        images.forEach(img => imageObserver.observe(img));
+      }
+      
+      // Prevenção de FOUC (Flash of Unstyled Content)
+      document.body.style.visibility = 'visible';
+    });
+    
+    // Tratamento de erros globais
+    window.addEventListener('error', function(e) {
+      console.warn('Erro capturado:', e.error);
+    });
+    
+    // Performance: Remover listeners desnecessários quando a página for fechada
+    window.addEventListener('beforeunload', function() {
+      // Cleanup se necessário
     });
   </script>
 </body>
