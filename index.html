@@ -7,7 +7,7 @@
     <link rel="icon" type="image/png" href="https://i.imgur.com/orvGJOL.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Microsoft Clarity -->
+    <!-- Microsoft Clarity Correto -->
     <script type="text/javascript">
         (function(c,l,a,r,i,t,y){
             c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -331,11 +331,17 @@
             font-size: 11px;
             font-weight: 600;
             text-transform: uppercase;
+            cursor: pointer;
+            transition: var(--transition);
         }
 
         .plan-badge.free {
             background: var(--primary-color);
             color: white;
+        }
+
+        .plan-badge:hover {
+            transform: scale(1.05);
         }
 
         .plan-badge.premium {
@@ -676,6 +682,12 @@
             font-size: 11px;
             font-weight: 600;
             color: var(--primary-color);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .usage-counter:hover {
+            transform: scale(1.05);
         }
 
         .dark-mode .usage-counter {
@@ -1124,35 +1136,6 @@
             background: #eab308;
         }
 
-        .payment-methods {
-            display: flex;
-            gap: 12px;
-            margin-top: 16px;
-            justify-content: center;
-        }
-
-        .payment-method {
-            padding: 12px 16px;
-            background: var(--surface-light);
-            border: 1px solid var(--border-light);
-            border-radius: var(--border-radius);
-            cursor: pointer;
-            transition: var(--transition);
-            flex: 1;
-            text-align: center;
-        }
-
-        .payment-method.selected {
-            border-color: var(--primary-color);
-            background: rgba(16, 163, 127, 0.05);
-        }
-
-        .payment-method i {
-            font-size: 20px;
-            margin-bottom: 4px;
-            display: block;
-        }
-
         .pix-code {
             background: var(--surface-light);
             padding: 16px;
@@ -1428,10 +1411,6 @@
                 grid-template-columns: 1fr;
             }
 
-            .payment-methods {
-                flex-direction: column;
-            }
-
             .upgrade-container {
                 padding: 20px 16px;
                 margin: 16px;
@@ -1520,8 +1499,8 @@
                     <div class="user-avatar" id="userAvatar">
                         <i class="fas fa-user"></i>
                     </div>
-                    <div class="plan-badge free" id="planBadge">FREE</div>
-                    <div class="usage-counter" id="usageCounter">15/25 mensagens</div>
+                    <div class="plan-badge free" id="planBadge">Upgrade</div>
+                    <div class="usage-counter" id="usageCounter">Upgrade</div>
                 </div>
                 <div class="header-title-group">
                     <img src="https://i.imgur.com/orvGJOL.png" alt="Yume Logo" class="header-logo">
@@ -1580,36 +1559,16 @@
                         <li><i class="fas fa-check"></i> Suporte 24/7</li>
                         <li><i class="fas fa-check"></i> Recursos avançados</li>
                     </ul>
-                    
-                    <div class="payment-methods">
-                        <div class="payment-method selected" data-method="pix">
-                            <i class="fas fa-qrcode"></i>
-                            <div>PIX</div>
-                        </div>
-                        <div class="payment-method" data-method="mercadopago">
-                            <i class="fas fa-credit-card"></i>
-                            <div>Cartão</div>
-                        </div>
-                    </div>
 
                     <div id="pixPayment" class="payment-section">
                         <div class="pix-code" id="pixCode">
-                            00020126580014br.gov.bcb.pix0136123e4567-e89b-12d3-a456-426614174000520400005303986540520.005802BR5913STUDIO TSUKIYO6008BRASILIA62070503***6304E2CA
+                            00020126900014BR.GOV.BCB.PIX013611a4cd6a-710d-4cd5-9f5b-2897c3fd0eed0228a ORPHEO Platforms agradece.520400005303986540519.905802BR5924Bruno Pereira dos Santos6009SAO PAULO62140510LAIzU3NkWl63040DF6
                         </div>
                         <button class="copy-btn" id="copyPixBtn">
                             <i class="fas fa-copy"></i> Copiar Código PIX
                         </button>
                         <p style="font-size: 12px; margin-top: 12px; color: var(--text-muted);">
                             Após o pagamento, envie o comprovante para: sac.studiotsukiyo@outlook.com
-                        </p>
-                    </div>
-
-                    <div id="mercadopagoPayment" class="payment-section hidden">
-                        <button class="upgrade-btn" id="mercadopagoBtn">
-                            Pagar com Mercado Pago
-                        </button>
-                        <p style="font-size: 12px; margin-top: 12px; color: var(--text-muted);">
-                            Pagamento seguro processado pelo Mercado Pago
                         </p>
                     </div>
                 </div>
@@ -1776,8 +1735,12 @@
     </div>
 
     <script>
-        // Sistema principal com perfil funcional e Microsoft Clarity
+        // Sistema principal com integração real da Mistral AI
         document.addEventListener('DOMContentLoaded', function() {
+            // Configurações da API
+            const MISTRAL_API_KEY = 'NFuAj8PYUPcaf6tA1BjbyXuIeSjSA4sW';
+            const MISTRAL_API_URL = 'https://api.mistral.ai/v1/chat/completions';
+            
             // Elementos principais
             const authScreen = document.getElementById('authScreen');
             const chatScreen = document.getElementById('chatScreen');
@@ -1795,6 +1758,8 @@
             const upgradeBtn = document.getElementById('upgradeBtn');
             const backToChatBtn = document.getElementById('backToChatBtn');
             const logoutBtn = document.getElementById('logoutBtn');
+            const planBadge = document.getElementById('planBadge');
+            const usageCounter = document.getElementById('usageCounter');
             
             // Elementos do perfil
             const userAvatar = document.getElementById('userAvatar');
@@ -1811,11 +1776,13 @@
             const saveProfileBtn = document.getElementById('saveProfileBtn');
             const cancelProfileBtn = document.getElementById('cancelProfileBtn');
 
+            // Elementos do PIX
+            const copyPixBtn = document.getElementById('copyPixBtn');
+            const pixCode = document.getElementById('pixCode');
+
             // Estado da aplicação
             let currentUser = null;
             let messageCount = 0;
-            let sessionCount = 0;
-            let feedbackCount = 0;
             let userStats = {
                 messages: 0,
                 sessions: 0,
@@ -1942,6 +1909,27 @@
             saveProfileBtn.addEventListener('click', saveProfile);
             profileAvatar.addEventListener('click', changeAvatar);
 
+            // Event Listeners do upgrade
+            planBadge.addEventListener('click', showUpgradeScreen);
+            usageCounter.addEventListener('click', showUpgradeScreen);
+            upgradeBtn.addEventListener('click', showUpgradeScreen);
+
+            // Copiar código PIX
+            copyPixBtn.addEventListener('click', function() {
+                navigator.clipboard.writeText(pixCode.textContent).then(function() {
+                    showToast('Código PIX copiado!');
+                }).catch(function() {
+                    // Fallback para navegadores mais antigos
+                    const textArea = document.createElement('textarea');
+                    textArea.value = pixCode.textContent;
+                    document.body.appendChild(textArea);
+                    textArea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textArea);
+                    showToast('Código PIX copiado!');
+                });
+            });
+
             // Navegação entre login/cadastro
             document.getElementById('showRegister').addEventListener('click', function(e) {
                 e.preventDefault();
@@ -2017,7 +2005,7 @@
                 }
             });
 
-            // Chat
+            // Chat - Integração real com Mistral AI
             sendButton.addEventListener('click', sendMessage);
             chatInput.addEventListener('keypress', function(e) {
                 if (e.key === 'Enter') {
@@ -2025,32 +2013,62 @@
                 }
             });
 
-            function sendMessage() {
+            async function sendMessage() {
                 const message = chatInput.value.trim();
                 if (message) {
                     addMessage(message, 'user');
                     chatInput.value = '';
                     
+                    // Mostrar loading
+                    const loadingMessage = addMessage('Processando sua pergunta...', 'assistant');
+                    
                     // Atualizar estatísticas
                     userStats.messages++;
                     saveUserStats();
                     
-                    // Enviar para o Clarity
-                    if (window.clarity) {
-                        window.clarity("set", "last_message", message.substring(0, 100));
+                    try {
+                        // Integração real com Mistral AI
+                        const response = await fetch(MISTRAL_API_URL, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': `Bearer ${MISTRAL_API_KEY}`
+                            },
+                            body: JSON.stringify({
+                                model: 'mistral-tiny',
+                                messages: [
+                                    {
+                                        role: 'user',
+                                        content: message
+                                    }
+                                ],
+                                max_tokens: 500,
+                                temperature: 0.7
+                            })
+                        });
+
+                        if (!response.ok) {
+                            throw new Error(`Erro na API: ${response.status}`);
+                        }
+
+                        const data = await response.json();
+                        
+                        // Remover mensagem de loading
+                        loadingMessage.remove();
+                        
+                        // Adicionar resposta da IA
+                        const aiResponse = data.choices[0].message.content;
+                        addMessage(aiResponse, 'assistant');
+                        
+                    } catch (error) {
+                        console.error('Erro ao chamar Mistral AI:', error);
+                        
+                        // Remover mensagem de loading
+                        loadingMessage.remove();
+                        
+                        // Mensagem de fallback em caso de erro
+                        addMessage('Desculpe, estou tendo problemas técnicos no momento. Por favor, tente novamente em alguns instantes.', 'assistant');
                     }
-                    
-                    // Simular resposta da IA
-                    setTimeout(() => {
-                        const responses = [
-                            "Entendi sua pergunta! Como posso ajudar você com isso?",
-                            "Interessante! Pode me dar mais detalhes?",
-                            "Vou pesquisar sobre isso para te dar uma resposta mais precisa.",
-                            "Com certeza! Posso te ajudar com essa questão."
-                        ];
-                        const randomResponse = responses[Math.floor(Math.random() * responses.length)];
-                        addMessage(randomResponse, 'assistant');
-                    }, 1000);
                 }
             }
 
@@ -2060,24 +2078,7 @@
                 messageDiv.textContent = text;
                 chatMessages.appendChild(messageDiv);
                 chatMessages.scrollTop = chatMessages.scrollHeight;
-                
-                if (sender === 'user') {
-                    messageCount++;
-                    updateUsageCounter();
-                }
-            }
-
-            function updateUsageCounter() {
-                const usageCounter = document.getElementById('usageCounter');
-                const remaining = Math.max(0, 25 - messageCount);
-                usageCounter.textContent = `${messageCount}/25 mensagens`;
-                
-                if (remaining <= 5) {
-                    usageCounter.classList.add('low');
-                }
-                if (remaining <= 2) {
-                    usageCounter.classList.add('critical');
-                }
+                return messageDiv;
             }
 
             // Menu
@@ -2087,10 +2088,6 @@
 
             closeMenu.addEventListener('click', function() {
                 menuOverlay.classList.remove('active');
-            });
-
-            upgradeBtn.addEventListener('click', function() {
-                showUpgradeScreen();
             });
 
             backToChatBtn.addEventListener('click', function() {
@@ -2284,7 +2281,8 @@
                     button.className = 'quick-reply';
                     button.textContent = reply;
                     button.addEventListener('click', function() {
-                        addMessage(reply, 'user');
+                        chatInput.value = reply;
+                        sendMessage();
                     });
                     quickReplyArea.appendChild(button);
                 });
