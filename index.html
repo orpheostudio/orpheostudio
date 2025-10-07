@@ -1,458 +1,2295 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Studio Tsukiyo Platforms | Criando mundos, conectando mentes</title>
-  <meta name="description" content="Studio Tsukiyo Platforms — Light Novels, Escola de Autores, Mundo Otaku e Projetos de Assistentes. Criando mundos, conectando mentes." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    :root {
-      --bg: #020010;
-      --surface: #0b0b13;
-      --text: #e0e0ff;
-      --muted: #a0a0c0;
-      --primary: #B19CD9;
-      --accent: #4f4fe6;
-      --glow: rgba(177, 156, 217, 0.4);
-      --surface-glow: radial-gradient(40% 50% at 50% 50%, rgba(79, 79, 230, 0.15) 0%, rgba(79, 79, 230, 0) 100%);
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      cursor: none;
-    }
-
-    html, body {
-      background-color: var(--bg);
-      color: var(--text);
-      font-family: 'Montserrat', sans-serif;
-      overflow-x: hidden;
-      scroll-behavior: smooth;
-      line-height: 1.6;
-    }
-
-    body::before {
-        content: '';
-        position: fixed;
-        inset: 0;
-        background-image: var(--surface-glow);
-        opacity: 0.5;
-        z-index: -2;
-    }
-
-    a { text-decoration: none; color: inherit; }
-
-    .cursor {
-        position: fixed; width: 30px; height: 30px;
-        border: 1px solid var(--primary); border-radius: 50%;
-        left: 0; top: 0; pointer-events: none;
-        transform: translate(-50%, -50%); transition: 0.1s;
-        z-index: 9999;
-    }
-
-    .cursor-follower {
-        position: fixed; width: 8px; height: 8px;
-        background: var(--primary); border-radius: 50%;
-        left: 0; top: 0; pointer-events: none;
-        transform: translate(-50%, -50%); transition: 0.2s ease-out;
-        z-index: 9998;
-    }
-
-    a:hover ~ .cursor, .btn:hover ~ .cursor, .card:hover ~ .cursor {
-        transform: translate(-50%, -50%) scale(1.5);
-        background: var(--glow);
-    }
-
-    /* Navbar */
-    .nav {
-      position: fixed; top: 0; width: 100%; z-index: 1000;
-      background: rgba(2, 0, 16, 0.5); backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(177, 156, 217, 0.2);
-      transition: opacity 0.5s ease, transform 0.5s ease;
-      opacity: 0; transform: translateY(-100%); pointer-events: none;
-    }
-    .nav.visible {
-      opacity: 1; transform: translateY(0); pointer-events: auto;
-    }
-
-    .nav-inner {
-      max-width: 1200px; margin: 0 auto; padding: 15px 20px;
-      display: flex; align-items: center; justify-content: space-between;
-    }
-
-    .brand { display: flex; align-items: center; gap: 15px; font-weight: 700; font-size: 1.4rem; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yume - Assistente Virtual IA</title>
+    <link rel="icon" type="image/png" href="https://i.imgur.com/orvGJOL.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    .brand-logo {
-      width: 40px; height: 40px; position: relative;
-      animation: pulse-logo 4s infinite;
-    }
-    .logo-moon {
-      width: 30px; height: 30px; border-radius: 50%;
-      box-shadow: 10px 5px 0 0 var(--primary);
-      position: absolute; top: 5px; left: 0;
-    }
-    .logo-pen {
-      width: 4px; height: 35px; background: white;
-      position: absolute; top: 2px; left: 20px;
-      transform: rotate(20deg); border-radius: 2px;
-    }
-    .logo-pen::after { /* Nib */
-      content: ''; width: 0; height: 0;
-      border-left: 2px solid transparent; border-right: 2px solid transparent;
-      border-top: 4px solid #e0e0ff;
-      position: absolute; bottom: -3px; left: 0;
-    }
-
-    @keyframes pulse-logo {
-        0%, 100% { transform: scale(1); filter: drop-shadow(0 0 10px var(--glow)); }
-        50% { transform: scale(1.05); filter: drop-shadow(0 0 20px var(--glow)); }
-    }
-
-    .nav-links a {
-      padding: 10px 16px; border-radius: 8px; position: relative;
-      transition: color 0.3s ease; font-weight: 500;
-    }
-    .nav-links a.active, .nav-links a:hover {
-      color: var(--primary); text-shadow: 0 0 10px var(--glow);
-    }
-    .mobile-menu-btn, .mobile-menu { display: none; }
-
-    /* Hero Section */
-    .hero {
-      position: fixed; inset: 0; z-index: 10;
-      display: flex; align-items: center; justify-content: center;
-      overflow: hidden; perspective: 1000px;
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-    .hero.hidden {
-      opacity: 0; transform: scale(0.95); pointer-events: none;
-    }
-
-    .hero-bg-layers, .hero-content { transition: transform 0.3s ease-out; }
-    .hero-bg-layers { position: absolute; inset: 0; z-index: -1; }
-    .hero-glow {
-        position: absolute; inset: -5%;
-        background-image: radial-gradient(circle at 50% 50%, var(--accent) 0, transparent 40%);
-        opacity: 0.5;
-    }
-    .hero-grid-pattern {
-        position: absolute; inset: -5%;
-        background-image:
-            linear-gradient(rgba(177,156,217,0.1) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(177,156,217,0.1) 1px, transparent 1px);
-        background-size: 50px 50px;
-        animation: pan-grid 20s linear infinite;
-    }
-    @keyframes pan-grid { from { background-position: 0 0; } to { background-position: 50px 50px; } }
-
-    .hero-content {
-        position: relative; text-align: center; max-width: 900px;
-        padding: 0 20px; z-index: 2;
-    }
-    .hero h1 {
-      font-size: clamp(3rem, 6vw, 5.5rem); margin-bottom: 20px; font-weight: 800; letter-spacing: -2px;
-      background: linear-gradient(135deg, #ffffff 40%, var(--primary) 100%);
-      -webkit-background-clip: text; background-clip: text; color: transparent;
-      text-shadow: 0 0 30px rgba(255,255,255,0.2);
-    }
-    .hero-subtitle {
-        font-size: clamp(1rem, 2.5vw, 1.4rem); margin-bottom: 40px;
-        color: var(--muted); max-width: 600px; margin-inline: auto;
-    }
-    .btn {
-      padding: 15px 35px; border-radius: 8px; font-weight: 600; font-size: 1.1rem;
-      transition: all 0.3s ease; position: relative; border: 1px solid var(--primary);
-      overflow: hidden; background: var(--primary); color: var(--bg);
-    }
-    .btn:hover { transform: translateY(-5px); box-shadow: 0 10px 25px var(--glow); }
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "nfv8y3n7t6");
+    </script>
     
-    /* Main Content Hub */
-    #main-content-hub {
-      position: relative; z-index: 5;
-      padding-top: 100px;
-      opacity: 0; pointer-events: none;
-      transition: opacity 0.8s ease 0.5s;
-    }
-    #main-content-hub.visible {
-      opacity: 1; pointer-events: auto;
-    }
+    <style>
+        /* Reset e configurações básicas */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    section { padding: 80px 20px; }
-    .container { max-width: 1200px; margin: 0 auto; }
-    .section-head { text-align: center; margin-bottom: 80px; }
-    .section-title { font-size: clamp(2.2rem, 5vw, 3.5rem); margin-bottom: 20px; font-weight: 700; letter-spacing: -1px; }
+        :root {
+            --primary-color: #10a37f;
+            --primary-light: #1abc9c;
+            --primary-dark: #0d8c6c;
+            --secondary-color: #10a37f;
+            --accent-color: #10a37f;
+            --user-message-bg: #10a37f;
+            --assistant-message-bg: #f7f7f8;
+            --background-light: #ffffff;
+            --background-dark: #343541;
+            --surface-light: #ffffff;
+            --surface-dark: #444654;
+            --text-light: #374151;
+            --text-dark: #ececf1;
+            --text-muted: #6b7280;
+            --border-light: #e5e5e5;
+            --border-dark: #565869;
+            --success-color: #10a37f;
+            --warning-color: #f59e0b;
+            --error-color: #ef4444;
+            --premium-color: #f59e0b;
+            --ai-color: #10a37f;
+            --shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            --shadow-dark: 0 1px 3px rgba(0, 0, 0, 0.3);
+            --border-radius: 8px;
+            --border-radius-lg: 12px;
+            --transition: all 0.2s ease;
+        }
 
-    /* Content Views */
-    .content-view {
-      display: none;
-      animation: fadeIn 0.8s ease;
-    }
-    .content-view.active {
-      display: block;
-    }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        /* Tema claro (padrão) - Estilo ChatGPT */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--background-light);
+            color: var(--text-light);
+            line-height: 1.5;
+            transition: var(--transition);
+            min-height: 100vh;
+        }
 
-    .grid {
-        display: grid; gap: 40px;
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    }
-    
-    /* 3D Cards */
-    .card {
-        background: rgba(11, 11, 19, 0.5); border: 1px solid rgba(177, 156, 217, 0.2);
-        border-radius: 20px; overflow: hidden; position: relative;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.5); transition: all 0.2s ease-out;
-        backdrop-filter: blur(10px); transform-style: preserve-3d;
-        height: 100%; display: flex; flex-direction: column;
-    }
-    .card::before {
-        content: ''; position: absolute; inset: 0; border-radius: 20px;
-        background: radial-gradient(circle at var(--mouse-x) var(--mouse-y), rgba(177,156,217,0.2), transparent 40%);
-        opacity: 0; transition: opacity 0.3s;
-    }
-    .card:hover {
-        box-shadow: 0 25px 50px rgba(0,0,0,0.7);
-        border-color: rgba(177, 156, 217, 0.4);
-    }
-    .card:hover::before { opacity: 1; }
+        /* Tema escuro - Estilo ChatGPT Dark */
+        body.dark-mode {
+            background-color: var(--background-dark);
+            color: var(--text-dark);
+        }
 
-    .card-thumb { height: 220px; overflow: hidden; }
-    .card-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
-    .card:hover .card-thumb img { transform: scale(1.1) translateZ(20px); }
-    
-    .card-content {
-      padding: 25px; flex-grow: 1; display: flex; flex-direction: column;
-      transform: translateZ(20px);
-    }
-    .card-title { font-size: 1.5rem; margin-bottom: 10px; font-weight: 600; }
-    .card-desc { color: var(--muted); margin-bottom: 25px; flex-grow: 1; }
+        /* Container principal */
+        .container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
 
-    .card-btn {
-        margin-top: auto; padding: 12px 24px; background: transparent;
-        border: 1px solid var(--primary); color: var(--primary);
-        border-radius: 8px; font-weight: 600; text-align: center;
-        transition: all 0.3s ease;
-    }
-    .card:hover .card-btn { background: var(--primary); color: var(--bg); box-shadow: 0 0 20px var(--glow); }
+        /* Telas */
+        .screen {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
 
-    /* Category Card specific style */
-    .category-card .card-title {
-        font-size: 1.8rem;
-        text-align: center;
-        margin: auto;
-    }
+        .hidden {
+            display: none !important;
+        }
 
-    /* Footer */
-    footer {
-        padding: 80px 20px 40px; border-top: 1px solid rgba(177, 156, 217, 0.2);
-        background: var(--surface);
-    }
-    /* (rest of footer CSS is fine) */
-  </style>
+        /* Tela de autenticação */
+        .auth-screen {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: var(--background-light);
+        }
+
+        .dark-mode .auth-screen {
+            background: var(--background-dark);
+        }
+
+        .auth-container {
+            background: var(--surface-light);
+            border: 1px solid var(--border-light);
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow);
+            padding: 32px;
+            width: 100%;
+            max-width: 400px;
+            transition: var(--transition);
+        }
+
+        .dark-mode .auth-container {
+            background: var(--surface-dark);
+            border: 1px solid var(--border-dark);
+            box-shadow: var(--shadow-dark);
+        }
+
+        .auth-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .auth-logo {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 16px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .auth-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--primary-color);
+        }
+
+        .auth-subtitle {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* Formulários de autenticação */
+        .auth-form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-title {
+            font-size: 20px;
+            margin-bottom: 24px;
+            text-align: center;
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        .dark-mode .form-title {
+            color: var(--text-dark);
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-size: 14px;
+            margin-bottom: 6px;
+            font-weight: 500;
+            color: var(--text-light);
+        }
+
+        .dark-mode .form-group label {
+            color: var(--text-dark);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 12px 16px;
+            border: 1px solid var(--border-light);
+            border-radius: var(--border-radius);
+            font-size: 14px;
+            transition: var(--transition);
+            background: var(--surface-light);
+            color: var(--text-light);
+            resize: vertical;
+        }
+
+        .dark-mode .form-group input,
+        .dark-mode .form-group select,
+        .dark-mode .form-group textarea {
+            background: var(--surface-dark);
+            border-color: var(--border-dark);
+            color: var(--text-dark);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .checkbox-group {
+            flex-direction: row;
+            align-items: flex-start;
+        }
+
+        .checkbox-group input {
+            margin-right: 8px;
+            margin-top: 2px;
+        }
+
+        .checkbox-group label {
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .checkbox-group a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .checkbox-group a:hover {
+            text-decoration: underline;
+        }
+
+        .auth-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            padding: 12px 16px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 8px;
+        }
+
+        .auth-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .auth-switch {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .auth-switch a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .auth-switch a:hover {
+            text-decoration: underline;
+        }
+
+        /* Tela de chat */
+        .chat-screen {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            background: var(--background-light);
+        }
+
+        .dark-mode .chat-screen {
+            background: var(--background-dark);
+        }
+
+        /* Cabeçalho do chat */
+        .chat-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 16px;
+            background: var(--surface-light);
+            border-bottom: 1px solid var(--border-light);
+            position: relative;
+            z-index: 10;
+        }
+
+        .dark-mode .chat-header {
+            background: var(--surface-dark);
+            border-bottom-color: var(--border-dark);
+        }
+
+        .header-user-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .user-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .user-avatar:hover {
+            transform: scale(1.05);
+        }
+
+        .user-avatar.premium {
+            background: var(--premium-color);
+        }
+
+        .plan-badge {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .plan-badge.free {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .plan-badge.premium {
+            background: var(--premium-color);
+            color: #000;
+        }
+
+        .header-title-group {
+            display: flex;
+            align-items: center;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .header-logo {
+            width: 24px;
+            height: 24px;
+            margin-right: 8px;
+            border-radius: 50%;
+        }
+
+        .header-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .icon-btn {
+            background: none;
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--text-light);
+            transition: var(--transition);
+        }
+
+        .dark-mode .icon-btn {
+            color: var(--text-dark);
+        }
+
+        .icon-btn:hover {
+            background: var(--border-light);
+        }
+
+        .dark-mode .icon-btn:hover {
+            background: var(--border-dark);
+        }
+
+        /* Corpo do chat */
+        .chat-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            background: var(--background-light);
+        }
+
+        .dark-mode .chat-body {
+            background: var(--background-dark);
+        }
+
+        /* Interface da assistente */
+        .assistant-ui {
+            text-align: center;
+            padding: 48px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .greeting-text {
+            font-size: 24px;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .help-text {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+
+        .orb {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+        }
+
+        .orb.premium {
+            background: var(--premium-color);
+        }
+
+        /* Área de mensagens */
+        .chat-messages {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .message {
+            max-width: 85%;
+            padding: 16px 20px;
+            border-radius: var(--border-radius-lg);
+            position: relative;
+            animation: messageSlide 0.2s ease;
+            line-height: 1.5;
+        }
+
+        @keyframes messageSlide {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .user-message {
+            align-self: flex-end;
+            background: var(--user-message-bg);
+            color: white;
+        }
+
+        .assistant-message {
+            align-self: flex-start;
+            background: var(--assistant-message-bg);
+            color: var(--text-light);
+            border: 1px solid var(--border-light);
+        }
+
+        .dark-mode .assistant-message {
+            background: var(--surface-dark);
+            color: var(--text-dark);
+            border-color: var(--border-dark);
+        }
+
+        /* Sistema de Feedback */
+        .feedback-buttons {
+            margin-top: 12px;
+            padding: 12px;
+            background: rgba(16, 163, 127, 0.05);
+            border-radius: var(--border-radius);
+            text-align: center;
+        }
+
+        .dark-mode .feedback-buttons {
+            background: rgba(16, 163, 127, 0.1);
+        }
+
+        .feedback-label {
+            font-size: 12px;
+            margin-right: 8px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .feedback-btn {
+            background: var(--surface-light);
+            border: 1px solid var(--border-light);
+            border-radius: 4px;
+            width: 28px;
+            height: 28px;
+            cursor: pointer;
+            margin: 0 4px;
+            transition: var(--transition);
+            font-size: 12px;
+        }
+
+        .dark-mode .feedback-btn {
+            background: var(--surface-dark);
+            border-color: var(--border-dark);
+        }
+
+        .feedback-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .feedback-btn.positive:hover {
+            background: var(--success-color);
+            color: white;
+            border-color: var(--success-color);
+        }
+
+        .feedback-btn.negative:hover {
+            background: var(--error-color);
+            color: white;
+            border-color: var(--error-color);
+        }
+
+        /* Indicador de IA */
+        .ai-indicator {
+            font-size: 10px;
+            opacity: 0.7;
+            margin-top: 6px;
+            text-align: right;
+            font-weight: 500;
+        }
+
+        .ai-indicator.mistral {
+            color: var(--ai-color);
+        }
+
+        .ai-indicator.cache {
+            color: var(--success-color);
+        }
+
+        .ai-indicator.history {
+            color: var(--primary-color);
+        }
+
+        .ai-indicator.fallback {
+            color: var(--warning-color);
+        }
+
+        /* Área de respostas rápidas */
+        .quick-reply-area {
+            padding: 16px;
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            border-top: 1px solid var(--border-light);
+            background: var(--surface-light);
+        }
+
+        .dark-mode .quick-reply-area {
+            background: var(--surface-dark);
+            border-top-color: var(--border-dark);
+        }
+
+        .quick-reply {
+            padding: 8px 12px;
+            background: var(--surface-light);
+            border: 1px solid var(--border-light);
+            border-radius: 16px;
+            font-size: 12px;
+            font-weight: 500;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--text-light);
+        }
+
+        .dark-mode .quick-reply {
+            background: var(--surface-dark);
+            color: var(--text-dark);
+            border-color: var(--border-dark);
+        }
+
+        .quick-reply:hover {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        /* Área de entrada de mensagens */
+        .chat-input-area {
+            display: flex;
+            padding: 16px;
+            gap: 12px;
+            align-items: center;
+            background: var(--surface-light);
+            border-top: 1px solid var(--border-light);
+        }
+
+        .dark-mode .chat-input-area {
+            background: var(--surface-dark);
+            border-top-color: var(--border-dark);
+        }
+
+        .input-wrapper {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            background: var(--surface-light);
+            border-radius: 20px;
+            padding: 0 16px;
+            border: 1px solid var(--border-light);
+            transition: var(--transition);
+        }
+
+        .dark-mode .input-wrapper {
+            background: var(--surface-dark);
+            border-color: var(--border-dark);
+        }
+
+        .input-wrapper:focus-within {
+            border-color: var(--primary-color);
+        }
+
+        .chat-input {
+            flex: 1;
+            border: none;
+            background: none;
+            padding: 12px 0;
+            font-size: 14px;
+            outline: none;
+            color: var(--text-light);
+        }
+
+        .dark-mode .chat-input {
+            color: var(--text-dark);
+        }
+
+        .chat-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        #sendButton {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        #sendButton:hover {
+            background: var(--primary-dark);
+        }
+
+        .usage-counter {
+            padding: 6px 12px;
+            background: rgba(16, 163, 127, 0.1);
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .dark-mode .usage-counter {
+            background: rgba(16, 163, 127, 0.2);
+        }
+
+        .usage-counter.low {
+            color: var(--warning-color);
+            background: rgba(245, 158, 11, 0.1);
+        }
+
+        .usage-counter.critical {
+            color: var(--error-color);
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 12px;
+            font-size: 11px;
+            color: var(--text-muted);
+            background: var(--surface-light);
+            border-top: 1px solid var(--border-light);
+        }
+
+        .dark-mode .footer {
+            background: var(--surface-dark);
+            border-top-color: var(--border-dark);
+        }
+
+        /* Modal e menu */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: var(--surface-light);
+            border-radius: var(--border-radius-lg);
+            width: 90%;
+            max-width: 500px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow);
+            transform: translateY(20px);
+            transition: var(--transition);
+        }
+
+        .dark-mode .modal-content {
+            background: var(--surface-dark);
+            box-shadow: var(--shadow-dark);
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .dark-mode .menu-header {
+            border-bottom-color: var(--border-dark);
+        }
+
+        .menu-header h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            color: var(--text-light);
+            transition: var(--transition);
+        }
+
+        .dark-mode .close-btn {
+            color: var(--text-dark);
+        }
+
+        .close-btn:hover {
+            color: var(--primary-color);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            padding: 16px;
+        }
+
+        .menu-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 12px;
+            background: var(--surface-light);
+            border-radius: var(--border-radius);
+            border: 1px solid var(--border-light);
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .dark-mode .menu-card {
+            background: var(--surface-dark);
+            border-color: var(--border-dark);
+        }
+
+        .menu-card:hover {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .menu-card i {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .menu-card span {
+            font-size: 12px;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .menu-card.premium {
+            background: var(--premium-color);
+            color: #000;
+            font-weight: 600;
+            border: none;
+        }
+
+        .menu-card.premium:hover {
+            background: #eab308;
+        }
+
+        .menu-list-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border-light);
+            transition: var(--transition);
+        }
+
+        .dark-mode .menu-list-item {
+            border-bottom-color: var(--border-dark);
+        }
+
+        .menu-list-item:hover {
+            background: var(--border-light);
+        }
+
+        .dark-mode .menu-list-item:hover {
+            background: var(--border-dark);
+        }
+
+        .menu-list-item:last-of-type {
+            border-bottom: none;
+        }
+
+        .menu-list-item i {
+            margin-right: 8px;
+            color: var(--primary-color);
+            font-size: 14px;
+        }
+
+        /* Switch toggle */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 44px;
+            height: 24px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--border-light);
+            transition: var(--transition);
+            border-radius: 24px;
+        }
+
+        .dark-mode .slider {
+            background: var(--border-dark);
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background: white;
+            transition: var(--transition);
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background: var(--primary-color);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(20px);
+        }
+
+        .logout-btn {
+            grid-column: 1 / -1;
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--error-color);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+        }
+
+        .logout-btn:hover {
+            background: var(--error-color);
+            color: white;
+            border-color: var(--error-color);
+        }
+
+        /* Toast notification */
+        .toast-notification {
+            position: fixed;
+            bottom: 16px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--surface-dark);
+            color: var(--text-dark);
+            padding: 12px 16px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            z-index: 1000;
+            opacity: 0;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .toast-notification.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* Loading overlay */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            color: white;
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--primary-color);
+            animation: spin 1s linear infinite;
+            margin-bottom: 16px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Tela de Upgrade */
+        .upgrade-screen {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            background: var(--background-light);
+        }
+
+        .dark-mode .upgrade-screen {
+            background: var(--background-dark);
+        }
+
+        .upgrade-container {
+            background: var(--surface-light);
+            border: 1px solid var(--border-light);
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow);
+            padding: 24px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .dark-mode .upgrade-container {
+            background: var(--surface-dark);
+            border: 1px solid var(--border-dark);
+            box-shadow: var(--shadow-dark);
+        }
+
+        .upgrade-icon {
+            font-size: 48px;
+            color: var(--premium-color);
+            margin-bottom: 16px;
+        }
+
+        .upgrade-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--premium-color);
+        }
+
+        .upgrade-subtitle {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+
+        .plan-card {
+            background: var(--surface-light);
+            border-radius: var(--border-radius-lg);
+            padding: 20px;
+            margin-bottom: 16px;
+            border: 1px solid var(--border-light);
+            transition: var(--transition);
+        }
+
+        .dark-mode .plan-card {
+            background: var(--surface-dark);
+            border-color: var(--border-dark);
+        }
+
+        .plan-card.premium {
+            border-color: var(--premium-color);
+            background: rgba(245, 158, 11, 0.05);
+        }
+
+        .plan-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .plan-name {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text-light);
+        }
+
+        .dark-mode .plan-name {
+            color: var(--text-dark);
+        }
+
+        .plan-price {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--primary-color);
+        }
+
+        .plan-card.premium .plan-price {
+            color: var(--premium-color);
+        }
+
+        .plan-features {
+            list-style: none;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .plan-features li {
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            font-size: 13px;
+        }
+
+        .dark-mode .plan-features li {
+            border-bottom-color: var(--border-dark);
+        }
+
+        .plan-features li:last-child {
+            border-bottom: none;
+        }
+
+        .plan-features li i {
+            margin-right: 8px;
+            color: var(--success-color);
+            font-size: 14px;
+        }
+
+        .upgrade-btn {
+            background: var(--premium-color);
+            color: #000;
+            border: none;
+            border-radius: var(--border-radius);
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+        }
+
+        .upgrade-btn:hover {
+            background: #eab308;
+        }
+
+        .payment-methods {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+            justify-content: center;
+        }
+
+        .payment-method {
+            padding: 12px 16px;
+            background: var(--surface-light);
+            border: 1px solid var(--border-light);
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            flex: 1;
+            text-align: center;
+        }
+
+        .payment-method.selected {
+            border-color: var(--primary-color);
+            background: rgba(16, 163, 127, 0.05);
+        }
+
+        .payment-method i {
+            font-size: 20px;
+            margin-bottom: 4px;
+            display: block;
+        }
+
+        .pix-code {
+            background: var(--surface-light);
+            padding: 16px;
+            border-radius: var(--border-radius);
+            margin: 16px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            word-break: break-all;
+            border: 1px solid var(--border-light);
+        }
+
+        .dark-mode .pix-code {
+            background: var(--surface-dark);
+            border-color: var(--border-dark);
+        }
+
+        .copy-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            padding: 12px 16px;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+            font-weight: 600;
+        }
+
+        .copy-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Profile Modal */
+        .profile-modal {
+            max-width: 500px;
+        }
+
+        .profile-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 24px 16px 16px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .dark-mode .profile-header {
+            border-bottom-color: var(--border-dark);
+        }
+
+        .profile-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 32px;
+            margin-bottom: 16px;
+            position: relative;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .profile-avatar:hover {
+            transform: scale(1.05);
+        }
+
+        .profile-avatar.premium {
+            background: var(--premium-color);
+        }
+
+        .avatar-edit {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background: var(--primary-color);
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+            border: 2px solid var(--surface-light);
+        }
+
+        .dark-mode .avatar-edit {
+            border-color: var(--surface-dark);
+        }
+
+        .profile-name {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .profile-email {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .profile-plan {
+            padding: 6px 12px;
+            border-radius: 16px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .profile-plan.free {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .profile-plan.premium {
+            background: var(--premium-color);
+            color: #000;
+        }
+
+        .profile-body {
+            padding: 16px;
+        }
+
+        .profile-section {
+            margin-bottom: 24px;
+        }
+
+        .profile-section-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+        }
+
+        .profile-section-title i {
+            margin-right: 8px;
+            font-size: 14px;
+        }
+
+        .profile-preferences {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .preference-tag {
+            padding: 6px 12px;
+            background: var(--surface-light);
+            border: 1px solid var(--border-light);
+            border-radius: 16px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .dark-mode .preference-tag {
+            background: var(--surface-dark);
+            border-color: var(--border-dark);
+        }
+
+        .preference-tag:hover {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .preference-tag.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .profile-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .stat-card {
+            background: var(--surface-light);
+            border: 1px solid var(--border-light);
+            border-radius: var(--border-radius);
+            padding: 12px;
+            text-align: center;
+        }
+
+        .dark-mode .stat-card {
+            background: var(--surface-dark);
+            border-color: var(--border-dark);
+        }
+
+        .stat-value {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .profile-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .profile-btn {
+            flex: 1;
+            padding: 10px 16px;
+            border-radius: var(--border-radius);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 1px solid var(--border-light);
+            background: var(--surface-light);
+            color: var(--text-light);
+        }
+
+        .dark-mode .profile-btn {
+            background: var(--surface-dark);
+            color: var(--text-dark);
+            border-color: var(--border-dark);
+        }
+
+        .profile-btn.primary {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .profile-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .auth-container {
+                padding: 24px 16px;
+                margin: 16px;
+            }
+
+            .chat-header {
+                padding: 12px;
+            }
+
+            .chat-body {
+                padding: 12px;
+            }
+
+            .message {
+                max-width: 90%;
+                padding: 12px 16px;
+            }
+
+            .orb {
+                width: 48px;
+                height: 48px;
+                font-size: 18px;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .payment-methods {
+                flex-direction: column;
+            }
+
+            .upgrade-container {
+                padding: 20px 16px;
+                margin: 16px;
+            }
+
+            .profile-modal {
+                max-width: 90%;
+            }
+        }
+    </style>
 </head>
 <body>
+    <div class="container">
+        <!-- Login/Cadastro Screen -->
+        <div class="screen auth-screen" id="authScreen">
+            <div class="auth-container">
+                <div class="auth-header">
+                    <img src="https://i.imgur.com/orvGJOL.png" alt="Yume Logo" class="auth-logo">
+                    <h1 class="auth-title">Yume AI</h1>
+                    <p class="auth-subtitle">Assistente Virtual com Inteligência Artificial</p>
+                </div>
 
-  <div class="cursor"></div>
-  <div class="cursor-follower"></div>
+                <!-- Login Form -->
+                <form class="auth-form" id="loginForm">
+                    <h2 class="form-title">Acessar Conta</h2>
+                    <div class="form-group">
+                        <label for="loginEmail">E-mail</label>
+                        <input type="email" id="loginEmail" required placeholder="seu@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Senha</label>
+                        <input type="password" id="loginPassword" required placeholder="********">
+                    </div>
+                    <button type="submit" class="auth-btn">Entrar</button>
+                    <p class="auth-switch">
+                        Novo por aqui? <a href="#" id="showRegister">Crie sua conta</a>
+                    </p>
+                </form>
 
-  <!-- Navbar -->
-  <nav class="nav" id="navbar">
-    <div class="nav-inner">
-      <div class="brand">
-        <div class="brand-logo">
-          <div class="logo-moon"></div>
-          <div class="logo-pen"></div>
+                <!-- Register Form -->
+                <form class="auth-form hidden" id="registerForm">
+                    <h2 class="form-title">Junte-se à Yume</h2>
+                    <div class="form-group">
+                        <label for="registerName">Nome Completo</label>
+                        <input type="text" id="registerName" required placeholder="Seu nome completo">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail">E-mail</label>
+                        <input type="email" id="registerEmail" required placeholder="seu@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">Senha</label>
+                        <input type="password" id="registerPassword" required placeholder="Mínimo 8 caracteres">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerAge">Faixa Etária</label>
+                        <select id="registerAge" required>
+                            <option value="">Selecione sua idade</option>
+                            <option value="18-30">18-30 anos</option>
+                            <option value="31-49">31-49 anos</option>
+                            <option value="50-59">50-59 anos</option>
+                            <option value="60+">60+ anos</option>
+                        </select>
+                    </div>
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="termsAccept" required>
+                        <label for="termsAccept">
+                            Concordo com os 
+                            <a href="https://naotodev1.github.io/terms-e-policy" target="_blank">
+                                Termos de Uso e Política de Privacidade
+                            </a>
+                        </label>
+                    </div>
+                    <button type="submit" class="auth-btn">Começar Agora</button>
+                    <p class="auth-switch">
+                        Já tem conta? <a href="#" id="showLogin">Fazer login</a>
+                    </p>
+                </form>
+            </div>
         </div>
-        <span>Studio Tsukiyo</span>
-      </div>
-      <div class="nav-links">
-        <a href="#" class="nav-link active" data-view="view-hub">Home</a>
-        <a href="#" class="nav-link" data-view="view-novels">Light Novels</a>
-        <a href="#" class="nav-link" data-view="view-escola">Escola de Autores</a>
-        <a href="#" class="nav-link" data-view="view-ecossistema">Ecossistema Digital</a>
-        <a href="#" class="nav-link" data-view="view-contato">Contato</a>
-      </div>
-    </div>
-  </nav>
 
-  <!-- Hero Section (Initial View) -->
-  <header id="hero-section" class="hero">
-    <div class="hero-bg-layers">
-        <div class="hero-glow"></div>
-        <div class="hero-grid-pattern"></div>
-    </div>
-    <div class="hero-content">
-      <h1>Criando mundos, conectando mentes.</h1>
-      <p class="hero-subtitle">Onde histórias ganham vida e a criatividade não tem limites. Explore universos imersivos criados para inspirar.</p>
-      <div class="cta">
-        <a href="#" id="explore-btn" class="btn primary">Explorar o Ecossistema</a>
-      </div>
-    </div>
-  </header>
+        <!-- Main Chat Screen -->
+        <div class="screen chat-screen hidden" id="chatScreen">
+            <header class="chat-header">
+                <div class="header-user-info">
+                    <div class="user-avatar" id="userAvatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="plan-badge free" id="planBadge">FREE</div>
+                    <div class="usage-counter" id="usageCounter">15/25 mensagens</div>
+                </div>
+                <div class="header-title-group">
+                    <img src="https://i.imgur.com/orvGJOL.png" alt="Yume Logo" class="header-logo">
+                    <h1 class="header-name">Yume AI</h1>
+                </div>
+                <button type="button" class="icon-btn header-menu-btn" id="menuBtn" title="Menu">
+                    <i class="fas fa-ellipsis-h"></i>
+                </button>
+            </header>
 
-  <!-- Main Content Hub (Hidden initially) -->
-  <div id="main-content-hub">
-    <main>
-      <!-- Home/Hub View -->
-      <section id="view-hub" class="content-view active">
-        <div class="container">
-          <div class="section-head">
-            <h2 class="section-title">Navegue pelo Ecossistema</h2>
-          </div>
-          <div class="grid">
-            <a href="#" class="nav-link" data-view="view-novels"><div class="card category-card"><div class="card-content"><h3 class="card-title">Light Novels</h3></div></div></a>
-            <a href="#" class="nav-link" data-view="view-escola"><div class="card category-card"><div class="card-content"><h3 class="card-title">Escola de Autores</h3></div></div></a>
-            <a href="#" class="nav-link" data-view="view-ecossistema"><div class="card category-card"><div class="card-content"><h3 class="card-title">Ecossistema Digital</h3></div></div></a>
-            <a href="#" class="nav-link" data-view="view-contato"><div class="card category-card"><div class="card-content"><h3 class="card-title">Parcerias & Contato</h3></div></div></a>
-          </div>
+            <div class="chat-body">
+                <div class="assistant-ui" id="assistantUI">
+                    <p class="greeting-text">Olá! Sou a Yume 👋</p>
+                    <p class="help-text">Como posso ajudar você hoje?</p>
+                    <div class="orb" id="orb">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                </div>
+                <div class="chat-messages" id="chatMessages"></div>
+            </div>
+
+            <div class="quick-reply-area" id="quickReplyArea"></div>
+
+            <form class="chat-input-area" id="inputArea">
+                <div class="input-wrapper">
+                    <input type="text" class="chat-input" id="userInput" 
+                           placeholder="Envie uma mensagem..." autocomplete="off">
+                    <button type="button" class="icon-btn" id="micBtn" title="Usar Microfone">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+                <button type="submit" class="icon-btn" id="sendButton">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </form>
+            <div class="footer">
+                Yume AI • Powered by Mistral
+            </div>
         </div>
-      </section>
 
-      <!-- Light Novels View -->
-      <section id="view-novels" class="content-view">
-        <div class="container">
-          <div class="section-head"><h2 class="section-title">Light Novels</h2></div>
-          <div class="grid">
-            <a href="https://a.co/d/3r426rh" target="_blank" rel="noopener noreferrer"><div class="card"><div class="card-thumb"><img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Abunai Aisuru: Arco 2"></div><div class="card-content"><h3 class="card-title">Abunai Aisuru: Arco 2</h3><p class="card-desc">Um encontro entre destino e coragem no formato clássico de light novel japonesa.</p><div class="card-btn">Conhecer</div></div></div></a>
-            <a href="https://a.co/d/dF3c8tA" target="_blank" rel="noopener noreferrer"><div class="card"><div class="card-thumb"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Abunai Aisuru"></div><div class="card-content"><h3 class="card-title">Abunai Aisuru</h3><p class="card-desc">Em um Japão paralelo, casamentos controlados pelo Governo desafiam o primeiro amor.</p><div class="card-btn">Conhecer</div></div></div></a>
-            <a href="https://a.co/d/1vAMQft" target="_blank" rel="noopener noreferrer"><div class="card"><div class="card-thumb"><img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Emilly: Além do Horizonte"></div><div class="card-content"><h3 class="card-title">Emilly: Além do Horizonte</h3><p class="card-desc">Rotas, escolhas e identidades em uma jornada que mistura romance e ficção científica.</p><div class="card-btn">Conhecer</div></div></div></a>
-            <a href="https://a.co/d/4ObiT5h" target="_blank" rel="noopener noreferrer"><div class="card"><div class="card-thumb"><img src="https://images.unsplash.com/photo-1525498128493-380d1990a112?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Hearts Like Flowers"></div><div class="card-content"><h3 class="card-title">Hearts Like Flowers</h3><p class="card-desc">Flores de sentimentos desabrocham entre segredos e promessas.</p><div class="card-btn">Conhecer</div></div></div></a>
-            <a href="https://www.wattpad.com/story/353888895-married-at-16" target="_blank" rel="noopener noreferrer"><div class="card"><div class="card-thumb"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Married at 16"></div><div class="card-content"><h3 class="card-title">Married at 16</h3><p class="card-desc">Dois adolescentes, um acordo social e um futuro a ser reescrito.</p><div class="card-btn">Conhecer</div></div></div></a>
-            <a href="https://a.co/d/3DdzvdN" target="_blank" rel="noopener noreferrer"><div class="card"><div class="card-thumb"><img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Kizuite Kudassai"></div><div class="card-content"><h3 class="card-title">Kizuite Kudassai</h3><p class="card-desc">Confissões silenciosas, olhares furtivos e o peso das palavras não ditas.</p><div class="card-btn">Conhecer</div></div></div></a>
-          </div>
-        </div>
-      </section>
-      
-      <!-- Escola de Autores View -->
-      <section id="view-escola" class="content-view">
-        <div class="container">
-          <div class="section-head"><h2 class="section-title">Escola de Autores</h2></div>
-          <div class="grid">
-              <a href="https://www.instagram.com/moonwriterhub" target="_blank" rel="noopener noreferrer"><div class="card"><div class="card-thumb"><img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Fundamentos de Light Novel"></div><div class="card-content"><h3 class="card-title">Fundamentos de Light Novel</h3><p class="card-desc">Estrutura, ritmo, POV, construção de personagem e estética LN.</p><div class="card-btn">Inscreva-se</div></div></div></a>
-              <a href="https://www.instagram.com/moonwriterhub" target="_blank" rel="noopener noreferrer"><div class="card"><div class="card-thumb"><img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Mentoria Individual"></div><div class="card-content"><h3 class="card-title">Mentoria Individual</h3><p class="card-desc">Acompanhamento editorial, metas semanais e revisão de capítulos.</p><div class="card-btn">Quero mentoria</div></div></div></a>
-              <a href="https://www.instagram.com/moonwriterhub" target="_blank" rel="noopener noreferrer"><div class="card"><div class="card-thumb"><img src="https://images.unsplash.com/photo-1535223289827-42f1e9919769?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="LitGeek Labs"></div><div class="card-content"><h3 class="card-title">LitGeek Labs</h3><p class="card-desc">Apoiando novos escritores a darem seu primeiro passo na criação de light novels.</p><div class="card-btn">Participar</div></div></div></a>
-          </div>
-        </div>
-      </section>
-
-      <!-- Ecossistema Digital View -->
-      <section id="view-ecossistema" class="content-view">
-        <div class="container">
-          <div class="section-head"><h2 class="section-title">Ecossistema Digital</h2></div>
-          <div class="grid">
-              <a href="https://www.instagram.com/studiotsukiyo/" target="_blank" rel="noopener noreferrer"><div class="card"><div class="card-thumb"><img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Instagram"></div><div class="card-content"><h3 class="card-title">Instagram</h3><p class="card-desc">Conteúdos visuais, teasers e bastidores da Studio Tsukiyo.</p><div class="card-btn">Seguir</div></div></div></a>
-              <a href="https://www.tiktok.com/@kenjianimezone" target="_blank" rel="noopener noreferrer"><div class="card"><div class="card-thumb"><img src="https://images.unsplash.com/photo-1611605698335-8b1569810432?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="TikTok"></div><div class="card-content"><h3 class="card-title">TikTok</h3><p class="card-desc">Clipes rápidos, trends otaku e anúncios estilo editora japonesa.</p><div class="card-btn">Seguir</div></div></div></a>
-              <a href="https://naotodev1.github.io/yuki" target="_blank" rel="noopener noreferrer"><div class="card"><div class="card-thumb"><img src="https://images.unsplash.com/photo-1589254065878-42c9da997008?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Yuki"></div><div class="card-content"><h3 class="card-title">Yuki — Assistente Criativa</h3><p class="card-desc">Auxilia em ideias de enredo, personagens e worldbuilding.</p><div class="card-btn">Explorar</div></div></div></a>
-              <a href="https://naotodev1.github.io/Nova" target="_blank" rel="noopener noreferrer"><div class="card"><div class="card-thumb"><img src="https://images.unsplash.com/photo-1589254066216-2b4a3f6db8d2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Nova"></div><div class="card-content"><h3 class="card-title">Nova — Curadoria Otaku</h3><p class="card-desc">Recomenda obras, cria listas temáticas e conecta tendências.</p><div class="card-btn">Explorar</div></div></div></a>
-          </div>
-        </div>
-      </section>
-
-      <!-- Contato View -->
-      <section id="view-contato" class="content-view">
-        <div class="container">
-          <div class="section-head"><h2 class="section-title">Parcerias & Contato</h2></div>
-          <div class="grid">
-            <a href="https://studiotsukiyo.bio.link/" target="_blank" rel="noopener noreferrer"><div class="card"><div class="card-thumb"><img src="https://images.unsplash.com/photo-1554486858-6a2c24637207?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="LitGeek Labs Portal"></div><div class="card-content"><h3 class="card-title">Nosso Portal</h3><p class="card-desc">Acesse nosso portal central para todos os links, projetos e novidades.</p><div class="card-btn">Acessar</div></div></div></a>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdTXKHA2mPA57j0bjUlOY5LihuYxgcSTlYvy0CUCOhJB8fgxw/viewform?usp=header" target="_blank" rel="noopener noreferrer"><div class="card"><div class="card-thumb"><img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Formulário de Parcerias"></div><div class="card-content"><h3 class="card-title">Propostas de Parcerias</h3><p class="card-desc">Preencha nosso formulário para parcerias, colabs, e patrocínios.</p><div class="card-btn">Abrir Formulário</div></div></div></a>
-            <a href="mailto:sac.studiotsukiyo@outlook.com"><div class="card"><div class="card-thumb"><img src="https://images.unsplash.com/photo-1557205465-f3293e6b29e3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Contato Direto"></div><div class="card-content"><h3 class="card-title">Contato Direto</h3><p class="card-desc">Entre em contato para propostas comerciais ou dúvidas.</p><div class="card-btn">Enviar Email</div></div></div></a>
-          </div>
-        </div>
-      </section>
-      
-      <!-- Footer -->
-      <footer>
-        <p>&copy; 2024 Studio Tsukiyo Platforms. Todos os direitos reservados.</p>
-      </footer>
-    </main>
-  </div>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // --- Cursor ---
-        const cursor = document.querySelector('.cursor');
-        const follower = document.querySelector('.cursor-follower');
-        let mouseX = 0, mouseY = 0, posX = 0, posY = 0;
-        window.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; });
-        function animateCursor() {
-            posX += (mouseX - posX) * 0.2; posY += (mouseY - posY) * 0.2;
-            cursor.style.transform = `translate(${mouseX - 15}px, ${mouseY - 15}px)`;
-            follower.style.transform = `translate(${posX - 4}px, ${posY - 4}px)`;
-            requestAnimationFrame(animateCursor);
-        }
-        if (window.matchMedia("(min-width: 769px)").matches) {
-            animateCursor();
-        } else {
-            cursor.style.display = 'none';
-            follower.style.display = 'none';
-            document.querySelectorAll('*').forEach(el => el.style.cursor = 'auto');
-        }
-
-        // --- SPA Navigation ---
-        const exploreBtn = document.getElementById('explore-btn');
-        const heroSection = document.getElementById('hero-section');
-        const mainHub = document.getElementById('main-content-hub');
-        const navbar = document.getElementById('navbar');
-        const navLinks = document.querySelectorAll('.nav-link');
-        const contentViews = document.querySelectorAll('.content-view');
-
-        exploreBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            heroSection.classList.add('hidden');
-            mainHub.classList.add('visible');
-            navbar.classList.add('visible');
-        });
-
-        navLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const targetViewId = link.getAttribute('data-view');
+        <!-- Upgrade Screen -->
+        <div class="screen upgrade-screen hidden" id="upgradeScreen">
+            <div class="upgrade-container">
+                <div class="upgrade-icon">
+                    <i class="fas fa-crown"></i>
+                </div>
+                <h1 class="upgrade-title">Yume Premium</h1>
+                <p class="upgrade-subtitle">Acesso ilimitado à inteligência artificial</p>
                 
-                // Update active link
-                navLinks.forEach(l => l.classList.remove('active'));
-                document.querySelectorAll(`.nav-link[data-view="${targetViewId}"]`).forEach(l => l.classList.add('active'));
+                <div class="plan-card premium">
+                    <h3 class="plan-name">Plano Premium</h3>
+                    <div class="plan-price">R$ 19,90<span style="font-size: 14px; color: var(--text-muted);">/mês</span></div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check"></i> Mensagens ilimitadas</li>
+                        <li><i class="fas fa-check"></i> Acesso prioritário</li>
+                        <li><i class="fas fa-check"></i> Suporte 24/7</li>
+                        <li><i class="fas fa-check"></i> Recursos avançados</li>
+                    </ul>
+                    
+                    <div class="payment-methods">
+                        <div class="payment-method selected" data-method="pix">
+                            <i class="fas fa-qrcode"></i>
+                            <div>PIX</div>
+                        </div>
+                        <div class="payment-method" data-method="mercadopago">
+                            <i class="fas fa-credit-card"></i>
+                            <div>Cartão</div>
+                        </div>
+                    </div>
 
-                // Update active view
-                contentViews.forEach(view => {
-                    view.classList.remove('active');
-                    if (view.id === targetViewId) {
-                        view.classList.add('active');
+                    <div id="pixPayment" class="payment-section">
+                        <div class="pix-code" id="pixCode">
+                            00020126580014br.gov.bcb.pix0136123e4567-e89b-12d3-a456-426614174000520400005303986540520.005802BR5913STUDIO TSUKIYO6008BRASILIA62070503***6304E2CA
+                        </div>
+                        <button class="copy-btn" id="copyPixBtn">
+                            <i class="fas fa-copy"></i> Copiar Código PIX
+                        </button>
+                        <p style="font-size: 12px; margin-top: 12px; color: var(--text-muted);">
+                            Após o pagamento, envie o comprovante para: sac.studiotsukiyo@outlook.com
+                        </p>
+                    </div>
+
+                    <div id="mercadopagoPayment" class="payment-section hidden">
+                        <button class="upgrade-btn" id="mercadopagoBtn">
+                            Pagar com Mercado Pago
+                        </button>
+                        <p style="font-size: 12px; margin-top: 12px; color: var(--text-muted);">
+                            Pagamento seguro processado pelo Mercado Pago
+                        </p>
+                    </div>
+                </div>
+
+                <button class="auth-btn" id="backToChatBtn" style="margin-top: 16px; background: transparent; color: var(--text-muted); border: 1px solid var(--border-light);">
+                    Voltar ao Chat
+                </button>
+            </div>
+        </div>
+
+        <!-- Menu Overlay -->
+        <div class="modal-overlay" id="menuOverlay">
+            <div class="modal-content">
+                <div class="menu-header">
+                    <h3>Menu</h3>
+                    <button class="close-btn" id="closeMenu">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="menu-grid">
+                    <button id="helpBtn" class="menu-card">
+                        <i class="fas fa-question-circle"></i>
+                        <span>Ajuda</span>
+                    </button>
+                    <button id="aboutYumeBtn" class="menu-card">
+                        <i class="fas fa-info-circle"></i>
+                        <span>Sobre</span>
+                    </button>
+                    <button id="statsBtn" class="menu-card">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Estatísticas</span>
+                    </button>
+                    <button id="profileBtn" class="menu-card">
+                        <i class="fas fa-user"></i>
+                        <span>Perfil</span>
+                    </button>
+                    <button id="upgradeBtn" class="menu-card premium">
+                        <i class="fas fa-crown"></i>
+                        <span>Premium</span>
+                    </button>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdPidDH_k-swGUNIta0jjyC06F1e3k96eclidEoQ6UTMPhqfw/viewform?usp=preview" 
+                       target="_blank" class="menu-card">
+                        <i class="fas fa-comment"></i>
+                        <span>Feedback</span>
+                    </a>
+                    <a href="mailto:sac.studiotsukiyo@outlook.com" class="menu-card">
+                        <i class="fas fa-bug"></i>
+                        <span>Reportar</span>
+                    </a>
+                    <button id="clearCacheBtn" class="menu-card">
+                        <i class="fas fa-trash"></i>
+                        <span>Limpar Cache</span>
+                    </button>
+                </div>
+                <div class="menu-list-item">
+                    <i class="fas fa-moon"></i> Modo Escuro
+                    <label class="switch">
+                        <input type="checkbox" id="darkModeToggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="menu-list-item">
+                    <i class="fas fa-volume-up"></i> Voz
+                    <label class="switch">
+                        <input type="checkbox" id="voiceToggle" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <!-- Removido o toggle da Mistral AI -->
+                <button id="logoutBtn" class="menu-card logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Sair</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Profile Modal -->
+        <div class="modal-overlay" id="profileModal">
+            <div class="modal-content profile-modal">
+                <div class="menu-header">
+                    <h3>Meu Perfil</h3>
+                    <button class="close-btn" id="closeProfile">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="profile-header">
+                    <div class="profile-avatar" id="profileAvatar">
+                        <i class="fas fa-user"></i>
+                        <div class="avatar-edit">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                    </div>
+                    <h2 class="profile-name" id="profileName">Usuário</h2>
+                    <p class="profile-email" id="profileEmail">usuario@email.com</p>
+                    <div class="profile-plan free" id="profilePlan">FREE</div>
+                </div>
+                <div class="profile-body">
+                    <div class="profile-section">
+                        <h3 class="profile-section-title">
+                            <i class="fas fa-user-edit"></i> Informações Pessoais
+                        </h3>
+                        <div class="form-group">
+                            <label for="profileUsername">Nome de usuário</label>
+                            <input type="text" id="profileUsername" placeholder="Seu nome de usuário">
+                        </div>
+                        <div class="form-group">
+                            <label for="profileBio">Bio</label>
+                            <textarea id="profileBio" rows="3" placeholder="Conte um pouco sobre você..."></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-section">
+                        <h3 class="profile-section-title">
+                            <i class="fas fa-heart"></i> Preferências
+                        </h3>
+                        <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 12px;">
+                            Selecione seus interesses para personalizar sua experiência:
+                        </p>
+                        <div class="profile-preferences" id="preferencesList">
+                            <!-- Preferências serão carregadas dinamicamente -->
+                        </div>
+                    </div>
+                    
+                    <div class="profile-section">
+                        <h3 class="profile-section-title">
+                            <i class="fas fa-chart-line"></i> Estatísticas
+                        </h3>
+                        <div class="profile-stats">
+                            <div class="stat-card">
+                                <div class="stat-value" id="statMessages">0</div>
+                                <div class="stat-label">Mensagens</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value" id="statSessions">0</div>
+                                <div class="stat-label">Sessões</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value" id="statDays">0</div>
+                                <div class="stat-label">Dias ativo</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value" id="statFeedback">0</div>
+                                <div class="stat-label">Feedbacks</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-actions">
+                        <button class="profile-btn" id="cancelProfileBtn">Cancelar</button>
+                        <button class="profile-btn primary" id="saveProfileBtn">Salvar Alterações</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Toast Notification -->
+        <div class="toast-notification" id="toast"></div>
+
+        <!-- Loading Overlay -->
+        <div class="loading-overlay hidden" id="loadingOverlay">
+            <div class="loading-spinner"></div>
+            <p>Processando...</p>
+        </div>
+    </div>
+
+    <script>
+        // Sistema principal com perfil funcional e Microsoft Clarity
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elementos principais
+            const authScreen = document.getElementById('authScreen');
+            const chatScreen = document.getElementById('chatScreen');
+            const upgradeScreen = document.getElementById('upgradeScreen');
+            const loginForm = document.getElementById('loginForm');
+            const registerForm = document.getElementById('registerForm');
+            const chatInput = document.getElementById('userInput');
+            const chatMessages = document.getElementById('chatMessages');
+            const sendButton = document.getElementById('sendButton');
+            const menuBtn = document.getElementById('menuBtn');
+            const closeMenu = document.getElementById('closeMenu');
+            const menuOverlay = document.getElementById('menuOverlay');
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const voiceToggle = document.getElementById('voiceToggle');
+            const upgradeBtn = document.getElementById('upgradeBtn');
+            const backToChatBtn = document.getElementById('backToChatBtn');
+            const logoutBtn = document.getElementById('logoutBtn');
+            
+            // Elementos do perfil
+            const userAvatar = document.getElementById('userAvatar');
+            const profileBtn = document.getElementById('profileBtn');
+            const profileModal = document.getElementById('profileModal');
+            const closeProfile = document.getElementById('closeProfile');
+            const profileAvatar = document.getElementById('profileAvatar');
+            const profileName = document.getElementById('profileName');
+            const profileEmail = document.getElementById('profileEmail');
+            const profilePlan = document.getElementById('profilePlan');
+            const profileUsername = document.getElementById('profileUsername');
+            const profileBio = document.getElementById('profileBio');
+            const preferencesList = document.getElementById('preferencesList');
+            const saveProfileBtn = document.getElementById('saveProfileBtn');
+            const cancelProfileBtn = document.getElementById('cancelProfileBtn');
+
+            // Estado da aplicação
+            let currentUser = null;
+            let messageCount = 0;
+            let sessionCount = 0;
+            let feedbackCount = 0;
+            let userStats = {
+                messages: 0,
+                sessions: 0,
+                daysActive: 0,
+                feedback: 0
+            };
+
+            // Preferências disponíveis
+            const availablePreferences = [
+                "Tecnologia", "Ciência", "Saúde", "Esportes", "Música", "Arte", 
+                "Literatura", "Viagens", "Culinária", "Filmes", "Séries", "Jogos",
+                "Programação", "Design", "Marketing", "Finanças", "Negócios", "Educação"
+            ];
+
+            // Verificar se há usuário logado
+            const savedUser = localStorage.getItem('yumeUser');
+            if (savedUser) {
+                currentUser = JSON.parse(savedUser);
+                showChatScreen();
+                loadUserStats();
+                updateUserAvatar();
+                
+                // Enviar dados para o Microsoft Clarity
+                sendUserDataToClarity();
+            }
+
+            // Carregar estatísticas do usuário
+            function loadUserStats() {
+                const savedStats = localStorage.getItem(`yumeStats_${currentUser.email}`);
+                if (savedStats) {
+                    userStats = JSON.parse(savedStats);
+                } else {
+                    userStats = {
+                        messages: 0,
+                        sessions: 1,
+                        daysActive: 1,
+                        feedback: 0
+                    };
+                    saveUserStats();
+                }
+                updateStatsDisplay();
+            }
+
+            // Salvar estatísticas do usuário
+            function saveUserStats() {
+                localStorage.setItem(`yumeStats_${currentUser.email}`, JSON.stringify(userStats));
+                updateStatsDisplay();
+                
+                // Enviar estatísticas para o Clarity
+                if (window.clarity) {
+                    window.clarity("set", "user_stats", userStats);
+                }
+            }
+
+            // Atualizar exibição de estatísticas
+            function updateStatsDisplay() {
+                document.getElementById('statMessages').textContent = userStats.messages;
+                document.getElementById('statSessions').textContent = userStats.sessions;
+                document.getElementById('statDays').textContent = userStats.daysActive;
+                document.getElementById('statFeedback').textContent = userStats.feedback;
+            }
+
+            // Enviar dados do usuário para o Microsoft Clarity
+            function sendUserDataToClarity() {
+                if (window.clarity && currentUser) {
+                    // Identificar usuário
+                    window.clarity("identify", currentUser.email, {
+                        name: currentUser.name,
+                        username: currentUser.username,
+                        age: currentUser.age,
+                        plan: currentUser.plan || 'free'
+                    });
+                    
+                    // Enviar preferências
+                    if (currentUser.preferences && currentUser.preferences.length > 0) {
+                        window.clarity("set", "user_preferences", currentUser.preferences);
                     }
-                });
-            });
-        });
+                    
+                    // Enviar configurações
+                    window.clarity("set", "dark_mode", localStorage.getItem('yumeDarkMode') === 'true');
+                    window.clarity("set", "voice_enabled", localStorage.getItem('yumeVoiceEnabled') !== 'false');
+                    
+                    // Enviar estatísticas
+                    window.clarity("set", "user_stats", userStats);
+                }
+            }
 
-        // --- 3D Card Tilt ---
-        document.querySelectorAll('.card').forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                card.style.setProperty('--mouse-x', `${x}px`);
-                card.style.setProperty('--mouse-y', `${y}px`);
-                const rotateX = (y - rect.height / 2) / (rect.height / 2) * -8;
-                const rotateY = (x - rect.width / 2) / (rect.width / 2) * 8;
-                card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            // Configurar modo escuro
+            const darkMode = localStorage.getItem('yumeDarkMode') === 'true';
+            document.body.classList.toggle('dark-mode', darkMode);
+            darkModeToggle.checked = darkMode;
+
+            // Configurar voz
+            const voiceEnabled = localStorage.getItem('yumeVoiceEnabled') !== 'false';
+            voiceToggle.checked = voiceEnabled;
+
+            // Event Listeners
+            darkModeToggle.addEventListener('change', function() {
+                const isDarkMode = this.checked;
+                document.body.classList.toggle('dark-mode', isDarkMode);
+                localStorage.setItem('yumeDarkMode', isDarkMode);
+                
+                // Enviar preferência para o Clarity
+                if (window.clarity) {
+                    window.clarity("set", "dark_mode", isDarkMode);
+                }
             });
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'rotateX(0) rotateY(0)';
+
+            voiceToggle.addEventListener('change', function() {
+                const voiceEnabled = this.checked;
+                localStorage.setItem('yumeVoiceEnabled', voiceEnabled);
+                
+                // Enviar preferência para o Clarity
+                if (window.clarity) {
+                    window.clarity("set", "voice_enabled", voiceEnabled);
+                }
             });
+
+            // Event Listeners do perfil
+            userAvatar.addEventListener('click', openProfileModal);
+            profileBtn.addEventListener('click', openProfileModal);
+            closeProfile.addEventListener('click', closeProfileModal);
+            cancelProfileBtn.addEventListener('click', closeProfileModal);
+            saveProfileBtn.addEventListener('click', saveProfile);
+            profileAvatar.addEventListener('click', changeAvatar);
+
+            // Navegação entre login/cadastro
+            document.getElementById('showRegister').addEventListener('click', function(e) {
+                e.preventDefault();
+                loginForm.classList.add('hidden');
+                registerForm.classList.remove('hidden');
+            });
+
+            document.getElementById('showLogin').addEventListener('click', function(e) {
+                e.preventDefault();
+                registerForm.classList.add('hidden');
+                loginForm.classList.remove('hidden');
+            });
+
+            // Login
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = document.getElementById('loginEmail').value;
+                const password = document.getElementById('loginPassword').value;
+
+                if (email && password) {
+                    // Verificar se usuário já existe
+                    let user = JSON.parse(localStorage.getItem('yumeUser')) || {
+                        name: email.split('@')[0],
+                        email: email,
+                        username: email.split('@')[0],
+                        bio: "",
+                        preferences: [],
+                        avatar: "default",
+                        plan: "free"
+                    };
+                    
+                    currentUser = user;
+                    localStorage.setItem('yumeUser', JSON.stringify(user));
+                    showChatScreen();
+                    showToast('Login realizado!');
+                    loadUserStats();
+                    updateUserAvatar();
+                    
+                    // Enviar dados para o Clarity
+                    sendUserDataToClarity();
+                }
+            });
+
+            // Cadastro
+            registerForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const name = document.getElementById('registerName').value;
+                const email = document.getElementById('registerEmail').value;
+                const password = document.getElementById('registerPassword').value;
+                const age = document.getElementById('registerAge').value;
+                const terms = document.getElementById('termsAccept').checked;
+
+                if (name && email && password && age && terms) {
+                    const user = {
+                        name: name,
+                        email: email,
+                        age: age,
+                        username: email.split('@')[0],
+                        bio: "",
+                        preferences: [],
+                        avatar: "default",
+                        plan: "free"
+                    };
+                    currentUser = user;
+                    localStorage.setItem('yumeUser', JSON.stringify(user));
+                    showChatScreen();
+                    showToast('Conta criada com sucesso!');
+                    loadUserStats();
+                    updateUserAvatar();
+                    
+                    // Enviar dados para o Clarity
+                    sendUserDataToClarity();
+                }
+            });
+
+            // Chat
+            sendButton.addEventListener('click', sendMessage);
+            chatInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+
+            function sendMessage() {
+                const message = chatInput.value.trim();
+                if (message) {
+                    addMessage(message, 'user');
+                    chatInput.value = '';
+                    
+                    // Atualizar estatísticas
+                    userStats.messages++;
+                    saveUserStats();
+                    
+                    // Enviar para o Clarity
+                    if (window.clarity) {
+                        window.clarity("set", "last_message", message.substring(0, 100));
+                    }
+                    
+                    // Simular resposta da IA
+                    setTimeout(() => {
+                        const responses = [
+                            "Entendi sua pergunta! Como posso ajudar você com isso?",
+                            "Interessante! Pode me dar mais detalhes?",
+                            "Vou pesquisar sobre isso para te dar uma resposta mais precisa.",
+                            "Com certeza! Posso te ajudar com essa questão."
+                        ];
+                        const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+                        addMessage(randomResponse, 'assistant');
+                    }, 1000);
+                }
+            }
+
+            function addMessage(text, sender) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `message ${sender}-message`;
+                messageDiv.textContent = text;
+                chatMessages.appendChild(messageDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+                
+                if (sender === 'user') {
+                    messageCount++;
+                    updateUsageCounter();
+                }
+            }
+
+            function updateUsageCounter() {
+                const usageCounter = document.getElementById('usageCounter');
+                const remaining = Math.max(0, 25 - messageCount);
+                usageCounter.textContent = `${messageCount}/25 mensagens`;
+                
+                if (remaining <= 5) {
+                    usageCounter.classList.add('low');
+                }
+                if (remaining <= 2) {
+                    usageCounter.classList.add('critical');
+                }
+            }
+
+            // Menu
+            menuBtn.addEventListener('click', function() {
+                menuOverlay.classList.add('active');
+            });
+
+            closeMenu.addEventListener('click', function() {
+                menuOverlay.classList.remove('active');
+            });
+
+            upgradeBtn.addEventListener('click', function() {
+                showUpgradeScreen();
+            });
+
+            backToChatBtn.addEventListener('click', function() {
+                showChatScreen();
+            });
+
+            logoutBtn.addEventListener('click', function() {
+                currentUser = null;
+                localStorage.removeItem('yumeUser');
+                showAuthScreen();
+                showToast('Logout realizado');
+                
+                // Limpar dados do Clarity
+                if (window.clarity) {
+                    window.clarity("consent", false);
+                }
+            });
+
+            // Funções do perfil
+            function openProfileModal() {
+                menuOverlay.classList.remove('active');
+                loadProfileData();
+                profileModal.classList.add('active');
+            }
+
+            function closeProfileModal() {
+                profileModal.classList.remove('active');
+            }
+
+            function loadProfileData() {
+                if (currentUser) {
+                    profileName.textContent = currentUser.name;
+                    profileEmail.textContent = currentUser.email;
+                    profileUsername.value = currentUser.username || '';
+                    profileBio.value = currentUser.bio || '';
+                    
+                    // Carregar preferências
+                    loadPreferences();
+                    
+                    // Atualizar avatar
+                    updateProfileAvatar();
+                }
+            }
+
+            function loadPreferences() {
+                preferencesList.innerHTML = '';
+                availablePreferences.forEach(pref => {
+                    const isActive = currentUser.preferences && currentUser.preferences.includes(pref);
+                    const tag = document.createElement('div');
+                    tag.className = `preference-tag ${isActive ? 'active' : ''}`;
+                    tag.textContent = pref;
+                    tag.dataset.value = pref;
+                    tag.addEventListener('click', function() {
+                        this.classList.toggle('active');
+                    });
+                    preferencesList.appendChild(tag);
+                });
+            }
+
+            function saveProfile() {
+                if (currentUser) {
+                    // Atualizar dados do usuário
+                    currentUser.username = profileUsername.value;
+                    currentUser.bio = profileBio.value;
+                    
+                    // Salvar preferências selecionadas
+                    const selectedPrefs = Array.from(preferencesList.querySelectorAll('.preference-tag.active'))
+                        .map(tag => tag.dataset.value);
+                    currentUser.preferences = selectedPrefs;
+                    
+                    // Salvar no localStorage
+                    localStorage.setItem('yumeUser', JSON.stringify(currentUser));
+                    
+                    // Enviar dados atualizados para o Clarity
+                    if (window.clarity) {
+                        window.clarity("set", "user_preferences", selectedPrefs);
+                        window.clarity("set", "username", currentUser.username);
+                        window.clarity("set", "user_bio", currentUser.bio);
+                    }
+                    
+                    showToast('Perfil atualizado com sucesso!');
+                    closeProfileModal();
+                    updateUserAvatar();
+                }
+            }
+
+            function changeAvatar() {
+                // Simular seleção de avatar (em uma implementação real, isso permitiria upload de imagem)
+                const avatars = ['default', 'male', 'female', 'robot', 'cat'];
+                const currentIndex = avatars.indexOf(currentUser.avatar || 'default');
+                const nextIndex = (currentIndex + 1) % avatars.length;
+                currentUser.avatar = avatars[nextIndex];
+                
+                // Salvar no localStorage
+                localStorage.setItem('yumeUser', JSON.stringify(currentUser));
+                
+                // Atualizar exibição
+                updateProfileAvatar();
+                updateUserAvatar();
+                
+                // Enviar para o Clarity
+                if (window.clarity) {
+                    window.clarity("set", "avatar", currentUser.avatar);
+                }
+                
+                showToast('Avatar alterado!');
+            }
+
+            function updateProfileAvatar() {
+                const avatar = currentUser.avatar || 'default';
+                profileAvatar.innerHTML = '';
+                
+                if (avatar === 'default') {
+                    profileAvatar.innerHTML = '<i class="fas fa-user"></i>';
+                } else if (avatar === 'male') {
+                    profileAvatar.innerHTML = '<i class="fas fa-male"></i>';
+                } else if (avatar === 'female') {
+                    profileAvatar.innerHTML = '<i class="fas fa-female"></i>';
+                } else if (avatar === 'robot') {
+                    profileAvatar.innerHTML = '<i class="fas fa-robot"></i>';
+                } else if (avatar === 'cat') {
+                    profileAvatar.innerHTML = '<i class="fas fa-cat"></i>';
+                }
+                
+                profileAvatar.innerHTML += '<div class="avatar-edit"><i class="fas fa-camera"></i></div>';
+            }
+
+            function updateUserAvatar() {
+                const avatar = currentUser.avatar || 'default';
+                userAvatar.innerHTML = '';
+                
+                if (avatar === 'default') {
+                    userAvatar.innerHTML = '<i class="fas fa-user"></i>';
+                } else if (avatar === 'male') {
+                    userAvatar.innerHTML = '<i class="fas fa-male"></i>';
+                } else if (avatar === 'female') {
+                    userAvatar.innerHTML = '<i class="fas fa-female"></i>';
+                } else if (avatar === 'robot') {
+                    userAvatar.innerHTML = '<i class="fas fa-robot"></i>';
+                } else if (avatar === 'cat') {
+                    userAvatar.innerHTML = '<i class="fas fa-cat"></i>';
+                }
+            }
+
+            // Navegação entre telas
+            function showAuthScreen() {
+                authScreen.classList.remove('hidden');
+                chatScreen.classList.add('hidden');
+                upgradeScreen.classList.add('hidden');
+            }
+
+            function showChatScreen() {
+                authScreen.classList.add('hidden');
+                chatScreen.classList.remove('hidden');
+                upgradeScreen.classList.add('hidden');
+                
+                if (currentUser) {
+                    document.getElementById('greetingName').textContent = currentUser.name;
+                }
+            }
+
+            function showUpgradeScreen() {
+                authScreen.classList.add('hidden');
+                chatScreen.classList.add('hidden');
+                upgradeScreen.classList.remove('hidden');
+                menuOverlay.classList.remove('active');
+            }
+
+            // Toast notification
+            function showToast(message) {
+                const toast = document.getElementById('toast');
+                toast.textContent = message;
+                toast.classList.add('show');
+                setTimeout(() => toast.classList.remove('show'), 3000);
+            }
+
+            // Quick replies
+            setupQuickReplies();
+            
+            function setupQuickReplies() {
+                const quickReplies = [
+                    "Como você funciona?",
+                    "Preciso de ajuda",
+                    "O que você pode fazer?",
+                    "Conte uma curiosidade"
+                ];
+                
+                const quickReplyArea = document.getElementById('quickReplyArea');
+                quickReplies.forEach(reply => {
+                    const button = document.createElement('button');
+                    button.className = 'quick-reply';
+                    button.textContent = reply;
+                    button.addEventListener('click', function() {
+                        addMessage(reply, 'user');
+                    });
+                    quickReplyArea.appendChild(button);
+                });
+            }
         });
-        
-        // --- Hero Parallax ---
-        heroSection.addEventListener('mousemove', (e) => {
-            const centerX = window.innerWidth / 2, centerY = window.innerHeight / 2;
-            const offsetX = (e.clientX - centerX) / centerX, offsetY = (e.clientY - centerY) / centerY;
-            document.querySelector('.hero-content').style.transform = `translate(${offsetX * -15}px, ${offsetY * -15}px)`;
-            document.querySelector('.hero-bg-layers').style.transform = `translate(${offsetX * 10}px, ${offsetY * 10}px)`;
-        });
-    });
-  </script>
+    </script>
 </body>
 </html>
