@@ -1,22 +1,42 @@
 {
-  "name": "Studio Tsukiyo Platforms",
-  "short_name": "Studio Tsukiyo",
-  "description": "Platforms",
-  "start_url": "index.html",
+  "name": "ORPHEO Studio",
+  "short_name": "ORPHEO",
+  "description": "Editora digital de Light Novels, Escola de Autores e Projetos de IA",
+  "start_url": "https://orpheostudio.com.br",
+  "scope": "/",
   "display": "standalone",
-  "background_color": "#C8D0E7",
-  "theme_color": "#3498DB",
+  "background_color": "#0a0014",
+  "theme_color": "#9d4edd",
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "assets/icons/icon-192.png",
+      "src": "/icon-192x192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
-      "src": "assets/icons/icon-512.png",
+      "src": "/icon-512x512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["entertainment", "education", "productivity"],
+  "shortcuts": [
+    {
+      "name": "Light Novels",
+      "short_name": "Novels",
+      "description": "Veja nossa coleção de light novels",
+      "url": "/#novels",
+      "icons": [{ "src": "/icon-novels.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Yume AI",
+      "short_name": "AI",
+      "description": "Converse com a assistente Yume",
+      "url": "/#ai",
+      "icons": [{ "src": "/icon-ai.png", "sizes": "96x96" }]
     }
   ]
 }
