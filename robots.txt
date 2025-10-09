@@ -1,0 +1,40 @@
+# robots.txt para orpheostudio.com.br
+# Configuração de SEO e indexação
+
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /private/
+Disallow: /api/
+Disallow: /*.json$
+Disallow: /test/
+
+# Especial para bots específicos
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 1
+
+# Block malicious bots
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Crawl-delay: 10
+
+# Sitemap location
+Sitemap: https://orpheostudio.com.br/sitemap.xml
+Sitemap: https://orpheostudio.com.br/sitemap-images.xml
+
+# Host preference
+Host: https://orpheostudio.com.br
