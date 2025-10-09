@@ -83,6 +83,10 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5941203056187445"
+     crossorigin="anonymous"></script>
+  
   <!-- Google Analytics (adicione seu ID) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
   <script>
@@ -1027,6 +1031,86 @@
       from { opacity: 0; transform: translateY(30px); }
       to { opacity: 1; transform: translateY(0); }
     }
+
+    /* AdSense Container Styling */
+    .adsbygoogle {
+      background: rgba(21, 0, 37, 0.3);
+      border: 1px solid rgba(157, 78, 221, 0.2);
+      border-radius: 15px;
+      padding: 20px;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+      min-height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .adsbygoogle:hover {
+      border-color: rgba(157, 78, 221, 0.4);
+      background: rgba(21, 0, 37, 0.4);
+    }
+
+    /* AdSense Label (opcional) */
+    .ad-label {
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      opacity: 0.6;
+    }
+
+    /* Ad Container Wrapper */
+    .ad-container {
+      margin: 50px auto;
+      max-width: 1200px;
+      padding: 0 20px;
+    }
+
+    /* Responsive Ad adjustments */
+    @media (max-width: 768px) {
+      .adsbygoogle {
+        padding: 15px;
+        border-radius: 12px;
+      }
+      
+      .ad-container {
+        margin: 30px auto;
+      }
+    }
+
+    /* Sidebar Ad (Desktop Only) */
+    .sidebar-ad {
+      position: fixed;
+      right: 20px;
+      top: 100px;
+      width: 160px;
+      z-index: 100;
+      display: none;
+    }
+
+    .ad-sticky {
+      position: sticky;
+      top: 100px;
+      background: rgba(21, 0, 37, 0.6);
+      border: 1px solid rgba(157, 78, 221, 0.3);
+      border-radius: 15px;
+      padding: 15px;
+      backdrop-filter: blur(10px);
+    }
+
+    @media (min-width: 1600px) {
+      .sidebar-ad {
+        display: block;
+      }
+    }
+
+    /* Hide sidebar ad when AI modal is open */
+    .ai-modal.active ~ .sidebar-ad {
+      display: none;
+    }
   </style>
 </head>
 <body>
@@ -1090,6 +1174,22 @@
     </div>
   </section>
 
+  <!-- Sidebar Ad (Desktop Only) -->
+  <aside class="sidebar-ad" id="sidebarAd">
+    <div class="ad-sticky">
+      <!-- AdSense - Vertical Sidebar -->
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-5941203056187445"
+           data-ad-slot="5678901234"
+           data-ad-format="vertical"
+           data-full-width-responsive="false"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+  </aside>
+
   <main>
     <!-- Light Novels Section -->
     <section id="novels">
@@ -1100,6 +1200,20 @@
           Histórias envolventes que transcendem páginas e criam conexões emocionais profundas.
         </p>
       </div>
+
+      <!-- AdSense - Display Responsivo (Topo da seção) -->
+      <div style="text-align: center; margin: 40px auto; max-width: 1200px;">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-5941203056187445"
+             data-ad-slot="1234567890"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+      </div>
+
       <div class="grid">
         <a href="https://a.co/d/3r426rh" target="_blank" rel="noopener" class="fade-in">
           <div class="card">
@@ -1216,6 +1330,19 @@
           </div>
         </a>
       </div>
+
+      <!-- AdSense - Display Responsivo (Meio da seção) -->
+      <div style="text-align: center; margin: 60px auto; max-width: 1200px;">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-5941203056187445"
+             data-ad-slot="2345678901"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+      </div>
     </section>
 
     <!-- Escola de Autores Section -->
@@ -1296,6 +1423,20 @@
           Ecossistema digital integrado com inteligência artificial e curadoria de conteúdo otaku.
         </p>
       </div>
+
+      <!-- AdSense - In-feed (Entre conteúdos) -->
+      <div style="text-align: center; margin: 40px auto; max-width: 1200px;">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-format="fluid"
+             data-ad-layout-key="-fb+5w+4e-db+86"
+             data-ad-client="ca-pub-5941203056187445"
+             data-ad-slot="3456789012"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+      </div>
+
       <div class="grid grid-2">
         <div class="card project-card fade-in">
           <div class="card-content">
@@ -1374,6 +1515,19 @@
 
   <!-- Footer -->
   <footer>
+    <!-- AdSense - Display Responsivo (Antes do Footer) -->
+    <div style="text-align: center; margin: 0 auto 60px; max-width: 1200px; padding: 0 20px;">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-5941203056187445"
+           data-ad-slot="4567890123"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+
     <div class="footer-content">
       <div class="footer-section">
         <h4>
@@ -1543,6 +1697,39 @@
         clarity('set', category, action);
       }
     }
+
+    // Track AdSense Ad Impressions
+    function trackAdImpression(slotId) {
+      trackEvent('AdSense', 'Ad Impression', slotId);
+    }
+
+    // Track AdSense Ad Clicks
+    function trackAdClick(slotId) {
+      trackEvent('AdSense', 'Ad Click', slotId);
+    }
+
+    // Initialize AdSense tracking when ads load
+    window.addEventListener('load', () => {
+      // Track all ad slots
+      const adSlots = document.querySelectorAll('.adsbygoogle');
+      adSlots.forEach((slot, index) => {
+        const slotId = slot.getAttribute('data-ad-slot') || `slot-${index}`;
+        
+        // Track when ad becomes visible
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              trackAdImpression(slotId);
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.5 });
+        
+        observer.observe(slot);
+      });
+
+      console.log('✅ Google AdSense carregado e monitorado');
+    });
 
     // Page Performance Monitoring
     window.addEventListener('load', () => {
