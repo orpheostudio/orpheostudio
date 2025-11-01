@@ -1,1748 +1,791 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- Primary Meta Tags -->
-  <title>ORPHEO Platforms | Criando mundos, conectando mentes</title>
-  <meta name="title" content="ORPHEO Platforms | Criando mundos, conectando mentes" />
-  <meta name="description" content="ORPHEO Platforms — Escola de Autores, YumeRoll Animes e Assistente IA Yume. Transformando histórias em experiências imersivas." />
-  <meta name="keywords" content="orpheo studio, light novels, escola de autores, yumeroll, yume ai, light novels brasileiras, ficção japonesa, worldbuilding, escrita criativa" />
-  <meta name="author" content="ORPHEO Platforms" />
-  <meta name="robots" content="index, follow" />
-
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="ORPHEO Platforms | Criando mundos, conectando mentes" />
-  <meta property="og:description" content="Escola de Autores, YumeRoll Animes e Assistente IA Yume. Transformando histórias em experiências imersivas." />
-  <meta property="og:site_name" content="ORPHEO Platforms" />
-  <meta property="og:locale" content="pt_BR" />
-
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="ORPHEO Platforms | Criando mundos, conectando mentes" />
-  <meta name="twitter:description" content="Escola de Autores e Assistente IA para escritores." />
-
-  <!-- Favicon -->
-  <meta name="theme-color" content="#9d4edd" />
-
-  <!-- PWA -->
-  <meta name="mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="ORPHEO" />
-
-  <!-- Structured Data / Schema.org -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "ORPHEO Studio",
-    "alternateName": "ORPHEO Platforms",
-    "description": "Editora digital especializada em Light Novels brasileiras, escola de autores e projetos de IA para escritores.",
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "email": "sac.studiotsukiyo@outlook.com",
-      "contactType": "Customer Service",
-      "areaServed": "BR",
-      "availableLanguage": "Portuguese"
-    }
-  }
-  </script>
-
-  <!-- Preconnect for performance -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet" />
-
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-  <!-- Google AdSense -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5941203056187445"
-     crossorigin="anonymous"></script>
-
-  <style>
-    :root {
-      --bg: #0a0014;
-      --surface: #150025;
-      --surface-light: #1f0035;
-      --text: #e8e3f0;
-      --muted: #b8adc8;
-      --primary: #9d4edd;
-      --primary-light: #c77dff;
-      --accent: #7b2cbf;
-      --accent-dark: #5a189a;
-      --gold: #ffd700;
-      --glow: rgba(157, 78, 221, 0.5);
-      --glow-strong: rgba(157, 78, 221, 0.8);
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      background-color: var(--bg);
-      color: var(--text);
-      font-family: 'Montserrat', sans-serif;
-      overflow-x: hidden;
-      line-height: 1.6;
-    }
-
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background: radial-gradient(ellipse at 50% 20%, rgba(157, 78, 221, 0.15) 0%, transparent 50%),
-                  radial-gradient(ellipse at 80% 80%, rgba(123, 44, 191, 0.1) 0%, transparent 50%);
-      z-index: -1;
-      pointer-events: none;
-    }
-
-    /* Animated Background Stars */
-    .stars {
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      pointer-events: none;
-    }
-
-    .star {
-      position: absolute;
-      width: 2px;
-      height: 2px;
-      background: white;
-      border-radius: 50%;
-      animation: twinkle 3s infinite;
-    }
-
-    @keyframes twinkle {
-      0%, 100% { opacity: 0.3; }
-      50% { opacity: 1; }
-    }
-
-    /* Custom Scrollbar */
-    ::-webkit-scrollbar {
-      width: 10px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: var(--surface);
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: var(--primary);
-      border-radius: 5px;
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-      background: var(--primary-light);
-    }
-
-    a { 
-      text-decoration: none; 
-      color: inherit; 
-      transition: all 0.3s ease;
-    }
-
-    /* Navbar */
-    .nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      z-index: 1000;
-      background: rgba(10, 0, 20, 0.85);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(157, 78, 221, 0.3);
-      transition: all 0.3s ease;
-    }
-
-    .nav.scrolled {
-      background: rgba(10, 0, 20, 0.95);
-      box-shadow: 0 5px 30px rgba(157, 78, 221, 0.2);
-    }
-
-    .nav-inner {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 15px 30px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 800;
-      font-size: 1.5rem;
-      font-family: 'Playfair Display', serif;
-      letter-spacing: 1px;
-    }
-
-    .brand-icon {
-      font-size: 2rem;
-      color: var(--gold);
-      filter: drop-shadow(0 0 10px var(--gold));
-      animation: float 3s ease-in-out infinite;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-5px); }
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 5px;
-      align-items: center;
-    }
-
-    .nav-link {
-      padding: 10px 18px;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 0.95rem;
-      position: relative;
-      transition: all 0.3s ease;
-    }
-
-    .nav-link:hover, .nav-link.active {
-      color: var(--primary-light);
-      background: rgba(157, 78, 221, 0.1);
-    }
-
-    .ai-btn {
-      padding: 10px 20px;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      border-radius: 25px;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(157, 78, 221, 0.3);
-      border: none;
-      color: white;
-      cursor: pointer;
-    }
-
-    .ai-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 25px rgba(157, 78, 221, 0.5);
-    }
-
-    .mobile-menu-btn {
-      display: none;
-      background: none;
-      border: none;
-      color: var(--text);
-      font-size: 1.5rem;
-      cursor: pointer;
-    }
-
-    /* Hero Section */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-      padding: 100px 20px 60px;
-    }
-
-    .hero-grid {
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(157,78,221,0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(157,78,221,0.05) 1px, transparent 1px);
-      background-size: 60px 60px;
-      animation: gridMove 30s linear infinite;
-    }
-
-    @keyframes gridMove {
-      from { transform: translate(0, 0); }
-      to { transform: translate(60px, 60px); }
-    }
-
-    .hero-content {
-      position: relative;
-      text-align: center;
-      max-width: 1000px;
-      z-index: 2;
-    }
-
-    .hero h1 {
-      font-size: clamp(3rem, 8vw, 6.5rem);
-      margin-bottom: 25px;
-      font-weight: 900;
-      letter-spacing: -2px;
-      font-family: 'Playfair Display', serif;
-      background: linear-gradient(135deg, #ffffff 0%, var(--primary-light) 50%, var(--gold) 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: titleGlow 3s ease-in-out infinite;
-    }
-
-    @keyframes titleGlow {
-      0%, 100% { filter: drop-shadow(0 0 20px rgba(157, 78, 221, 0.3)); }
-      50% { filter: drop-shadow(0 0 40px rgba(157, 78, 221, 0.6)); }
-    }
-
-    .hero-subtitle {
-      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
-      margin-bottom: 45px;
-      color: var(--muted);
-      max-width: 700px;
-      margin-inline: auto;
-      line-height: 1.8;
-    }
-
-    .hero-cta {
-      display: flex;
-      gap: 20px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      padding: 16px 40px;
-      border-radius: 50px;
-      font-weight: 700;
-      font-size: 1.1rem;
-      transition: all 0.4s ease;
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
-      border: 2px solid transparent;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      color: white;
-      box-shadow: 0 8px 30px rgba(157, 78, 221, 0.4);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 40px rgba(157, 78, 221, 0.6);
-    }
-
-    .btn-secondary {
-      background: transparent;
-      color: var(--primary-light);
-      border-color: var(--primary);
-    }
-
-    .btn-secondary:hover {
-      background: var(--primary);
-      color: white;
-      transform: translateY(-3px);
-    }
-
-    /* Main Content */
-    main {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-
-    section {
-      padding: 100px 0;
-      position: relative;
-    }
-
-    .section-head {
-      text-align: center;
-      margin-bottom: 80px;
-    }
-
-    .section-label {
-      display: inline-block;
-      padding: 8px 20px;
-      background: rgba(157, 78, 221, 0.1);
-      border: 1px solid rgba(157, 78, 221, 0.3);
-      border-radius: 25px;
-      color: var(--primary-light);
-      font-weight: 600;
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 20px;
-    }
-
-    .section-title {
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      margin-bottom: 20px;
-      font-weight: 800;
-      letter-spacing: -1px;
-      font-family: 'Playfair Display', serif;
-    }
-
-    .section-desc {
-      font-size: 1.2rem;
-      color: var(--muted);
-      max-width: 700px;
-      margin: 0 auto;
-    }
-
-    /* Grid Layouts */
-    .grid {
-      display: grid;
-      gap: 30px;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    }
-
-    .grid-2 {
-      grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-    }
-
-    /* Cards */
-    .card {
-      background: rgba(21, 0, 37, 0.6);
-      border: 1px solid rgba(157, 78, 221, 0.2);
-      border-radius: 20px;
-      overflow: hidden;
-      position: relative;
-      transition: all 0.4s ease;
-      backdrop-filter: blur(10px);
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 50% 50%, rgba(157, 78, 221, 0.1), transparent 70%);
-      opacity: 0;
-      transition: opacity 0.4s;
-    }
-
-    .card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 20px 60px rgba(157, 78, 221, 0.3);
-      border-color: rgba(157, 78, 221, 0.5);
-    }
-
-    .card:hover::before {
-      opacity: 1;
-    }
-
-    .card-thumb {
-      height: 240px;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .card-thumb img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s ease;
-    }
-
-    .card:hover .card-thumb img {
-      transform: scale(1.1);
-    }
-
-    .card-badge {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      padding: 6px 15px;
-      background: rgba(157, 78, 221, 0.9);
-      backdrop-filter: blur(10px);
-      border-radius: 20px;
-      font-size: 0.85rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .card-content {
-      padding: 30px;
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .card-title {
-      font-size: 1.6rem;
-      margin-bottom: 12px;
-      font-weight: 700;
-      color: var(--text);
-    }
-
-    .card-desc {
-      color: var(--muted);
-      margin-bottom: 25px;
-      flex-grow: 1;
-      line-height: 1.7;
-    }
-
-    .card-footer {
-      margin-top: auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .card-btn {
-      padding: 12px 28px;
-      background: transparent;
-      border: 2px solid var(--primary);
-      color: var(--primary-light);
-      border-radius: 25px;
-      font-weight: 700;
-      transition: all 0.3s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .card:hover .card-btn {
-      background: var(--primary);
-      color: white;
-      box-shadow: 0 5px 20px rgba(157, 78, 221, 0.4);
-    }
-
-    /* Project Cards */
-    .project-card {
-      background: linear-gradient(135deg, rgba(21, 0, 37, 0.8), rgba(31, 0, 53, 0.6));
-      border: 2px solid rgba(157, 78, 221, 0.3);
-    }
-
-    .project-icon {
-      font-size: 3rem;
-      margin-bottom: 20px;
-      color: var(--primary-light);
-      filter: drop-shadow(0 0 15px var(--glow));
-    }
-
-    /* Social Links */
-    .social-links {
-      display: flex;
-      gap: 15px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-top: 30px;
-    }
-
-    .social-link {
-      width: 50px;
-      height: 50px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      background: rgba(157, 78, 221, 0.1);
-      border: 2px solid rgba(157, 78, 221, 0.3);
-      font-size: 1.3rem;
-      transition: all 0.3s ease;
-    }
-
-    .social-link:hover {
-      background: var(--primary);
-      border-color: var(--primary-light);
-      transform: translateY(-5px) scale(1.1);
-      box-shadow: 0 10px 25px rgba(157, 78, 221, 0.4);
-    }
-
-    /* AI Chat Modal */
-    .ai-modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.8);
-      backdrop-filter: blur(10px);
-      z-index: 2000;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-
-    .ai-modal.active {
-      display: flex;
-    }
-
-    .ai-container {
-      background: var(--surface);
-      border: 2px solid rgba(157, 78, 221, 0.5);
-      border-radius: 25px;
-      max-width: 900px;
-      width: 100%;
-      max-height: 85vh;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      box-shadow: 0 20px 60px rgba(157, 78, 221, 0.3);
-    }
-
-    .ai-header {
-      padding: 25px 30px;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 2px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .ai-header h3 {
-      font-size: 1.5rem;
-      font-weight: 800;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .ai-close {
-      background: rgba(255, 255, 255, 0.1);
-      border: none;
-      color: white;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      font-size: 1.3rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .ai-close:hover {
-      background: rgba(255, 255, 255, 0.2);
-      transform: rotate(90deg);
-    }
-
-    .ai-chat {
-      flex-grow: 1;
-      overflow-y: auto;
-      padding: 30px;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .ai-message {
-      display: flex;
-      gap: 15px;
-      animation: messageSlide 0.3s ease;
-    }
-
-    @keyframes messageSlide {
-      from {
-        opacity: 0;
-        transform: translateY(10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .ai-message.user {
-      flex-direction: row-reverse;
-    }
-
-    .ai-avatar {
-      width: 45px;
-      height: 45px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.3rem;
-      flex-shrink: 0;
-    }
-
-    .ai-avatar.bot {
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-    }
-
-    .ai-avatar.user {
-      background: rgba(255, 255, 255, 0.1);
-    }
-
-    .ai-bubble {
-      padding: 15px 20px;
-      border-radius: 20px;
-      max-width: 70%;
-      line-height: 1.6;
-    }
-
-    .ai-message.bot .ai-bubble {
-      background: rgba(157, 78, 221, 0.1);
-      border: 1px solid rgba(157, 78, 221, 0.3);
-    }
-
-    .ai-message.user .ai-bubble {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .ai-input-area {
-      padding: 25px 30px;
-      background: rgba(21, 0, 37, 0.8);
-      border-top: 2px solid rgba(157, 78, 221, 0.3);
-      display: flex;
-      gap: 15px;
-    }
-
-    .ai-input {
-      flex-grow: 1;
-      padding: 15px 20px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 2px solid rgba(157, 78, 221, 0.3);
-      border-radius: 25px;
-      color: var(--text);
-      font-family: inherit;
-      font-size: 1rem;
-      transition: all 0.3s ease;
-    }
-
-    .ai-input:focus {
-      outline: none;
-      border-color: var(--primary);
-      background: rgba(255, 255, 255, 0.08);
-    }
-
-    .ai-send {
-      padding: 15px 30px;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      border: none;
-      border-radius: 25px;
-      color: white;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .ai-send:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 5px 20px rgba(157, 78, 221, 0.5);
-    }
-
-    .ai-send:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
-
-    .ai-loading {
-      display: flex;
-      gap: 8px;
-      padding: 10px 0;
-    }
-
-    .ai-loading span {
-      width: 8px;
-      height: 8px;
-      background: var(--primary);
-      border-radius: 50%;
-      animation: bounce 1.4s infinite ease-in-out both;
-    }
-
-    .ai-loading span:nth-child(1) { animation-delay: -0.32s; }
-    .ai-loading span:nth-child(2) { animation-delay: -0.16s; }
-
-    @keyframes bounce {
-      0%, 80%, 100% { transform: scale(0); }
-      40% { transform: scale(1); }
-    }
-
-    /* Contact Form */
-    .contact-form {
-      max-width: 700px;
-      margin: 0 auto;
-      background: rgba(21, 0, 37, 0.6);
-      padding: 50px;
-      border-radius: 25px;
-      border: 2px solid rgba(157, 78, 221, 0.3);
-    }
-
-    .form-group {
-      margin-bottom: 25px;
-    }
-
-    .form-label {
-      display: block;
-      margin-bottom: 10px;
-      font-weight: 600;
-      color: var(--text);
-    }
-
-    .form-input,
-    .form-textarea {
-      width: 100%;
-      padding: 15px 20px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 2px solid rgba(157, 78, 221, 0.3);
-      border-radius: 12px;
-      color: var(--text);
-      font-family: inherit;
-      font-size: 1rem;
-      transition: all 0.3s ease;
-    }
-
-    .form-textarea {
-      min-height: 150px;
-      resize: vertical;
-    }
-
-    .form-input:focus,
-    .form-textarea:focus {
-      outline: none;
-      border-color: var(--primary);
-      background: rgba(255, 255, 255, 0.08);
-    }
-
-    .form-submit {
-      width: 100%;
-      padding: 18px;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      border: none;
-      border-radius: 12px;
-      color: white;
-      font-weight: 700;
-      font-size: 1.1rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .form-submit:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(157, 78, 221, 0.5);
-    }
-
-    /* AdSense Container Styling */
-    .ad-container {
-      margin: 60px auto;
-      max-width: 1200px;
-      padding: 0 20px;
-    }
-
-    .adsbygoogle {
-      background: rgba(21, 0, 37, 0.3);
-      border: 1px solid rgba(157, 78, 221, 0.2);
-      border-radius: 15px;
-      padding: 20px;
-      backdrop-filter: blur(10px);
-      transition: all 0.3s ease;
-      min-height: 100px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .adsbygoogle:hover {
-      border-color: rgba(157, 78, 221, 0.4);
-      background: rgba(21, 0, 37, 0.4);
-    }
-
-    .ad-label {
-      text-align: center;
-      font-size: 0.75rem;
-      color: var(--muted);
-      margin-bottom: 10px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      opacity: 0.6;
-    }
-
-    /* Footer */
-    footer {
-      background: var(--surface);
-      border-top: 2px solid rgba(157, 78, 221, 0.3);
-      padding: 80px 20px 30px;
-      margin-top: 100px;
-    }
-
-    .footer-content {
-      max-width: 1400px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 50px;
-      margin-bottom: 50px;
-    }
-
-    .footer-section h4 {
-      font-size: 1.3rem;
-      margin-bottom: 20px;
-      font-weight: 700;
-      color: var(--primary-light);
-    }
-
-    .footer-section p {
-      color: var(--muted);
-      line-height: 1.8;
-      margin-bottom: 15px;
-    }
-
-    .footer-links {
-      list-style: none;
-    }
-
-    .footer-links li {
-      margin-bottom: 12px;
-    }
-
-    .footer-links a {
-      color: var(--muted);
-      transition: all 0.3s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .footer-links a:hover {
-      color: var(--primary-light);
-      transform: translateX(5px);
-    }
-
-    .footer-bottom {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding-top: 30px;
-      border-top: 1px solid rgba(157, 78, 221, 0.2);
-      text-align: center;
-      color: var(--muted);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-
-    .footer-legal {
-      display: flex;
-      gap: 20px;
-    }
-
-    .footer-legal a {
-      color: var(--muted);
-      transition: color 0.3s ease;
-    }
-
-    .footer-legal a:hover {
-      color: var(--primary-light);
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      .nav-links {
-        position: fixed;
-        top: 70px;
-        right: -100%;
-        width: 100%;
-        max-width: 300px;
-        height: calc(100vh - 70px);
-        background: rgba(10, 0, 20, 0.98);
-        backdrop-filter: blur(20px);
-        flex-direction: column;
-        padding: 30px;
-        border-left: 2px solid rgba(157, 78, 221, 0.3);
-        transition: right 0.4s ease;
-        gap: 0;
-      }
-
-      .nav-links.active {
-        right: 0;
-      }
-
-      .nav-link {
-        width: 100%;
-        text-align: left;
-        padding: 15px 20px;
-        border-bottom: 1px solid rgba(157, 78, 221, 0.1);
-      }
-
-      .mobile-menu-btn {
-        display: block;
-      }
-
-      .hero h1 {
-        font-size: 2.5rem;
-      }
-
-      .hero-cta {
-        flex-direction: column;
-        align-items: stretch;
-      }
-
-      .grid, .grid-2 {
-        grid-template-columns: 1fr;
-      }
-
-      .contact-form {
-        padding: 30px 25px;
-      }
-
-      .footer-content {
-        grid-template-columns: 1fr;
-        gap: 40px;
-      }
-
-      .footer-bottom {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .ai-container {
-        max-height: 100vh;
-        border-radius: 0;
-      }
-    }
-
-    .fade-in {
-      animation: fadeIn 0.8s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-adsense-account" content="ca-pub-5941203056187445">
+    <title>AmplaAI - Inteligência Artificial Avançada</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #8b5cf6;
+            --accent: #06b6d4;
+            --dark: #0f172a;
+            --dark-light: #1e293b;
+            --gray: #64748b;
+            --light: #f1f5f9;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 968px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                width: 280px;
+                height: calc(100vh - 70px);
+                background: rgba(15, 23, 42, 0.98);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+                transition: right 0.3s ease;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            min-height: 90vh;
+            background: linear-gradient(135deg, var(--dark) 0%, var(--dark-light) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+            top: -250px;
+            right: -250px;
+            opacity: 0.3;
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.1); opacity: 0.5; }
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            padding: 2rem;
+            text-align: center;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            color: white;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, white, var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: var(--light);
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(99, 102, 241, 0.5);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 5rem 2rem;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--dark);
+        }
+
+        .features-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            padding: 2rem;
+            background: var(--light);
+            border-radius: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .feature-card p {
+            color: var(--gray);
+        }
+
+        /* Products Section */
+        .products {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, var(--dark) 0%, var(--dark-light) 100%);
+            color: white;
+        }
+
+        .products-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: scale(1.05);
+        }
+
+        .product-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 5rem 2rem;
+            background: white;
+        }
+
+        .contact-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--light);
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--light);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Iframe Container */
+        .iframe-container {
+            padding: 5rem 2rem;
+            background: var(--light);
+        }
+
+        .iframe-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .iframe-wrapper iframe {
+            width: 100%;
+            height: 800px;
+            border: none;
+        }
+
+        /* Section Visibility */
+        .content-section {
+            display: none;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .nav-container {
+                padding: 0 1rem;
+            }
+
+            .hero-content {
+                padding: 1rem;
+            }
+
+            .features,
+            .products,
+            .contact,
+            .iframe-container {
+                padding: 3rem 1rem;
+            }
+
+            .features-grid,
+            .products-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .cta-button {
+                padding: 0.8rem 2rem;
+                font-size: 0.9rem;
+            }
+
+            .iframe-wrapper iframe {
+                height: 600px;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 1.7rem;
+            }
+
+            .feature-card,
+            .product-card {
+                padding: 1.5rem;
+            }
+
+            .iframe-wrapper iframe {
+                height: 500px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <!-- Animated Stars Background -->
-  <div class="stars" id="stars"></div>
+    <nav>
+        <div class="nav-container">
+            <div class="logo">AmplaAI</div>
+            <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#" onclick="showSection('home'); closeMenu()">Início</a></li>
+                <li><a href="#" onclick="showSection('features'); closeMenu()">Recursos</a></li>
+                <li><a href="#" onclick="showSection('products'); closeMenu()">Produtos</a></li>
+                <li><a href="#" onclick="showSection('projects'); closeMenu()">Projetos</a></li>
+                <li><a href="#" onclick="showSection('sena'); closeMenu()">Sena</a></li>
+                <li><a href="#" onclick="showSection('renthewriter'); closeMenu()">Ren The Writer</a></li>
+                <li><a href="#" onclick="showSection('contact'); closeMenu()">Contato</a></li>
+            </ul>
+        </div>
+    </nav>
 
-  <!-- Navigation -->
-  <nav class="nav" id="navbar">
-    <div class="nav-inner">
-      <a href="#home" class="brand">
-        <span class="brand-icon">🔱</span>
-        <span>ORPHEO</span>
-      </a>
-      <div class="nav-links" id="navLinks">
-        <a href="#home" class="nav-link active">Home</a>
-        <a href="#novels" class="nav-link">Light Novels</a>
-        <a href="#escola" class="nav-link">Escola</a>
-        <a href="#projetos" class="nav-link">Projetos</a>
-        <a href="#suporte" class="nav-link">Suporte</a>
-        <button class="ai-btn" id="openAI">
-          <i class="fas fa-robot"></i>
-          Yume AI
-        </button>
-      </div>
-      <button class="mobile-menu-btn" id="mobileMenuBtn">
-        <i class="fas fa-bars"></i>
-      </button>
+    <div id="home" class="content-section active">
+        <section class="hero">
+            <div class="hero-content">
+                <h1>AmplaAI</h1>
+                <p>Revolucionando o Futuro com Inteligência Artificial</p>
+                <a href="#" onclick="showSection('products')" class="cta-button">Conheça Nossas Soluções</a>
+            </div>
+        </section>
+
+        <section class="features">
+            <h2 class="section-title">Por Que Escolher AmplaAI?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Tecnologia de Ponta</h3>
+                    <p>Utilizamos os algoritmos mais avançados de machine learning e deep learning para entregar resultados excepcionais.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Precisão Incomparável</h3>
+                    <p>Nossas soluções são testadas e otimizadas para garantir a máxima precisão em cada tarefa.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Performance Excepcional</h3>
+                    <p>Processamento rápido e eficiente, mesmo com grandes volumes de dados complexos.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Segurança Total</h3>
+                    <p>Seus dados estão protegidos com as mais avançadas tecnologias de criptografia e segurança.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3>Escalabilidade</h3>
+                    <p>Soluções que crescem com seu negócio, adaptando-se às suas necessidades em tempo real.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💡</div>
+                    <h3>Inovação Contínua</h3>
+                    <p>Estamos sempre evoluindo e incorporando as últimas descobertas em IA aos nossos produtos.</p>
+                </div>
+            </div>
+        </section>
     </div>
-  </nav>
 
-  <!-- Hero Section -->
-  <section class="hero" id="home">
-    <div class="hero-grid"></div>
-    <div class="hero-content fade-in">
-      <h1>Criando mundos,<br>conectando mentes.</h1>
-      <p class="hero-subtitle">
-        Onde histórias ganham vida através da arte narrativa e tecnologia de ponta. 
-        Explore universos imersivos criados para inspirar e transformar.
-      </p>
-      <div class="hero-cta">
-        <a href="#projetos" class="btn btn-primary">
-          <i class="fas fa-compass"></i>
-          Explorar Projetos
-        </a>
-        <button class="btn btn-secondary" id="openAIHero">
-          <i class="fas fa-robot"></i>
-          Conversar com Yume
-        </button>
-      </div>
-      <div class="social-links">
-        <a href="https://www.instagram.com/orpheostudio" target="_blank" rel="noopener" class="social-link" title="Instagram ORPHEO">
-          <i class="fab fa-instagram"></i>
-        </a>
-        <a href="https://www.instagram.com/yumerolloficial" target="_blank" rel="noopener" class="social-link" title="Instagram YumeRoll">
-          <i class="fab fa-instagram"></i>
-        </a>
-        <a href="https://www.tiktok.com/@yumerollanime" target="_blank" rel="noopener" class="social-link" title="TikTok YumeRoll">
-          <i class="fab fa-tiktok"></i>
-        </a>
-      </div>
+    <div id="features" class="content-section">
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Recursos Avançados</h1>
+                <p>Explore tudo o que a AmplaAI pode fazer por você</p>
+            </div>
+        </section>
+        <section class="features">
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>Processamento de Linguagem Natural</h3>
+                    <p>Entenda e gere texto humano com precisão excepcional usando nossos modelos NLP avançados.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👁️</div>
+                    <h3>Visão Computacional</h3>
+                    <p>Reconhecimento de imagens, detecção de objetos e análise visual em tempo real.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Análise Preditiva</h3>
+                    <p>Preveja tendências e comportamentos futuros com nossos modelos de machine learning.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Geração de Conteúdo</h3>
+                    <p>Crie textos, imagens e conteúdo multimídia de forma automatizada e criativa.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Análise de Dados</h3>
+                    <p>Extraia insights valiosos de grandes volumes de dados não estruturados.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💬</div>
+                    <h3>Chatbots Inteligentes</h3>
+                    <p>Assistentes virtuais que entendem contexto e fornecem respostas personalizadas.</p>
+                </div>
+            </div>
+        </section>
     </div>
-  </section>
 
-  <main>
-    <!-- Light Novels Section -->
-    <section id="novels">
-      <div class="section-head fade-in">
-        <span class="section-label">📚 Biblioteca</span>
-        <h2 class="section-title">Light Novels</h2>
-        <p class="section-desc">
-          Histórias envolventes que transcendem páginas e criam conexões emocionais profundas.
-        </p>
-      </div>
+    <div id="products" class="content-section">
+        <section class="products">
+            <h2 class="section-title">Nossos Produtos</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <h3>AmplaAI Studio</h3>
+                    <p>Plataforma completa de desenvolvimento de IA com ferramentas intuitivas para criar, treinar e implantar modelos de machine learning.</p>
+                    <ul style="margin-top: 1rem; line-height: 2;">
+                        <li>✓ Interface drag-and-drop</li>
+                        <li>✓ Modelos pré-treinados</li>
+                        <li>✓ AutoML integrado</li>
+                        <li>✓ Deploy com um clique</li>
+                    </ul>
+                </div>
+                <div class="product-card">
+                    <h3>AmplaAI Analytics</h3>
+                    <p>Solução empresarial para análise de dados e business intelligence alimentada por IA avançada.</p>
+                    <ul style="margin-top: 1rem; line-height: 2;">
+                        <li>✓ Dashboards interativos</li>
+                        <li>✓ Análise preditiva</li>
+                        <li>✓ Insights automatizados</li>
+                        <li>✓ Integração com múltiplas fontes</li>
+                    </ul>
+                </div>
+                <div class="product-card">
+                    <h3>AmplaAI Vision</h3>
+                    <p>API de visão computacional para reconhecimento facial, detecção de objetos e análise de imagens.</p>
+                    <ul style="margin-top: 1rem; line-height: 2;">
+                        <li>✓ Reconhecimento facial</li>
+                        <li>✓ Detecção de objetos</li>
+                        <li>✓ OCR avançado</li>
+                        <li>✓ Análise de vídeo em tempo real</li>
+                    </ul>
+                </div>
+                <div class="product-card">
+                    <h3>AmplaAI Voice</h3>
+                    <p>Tecnologia de processamento de voz para transcrição, síntese e análise de áudio com IA.</p>
+                    <ul style="margin-top: 1rem; line-height: 2;">
+                        <li>✓ Transcrição em tempo real</li>
+                        <li>✓ Text-to-speech natural</li>
+                        <li>✓ Análise de sentimentos</li>
+                        <li>✓ Suporte multilíngue</li>
+                    </ul>
+                </div>
+                <div class="product-card">
+                    <h3>AmplaAI Assistant</h3>
+                    <p>Assistente virtual inteligente personalizável para empresas e aplicações.</p>
+                    <ul style="margin-top: 1rem; line-height: 2;">
+                        <li>✓ Conversação natural</li>
+                        <li>✓ Personalização completa</li>
+                        <li>✓ Integração com sistemas</li>
+                        <li>✓ Aprendizado contínuo</li>
+                    </ul>
+                </div>
+                <div class="product-card">
+                    <h3>AmplaAI API</h3>
+                    <p>API REST completa para integrar todos os recursos da AmplaAI em suas aplicações.</p>
+                    <ul style="margin-top: 1rem; line-height: 2;">
+                        <li>✓ Documentação completa</li>
+                        <li>✓ SDKs em múltiplas linguagens</li>
+                        <li>✓ Alta disponibilidade</li>
+                        <li>✓ Suporte técnico dedicado</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
 
-      <!-- AdSense - Display Responsivo (Topo) -->
-      <div class="ad-container">
-        <div class="ad-label">Publicidade</div>
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-5941203056187445"
-             data-ad-slot="1234567890"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-      </div>
+    <div id="projects" class="content-section">
+        <section class="products">
+            <h2 class="section-title">Nossos Projetos</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <h3>🎌 YumeRoll</h3>
+                    <p>Portal completo da cultura otaku com notícias, reviews, comunidade e conteúdo sobre anime, mangá, games e cultura japonesa.</p>
+                    <ul style="margin-top: 1rem; line-height: 2;">
+                        <li>✓ Notícias e lançamentos</li>
+                        <li>✓ Reviews de anime e mangá</li>
+                        <li>✓ Guias e recomendações</li>
+                        <li>✓ Comunidade ativa</li>
+                        <li>✓ Calendário de eventos</li>
+                    </ul>
+                </div>
+                <div class="product-card">
+                    <h3>✍️ Escola de Escritores</h3>
+                    <p>Plataforma educacional com IA para desenvolvimento de habilidades de escrita criativa e técnicas literárias.</p>
+                    <ul style="margin-top: 1rem; line-height: 2;">
+                        <li>✓ Análise de estilo de escrita</li>
+                        <li>✓ Feedback automatizado</li>
+                        <li>✓ Exercícios personalizados</li>
+                        <li>✓ Biblioteca de técnicas narrativas</li>
+                        <li>✓ Comunidade de escritores</li>
+                    </ul>
+                </div>
+                <div class="product-card">
+                    <h3>📚 Ren The Writer</h3>
+                    <p>Universo literário oficial com obras, projetos e conteúdo exclusivo da autora Ren The Writer.</p>
+                    <ul style="margin-top: 1rem; line-height: 2;">
+                        <li>✓ Acervo completo de obras</li>
+                        <li>✓ Blog e artigos</li>
+                        <li>✓ Projetos em desenvolvimento</li>
+                        <li>✓ Conteúdo exclusivo</li>
+                        <li>✓ Interação com leitores</li>
+                    </ul>
+                    <a href="#" onclick="showSection('renthewriter')" style="display: inline-block; margin-top: 1rem; padding: 0.5rem 1.5rem; background: rgba(255,255,255,0.1); border-radius: 25px; text-decoration: none; color: var(--accent); transition: all 0.3s;">
+                        Visitar Site →
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
 
-      <div class="grid">
-        <a href="https://a.co/d/3r426rh" target="_blank" rel="noopener" class="fade-in">
-          <div class="card">
-            <div class="card-thumb">
-              <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=800&q=80" alt="Abunai Aisuru: Arco 2">
-              <span class="card-badge">Novo</span>
-            </div>
-            <div class="card-content">
-              <h3 class="card-title">Abunai Aisuru: Arco 2</h3>
-              <p class="card-desc">
-                A continuação épica onde destino e coragem se entrelaçam em uma narrativa no clássico estilo light novel japonês.
-              </p>
-              <div class="card-footer">
-                <span class="card-btn">
-                  Ler Agora <i class="fas fa-arrow-right"></i>
-                </span>
-              </div>
-            </div>
-          </div>
-        </a>
-
-        <a href="https://a.co/d/dF3c8tA" target="_blank" rel="noopener" class="fade-in">
-          <div class="card">
-            <div class="card-thumb">
-              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80" alt="Abunai Aisuru">
-            </div>
-            <div class="card-content">
-              <h3 class="card-title">Abunai Aisuru</h3>
-              <p class="card-desc">
-                Em um Japão paralelo, casamentos são controlados pelo Governo. Uma história sobre desafiar o sistema pelo primeiro amor.
-              </p>
-              <div class="card-footer">
-                <span class="card-btn">
-                  Ler Agora <i class="fas fa-arrow-right"></i>
-                </span>
-              </div>
-            </div>
-          </div>
-        </a>
-
-        <a href="https://a.co/d/1vAMQft" target="_blank" rel="noopener" class="fade-in">
-          <div class="card">
-            <div class="card-thumb">
-              <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=800&q=80" alt="Emilly: Além do Horizonte">
-            </div>
-            <div class="card-content">
-              <h3 class="card-title">Emilly: Além do Horizonte</h3>
-              <p class="card-desc">
-                Rotas, escolhas e identidades em uma jornada que mescla romance intenso e ficção científica instigante.
-              </p>
-              <div class="card-footer">
-                <span class="card-btn">
-                  Ler Agora <i class="fas fa-arrow-right"></i>
-                </span>
-              </div>
-            </div>
-          </div>
-        </a>
-      </div>
-
-      <!-- AdSense - In-feed (Meio) -->
-      <div class="ad-container">
-        <div class="ad-label">Publicidade</div>
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-format="fluid"
-             data-ad-layout-key="-fb+5w+4e-db+86"
-             data-ad-client="ca-pub-5941203056187445"
-             data-ad-slot="2345678901"></ins>
-      </div>
-    </section>
-
-    <!-- Escola de Autores Section -->
-    <section id="escola">
-      <div class="section-head fade-in">
-        <span class="section-label">🎓 Educação</span>
-        <h2 class="section-title">Escola de Autores</h2>
-        <p class="section-desc">
-          Transforme sua paixão por escrever em obras profissionais com mentoria especializada.
-        </p>
-      </div>
-      <div class="grid">
-        <a href="https://www.instagram.com/moonwriterhub" target="_blank" rel="noopener" class="fade-in">
-          <div class="card">
-            <div class="card-thumb">
-              <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&q=80" alt="Fundamentos">
-            </div>
-            <div class="card-content">
-              <h3 class="card-title">Fundamentos de Light Novel</h3>
-              <p class="card-desc">
-                Domine estrutura narrativa, ritmo, POV, construção de personagens e a estética única das light novels japonesas.
-              </p>
-              <div class="card-footer">
-                <span class="card-btn">
-                  Inscrever-se <i class="fas fa-graduation-cap"></i>
-                </span>
-              </div>
-            </div>
-          </div>
-        </a>
-
-        <a href="https://www.instagram.com/moonwriterhub" target="_blank" rel="noopener" class="fade-in">
-          <div class="card">
-            <div class="card-thumb">
-              <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&q=80" alt="Mentoria">
-            </div>
-            <div class="card-content">
-              <h3 class="card-title">Mentoria Individual</h3>
-              <p class="card-desc">
-                Acompanhamento editorial personalizado, definição de metas semanais e revisão detalhada de capítulos.
-              </p>
-              <div class="card-footer">
-                <span class="card-btn">
-                  Quero Mentoria <i class="fas fa-user-tie"></i>
-                </span>
-              </div>
-            </div>
-          </div>
-        </a>
-
-        <a href="https://www.instagram.com/moonwriterhub" target="_blank" rel="noopener" class="fade-in">
-          <div class="card">
-            <div class="card-thumb">
-              <img src="https://images.unsplash.com/photo-1535223289827-42f1e9919769?w=800&q=80" alt="LitGeek Labs">
-            </div>
-            <div class="card-content">
-              <h3 class="card-title">LitGeek Labs</h3>
-              <p class="card-desc">
-                Programa de apoio para novos escritores darem o primeiro passo na criação de suas light novels originais.
-              </p>
-              <div class="card-footer">
-                <span class="card-btn">
-                  Participar <i class="fas fa-flask"></i>
-                </span>
-              </div>
-            </div>
-          </div>
-        </a>
-      </div>
-    </section>
-
-    <!-- Projetos Section -->
-    <section id="projetos">
-      <div class="section-head fade-in">
-        <span class="section-label">🚀 Inovação</span>
-        <h2 class="section-title">Nossos Projetos</h2>
-        <p class="section-desc">
-          Ecossistema digital integrado com inteligência artificial e curadoria de conteúdo otaku.
-        </p>
-      </div>
-
-      <!-- AdSense - Display Responsivo -->
-      <div class="ad-container">
-        <div class="ad-label">Publicidade</div>
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-5941203056187445"
-             data-ad-slot="3456789012"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-      </div>
-
-      <div class="grid grid-2">
-        <div class="card project-card fade-in">
-          <div class="card-content">
-            <div class="project-icon">
-              <i class="fas fa-play-circle"></i>
-            </div>
-            <h3 class="card-title">YumeRoll Animes</h3>
-            <p class="card-desc">
-              Plataforma de curadoria e recomendação de animes com conteúdo exclusivo, reviews e comunidade ativa de fãs.
+    <div id="sena" class="content-section">
+        <section class="iframe-container">
+            <h2 class="section-title">Sena - Plataforma Integrada</h2>
+            <p style="text-align: center; color: var(--gray); max-width: 800px; margin: 0 auto 2rem;">
+                Explore a plataforma Sena com todas as suas funcionalidades integradas.
             </p>
-            <div class="social-links">
-              <a href="https://www.instagram.com/yumerolloficial" target="_blank" rel="noopener" class="social-link" title="Instagram">
-                <i class="fab fa-instagram"></i>
-              </a>
-              <a href="https://www.tiktok.com/@yumerolloficial" target="_blank" rel="noopener" class="social-link" title="TikTok">
-                <i class="fab fa-tiktok"></i>
-              </a>
+            <div class="iframe-wrapper">
+                <iframe src="https://sena.orpheostudio.com.br" title="Sena Platform"></iframe>
             </div>
-          </div>
-        </div>
+        </section>
+    </div>
 
-        <div class="card project-card fade-in">
-          <div class="card-content">
-            <div class="project-icon">
-              <i class="fas fa-robot"></i>
-            </div>
-            <h3 class="card-title">Yume AI Assistant</h3>
-            <p class="card-desc">
-              Assistente criativa alimentada por IA que auxilia escritores com ideias de enredo, desenvolvimento de personagens e worldbuilding.
+    <div id="renthewriter" class="content-section">
+        <section class="iframe-container">
+            <h2 class="section-title">Universo Tsukiyo - Ren The Writer</h2>
+            <p style="text-align: center; color: var(--gray); max-width: 800px; margin: 0 auto 2rem;">
+                Conheça o universo literário de Ren The Writer, suas obras e projetos em desenvolvimento.
             </p>
-            <div style="margin-top: 20px;">
-              <a href="https://sophya.netlify.app" target="_blank" rel="noopener" class="card-btn">
-                Acessar Yume <i class="fas fa-external-link-alt"></i>
-              </a>
+            <div class="iframe-wrapper">
+                <iframe src="https://universotsukiyo.orpheostudio.com.br" title="Ren The Writer - Universo Tsukiyo"></iframe>
             </div>
-          </div>
+        </section>
+    </div>
+
+    <div id="contact" class="content-section">
+        <section class="contact">
+            <h2 class="section-title">Entre em Contato</h2>
+            <div class="contact-container">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Nome Completo</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Assunto</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Mensagem</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-button">Enviar Mensagem</button>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="footer-links">
+            <a href="https://termos.orpheostudio.com.br" target="_blank">Termos de Uso</a>
+            <a href="https://politicas.orpheostudio.com.br" target="_blank">Políticas de Privacidade</a>
+            <a href="#" onclick="showSection('contact')">Contato</a>
         </div>
-      </div>
-    </section>
+        <p>&copy; 2025 AmplaAI. Todos os direitos reservados.</p>
+        <p style="margin-top: 1rem; color: var(--gray);">Desenvolvido com tecnologia de ponta para revolucionar o futuro.</p>
+    </footer>
 
-    <!-- Suporte Section -->
-    <section id="suporte">
-      <div class="section-head fade-in">
-        <span class="section-label">💬 Atendimento</span>
-        <h2 class="section-title">Entre em Contato</h2>
-        <p class="section-desc">
-          Tem alguma dúvida, sugestão ou proposta? Estamos aqui para ajudar!
-        </p>
-      </div>
-      <div class="contact-form fade-in">
-        <form id="contactForm">
-          <div class="form-group">
-            <label class="form-label" for="name">Nome Completo</label>
-            <input type="text" id="name" class="form-input" required placeholder="Seu nome">
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="email">Email</label>
-            <input type="email" id="email" class="form-input" required placeholder="seu@email.com">
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="subject">Assunto</label>
-            <input type="text" id="subject" class="form-input" required placeholder="Como podemos ajudar?">
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="message">Mensagem</label>
-            <textarea id="message" class="form-textarea" required placeholder="Conte-nos mais sobre sua dúvida ou sugestão..."></textarea>
-          </div>
-          <button type="submit" class="form-submit">
-            <i class="fas fa-paper-plane"></i>
-            Enviar Mensagem
-          </button>
-        </form>
-      </div>
-    </section>
-  </main>
+    <script>
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+            window.scrollTo(0, 0);
+        }
 
-  <!-- Footer -->
-  <footer>
-    <!-- AdSense - Display Responsivo (Antes do Footer) -->
-    <div class="ad-container">
-      <div class="ad-label">Publicidade</div>
-      <ins class="adsbygoogle"
-           style="display:block"
-           data-ad-client="ca-pub-5941203056187445"
-           data-ad-slot="4567890123"
-           data-ad-format="auto"
-           data-full-width-responsive="true"></ins>
-    </div>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
 
-    <div class="footer-content">
-      <div class="footer-section">
-        <h4>
-          <span style="font-size: 1.8rem;">🔱</span> ORPHEO Platforms
-        </h4>
-        <p>
-          Criando mundos, conectando mentes através da arte narrativa e tecnologia de ponta.
-        </p>
-        <div class="social-links" style="justify-content: flex-start; margin-top: 20px;">
-          <a href="https://www.instagram.com/orpheostudio" target="_blank" rel="noopener" class="social-link">
-            <i class="fab fa-instagram"></i>
-          </a>
-          <a href="https://www.instagram.com/yumerolloficial" target="_blank" rel="noopener" class="social-link">
-            <i class="fab fa-instagram"></i>
-          </a>
-          <a href="https://www.tiktok.com/@yumerolloficial" target="_blank" rel="noopener" class="social-link">
-            <i class="fab fa-tiktok"></i>
-          </a>
-        </div>
-      </div>
+        function closeMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.remove('active');
+        }
 
-      <div class="footer-section">
-        <h4>Navegação</h4>
-        <ul class="footer-links">
-          <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
-          <li><a href="#novels"><i class="fas fa-chevron-right"></i> Light Novels</a></li>
-          <li><a href="#escola"><i class="fas fa-chevron-right"></i> Escola de Autores</a></li>
-          <li><a href="#projetos"><i class="fas fa-chevron-right"></i> Projetos</a></li>
-          <li><a href="#suporte"><i class="fas fa-chevron-right"></i> Suporte</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-section">
-        <h4>Projetos</h4>
-        <ul class="footer-links">
-          <li><a href="https://www.instagram.com/yumerolloficial" target="_blank" rel="noopener"><i class="fas fa-play-circle"></i> YumeRoll Animes</a></li>
-          <li><a href="https://sophya.netlify.app" target="_blank" rel="noopener"><i class="fas fa-robot"></i> Yume AI</a></li>
-          <li><a href="https://www.instagram.com/moonwriterhub" target="_blank" rel="noopener"><i class="fas fa-graduation-cap"></i> MoonWriter Hub</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-section">
-        <h4>Suporte</h4>
-        <ul class="footer-links">
-          <li><a href="mailto:sac.studiotsukiyo@outlook.com"><i class="fas fa-envelope"></i> Contato</a></li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="footer-bottom">
-      <p>&copy; 2024 ORPHEO Studio. Todos os direitos reservados.</p>
-    </div>
-  </footer>
-
-  <!-- AI Chat Modal -->
-  <div class="ai-modal" id="aiModal">
-    <div class="ai-container">
-      <div class="ai-header">
-        <h3>
-          <i class="fas fa-robot"></i>
-          Yume AI Assistant
-        </h3>
-        <button class="ai-close" id="closeAI" aria-label="Fechar chat">
-          <i class="fas fa-times"></i>
-        </button>
-      </div>
-      <div class="ai-chat" id="aiChat" role="log" aria-live="polite">
-        <div class="ai-message bot">
-          <div class="ai-avatar bot">
-            <i class="fas fa-robot"></i>
-          </div>
-          <div class="ai-bubble">
-            Olá! Sou a Yume, sua assistente criativa da ORPHEO Platforms. Como posso ajudá-lo hoje? Posso auxiliar com ideias para histórias, desenvolvimento de personagens, worldbuilding ou tirar dúvidas sobre nossos projetos! 🌟
-          </div>
-        </div>
-      </div>
-      <div class="ai-input-area">
-        <input type="text" class="ai-input" id="aiInput" placeholder="Digite sua mensagem..." aria-label="Campo de mensagem" />
-        <button class="ai-send" id="aiSend" aria-label="Enviar mensagem">
-          <i class="fas fa-paper-plane"></i>
-          Enviar
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    // ==========================================
-    // ORPHEO STUDIO - Main Script
-    // ==========================================
-
-    // Initialize AdSense
-    (adsbygoogle = window.adsbygoogle || []).push({});
-
-    // Generate animated stars
-    function createStars() {
-      const starsContainer = document.getElementById('stars');
-      const starCount = 100;
-
-      for (let i = 0; i < starCount; i++) {
-        const star = document.createElement('div');
-        star.className = 'star';
-        star.style.left = `${Math.random() * 100}%`;
-        star.style.top = `${Math.random() * 100}%`;
-        star.style.animationDelay = `${Math.random() * 3}s`;
-        starsContainer.appendChild(star);
-      }
-    }
-    createStars();
-
-    // Navbar scroll effect
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 100) {
-        navbar.classList.add('scrolled');
-      } else {
-        navbar.classList.remove('scrolled');
-      }
-    });
-
-    // Mobile menu toggle
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const navLinks = document.getElementById('navLinks');
-
-    mobileMenuBtn.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
-      const icon = mobileMenuBtn.querySelector('i');
-      icon.className = navLinks.classList.contains('active') ? 'fas fa-times' : 'fas fa-bars';
-    });
-
-    // Close mobile menu on link click
-    document.querySelectorAll('.nav-link').forEach(link => {
-      link.addEventListener('click', () => {
-        navLinks.classList.remove('active');
-        mobileMenuBtn.querySelector('i').className = 'fas fa-bars';
-      });
-    });
-
-    // Active nav link on scroll
-    const sections = document.querySelectorAll('section[id]');
-    window.addEventListener('scroll', () => {
-      const scrollY = window.pageYOffset;
-
-      sections.forEach(section => {
-        const sectionHeight = section.offsetHeight;
-        const sectionTop = section.offsetTop - 100;
-        const sectionId = section.getAttribute('id');
-
-        if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-          document.querySelectorAll('.nav-link').forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === `#${sectionId}`) {
-              link.classList.add('active');
+        // Fechar menu ao clicar fora
+        document.addEventListener('click', function(event) {
+            const navLinks = document.getElementById('navLinks');
+            const menuBtn = document.querySelector('.mobile-menu-btn');
+            const nav = document.querySelector('nav');
+            
+            if (!nav.contains(event.target)) {
+                navLinks.classList.remove('active');
             }
-          });
-        }
-      });
-    });
-
-    // AI Modal functionality
-    const aiModal = document.getElementById('aiModal');
-    const openAIBtns = [document.getElementById('openAI'), document.getElementById('openAIHero')];
-    const closeAIBtn = document.getElementById('closeAI');
-    const aiChat = document.getElementById('aiChat');
-    const aiInput = document.getElementById('aiInput');
-    const aiSend = document.getElementById('aiSend');
-
-    openAIBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        aiModal.classList.add('active');
-        aiInput.focus();
-      });
-    });
-
-    closeAIBtn.addEventListener('click', () => {
-      aiModal.classList.remove('active');
-    });
-
-    aiModal.addEventListener('click', (e) => {
-      if (e.target === aiModal) {
-        aiModal.classList.remove('active');
-      }
-    });
-
-    // AI Chat functionality
-    function addMessage(text, type) {
-      const messageDiv = document.createElement('div');
-      messageDiv.className = `ai-message ${type}`;
-
-      const avatar = type === 'bot' 
-        ? '<div class="ai-avatar bot"><i class="fas fa-robot"></i></div>'
-        : '<div class="ai-avatar user"><i class="fas fa-user"></i></div>';
-
-      messageDiv.innerHTML = `
-        ${avatar}
-        <div class="ai-bubble">${text}</div>
-      `;
-
-      aiChat.appendChild(messageDiv);
-      aiChat.scrollTop = aiChat.scrollHeight;
-    }
-
-    function sendMessage() {
-      const message = aiInput.value.trim();
-      if (!message) return;
-
-      addMessage(message, 'user');
-      aiInput.value = '';
-      aiSend.disabled = true;
-
-      // Show loading
-      const loadingDiv = document.createElement('div');
-      loadingDiv.className = 'ai-message bot';
-      loadingDiv.innerHTML = `
-        <div class="ai-avatar bot"><i class="fas fa-robot"></i></div>
-        <div class="ai-bubble">
-          <div class="ai-loading">
-            <span></span><span></span><span></span>
-          </div>
-        </div>
-      `;
-      aiChat.appendChild(loadingDiv);
-      aiChat.scrollTop = aiChat.scrollHeight;
-
-      // Simulate response
-      setTimeout(() => {
-        loadingDiv.remove();
-        const responses = [
-          'Adoraria ajudar com isso! A ORPHEO Platforms oferece várias ferramentas para escritores. Que tal explorar nossa Escola de Autores? 📚✨',
-          'Que ideia interessante! Para desenvolvimento de personagens e worldbuilding, recomendo visitar nossos recursos em https://sophya.netlify.app 🌟',
-          'Estou aqui para ajudar! Conte-me mais sobre sua história ou projeto. Podemos trabalhar juntos no desenvolvimento! 💡',
-          'Excelente pergunta! Os projetos da ORPHEO como YumeRoll e nossa Escola de Autores podem te ajudar muito nisso. Quer saber mais? 🎭'
-        ];
-        const randomResponse = responses[Math.floor(Math.random() * responses.length)];
-        addMessage(randomResponse, 'bot');
-        aiSend.disabled = false;
-        aiInput.focus();
-      }, 1500);
-    }
-
-    aiSend.addEventListener('click', sendMessage);
-    aiInput.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') {
-        sendMessage();
-      }
-    });
-
-    // Contact Form
-    const contactForm = document.getElementById('contactForm');
-    contactForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-
-      const name = document.getElementById('name').value;
-      const email = document.getElementById('email').value;
-      const subject = document.getElementById('subject').value;
-      const message = document.getElementById('message').value;
-
-      const mailtoLink = `mailto:sac.studiotsukiyo@outlook.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Nome: ${name}\nEmail: ${email}\n\nMensagem:\n${message}`)}`;
-
-      window.location.href = mailtoLink;
-      contactForm.reset();
-      alert('Seu cliente de email será aberto. Obrigado por entrar em contato!');
-    });
-
-    // Smooth scroll
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-        }
-      });
-    });
-
-    // Intersection Observer for fade-in animations
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -100px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
-        }
-      });
-    }, observerOptions);
-
-    document.querySelectorAll('.fade-in').forEach(el => {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(30px)';
-      el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-      observer.observe(el);
-    });
-
-    // Parallax effect on hero
-    let ticking = false;
-    window.addEventListener('scroll', () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          const scrolled = window.pageYOffset;
-          const heroContent = document.querySelector('.hero-content');
-          const heroGrid = document.querySelector('.hero-grid');
-
-          if (heroContent && scrolled < window.innerHeight) {
-            heroContent.style.transform = `translateY(${scrolled * 0.5}px)`;
-            heroContent.style.opacity = 1 - (scrolled / window.innerHeight);
-          }
-
-          if (heroGrid && scrolled < window.innerHeight) {
-            heroGrid.style.transform = `translateY(${scrolled * 0.3}px)`;
-          }
-
-          ticking = false;
         });
-        ticking = true;
-      }
-    });
 
-    // Card 3D tilt effect
-    document.querySelectorAll('.card').forEach(card => {
-      card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            const mailtoLink = `mailto:sac.studiotsukiyo@outlook.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent('Nome: ' + name + '\nE-mail: ' + email + '\n\nMensagem:\n' + message)}`;
+            
+            window.location.href = mailtoLink;
+        });
 
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-
-        const rotateX = (y - centerY) / 20;
-        const rotateY = (centerX - x) / 20;
-
-        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
-      });
-
-      card.addEventListener('mouseleave', () => {
-        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
-      });
-    });
-
-    // ESC key to close AI modal
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && aiModal.classList.contains('active')) {
-        aiModal.classList.remove('active');
-      }
-    });
-
-    // Console branding
-    console.log('%c🔱 ORPHEO Studio', 'color: #9d4edd; font-size: 28px; font-weight: bold; text-shadow: 0 0 10px rgba(157, 78, 221, 0.5);');
-    console.log('%cCriando mundos, conectando mentes.', 'color: #c77dff; font-size: 14px;');
-    console.log('%c\n🚀 Interessado em trabalhar conosco?', 'color: #b8adc8; font-size: 12px;');
-    console.log('%cEnvie um email: sac.studiotsukiyo@outlook.com', 'color: #b8adc8; font-size: 12px;');
-
-    // Initialize all AdSense ads
-    window.addEventListener('load', () => {
-      const adSlots = document.querySelectorAll('.adsbygoogle');
-      adSlots.forEach((slot) => {
-        try {
-          (adsbygoogle = window.adsbygoogle || []).push({});
-        } catch (e) {
-          console.error('AdSense error:', e);
-        }
-      });
-      console.log('✅ Google AdSense inicializado');
-    });
-
-    // Track ad visibility
-    const adObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          console.log('📊 Anúncio visível:', entry.target);
-        }
-      });
-    }, { threshold: 0.5 });
-
-    document.querySelectorAll('.adsbygoogle').forEach(ad => {
-      adObserver.observe(ad);
-    });
-
-    console.log('%c✨ Site carregado com sucesso!', 'color: #9d4edd; font-weight: bold;');
-  </script>
+        // Smooth scroll behavior
+        window.addEventListener('load', function() {
+            const hash = window.location.hash;
+            if (hash) {
+                const sectionId = hash.substring(1);
+                showSection(sectionId);
+            }
+        });
+    </script>
 </body>
 </html>
