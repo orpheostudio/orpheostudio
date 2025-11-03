@@ -13,33 +13,34 @@
         }
 
         :root {
-            --primary: #6366f1;
-            --primary-dark: #4f46e5;
-            --secondary: #8b5cf6;
-            --accent: #06b6d4;
-            --dark: #0f172a;
-            --dark-light: #1e293b;
-            --gray: #64748b;
-            --light: #f1f5f9;
+            --primary: #00d4ff;
+            --primary-dark: #00a8cc;
+            --secondary: #ff006e;
+            --accent: #ffd60a;
+            --dark: #0a0e27;
+            --dark-light: #1a1f3a;
+            --gray: #8892b0;
+            --light: #ccd6f6;
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: var(--dark);
+            background: var(--dark);
+            color: var(--light);
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* Navigation */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(15, 23, 42, 0.95);
-            backdrop-filter: blur(10px);
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(20px);
             z-index: 1000;
             padding: 1rem 0;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
 
         .nav-container {
@@ -58,6 +59,14 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
         }
 
         .nav-links {
@@ -67,14 +76,30 @@
         }
 
         .nav-links a {
-            color: white;
+            color: var(--light);
             text-decoration: none;
-            transition: color 0.3s;
+            transition: all 0.3s;
             font-weight: 500;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
         }
 
         .nav-links a:hover {
-            color: var(--accent);
+            color: var(--primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
         .mobile-menu-btn {
@@ -86,36 +111,10 @@
             cursor: pointer;
         }
 
-        @media (max-width: 968px) {
-            .nav-links {
-                position: fixed;
-                top: 70px;
-                right: -100%;
-                width: 280px;
-                height: calc(100vh - 70px);
-                background: rgba(15, 23, 42, 0.98);
-                backdrop-filter: blur(10px);
-                flex-direction: column;
-                padding: 2rem;
-                gap: 1.5rem;
-                transition: right 0.3s ease;
-                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
-            }
-
-            .nav-links.active {
-                right: 0;
-            }
-
-            .mobile-menu-btn {
-                display: block;
-            }
-        }
-
-        /* Hero Section */
         .hero {
             margin-top: 80px;
             min-height: 90vh;
-            background: linear-gradient(135deg, var(--dark) 0%, var(--dark-light) 100%);
+            background: var(--dark);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -126,18 +125,28 @@
         .hero::before {
             content: '';
             position: absolute;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
-            top: -250px;
-            right: -250px;
-            opacity: 0.3;
-            animation: pulse 4s ease-in-out infinite;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.15) 0%, transparent 70%);
+            top: -400px;
+            right: -400px;
+            animation: pulse 6s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 0, 110, 0.1) 0%, transparent 70%);
+            bottom: -300px;
+            left: -300px;
+            animation: pulse 8s ease-in-out infinite reverse;
         }
 
         @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.3; }
-            50% { transform: scale(1.1); opacity: 0.5; }
+            0%, 100% { transform: scale(1); opacity: 0.15; }
+            50% { transform: scale(1.2); opacity: 0.25; }
         }
 
         .hero-content {
@@ -148,13 +157,19 @@
         }
 
         .hero h1 {
-            font-size: 4rem;
+            font-size: 4.5rem;
             color: white;
             margin-bottom: 1rem;
-            background: linear-gradient(135deg, white, var(--accent));
+            background: linear-gradient(135deg, var(--primary), var(--accent), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            animation: glow 3s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.2); }
         }
 
         .hero p {
@@ -165,32 +180,76 @@
 
         .cta-button {
             display: inline-block;
-            padding: 1rem 2.5rem;
+            padding: 1.2rem 3rem;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
             text-decoration: none;
             border-radius: 50px;
             font-weight: bold;
-            transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+            font-size: 1.1rem;
+            transition: all 0.4s;
+            box-shadow: 0 10px 40px rgba(0, 212, 255, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
         }
 
         .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(99, 102, 241, 0.5);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 60px rgba(0, 212, 255, 0.6);
         }
 
-        /* Features Section */
         .features {
             padding: 5rem 2rem;
-            background: white;
+            background: var(--dark-light);
+            position: relative;
+        }
+
+        .features::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
         }
 
         .section-title {
             text-align: center;
-            font-size: 2.5rem;
+            font-size: 3rem;
             margin-bottom: 3rem;
-            color: var(--dark);
+            color: white;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
         }
 
         .features-grid {
@@ -202,37 +261,80 @@
         }
 
         .feature-card {
-            padding: 2rem;
-            background: var(--light);
+            padding: 2.5rem;
+            background: rgba(26, 31, 58, 0.6);
+            backdrop-filter: blur(10px);
             border-radius: 20px;
-            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(255, 0, 110, 0.1));
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
         }
 
         .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            transform: translateY(-15px);
+            box-shadow: 0 30px 60px rgba(0, 212, 255, 0.3);
+            border-color: var(--primary);
         }
 
         .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
         .feature-card h3 {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             margin-bottom: 1rem;
-            color: var(--dark);
+            color: white;
+            position: relative;
+            z-index: 1;
         }
 
         .feature-card p {
             color: var(--gray);
+            position: relative;
+            z-index: 1;
+            line-height: 1.8;
         }
 
-        /* Products Section */
         .products {
             padding: 5rem 2rem;
-            background: linear-gradient(135deg, var(--dark) 0%, var(--dark-light) 100%);
+            background: var(--dark);
             color: white;
+            position: relative;
+        }
+
+        .products::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--secondary), transparent);
         }
 
         .products-grid {
@@ -244,28 +346,57 @@
         }
 
         .product-card {
-            background: rgba(255, 255, 255, 0.05);
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.05), rgba(255, 0, 110, 0.05));
             backdrop-filter: blur(10px);
-            padding: 2rem;
+            padding: 2.5rem;
             border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: transform 0.3s;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .product-card:hover::after {
+            opacity: 1;
         }
 
         .product-card:hover {
-            transform: scale(1.05);
+            transform: scale(1.05) translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 60px rgba(0, 212, 255, 0.3);
         }
 
         .product-card h3 {
-            font-size: 1.8rem;
+            font-size: 2rem;
             margin-bottom: 1rem;
-            color: var(--accent);
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            z-index: 1;
         }
 
-        /* Contact Section */
+        .product-card p, .product-card ul {
+            position: relative;
+            z-index: 1;
+        }
+
         .contact {
             padding: 5rem 2rem;
-            background: white;
+            background: var(--dark-light);
         }
 
         .contact-container {
@@ -281,23 +412,27 @@
             display: block;
             margin-bottom: 0.5rem;
             font-weight: 600;
-            color: var(--dark);
+            color: white;
         }
 
         .form-group input,
         .form-group textarea {
             width: 100%;
             padding: 1rem;
-            border: 2px solid var(--light);
+            background: rgba(26, 31, 58, 0.6);
+            border: 2px solid rgba(0, 212, 255, 0.3);
             border-radius: 10px;
             font-size: 1rem;
-            transition: border-color 0.3s;
+            color: white;
+            transition: all 0.3s;
         }
 
         .form-group input:focus,
         .form-group textarea:focus {
             outline: none;
             border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+            background: rgba(26, 31, 58, 0.8);
         }
 
         .form-group textarea {
@@ -322,12 +457,12 @@
             transform: translateY(-2px);
         }
 
-        /* Footer */
         footer {
             background: var(--dark);
             color: white;
             padding: 3rem 2rem;
             text-align: center;
+            border-top: 1px solid rgba(0, 212, 255, 0.2);
         }
 
         .footer-links {
@@ -345,37 +480,54 @@
         }
 
         .footer-links a:hover {
-            color: var(--accent);
+            color: var(--primary);
         }
 
-        /* Iframe Container */
-        .iframe-container {
-            padding: 5rem 2rem;
-            background: var(--light);
-        }
-
-        .iframe-wrapper {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-        }
-
-        .iframe-wrapper iframe {
-            width: 100%;
-            height: 800px;
-            border: none;
-        }
-
-        /* Section Visibility */
         .content-section {
             display: none;
         }
 
         .content-section.active {
             display: block;
+        }
+
+        .sena-iframe-container {
+            width: 100%;
+            height: calc(100vh - 80px);
+            margin-top: 80px;
+            border: none;
+            background: var(--dark);
+        }
+
+        .sena-iframe-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        @media (max-width: 968px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                width: 280px;
+                height: calc(100vh - 70px);
+                background: rgba(10, 14, 39, 0.98);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+                transition: right 0.3s ease;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
         }
 
         @media (max-width: 768px) {
@@ -395,15 +547,11 @@
                 padding: 1rem;
             }
 
-            .features,
-            .products,
-            .contact,
-            .iframe-container {
+            .features, .products, .contact {
                 padding: 3rem 1rem;
             }
 
-            .features-grid,
-            .products-grid {
+            .features-grid, .products-grid {
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
             }
@@ -417,13 +565,13 @@
                 font-size: 0.9rem;
             }
 
-            .iframe-wrapper iframe {
-                height: 600px;
-            }
-
             .footer-links {
                 flex-direction: column;
                 gap: 1rem;
+            }
+
+            .logo img {
+                height: 30px;
             }
         }
 
@@ -444,13 +592,8 @@
                 font-size: 1.7rem;
             }
 
-            .feature-card,
-            .product-card {
+            .feature-card, .product-card {
                 padding: 1.5rem;
-            }
-
-            .iframe-wrapper iframe {
-                height: 500px;
             }
         }
     </style>
@@ -458,14 +601,16 @@
 <body>
     <nav>
         <div class="nav-container">
-            <div class="logo">AmplaAI</div>
+            <div class="logo">
+                <img src="https://i.imgur.com/Y0q6AFJ.jpeg" alt="AmplaAI Logo">
+                AmplaAI
+            </div>
             <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#" onclick="showSection('home'); closeMenu()">Início</a></li>
-                <li><a href="#" onclick="showSection('features'); closeMenu()">Recursos</a></li>
-                <li><a href="#" onclick="showSection('products'); closeMenu()">Produtos</a></li>
-                <li><a href="#" onclick="showSection('projects'); closeMenu()">Projetos</a></li>
-                <li><a href="#" onclick="showSection('sena'); closeMenu()">Sena</a></li>
+                <li><a href="#" onclick="showSection('sena'); closeMenu()">Sena IA</a></li>
+                <li><a href="#" onclick="showSection('escola'); closeMenu()">Escola de Autores</a></li>
+                <li><a href="#" onclick="showSection('yumeroll'); closeMenu()">YumeRoll</a></li>
                 <li><a href="#" onclick="showSection('renthewriter'); closeMenu()">Ren The Writer</a></li>
                 <li><a href="#" onclick="showSection('contact'); closeMenu()">Contato</a></li>
             </ul>
@@ -476,197 +621,47 @@
         <section class="hero">
             <div class="hero-content">
                 <h1>AmplaAI</h1>
-                <p>Revolucionando o Futuro com Inteligência Artificial</p>
-                <a href="#" onclick="showSection('products')" class="cta-button">Conheça Nossas Soluções</a>
+                <p>Transformando Ideias em Realidade Digital</p>
+                <a href="#" onclick="showSection('sena')" class="cta-button">Explore Nossos Projetos</a>
             </div>
         </section>
 
         <section class="features">
-            <h2 class="section-title">Por Que Escolher AmplaAI?</h2>
+            <h2 class="section-title">Nossos Projetos Inovadores</h2>
             <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🚀</div>
-                    <h3>Tecnologia de Ponta</h3>
-                    <p>Utilizamos os algoritmos mais avançados de machine learning e deep learning para entregar resultados excepcionais.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🎯</div>
-                    <h3>Precisão Incomparável</h3>
-                    <p>Nossas soluções são testadas e otimizadas para garantir a máxima precisão em cada tarefa.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">⚡</div>
-                    <h3>Performance Excepcional</h3>
-                    <p>Processamento rápido e eficiente, mesmo com grandes volumes de dados complexos.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔒</div>
-                    <h3>Segurança Total</h3>
-                    <p>Seus dados estão protegidos com as mais avançadas tecnologias de criptografia e segurança.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🌐</div>
-                    <h3>Escalabilidade</h3>
-                    <p>Soluções que crescem com seu negócio, adaptando-se às suas necessidades em tempo real.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">💡</div>
-                    <h3>Inovação Contínua</h3>
-                    <p>Estamos sempre evoluindo e incorporando as últimas descobertas em IA aos nossos produtos.</p>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <div id="features" class="content-section">
-        <section class="hero">
-            <div class="hero-content">
-                <h1>Recursos Avançados</h1>
-                <p>Explore tudo o que a AmplaAI pode fazer por você</p>
-            </div>
-        </section>
-        <section class="features">
-            <div class="features-grid">
-                <div class="feature-card">
+                <div class="feature-card" onclick="showSection('sena')" style="cursor: pointer;">
                     <div class="feature-icon">🤖</div>
-                    <h3>Processamento de Linguagem Natural</h3>
-                    <p>Entenda e gere texto humano com precisão excepcional usando nossos modelos NLP avançados.</p>
+                    <h3>Sena IA</h3>
+                    <p>Assistente de inteligência artificial multitarefa capaz de auxiliar em diversas áreas, desde criação de conteúdo até análise de dados.</p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">👁️</div>
-                    <h3>Visão Computacional</h3>
-                    <p>Reconhecimento de imagens, detecção de objetos e análise visual em tempo real.</p>
+                <div class="feature-card" onclick="showSection('escola')" style="cursor: pointer;">
+                    <div class="feature-icon">✍️</div>
+                    <h3>Escola de Autores</h3>
+                    <p>Plataforma educacional completa para escritores desenvolverem suas habilidades e aprenderem técnicas de escrita criativa.</p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📊</div>
-                    <h3>Análise Preditiva</h3>
-                    <p>Preveja tendências e comportamentos futuros com nossos modelos de machine learning.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🎨</div>
-                    <h3>Geração de Conteúdo</h3>
-                    <p>Crie textos, imagens e conteúdo multimídia de forma automatizada e criativa.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔍</div>
-                    <h3>Análise de Dados</h3>
-                    <p>Extraia insights valiosos de grandes volumes de dados não estruturados.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">💬</div>
-                    <h3>Chatbots Inteligentes</h3>
-                    <p>Assistentes virtuais que entendem contexto e fornecem respostas personalizadas.</p>
+                <div class="feature-card" onclick="showSection('yumeroll')" style="cursor: pointer;">
+                    <div class="feature-icon">🎌</div>
+                    <h3>YumeRoll Animes</h3>
+                    <p>Portal dedicado à cultura otaku com notícias, reviews, recomendações e conteúdo exclusivo sobre anime e mangá.</p>
                 </div>
             </div>
         </section>
-    </div>
 
-    <div id="products" class="content-section">
         <section class="products">
-            <h2 class="section-title">Nossos Produtos</h2>
-            <div class="products-grid">
-                <div class="product-card">
-                    <h3>AmplaAI Studio</h3>
-                    <p>Plataforma completa de desenvolvimento de IA com ferramentas intuitivas para criar, treinar e implantar modelos de machine learning.</p>
-                    <ul style="margin-top: 1rem; line-height: 2;">
-                        <li>✓ Interface drag-and-drop</li>
-                        <li>✓ Modelos pré-treinados</li>
-                        <li>✓ AutoML integrado</li>
-                        <li>✓ Deploy com um clique</li>
-                    </ul>
-                </div>
-                <div class="product-card">
-                    <h3>AmplaAI Analytics</h3>
-                    <p>Solução empresarial para análise de dados e business intelligence alimentada por IA avançada.</p>
-                    <ul style="margin-top: 1rem; line-height: 2;">
-                        <li>✓ Dashboards interativos</li>
-                        <li>✓ Análise preditiva</li>
-                        <li>✓ Insights automatizados</li>
-                        <li>✓ Integração com múltiplas fontes</li>
-                    </ul>
-                </div>
-                <div class="product-card">
-                    <h3>AmplaAI Vision</h3>
-                    <p>API de visão computacional para reconhecimento facial, detecção de objetos e análise de imagens.</p>
-                    <ul style="margin-top: 1rem; line-height: 2;">
-                        <li>✓ Reconhecimento facial</li>
-                        <li>✓ Detecção de objetos</li>
-                        <li>✓ OCR avançado</li>
-                        <li>✓ Análise de vídeo em tempo real</li>
-                    </ul>
-                </div>
-                <div class="product-card">
-                    <h3>AmplaAI Voice</h3>
-                    <p>Tecnologia de processamento de voz para transcrição, síntese e análise de áudio com IA.</p>
-                    <ul style="margin-top: 1rem; line-height: 2;">
-                        <li>✓ Transcrição em tempo real</li>
-                        <li>✓ Text-to-speech natural</li>
-                        <li>✓ Análise de sentimentos</li>
-                        <li>✓ Suporte multilíngue</li>
-                    </ul>
-                </div>
-                <div class="product-card">
-                    <h3>AmplaAI Assistant</h3>
-                    <p>Assistente virtual inteligente personalizável para empresas e aplicações.</p>
-                    <ul style="margin-top: 1rem; line-height: 2;">
-                        <li>✓ Conversação natural</li>
-                        <li>✓ Personalização completa</li>
-                        <li>✓ Integração com sistemas</li>
-                        <li>✓ Aprendizado contínuo</li>
-                    </ul>
-                </div>
-                <div class="product-card">
-                    <h3>AmplaAI API</h3>
-                    <p>API REST completa para integrar todos os recursos da AmplaAI em suas aplicações.</p>
-                    <ul style="margin-top: 1rem; line-height: 2;">
-                        <li>✓ Documentação completa</li>
-                        <li>✓ SDKs em múltiplas linguagens</li>
-                        <li>✓ Alta disponibilidade</li>
-                        <li>✓ Suporte técnico dedicado</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <div id="projects" class="content-section">
-        <section class="products">
-            <h2 class="section-title">Nossos Projetos</h2>
-            <div class="products-grid">
-                <div class="product-card">
-                    <h3>🎌 YumeRoll</h3>
-                    <p>Portal completo da cultura otaku com notícias, reviews, comunidade e conteúdo sobre anime, mangá, games e cultura japonesa.</p>
-                    <ul style="margin-top: 1rem; line-height: 2;">
-                        <li>✓ Notícias e lançamentos</li>
-                        <li>✓ Reviews de anime e mangá</li>
-                        <li>✓ Guias e recomendações</li>
-                        <li>✓ Comunidade ativa</li>
-                        <li>✓ Calendário de eventos</li>
-                    </ul>
-                </div>
-                <div class="product-card">
-                    <h3>✍️ Escola de Escritores</h3>
-                    <p>Plataforma educacional com IA para desenvolvimento de habilidades de escrita criativa e técnicas literárias.</p>
-                    <ul style="margin-top: 1rem; line-height: 2;">
-                        <li>✓ Análise de estilo de escrita</li>
-                        <li>✓ Feedback automatizado</li>
-                        <li>✓ Exercícios personalizados</li>
-                        <li>✓ Biblioteca de técnicas narrativas</li>
-                        <li>✓ Comunidade de escritores</li>
-                    </ul>
-                </div>
+            <h2 class="section-title">Parceria Estratégica</h2>
+            <div class="products-grid" style="grid-template-columns: 1fr; max-width: 800px; margin: 0 auto;">
                 <div class="product-card">
                     <h3>📚 Ren The Writer</h3>
-                    <p>Universo literário oficial com obras, projetos e conteúdo exclusivo da autora Ren The Writer.</p>
-                    <ul style="margin-top: 1rem; line-height: 2;">
-                        <li>✓ Acervo completo de obras</li>
-                        <li>✓ Blog e artigos</li>
-                        <li>✓ Projetos em desenvolvimento</li>
-                        <li>✓ Conteúdo exclusivo</li>
-                        <li>✓ Interação com leitores</li>
+                    <p>Parceria oficial com a marca literária do renomado autor Ren Tsukiyo. Uma colaboração que une tecnologia e criatividade para promover a literatura.</p>
+                    <ul style="margin-top: 1.5rem; line-height: 2;">
+                        <li>✓ Universo literário exclusivo</li>
+                        <li>✓ Obras publicadas e em desenvolvimento</li>
+                        <li>✓ Conteúdo autoral de qualidade</li>
+                        <li>✓ Apoio a novos escritores</li>
+                        <li>✓ Workshops e mentorias</li>
                     </ul>
-                    <a href="#" onclick="showSection('renthewriter')" style="display: inline-block; margin-top: 1rem; padding: 0.5rem 1.5rem; background: rgba(255,255,255,0.1); border-radius: 25px; text-decoration: none; color: var(--accent); transition: all 0.3s;">
-                        Visitar Site →
+                    <a href="#" onclick="showSection('renthewriter')" style="display: inline-block; margin-top: 1.5rem; padding: 0.8rem 2rem; background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: 25px; text-decoration: none; color: white; transition: all 0.3s;">
+                        Conhecer Universo Tsukiyo →
                     </a>
                 </div>
             </div>
@@ -674,25 +669,128 @@
     </div>
 
     <div id="sena" class="content-section">
-        <section class="iframe-container">
-            <h2 class="section-title">Sena - Plataforma Integrada</h2>
-            <p style="text-align: center; color: var(--gray); max-width: 800px; margin: 0 auto 2rem;">
-                Explore a plataforma Sena com todas as suas funcionalidades integradas.
-            </p>
-            <div class="iframe-wrapper">
-                <iframe src="https://orpheostudio.com.br" title="Sena Platform"></iframe>
+        <div class="sena-iframe-container">
+            <iframe src="https://orpheostudio.com.br" title="Sena - Assistente IA"></iframe>
+        </div>
+    </div>
+
+    <div id="escola" class="content-section">
+        <section class="products">
+            <h2 class="section-title">Escola de Autores</h2>
+            <div class="products-grid" style="grid-template-columns: 1fr; max-width: 900px; margin: 0 auto;">
+                <div class="product-card">
+                    <div style="text-align: center; margin-bottom: 2rem;">
+                        <div class="feature-icon" style="font-size: 5rem;">✍️</div>
+                    </div>
+                    <h3 style="text-align: center; font-size: 2.5rem; margin-bottom: 2rem;">Escola de Autores</h3>
+                    <p style="font-size: 1.2rem; text-align: center; margin-bottom: 2rem; color: var(--light);">
+                        Plataforma completa para escritores que desejam aprimorar suas habilidades e desenvolver sua arte literária.
+                    </p>
+                    
+                    <h4 style="color: var(--primary); margin-top: 2rem; margin-bottom: 1rem; font-size: 1.5rem;">O que oferecemos:</h4>
+                    <ul style="line-height: 2.2; font-size: 1.1rem;">
+                        <li>📚 Cursos completos de escrita criativa</li>
+                        <li>👨‍🏫 Mentoria personalizada com autores experientes</li>
+                        <li>📝 Exercícios práticos e desafios semanais</li>
+                        <li>🎯 Feedback profissional sobre suas obras</li>
+                        <li>👥 Comunidade ativa de escritores</li>
+                        <li>📖 Biblioteca com técnicas narrativas avançadas</li>
+                        <li>🏆 Concursos literários exclusivos</li>
+                        <li>📘 Materiais didáticos atualizados</li>
+                    </ul>
+
+                    <div style="text-align: center; margin-top: 3rem;">
+                        <a href="https://ig.me/j/AbahjxrSDJvosanw/" target="_blank" style="display: inline-block; padding: 1.2rem 3rem; background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: 50px; text-decoration: none; color: white; font-size: 1.2rem; font-weight: bold; transition: all 0.3s; box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);">
+                            Junte-se à Escola →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="yumeroll" class="content-section">
+        <section class="products">
+            <h2 class="section-title">YumeRoll Animes</h2>
+            <div class="products-grid" style="grid-template-columns: 1fr; max-width: 900px; margin: 0 auto;">
+                <div class="product-card">
+                    <div style="text-align: center; margin-bottom: 2rem;">
+                        <div class="feature-icon" style="font-size: 5rem;">🎌</div>
+                    </div>
+                    <h3 style="text-align: center; font-size: 2.5rem; margin-bottom: 2rem;">YumeRoll Animes</h3>
+                    <p style="font-size: 1.2rem; text-align: center; margin-bottom: 2rem; color: var(--light);">
+                        Seu portal completo sobre a cultura otaku! Notícias, reviews, recomendações e muito mais.
+                    </p>
+                    
+                    <h4 style="color: var(--primary); margin-top: 2rem; margin-bottom: 1rem; font-size: 1.5rem;">Conteúdo Exclusivo:</h4>
+                    <ul style="line-height: 2.2; font-size: 1.1rem;">
+                        <li>📰 Notícias diárias sobre lançamentos</li>
+                        <li>⭐ Reviews detalhados de animes e mangás</li>
+                        <li>🎯 Recomendações personalizadas</li>
+                        <li>📅 Calendário de temporadas</li>
+                        <li>🎮 Cobertura de games e light novels</li>
+                        <li>🎭 Guias de eventos e convenções</li>
+                        <li>👥 Comunidade ativa e engajada</li>
+                        <li>🎨 Conteúdo sobre cultura japonesa</li>
+                    </ul>
+
+                    <h4 style="color: var(--secondary); margin-top: 2.5rem; margin-bottom: 1.5rem; font-size: 1.5rem;">Siga-nos nas Redes:</h4>
+                    <div style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap;">
+                        <a href="https://instagram.com/yumerolloficial" target="_blank" style="display: inline-block; padding: 1rem 2rem; background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); border-radius: 15px; text-decoration: none; color: white; font-size: 1.1rem; font-weight: bold;">
+                            📷 Instagram
+                        </a>
+                        <a href="https://tiktok.com/@yumerollanimes" target="_blank" style="display: inline-block; padding: 1rem 2rem; background: linear-gradient(135deg, #00f2ea, #ff0050); border-radius: 15px; text-decoration: none; color: white; font-size: 1.1rem; font-weight: bold;">
+                            🎵 TikTok
+                        </a>
+                    </div>
+                </div>
             </div>
         </section>
     </div>
 
     <div id="renthewriter" class="content-section">
-        <section class="iframe-container">
-            <h2 class="section-title">Universo Tsukiyo - Ren The Writer</h2>
-            <p style="text-align: center; color: var(--gray); max-width: 800px; margin: 0 auto 2rem;">
-                Conheça o universo literário de Ren The Writer, suas obras e projetos em desenvolvimento.
+        <section class="products" style="padding-bottom: 3rem;">
+            <h2 class="section-title">Parceria: Ren The Writer</h2>
+            <div class="products-grid" style="grid-template-columns: 1fr; max-width: 900px; margin: 0 auto 3rem;">
+                <div class="product-card">
+                    <div style="text-align: center; margin-bottom: 2rem;">
+                        <div class="feature-icon" style="font-size: 5rem;">📚</div>
+                    </div>
+                    <h3 style="text-align: center; font-size: 2.5rem; margin-bottom: 1rem;">Ren The Writer</h3>
+                    <p style="text-align: center; font-size: 1.1rem; color: var(--accent); margin-bottom: 2rem;">
+                        Marca Literária de Ren Tsukiyo
+                    </p>
+                    <p style="font-size: 1.2rem; text-align: center; margin-bottom: 2rem; color: var(--light);">
+                        Parceria oficial entre AmplaAI e a marca literária do autor Ren Tsukiyo.
+                    </p>
+                    
+                    <h4 style="color: var(--primary); margin-top: 2rem; margin-bottom: 1rem; font-size: 1.5rem;">Sobre a Parceria:</h4>
+                    <ul style="line-height: 2.2; font-size: 1.1rem;">
+                        <li>🤝 Colaboração entre tecnologia e literatura</li>
+                        <li>📖 Promoção de obras literárias de qualidade</li>
+                        <li>🎓 Apoio à formação de novos escritores</li>
+                        <li>💡 Inovação em storytelling com IA</li>
+                        <li>🌟 Desenvolvimento de projetos criativos</li>
+                        <li>📚 Divulgação do universo literário Tsukiyo</li>
+                    </ul>
+
+                    <h4 style="color: var(--secondary); margin-top: 2.5rem; margin-bottom: 1.5rem; font-size: 1.5rem;">Universo Tsukiyo:</h4>
+                    <p style="font-size: 1.1rem; color: var(--light); line-height: 1.8;">
+                        O Universo Tsukiyo é um rico mundo literário criado por Ren Tsukiyo, com obras que mesclam fantasia, ficção científica e drama.
+                    </p>
+                </div>
+            </div>
+        </section>
+        
+        <section style="padding: 5rem 2rem; background: var(--dark-light);">
+            <h2 class="section-title">Explore o Universo Tsukiyo</h2>
+            <p style="text-align: center; color: var(--gray); max-width: 800px; margin: 0 auto 2rem; font-size: 1.1rem;">
+                Conheça as obras, projetos em desenvolvimento e conteúdo exclusivo de Ren The Writer.
             </p>
-            <div class="iframe-wrapper">
-                <iframe src="https://universotsukiyo.orpheostudio.com.br" title="Ren The Writer - Universo Tsukiyo"></iframe>
+            <div style="max-width: 1400px; margin: 0 auto;">
+                <div style="background: rgba(26, 31, 58, 0.6); border-radius: 20px; overflow: hidden; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5); border: 1px solid rgba(0, 212, 255, 0.2);">
+                    <iframe src="https://universotsukiyo.orpheostudio.com.br" title="Universo Tsukiyo" style="width: 100%; height: 900px; border: none;"></iframe>
+                </div>
             </div>
         </section>
     </div>
@@ -731,7 +829,7 @@
             <a href="#" onclick="showSection('contact')">Contato</a>
         </div>
         <p>&copy; 2025 AmplaAI. Todos os direitos reservados.</p>
-        <p style="margin-top: 1rem; color: var(--gray);">Desenvolvido com tecnologia de ponta para revolucionar o futuro.</p>
+        <p style="margin-top: 1rem; color: var(--gray);">Transformando ideias em realidade digital.</p>
     </footer>
 
     <script>
@@ -754,12 +852,10 @@
             navLinks.classList.remove('active');
         }
 
-        // Fechar menu ao clicar fora
         document.addEventListener('click', function(event) {
             const navLinks = document.getElementById('navLinks');
-            const menuBtn = document.querySelector('.mobile-menu-btn');
             const nav = document.querySelector('nav');
-            
+
             if (!nav.contains(event.target)) {
                 navLinks.classList.remove('active');
             }
@@ -767,18 +863,17 @@
 
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            
+
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
             const subject = document.getElementById('subject').value;
             const message = document.getElementById('message').value;
-            
+
             const mailtoLink = `mailto:sac.studiotsukiyo@outlook.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent('Nome: ' + name + '\nE-mail: ' + email + '\n\nMensagem:\n' + message)}`;
-            
+
             window.location.href = mailtoLink;
         });
 
-        // Smooth scroll behavior
         window.addEventListener('load', function() {
             const hash = window.location.hash;
             if (hash) {
