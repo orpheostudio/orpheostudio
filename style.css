@@ -1,0 +1,121 @@
+/*
+====================================
+1. Variáveis & Reset Básico
+====================================
+*/
+
+:root {
+    /* Paleta Escura/Premium */
+    --color-dark-primary: #0A0A1F; /* Fundo Principal: Azul escuro profundo */
+    --color-dark-secondary: #1C1C3A; /* Elementos: Card, Navbar, Footer */
+    --color-text-light: #E0E0FF; /* Texto Principal */
+    --color-text-muted: #8A8AA5; /* Subtexto e Ícones */
+
+    /* Paleta Neon Suave (Roxo, Azul, Rosa) */
+    --color-neon-purple: #9D5BFF;
+    --color-neon-blue: #00BFFF;
+    --color-neon-pink: #FF66AA;
+
+    /* Gradiente Principal para Botões e Destaques */
+    --gradient-primary: linear-gradient(90deg, var(--color-neon-purple) 0%, var(--color-neon-pink) 100%);
+
+    /* Tipografia */
+    --font-primary: 'Orbitron', sans-serif; /* Tech/Futurista (Exigirá importação) */
+    --font-secondary: 'Inter', sans-serif; /* Corpo de Texto Limpo */
+    
+    /* Outros */
+    --border-radius-lg: 12px;
+    --transition-speed: 0.3s;
+}
+
+/* Reset Básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--color-dark-primary);
+    color: var(--color-text-light);
+    font-family: var(--font-secondary);
+    line-height: 1.6;
+    overflow-x: hidden; /* Evita barras de rolagem horizontais */
+}
+
+/*
+====================================
+2. Tipografia
+====================================
+*/
+
+h1, h2, h3 {
+    font-family: var(--font-primary);
+    font-weight: 700;
+    line-height: 1.2;
+    text-shadow: 0 0 5px rgba(157, 91, 255, 0.3); /* Efeito de brilho sutil */
+}
+
+h1 { font-size: 3.5rem; }
+h2 { font-size: 2.5rem; }
+h3 { font-size: 1.8rem; }
+
+/*
+====================================
+3. Efeitos Neon (Glow)
+====================================
+*/
+
+.neon-glow {
+    /* Efeito de brilho genérico para texto ou bordas */
+    box-shadow: 0 0 10px rgba(157, 91, 255, 0.5), 
+                0 0 20px rgba(157, 91, 255, 0.2);
+}
+
+.neon-text {
+    color: var(--color-neon-purple);
+    text-shadow: 0 0 8px var(--color-neon-purple);
+}
+
+/*
+====================================
+4. Botões (Minimalista e Elegante)
+====================================
+*/
+
+.btn {
+    display: inline-block;
+    padding: 14px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-family: var(--font-primary);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
+    border: none;
+}
+
+.btn-primary {
+    background: var(--gradient-primary);
+    color: var(--color-dark-primary); /* Texto escuro no botão gradiente */
+    box-shadow: 0 0 15px rgba(255, 102, 170, 0.6); /* Sombra intensa */
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 25px rgba(255, 102, 170, 0.8);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--color-text-light);
+    border: 2px solid var(--color-neon-blue);
+    box-shadow: 0 0 10px rgba(0, 191, 255, 0.4);
+}
+
+.btn-secondary:hover {
+    background-color: rgba(0, 191, 255, 0.1);
+    box-shadow: 0 0 15px rgba(0, 191, 255, 0.6);
+}
