@@ -119,3 +119,372 @@ h3 { font-size: 1.8rem; }
     background-color: rgba(0, 191, 255, 0.1);
     box-shadow: 0 0 15px rgba(0, 191, 255, 0.6);
 }
+/*
+====================================
+5. Estrutura Global (Containers)
+====================================
+*/
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+section {
+    padding: 80px 0;
+}
+
+/*
+====================================
+6. Header (Navegação)
+====================================
+*/
+
+.main-header {
+    background-color: var(--color-dark-primary);
+    padding: 20px 0;
+    position: sticky; /* Fixo no topo */
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(157, 91, 255, 0.1); /* Linha sutil de neon */
+}
+
+.main-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: var(--font-primary);
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+.main-nav li {
+    margin-left: 30px;
+}
+
+.main-nav a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color var(--transition-speed);
+}
+
+.main-nav a:hover {
+    color: var(--color-text-light);
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+}
+
+.main-nav .btn {
+    margin-left: 10px; /* Separar o botão do último link */
+}
+
+/*
+====================================
+7. Hero Section (Home)
+====================================
+*/
+
+.home-hero .container {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    padding-top: 50px; /* Para acomodar o header fixo */
+}
+
+.hero-content {
+    flex: 1;
+    max-width: 600px;
+}
+
+.subheadline {
+    color: var(--color-text-muted);
+    font-size: 1.2rem;
+    margin: 20px 0 35px 0;
+}
+
+.hero-actions .btn {
+    margin-right: 15px;
+}
+
+.hero-visual {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.abstract-art-placeholder {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle at center, rgba(157, 91, 255, 0.3) 0%, rgba(0, 191, 255, 0.1) 50%, transparent 70%);
+    border-radius: 50%;
+    /* Simulação de arte abstrata/Sena */
+    box-shadow: 0 0 40px var(--color-neon-purple);
+    animation: pulse 4s infinite alternate; /* Adiciona animação leve */
+}
+
+@keyframes pulse {
+    from { transform: scale(1); opacity: 0.8; }
+    to { transform: scale(1.05); opacity: 1; }
+}
+
+/*
+====================================
+8. Destaques Rápidos (Quick Highlights)
+====================================
+*/
+
+.quick-highlights {
+    text-align: center;
+}
+
+.highlights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.highlight-card {
+    background-color: var(--color-dark-secondary);
+    padding: 30px;
+    border-radius: var(--border-radius-lg);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: transform 0.4s, box-shadow 0.4s;
+    text-align: left;
+}
+
+.highlight-card i {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.highlight-card h3 {
+    margin-bottom: 10px;
+}
+
+.highlight-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(157, 91, 255, 0.3); /* Efeito de elevação futurista */
+}
+
+/*
+====================================
+9. Footer
+====================================
+*/
+
+.main-footer {
+    background-color: var(--color-dark-secondary);
+    padding: 60px 0 20px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.main-footer .container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.footer-col {
+    min-width: 180px;
+}
+
+.footer-logo {
+    margin-bottom: 10px;
+    display: block;
+}
+
+.footer-col h4 {
+    font-family: var(--font-primary);
+    font-size: 1.1rem;
+    color: var(--color-neon-blue);
+    margin-bottom: 20px;
+}
+
+.footer-col ul {
+    list-style: none;
+}
+
+.footer-col li {
+    margin-bottom: 10px;
+}
+
+.footer-col a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color var(--transition-speed);
+}
+
+.footer-col a:hover {
+    color: var(--color-neon-pink);
+}
+
+.social-icons a {
+    font-size: 1.5rem;
+    margin-right: 15px;
+    color: var(--color-text-muted);
+}
+
+.social-icons a:hover {
+    color: var(--color-neon-purple);
+    filter: drop-shadow(0 0 5px var(--color-neon-purple));
+}
+
+.sena-subtle-icon {
+    /* Estilo para a animação discreta da Sena */
+    color: var(--color-neon-pink);
+    font-size: 1rem;
+    margin-top: 15px;
+    opacity: 0.6;
+}
+
+/*
+====================================
+10. Responsividade Básica
+====================================
+*/
+
+@media (max-width: 992px) {
+    .home-hero .container {
+        flex-direction: column;
+        text-align: center;
+    }
+    .hero-content {
+        max-width: 100%;
+    }
+    .hero-visual {
+        justify-content: center;
+        margin-top: 40px;
+    }
+    h1 { font-size: 2.8rem; }
+}
+
+@media (max-width: 768px) {
+    .main-header .container {
+        flex-direction: column;
+        text-align: center;
+    }
+    .main-nav ul {
+        margin-top: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .main-nav li {
+        margin: 5px 10px;
+    }
+    .hero-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .hero-actions .btn {
+        margin-right: 0;
+    }
+    .main-footer .container {
+        justify-content: center;
+        text-align: center;
+    }
+    .footer-col {
+        margin-bottom: 20px;
+    }
+}
+/*
+====================================
+11. Soluções Grid (solucoes.html)
+====================================
+*/
+
+.solutions-grid-section {
+    text-align: center;
+}
+
+.solutions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+}
+
+.solution-card {
+    background-color: var(--color-dark-secondary);
+    padding: 40px 30px;
+    border-radius: var(--border-radius-lg);
+    text-align: left;
+    transition: transform 0.5s ease-out, box-shadow 0.5s ease-out;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+    overflow: hidden; /* Para garantir que o brilho interno não escape */
+}
+
+/* Efeito de brilho da borda no hover (Microinteração) */
+.solution-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(0, 191, 255, 0.4);
+    border-color: var(--color-neon-blue);
+}
+
+.solution-card i {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.solution-card h2 {
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+}
+
+.solution-card p {
+    color: var(--color-text-muted);
+    margin-bottom: 25px;
+}
+
+.link-details {
+    color: var(--color-neon-pink);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: color 0.3s;
+}
+
+.link-details:hover {
+    color: var(--color-neon-purple);
+    text-shadow: 0 0 5px rgba(157, 91, 255, 0.5);
+}
+
+/* Cores Neon específicas para o texto dos cards */
+.card-neon-purple i { color: var(--color-neon-purple); text-shadow: 0 0 10px rgba(157, 91, 255, 0.8); }
+.card-neon-blue i { color: var(--color-neon-blue); text-shadow: 0 0 10px rgba(0, 191, 255, 0.8); }
+.card-neon-pink i { color: var(--color-neon-pink); text-shadow: 0 0 10px rgba(255, 102, 170, 0.8); }
+
+/*
+====================================
+12. Transições e Animações (CSS Básico)
+====================================
+*/
+
+/* Classe para animar a entrada de elementos (usada pelo JS) */
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
