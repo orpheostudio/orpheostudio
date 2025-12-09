@@ -1,8 +1,8 @@
 {
-  "name": "ORPHEO Studio",
-  "short_name": "ORPHEO",
-  "description": "Editora digital de Light Novels, Escola de Autores e Projetos de IA",
-  "start_url": "https://orpheostudio.com.br",
+  "name": "Sena — by AmplaAI",
+  "short_name": "Sena",
+  "description": Tecnologia com Alma Gentil.",
+  "start_url": "https://cici.net.br",
   "scope": "/",
   "display": "standalone",
   "background_color": "#0a0014",
@@ -10,13 +10,13 @@
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "/icon-192x192.png",
+      "src": "https://i.imgur.com/yLblPzu.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/icon-512x512.png",
+      "src": "https://i.imgur.com/TNxclJq.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
@@ -29,14 +29,14 @@
       "short_name": "Novels",
       "description": "Veja nossa coleção de light novels",
       "url": "/#novels",
-      "icons": [{ "src": "/icon-novels.png", "sizes": "96x96" }]
+      "icons": [{ "src": "https://i.imgur.com/GQgeU67.png", "sizes": "96x96" }]
     },
     {
       "name": "Yume AI",
       "short_name": "AI",
       "description": "Converse com a assistente Yume",
       "url": "/#ai",
-      "icons": [{ "src": "/icon-ai.png", "sizes": "96x96" }]
+      "icons": [{ "src": "https://i.imgur.com/GQgeU67.png", "sizes": "96x96" }]
     }
   ]
 }
