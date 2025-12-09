@@ -9,8 +9,8 @@ const OFFLINE_URL = '/offline.html';
 const urlsToCache = [
   '/',
   '/offline.html',
-  '/icon-192x192.png',
-  '/icon-512x512.png',
+  'https://i.imgur.com/yLblPzu.png',
+  'https://i.imgur.com/TNxclJq.png',
   'https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap',
   'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'
 ];
