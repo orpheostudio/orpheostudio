@@ -467,4 +467,4 @@ document.head.appendChild(a11yStyle);
 console.log('%c🤖 Claudinei', 'font-size: 24px; font-weight: bold; color: #FF6B35;');
 console.log('%cA IA que resolve. Sem frescura.', 'font-size: 14px; color: #004E89;');
 console.log('%c\nDesenvolvido por S.ai+ Apps', 'font-size: 12px; color: #666;');
-console.log('%c\nCurioso? Estamos contratando! 🚀', 'font-size: 12px; color: #F7B801;');
+console.log('%c\nCurioso? Estamos contratando! 🚀', 'font-size: 12px; color: #F7B801;'); 
