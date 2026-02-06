@@ -1,42 +1,148 @@
-{
-  "name": "Sena — by AmplaAI",
-  "short_name": "Sena",
-  "description": Tecnologia com Alma Gentil.",
-  "start_url": "https://cici.net.br",
-  "scope": "/",
-  "display": "standalone",
-  "background_color": "#0a0014",
-  "theme_color": "#9d4edd",
-  "orientation": "portrait-primary",
-  "icons": [
-    {
-      "src": "https://i.imgur.com/yLblPzu.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "https://i.imgur.com/TNxclJq.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>404 - Página não encontrada | Claudinei</title>
+  <link rel="icon" type="image/jpeg" href="https://i.imgur.com/H06lQOz.jpeg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-  ],
-  "categories": ["entertainment", "education", "productivity"],
-  "shortcuts": [
-    {
-      "name": "Light Novels",
-      "short_name": "Novels",
-      "description": "Veja nossa coleção de light novels",
-      "url": "/#novels",
-      "icons": [{ "src": "https://i.imgur.com/GQgeU67.png", "sizes": "96x96" }]
-    },
-    {
-      "name": "Yume AI",
-      "short_name": "AI",
-      "description": "Converse com a assistente Yume",
-      "url": "/#ai",
-      "icons": [{ "src": "https://i.imgur.com/GQgeU67.png", "sizes": "96x96" }]
+    
+    body {
+      font-family: 'Work Sans', sans-serif;
+      background: linear-gradient(135deg, #FF6B35 0%, #F7B801 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      padding: 2rem;
     }
-  ]
-}
+    
+    .container {
+      text-align: center;
+      max-width: 600px;
+    }
+    
+    .error-code {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(8rem, 20vw, 15rem);
+      line-height: 1;
+      margin-bottom: 1rem;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      animation: float 3s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+    
+    h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      margin-bottom: 1rem;
+      letter-spacing: 1px;
+    }
+    
+    p {
+      font-size: 1.125rem;
+      margin-bottom: 2rem;
+      opacity: 0.95;
+      line-height: 1.6;
+    }
+    
+    .buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 2rem;
+      background: white;
+      color: #FF6B35;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 700;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 30px rgba(0, 0, 0, 0.3);
+    }
+    
+    .btn.secondary {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      backdrop-filter: blur(10px);
+    }
+    
+    .logo {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 2rem;
+      border-radius: 50%;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    
+    @media (max-width: 768px) {
+      .buttons {
+        flex-direction: column;
+      }
+      
+      .btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="https://i.imgur.com/H06lQOz.jpeg" alt="Claudinei Logo" class="logo">
+    
+    <div class="error-code">404</div>
+    
+    <h1>Ops! Página não encontrada</h1>
+    
+    <p>
+      Parece que você se perdeu. A página que você está procurando não existe ou foi movida.
+      Mas relaxa, a gente te ajuda a voltar pro caminho certo.
+    </p>
+    
+    <div class="buttons">
+      <a href="/" class="btn">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M3 10L10 3L17 10M4 9V17C4 17.5523 4.44772 18 5 18H8V14C8 13.4477 8.44772 13 9 13H11C11.5523 13 12 13.4477 12 14V18H15C15.5523 18 16 17.5523 16 17V9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Voltar para o início
+      </a>
+      
+      <a href="/#waitlist" class="btn secondary">
+        Entrar na waitlist
+      </a>
+    </div>
+  </div>
+</body>
+</html>
