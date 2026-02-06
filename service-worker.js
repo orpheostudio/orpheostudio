@@ -1,63 +1,49 @@
-const CACHE_NAME = 'amplai-v1';
-const STATIC_ASSETS = [
-    '/',
-    '/index.html',
-    '/assets/css/main.css',
-    '/assets/css/components.css',
-    '/assets/css/responsive.css',
-    '/assets/js/main.js',
-    '/assets/images/logo.png'
-];
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Política de Privacidade | S.ai+ Apps</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <h1>Política de Privacidade</h1>
 
-// Install event
-self.addEventListener('install', event => {
-    event.waitUntil(
-        caches.open(CACHE_NAME)
-            .then(cache => cache.addAll(STATIC_ASSETS))
-            .then(() => self.skipWaiting())
-    );
-});
+  <p>
+    A <strong>S.ai+ Apps</strong> respeita a privacidade de seus usuários e
+    compromete-se com a proteção de dados pessoais.
+  </p>
 
-// Activate event
-self.addEventListener('activate', event => {
-    event.waitUntil(
-        caches.keys().then(cacheNames => {
-            return Promise.all(
-                cacheNames.map(cache => {
-                    if (cache !== CACHE_NAME) {
-                        return caches.delete(cache);
-                    }
-                })
-            );
-        }).then(() => self.clients.claim())
-    );
-});
+  <h2>1. Coleta de Dados</h2>
+  <p>
+    Podemos coletar informações fornecidas pelo usuário, como nome, e-mail
+    e dados de uso dos aplicativos.
+  </p>
 
-// Fetch event
-self.addEventListener('fetch', event => {
-    event.respondWith(
-        caches.match(event.request)
-            .then(response => {
-                if (response) {
-                    return response;
-                }
-                
-                return fetch(event.request).then(response => {
-                    // Don't cache if not a success response
-                    if (!response || response.status !== 200) {
-                        return response;
-                    }
-                    
-                    // Clone the response
-                    const responseToCache = response.clone();
-                    
-                    caches.open(CACHE_NAME)
-                        .then(cache => {
-                            cache.put(event.request, responseToCache);
-                        });
-                    
-                    return response;
-                });
-            })
-    );
-});
+  <h2>2. Uso das Informações</h2>
+  <ul>
+    <li>Fornecer e melhorar os serviços</li>
+    <li>Suporte ao usuário</li>
+    <li>Cumprimento de obrigações legais</li>
+  </ul>
+
+  <h2>3. Compartilhamento de Dados</h2>
+  <p>
+    Os dados não são compartilhados com terceiros, exceto quando necessário
+    para cumprimento legal ou funcionamento do serviço.
+  </p>
+
+  <h2>4. Segurança</h2>
+  <p>
+    Adotamos medidas técnicas e organizacionais para proteger os dados pessoais.
+  </p>
+
+  <h2>5. Direitos do Usuário</h2>
+  <p>
+    O usuário pode solicitar acesso, correção ou exclusão de seus dados
+    através do e-mail de contato.
+  </p>
+
+  <h2>6. Contato</h2>
+  <p>E-mail: contato@claudinei.ia.br</p>
+</body>
+</html>
