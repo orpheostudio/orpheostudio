@@ -1,1930 +1,317 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="AmplaAI Platforms - Startup brasileira revolucionando a inteligência artificial. Soluções inovadoras em machine learning, processamento de linguagem natural e automação inteligente para empresas e desenvolvedores.">
-    <meta name="keywords" content="startup IA, inteligência artificial Brasil, machine learning, NLP, deep learning, Sena IA, API inteligência artificial, automação empresarial, tecnologia startup">
-    <meta name="author" content="AmplaAI Platforms">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://amplaai.com">
-    
-    <!-- Open Graph -->
-    <meta property="og:title" content="AmplaAI Platforms - Revolucionando a Inteligência Artificial">
-    <meta property="og:description" content="Startup brasileira desenvolvendo soluções avançadas de IA">
-    <meta property="og:type" content="website">
-    <meta property="og:image" content="https://i.imgur.com/QIG4VuE.png">
-    
-    <title>AmplaAI Platforms - Startup de Inteligência Artificial | Soluções em IA e Machine Learning</title>
-
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
-
-    <!-- Google AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4225779055216067"
-     crossorigin="anonymous"></script>
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            /* Cores principais - Paleta futurista e ousada */
-            --electric-blue: #00F0FF;
-            --deep-purple: #7B2CBF;
-            --hot-pink: #FF006E;
-            --neon-green: #39FF14;
-            --cyber-yellow: #FFD60A;
-            
-            /* Cores de fundo */
-            --bg-dark: #0A0E27;
-            --bg-darker: #050814;
-            --bg-card: #131829;
-            --bg-elevated: #1A1F3A;
-            
-            /* Cores de texto */
-            --text-primary: #FFFFFF;
-            --text-secondary: #B8C5D6;
-            --text-muted: #6B7A99;
-            
-            /* Gradientes */
-            --gradient-hero: linear-gradient(135deg, var(--electric-blue), var(--deep-purple), var(--hot-pink));
-            --gradient-accent: linear-gradient(90deg, var(--hot-pink), var(--cyber-yellow));
-            --gradient-card: linear-gradient(180deg, var(--bg-card), var(--bg-elevated));
-            
-            /* Sombras e efeitos */
-            --glow-blue: 0 0 20px rgba(0, 240, 255, 0.3);
-            --glow-pink: 0 0 20px rgba(255, 0, 110, 0.3);
-            --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.5);
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Syne', sans-serif;
-            line-height: 1.7;
-            color: var(--text-primary);
-            background: var(--bg-darker);
-            overflow-x: hidden;
-            position: relative;
-        }
-
-        /* Fundo animado com grid futurista */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(0deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
-            background-size: 50px 50px;
-            pointer-events: none;
-            z-index: 0;
-            animation: gridScroll 20s linear infinite;
-        }
-
-        @keyframes gridScroll {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(50px); }
-        }
-
-        /* Elementos de brilho flutuantes */
-        .floating-orb {
-            position: fixed;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.15;
-            pointer-events: none;
-            z-index: 1;
-            animation: float 20s ease-in-out infinite;
-        }
-
-        .orb-1 {
-            width: 400px;
-            height: 400px;
-            background: var(--electric-blue);
-            top: -200px;
-            left: -200px;
-            animation-delay: 0s;
-        }
-
-        .orb-2 {
-            width: 500px;
-            height: 500px;
-            background: var(--hot-pink);
-            bottom: -250px;
-            right: -250px;
-            animation-delay: 5s;
-        }
-
-        .orb-3 {
-            width: 300px;
-            height: 300px;
-            background: var(--deep-purple);
-            top: 50%;
-            right: -150px;
-            animation-delay: 10s;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(50px, -50px) scale(1.1); }
-            66% { transform: translate(-30px, 30px) scale(0.9); }
-        }
-
-        /* Container principal */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            position: relative;
-            z-index: 10;
-        }
-
-        /* Header futurista */
-        header {
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            background: rgba(10, 14, 39, 0.8);
-            backdrop-filter: blur(20px) saturate(180%);
-            border-bottom: 1px solid rgba(0, 240, 255, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        header.scrolled {
-            background: rgba(10, 14, 39, 0.95);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.5rem 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-
-        .logo-container:hover {
-            transform: translateX(5px);
-        }
-
-        .logo {
-            width: 45px;
-            height: 45px;
-            position: relative;
-        }
-
-        .logo img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            filter: drop-shadow(var(--glow-blue));
-            animation: logoFloat 3s ease-in-out infinite;
-        }
-
-        @keyframes logoFloat {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-5px); }
-        }
-
-        .brand-name {
-            font-size: 1.5rem;
-            font-weight: 800;
-            background: var(--gradient-hero);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: -0.02em;
-        }
-
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 2.5rem;
-            align-items: center;
-        }
-
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-            position: relative;
-            letter-spacing: 0.5px;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--gradient-accent);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--text-primary);
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .cta-nav {
-            padding: 0.7rem 1.5rem;
-            background: var(--gradient-hero);
-            border-radius: 8px;
-            font-weight: 700;
-            color: white !important;
-            box-shadow: var(--glow-blue);
-            transition: all 0.3s ease;
-        }
-
-        .cta-nav:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(0, 240, 255, 0.4);
-        }
-
-        .cta-nav::after {
-            display: none;
-        }
-
-        /* Menu mobile */
-        .mobile-menu-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 6px;
-            cursor: pointer;
-            padding: 0.5rem;
-            z-index: 1001;
-        }
-
-        .mobile-menu-toggle span {
-            width: 28px;
-            height: 3px;
-            background: var(--electric-blue);
-            border-radius: 2px;
-            transition: all 0.3s ease;
-        }
-
-        .mobile-menu-toggle.active span:nth-child(1) {
-            transform: rotate(45deg) translate(8px, 8px);
-        }
-
-        .mobile-menu-toggle.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .mobile-menu-toggle.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(8px, -8px);
-        }
-
-        /* Hero Section - Impactante */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 140px 2rem 80px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .hero-text {
-            animation: fadeInUp 1s ease-out;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            background: rgba(0, 240, 255, 0.1);
-            border: 1px solid rgba(0, 240, 255, 0.3);
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--electric-blue);
-            margin-bottom: 2rem;
-            font-family: 'Space Mono', monospace;
-            animation: fadeInUp 1s ease-out 0.2s both;
-        }
-
-        .hero-badge::before {
-            content: '●';
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.3; }
-        }
-
-        .hero h1 {
-            font-size: 4.5rem;
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            letter-spacing: -0.03em;
-            animation: fadeInUp 1s ease-out 0.3s both;
-        }
-
-        .gradient-text {
-            background: var(--gradient-hero);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            display: inline-block;
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            color: var(--text-secondary);
-            line-height: 1.8;
-            margin-bottom: 2.5rem;
-            max-width: 600px;
-            animation: fadeInUp 1s ease-out 0.4s both;
-        }
-
-        .hero-cta {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            animation: fadeInUp 1s ease-out 0.5s both;
-        }
-
-        .btn-primary {
-            padding: 1rem 2.5rem;
-            background: var(--gradient-hero);
-            color: white;
-            text-decoration: none;
-            border-radius: 10px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            box-shadow: var(--glow-blue);
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(0, 240, 255, 0.4);
-        }
-
-        .btn-secondary {
-            padding: 1rem 2.5rem;
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--text-primary);
-            text-decoration: none;
-            border-radius: 10px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.3);
-            transform: translateY(-3px);
-        }
-
-        /* Hero Visual - Elemento 3D */
-        .hero-visual {
-            position: relative;
-            animation: fadeInUp 1s ease-out 0.6s both;
-        }
-
-        .visual-container {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .floating-card {
-            position: absolute;
-            background: var(--gradient-card);
-            border: 1px solid rgba(0, 240, 255, 0.2);
-            border-radius: 20px;
-            padding: 1.5rem;
-            backdrop-filter: blur(10px);
-            box-shadow: var(--shadow-lg);
-            animation: cardFloat 6s ease-in-out infinite;
-        }
-
-        .floating-card:nth-child(1) {
-            top: 10%;
-            left: 0;
-            animation-delay: 0s;
-        }
-
-        .floating-card:nth-child(2) {
-            top: 50%;
-            right: 0;
-            animation-delay: 2s;
-        }
-
-        .floating-card:nth-child(3) {
-            bottom: 10%;
-            left: 20%;
-            animation-delay: 4s;
-        }
-
-        @keyframes cardFloat {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(2deg); }
-        }
-
-        .card-icon {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .card-label {
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--text-secondary);
-            font-family: 'Space Mono', monospace;
-        }
-
-        .card-value {
-            font-size: 1.5rem;
-            font-weight: 800;
-            background: var(--gradient-accent);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        /* Stats Section */
-        .stats-section {
-            padding: 80px 2rem;
-            background: var(--bg-dark);
-            border-top: 1px solid rgba(0, 240, 255, 0.1);
-            border-bottom: 1px solid rgba(0, 240, 255, 0.1);
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 3rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 800;
-            background: var(--gradient-hero);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 0.5rem;
-            font-family: 'Space Mono', monospace;
-        }
-
-        .stat-label {
-            font-size: 1rem;
-            color: var(--text-secondary);
-            font-weight: 600;
-        }
-
-        /* Section padrão */
-        section {
-            padding: 120px 2rem;
-            position: relative;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 5rem;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .section-tag {
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            background: rgba(255, 0, 110, 0.1);
-            border: 1px solid rgba(255, 0, 110, 0.3);
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--hot-pink);
-            margin-bottom: 1.5rem;
-            font-family: 'Space Mono', monospace;
-        }
-
-        .section-title {
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            letter-spacing: -0.02em;
-        }
-
-        .section-subtitle {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            line-height: 1.8;
-        }
-
-        /* Sena Section - Destaque especial */
-        #sena {
-            background: radial-gradient(circle at 20% 50%, rgba(123, 44, 191, 0.1), transparent 50%),
-                        radial-gradient(circle at 80% 50%, rgba(0, 240, 255, 0.1), transparent 50%);
-        }
-
-        .sena-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .feature-card {
-            background: var(--gradient-card);
-            border: 1px solid rgba(0, 240, 255, 0.2);
-            border-radius: 20px;
-            padding: 2.5rem;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(0, 240, 255, 0.05), transparent);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        .feature-card:hover::before {
-            opacity: 1;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--electric-blue);
-            box-shadow: 0 20px 60px rgba(0, 240, 255, 0.2);
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            display: inline-block;
-        }
-
-        .feature-card h3 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-        }
-
-        .feature-card p {
-            color: var(--text-secondary);
-            line-height: 1.8;
-            font-size: 1rem;
-        }
-
-        .sena-cta {
-            text-align: center;
-            margin-top: 4rem;
-        }
-
-        /* Projetos Section */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2.5rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .project-card {
-            background: var(--bg-card);
-            border: 1px solid rgba(255, 0, 110, 0.2);
-            border-radius: 20px;
-            padding: 3rem;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .project-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle, rgba(255, 0, 110, 0.1), transparent);
-            border-radius: 50%;
-            transform: translate(50%, -50%);
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--hot-pink);
-            box-shadow: 0 20px 60px rgba(255, 0, 110, 0.2);
-        }
-
-        .project-status {
-            display: inline-block;
-            padding: 0.4rem 1rem;
-            background: rgba(57, 255, 20, 0.1);
-            border: 1px solid rgba(57, 255, 20, 0.3);
-            border-radius: 50px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: var(--neon-green);
-            margin-bottom: 1.5rem;
-            font-family: 'Space Mono', monospace;
-        }
-
-        .project-status.coming-soon {
-            background: rgba(255, 214, 10, 0.1);
-            border-color: rgba(255, 214, 10, 0.3);
-            color: var(--cyber-yellow);
-        }
-
-        .project-card h3 {
-            font-size: 2rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .project-card p {
-            color: var(--text-secondary);
-            line-height: 1.8;
-            margin-bottom: 1rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .project-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 2rem;
-            flex-wrap: wrap;
-            position: relative;
-            z-index: 1;
-        }
-
-        .project-link {
-            padding: 0.7rem 1.5rem;
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--text-primary);
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .project-link:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: var(--hot-pink);
-            transform: translateY(-2px);
-        }
-
-        /* AdSense Containers */
-        .ad-container {
-            margin: 100px auto;
-            max-width: 1400px;
-            padding: 0 2rem;
-            text-align: center;
-        }
-
-        .ad-label {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-family: 'Space Mono', monospace;
-        }
-
-        /* Timeline Section */
-        .timeline {
-            max-width: 900px;
-            margin: 0 auto;
-            position: relative;
-            padding-left: 3rem;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 2px;
-            height: 100%;
-            background: linear-gradient(180deg, var(--electric-blue), var(--hot-pink));
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 3rem;
-            padding-left: 2rem;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -3.5rem;
-            top: 0;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: var(--electric-blue);
-            border: 3px solid var(--bg-darker);
-            box-shadow: var(--glow-blue);
-        }
-
-        .timeline-date {
-            font-size: 0.9rem;
-            color: var(--hot-pink);
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            font-family: 'Space Mono', monospace;
-        }
-
-        .timeline-item h3 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 0.75rem;
-        }
-
-        .timeline-item p {
-            color: var(--text-secondary);
-            line-height: 1.8;
-        }
-
-        /* Team Section */
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .team-member {
-            text-align: center;
-            padding: 2rem;
-            background: var(--gradient-card);
-            border: 1px solid rgba(0, 240, 255, 0.1);
-            border-radius: 20px;
-            transition: all 0.3s ease;
-        }
-
-        .team-member:hover {
-            transform: translateY(-10px);
-            border-color: var(--electric-blue);
-        }
-
-        .team-avatar {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            background: var(--gradient-hero);
-            margin: 0 auto 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            font-weight: 800;
-            border: 3px solid var(--bg-darker);
-            box-shadow: var(--glow-blue);
-        }
-
-        .team-member h4 {
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        .team-role {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            font-family: 'Space Mono', monospace;
-        }
-
-        /* Contact Section */
-        #contato {
-            background: radial-gradient(circle at 50% 50%, rgba(0, 240, 255, 0.05), transparent 70%);
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            align-items: center;
-        }
-
-        .contact-info-list {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 1.5rem;
-            padding: 2rem;
-            background: var(--gradient-card);
-            border: 1px solid rgba(0, 240, 255, 0.1);
-            border-radius: 15px;
-            transition: all 0.3s ease;
-        }
-
-        .contact-item:hover {
-            border-color: var(--electric-blue);
-            transform: translateX(10px);
-        }
-
-        .contact-icon {
-            font-size: 2rem;
-            color: var(--electric-blue);
-        }
-
-        .contact-details strong {
-            display: block;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-family: 'Space Mono', monospace;
-        }
-
-        .contact-details a {
-            color: var(--text-primary);
-            text-decoration: none;
-            font-size: 1.2rem;
-            font-weight: 600;
-            transition: color 0.3s ease;
-        }
-
-        .contact-details a:hover {
-            color: var(--electric-blue);
-        }
-
-        .contact-form {
-            background: var(--gradient-card);
-            border: 1px solid rgba(0, 240, 255, 0.1);
-            border-radius: 20px;
-            padding: 3rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: var(--text-secondary);
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 1rem;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            color: var(--text-primary);
-            font-family: 'Syne', sans-serif;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--electric-blue);
-            box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.1);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        /* Footer */
-        footer {
-            background: var(--bg-darker);
-            border-top: 1px solid rgba(0, 240, 255, 0.1);
-            padding: 4rem 2rem 2rem;
-            margin-top: 120px;
-        }
-
-        .footer-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        .footer-brand h3 {
-            font-size: 1.8rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            background: var(--gradient-hero);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .footer-brand p {
-            color: var(--text-secondary);
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .social-link {
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-primary);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-size: 1.2rem;
-        }
-
-        .social-link:hover {
-            background: var(--electric-blue);
-            border-color: var(--electric-blue);
-            transform: translateY(-3px);
-        }
-
-        .footer-section h4 {
-            font-size: 1rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            color: var(--text-primary);
-        }
-
-        .footer-links {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-
-        .footer-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-            display: inline-block;
-        }
-
-        .footer-links a:hover {
-            color: var(--electric-blue);
-            transform: translateX(5px);
-        }
-
-        .footer-bottom {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        /* Scroll to top button */
-        .scroll-top {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 50px;
-            height: 50px;
-            background: var(--gradient-hero);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-            opacity: 0;
-            pointer-events: none;
-            transition: all 0.3s ease;
-            z-index: 999;
-            box-shadow: var(--glow-blue);
-        }
-
-        .scroll-top.visible {
-            opacity: 1;
-            pointer-events: all;
-        }
-
-        .scroll-top:hover {
-            transform: translateY(-5px);
-        }
-
-        /* Animações de entrada */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 1200px) {
-            .hero h1 {
-                font-size: 3.5rem;
-            }
-
-            .section-title {
-                font-size: 3rem;
-            }
-
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .team-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 968px) {
-            nav {
-                padding: 1.5rem;
-            }
-
-            .nav-links {
-                position: fixed;
-                top: 0;
-                left: -100%;
-                width: 100%;
-                height: 100vh;
-                background: rgba(10, 14, 39, 0.98);
-                backdrop-filter: blur(20px);
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                gap: 2rem;
-                transition: left 0.4s ease;
-                z-index: 999;
-            }
-
-            .nav-links.active {
-                left: 0;
-            }
-
-            .mobile-menu-toggle {
-                display: flex;
-            }
-
-            .hero-content {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            .hero-visual {
-                order: -1;
-            }
-
-            .section-title {
-                font-size: 2.5rem;
-            }
-
-            .sena-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-bottom {
-                flex-direction: column;
-                gap: 1rem;
-                text-align: center;
-            }
-        }
-
-        @media (max-width: 640px) {
-            .container,
-            section {
-                padding-left: 1.5rem;
-                padding-right: 1.5rem;
-            }
-
-            .hero {
-                padding: 120px 1.5rem 60px;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero-badge,
-            .section-tag {
-                font-size: 0.75rem;
-            }
-
-            .hero-cta {
-                flex-direction: column;
-            }
-
-            .btn-primary,
-            .btn-secondary {
-                width: 100%;
-                justify-content: center;
-            }
-
-            .stats-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .stat-number {
-                font-size: 2.5rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .section-subtitle {
-                font-size: 1rem;
-            }
-
-            .feature-card,
-            .project-card {
-                padding: 2rem;
-            }
-
-            .team-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .timeline {
-                padding-left: 2rem;
-            }
-
-            .timeline-item {
-                padding-left: 1.5rem;
-            }
-
-            .scroll-top {
-                bottom: 1.5rem;
-                right: 1.5rem;
-                width: 45px;
-                height: 45px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Claudinei • S.ai+ Apps</title>
+  
+  <meta name="description" content="Claudinei é um assistente de inteligência artificial criado pela S.ai+ Apps para resolver problemas com clareza e rapidez.">
+  <meta name="keywords" content="claudinei, IA, inteligência artificial, assistente virtual, S.ai+ Apps">
+  <meta name="author" content="S.ai+ Apps">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Claudinei • IA da S.ai+ Apps">
+  <meta property="og:description" content="A IA que resolve. Sem frescura.">
+  <meta property="og:image" content="https://i.imgur.com/H06lQOz.jpeg">
+  <meta property="og:type" content="website">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="https://i.imgur.com/H06lQOz.jpeg">
+  <link rel="apple-touch-icon" href="https://i.imgur.com/H06lQOz.jpeg">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <!-- Elementos decorativos de fundo -->
-    <div class="floating-orb orb-1"></div>
-    <div class="floating-orb orb-2"></div>
-    <div class="floating-orb orb-3"></div>
+  <!-- Particles Background -->
+  <div id="particles-bg"></div>
+  
+  <header class="header">
+    <div class="container">
+      <div class="logo-container">
+        <img src="https://i.imgur.com/H06lQOz.jpeg" alt="Claudinei Logo" class="logo-img">
+        <span class="logo-text">Claudinei</span>
+      </div>
+      <span class="badge">by S.ai+ Apps</span>
+    </div>
+  </header>
 
-    <!-- Header -->
-    <header id="header">
-        <nav>
-            <div class="logo-container">
-                <div class="logo">
-                    <img src="https://i.imgur.com/QIG4VuE.png" alt="Logo AmplaAI Platforms">
-                </div>
-                <span class="brand-name">AmplaAI</span>
-            </div>
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1 class="hero-title">
+            <span class="title-line">A IA que resolve.</span>
+            <span class="title-line emphasis">Sem frescura.</span>
+          </h1>
+          <p class="hero-subtitle">
+            Claudinei é um assistente inteligente criado para ajudar, explicar e agilizar o que realmente importa.
+          </p>
 
-            <ul class="nav-links">
-                <li><a href="#sena">Sena IA</a></li>
-                <li><a href="#projetos">Projetos</a></li>
-                <li><a href="#sobre">Sobre</a></li>
-                <li><a href="#jornada">Jornada</a></li>
-                <li><a href="#contato" class="cta-nav">Contato</a></li>
+          <div class="cta-group">
+            <a href="#waitlist" class="btn primary">
+              <span>Entrar na waitlist</span>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <a href="#login" class="btn secondary">Login</a>
+          </div>
+        </div>
+        
+        <div class="hero-visual">
+          <div class="floating-card card-1">
+            <div class="card-icon">💬</div>
+            <div class="card-text">Resposta em segundos</div>
+          </div>
+          <div class="floating-card card-2">
+            <div class="card-icon">🧠</div>
+            <div class="card-text">Contexto inteligente</div>
+          </div>
+          <div class="floating-card card-3">
+            <div class="card-icon">⚡</div>
+            <div class="card-text">Direto ao ponto</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOBRE -->
+    <section class="section about">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Conheça</span>
+          <h2>O que é o Claudinei?</h2>
+        </div>
+        <p class="section-description">
+          Um assistente de inteligência artificial desenvolvido pela S.ai+ Apps para oferecer respostas claras,
+          conversas naturais e apoio real no dia a dia. Sem enrolação, sem complicação.
+        </p>
+        
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-number">24/7</div>
+            <div class="stat-label">Disponível</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">&lt;1s</div>
+            <div class="stat-label">Tempo de resposta</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">100%</div>
+            <div class="stat-label">Brasileiro</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="section features">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Recursos</span>
+          <h2>Por que usar o Claudinei?</h2>
+        </div>
+        
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">💬</div>
+            <h3>Conversas naturais e objetivas</h3>
+            <p>Diálogo fluido em português sem robotês chato. Fala como brasileiro, entende como brasileiro.</p>
+          </div>
+          
+          <div class="feature-card">
+            <div class="feature-icon">📚</div>
+            <h3>Apoio em estudos e explicações</h3>
+            <p>Explica conceitos complexos de forma simples. Ideal para quem quer aprender de verdade.</p>
+          </div>
+          
+          <div class="feature-card">
+            <div class="feature-icon">💻</div>
+            <h3>Ajuda com lógica e tecnologia</h3>
+            <p>Desde programação até resolução de problemas técnicos. Tech sem mistério.</p>
+          </div>
+          
+          <div class="feature-card">
+            <div class="feature-icon">🧠</div>
+            <h3>Respostas contextualizadas</h3>
+            <p>Entende o que você quer dizer, não só o que você escreve. Contexto é tudo.</p>
+          </div>
+          
+          <div class="feature-card">
+            <div class="feature-icon">🔐</div>
+            <h3>Privacidade desde o início</h3>
+            <p>Seus dados são seus. Ponto final. Nada de vender informação ou usar pra treinar modelo.</p>
+          </div>
+          
+          <div class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <h3>Rápido, direto e funcional</h3>
+            <p>Zero enrolação. Velocidade de resposta que impressiona, qualidade que entrega.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WAITLIST -->
+    <section class="section waitlist" id="waitlist">
+      <div class="container narrow">
+        <div class="section-header centered">
+          <span class="section-label">Acesso antecipado</span>
+          <h2>Entre na waitlist</h2>
+        </div>
+        <p class="section-description centered">
+          Receba acesso antecipado e seja o primeiro a testar o Claudinei. Vagas limitadas.
+        </p>
+
+        <form id="waitlist-form" class="waitlist-form">
+          <div class="form-group">
+            <input 
+              type="email" 
+              name="email" 
+              id="email-input"
+              placeholder="seu@email.com" 
+              required 
+              autocomplete="email"
+            />
+            <button type="submit" class="btn primary">
+              <span id="btn-text">Quero participar</span>
+              <span id="btn-loading" class="hidden">
+                <svg class="spinner" width="20" height="20" viewBox="0 0 20 20">
+                  <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2" fill="none" opacity="0.3"/>
+                  <path d="M 10 2 A 8 8 0 0 1 18 10" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>
+                </svg>
+              </span>
+            </button>
+          </div>
+          <small id="waitlist-msg" class="form-message"></small>
+        </form>
+        
+        <div class="waitlist-benefits">
+          <div class="benefit">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M7 10L9 12L13 8M19 10C19 14.9706 14.9706 19 10 19C5.02944 19 1 14.9706 1 10C1 5.02944 5.02944 1 10 1C14.9706 1 19 5.02944 19 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Acesso antes de todo mundo</span>
+          </div>
+          <div class="benefit">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M7 10L9 12L13 8M19 10C19 14.9706 14.9706 19 10 19C5.02944 19 1 14.9706 1 10C1 5.02944 5.02944 1 10 1C14.9706 1 19 5.02944 19 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Influencie o desenvolvimento</span>
+          </div>
+          <div class="benefit">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M7 10L9 12L13 8M19 10C19 14.9706 14.9706 19 10 19C5.02944 19 1 14.9706 1 10C1 5.02944 5.02944 1 10 1C14.9706 1 19 5.02944 19 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Suporte prioritário</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LOGIN -->
+    <section class="section login" id="login">
+      <div class="container narrow">
+        <div class="section-header centered">
+          <span class="section-label">Usuários</span>
+          <h2>Login</h2>
+        </div>
+        <p class="section-description centered">
+          Área reservada para usuários autorizados.
+        </p>
+
+        <form class="login-form">
+          <div class="form-group">
+            <label for="login-email">Email</label>
+            <input type="email" id="login-email" placeholder="seu@email.com" disabled />
+          </div>
+          
+          <div class="form-group">
+            <label for="login-password">Senha</label>
+            <input type="password" id="login-password" placeholder="••••••••" disabled />
+          </div>
+          
+          <button class="btn disabled" disabled>
+            <span>Em breve</span>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M12 5V4C12 2.89543 11.1046 2 10 2H6C4.89543 2 4 2.89543 4 4V5M2 5H14M13 5V13C13 14.1046 12.1046 15 11 15H5C3.89543 15 3 14.1046 3 13V5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </button>
+        </form>
+        
+        <p class="login-note">
+          Em desenvolvimento. Em breve você poderá acessar sua conta.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="logo-container">
+            <img src="https://i.imgur.com/H06lQOz.jpeg" alt="Claudinei Logo" class="logo-img">
+            <span class="logo-text">Claudinei</span>
+          </div>
+          <p>A IA que resolve. Sem frescura.</p>
+        </div>
+        
+        <div class="footer-links">
+          <div class="footer-column">
+            <h4>Produto</h4>
+            <ul>
+              <li><a href="#waitlist">Waitlist</a></li>
+              <li><a href="#login">Login</a></li>
+              <li><a href="#features">Recursos</a></li>
             </ul>
+          </div>
+          
+          <div class="footer-column">
+            <h4>S.ai+ Apps</h4>
+            <ul>
+              <li><a href="#">Sobre nós</a></li>
+              <li><a href="#">Contato</a></li>
+              <li><a href="#">Suporte</a></li>
+            </ul>
+          </div>
+          
+          <div class="footer-column">
+  <h4>Legal</h4>
+  <ul>
+    <li>
+      <a href="/privacidade.html" target="_blank" rel="noopener noreferrer">
+        Política de Privacidade
+      </a>
+    </li>
+    <li>
+      <a href="/termos.html" target="_blank" rel="noopener noreferrer">
+        Termos de Uso
+      </a>
+    </li>
+    <li>
+      <a href="/cookies.html" target="_blank" rel="noopener noreferrer">
+        Política de Cookies
+      </a>
+    </li>
+  </ul>
+</div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2026 Claudinei • Um projeto da S.ai+ Apps</p>
+        <p class="footer-made">Feito com ☕ no Brasil</p>
+      </div>
+    </div>
+  </footer>
 
-            <div class="mobile-menu-toggle" id="mobileToggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </nav>
-    </header>
-
-    <main>
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <div class="hero-badge">
-                        <span>Startup Brasileira de IA</span>
-                    </div>
-                    <h1>
-                        Revolucionando o Futuro com 
-                        <span class="gradient-text">Inteligência Artificial</span>
-                    </h1>
-                    <p>
-                        Desenvolvemos soluções inovadoras de IA que transformam negócios e impulsionam a inovação. Da pesquisa à produção, criamos tecnologia que faz a diferença.
-                    </p>
-                    <div class="hero-cta">
-                        <a href="#sena" class="btn-primary">
-                            Conhecer Sena IA
-                            <span>→</span>
-                        </a>
-                        <a href="#contato" class="btn-secondary">
-                            Falar com o Time
-                            <span>💬</span>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="hero-visual">
-                    <div class="visual-container">
-                        <div class="floating-card">
-                            <div class="card-icon">🤖</div>
-                            <div class="card-label">Modelos IA</div>
-                            <div class="card-value">01</div>
-                        </div>
-                        <div class="floating-card">
-                            <div class="card-icon">⚡</div>
-                            <div class="card-label">Precisão</div>
-                            <div class="card-value">98%</div>
-                        </div>
-                        <div class="floating-card">
-                            <div class="card-icon">🚀</div>
-                            <div class="card-label">Projetos</div>
-                            <div class="card-value">5+</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Stats Section -->
-        <div class="stats-section">
-            <div class="stats-grid">
-                <div class="stat-item fade-in">
-                    <div class="stat-number">2024</div>
-                    <div class="stat-label">Fundada</div>
-                </div>
-                <div class="stat-item fade-in">
-                    <div class="stat-number">50K+</div>
-                    <div class="stat-label">Requisições/mês</div>
-                </div>
-                <div class="stat-item fade-in">
-                    <div class="stat-number">99.9%</div>
-                    <div class="stat-label">Uptime</div>
-                </div>
-                <div class="stat-item fade-in">
-                    <div class="stat-number">24/7</div>
-                    <div class="stat-label">Disponibilidade</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Primeiro Anúncio -->
-        <div class="ad-container">
-            <div class="ad-label">Publicidade</div>
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-format="autorelaxed"
-                 data-ad-client="ca-pub-4225779055216067"
-                 data-ad-slot="5212904357"></ins>
-        </div>
-
-        <!-- Sena Section -->
-        <section id="sena">
-            <div class="container">
-                <div class="section-header fade-in">
-                    <div class="section-tag">Nossa Tecnologia Principal</div>
-                    <h2 class="section-title">
-                        Conheça a <span class="gradient-text">Sena</span>
-                    </h2>
-                    <p class="section-subtitle">
-                        Nossa plataforma de IA de última geração, construída para resolver problemas complexos com inteligência e eficiência. Processamento de linguagem natural que entende contexto e nuances.
-                    </p>
-                </div>
-
-                <div class="sena-grid">
-                    <div class="feature-card fade-in">
-                        <div class="feature-icon">🧠</div>
-                        <h3>Processamento Neural Avançado</h3>
-                        <p>
-                            Arquitetura baseada em transformers com bilhões de parâmetros. Utiliza deep learning e redes neurais convolucionais para compreensão contextual profunda de linguagem natural, entendendo não apenas palavras, mas intenções e emoções.
-                        </p>
-                    </div>
-
-                    <div class="feature-card fade-in">
-                        <div class="feature-icon">💡</div>
-                        <h3>Inteligência Contextual</h3>
-                        <p>
-                            Sistema de memória de longo prazo que analisa histórico completo de interações. Adapta respostas baseado em preferências do usuário, contexto da conversa e padrões de comportamento identificados através de machine learning.
-                        </p>
-                    </div>
-
-                    <div class="feature-card fade-in">
-                        <div class="feature-icon">🔄</div>
-                        <h3>Aprendizado Contínuo</h3>
-                        <p>
-                            Modelos treinados constantemente com feedback real. Pipeline de MLOps automatizado que refina algoritmos com base em milhões de interações, garantindo evolução constante e melhorias mensuráveis de performance.
-                        </p>
-                    </div>
-
-                    <div class="feature-card fade-in">
-                        <div class="feature-icon">⚡</div>
-                        <h3>Performance Ultra-Rápida</h3>
-                        <p>
-                            Infraestrutura otimizada com GPUs dedicadas e caching inteligente. Latência média de 200ms para processar consultas complexas. Arquitetura distribuída que escala horizontalmente conforme demanda.
-                        </p>
-                    </div>
-
-                    <div class="feature-card fade-in">
-                        <div class="feature-icon">🔒</div>
-                        <h3>Segurança Enterprise</h3>
-                        <p>
-                            Criptografia end-to-end AES-256, conformidade com LGPD e GDPR. Autenticação OAuth 2.0, logs de auditoria completos e isolamento de dados por tenant. Certificações ISO 27001 e SOC 2 em processo.
-                        </p>
-                    </div>
-
-                    <div class="feature-card fade-in">
-                        <div class="feature-icon">🌐</div>
-                        <h3>API RESTful Completa</h3>
-                        <p>
-                            Documentação OpenAPI interativa, SDKs para Python, Node.js e Java. Webhooks para eventos em tempo real, rate limiting configurável e monitoramento via dashboard. Suporte a streaming de respostas longas.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="sena-cta fade-in">
-                    <a href="https://aira.orpheostudio.com.br" target="_blank" rel="noopener noreferrer" class="btn-primary">
-                        Acessar Plataforma Sena
-                        <span>→</span>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Segundo Anúncio -->
-        <div class="ad-container">
-            <div class="ad-label">Publicidade</div>
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-format="fluid"
-                 data-ad-layout-key="-fb+5w+4e-db+86"
-                 data-ad-client="ca-pub-4225779055216067"
-                 data-ad-slot="3265397860"></ins>
-        </div>
-
-        <!-- Projetos Section -->
-        <section id="projetos">
-            <div class="container">
-                <div class="section-header fade-in">
-                    <div class="section-tag">Nosso Ecossistema</div>
-                    <h2 class="section-title">
-                        Projetos & <span class="gradient-text">Iniciativas</span>
-                    </h2>
-                    <p class="section-subtitle">
-                        Além da tecnologia de IA, desenvolvemos projetos que impactam comunidades e disseminam conhecimento. Cada iniciativa reflete nosso compromisso com inovação e educação.
-                    </p>
-                </div>
-
-                <div class="projects-grid">
-                    <article class="project-card fade-in">
-                        <div class="project-status">● Ativo</div>
-                        <h3>YumeRoll Animes</h3>
-                        <p>
-                            Plataforma digital especializada em cultura otaku e análise crítica de anime. Publicamos reviews técnicas detalhadas sobre animação, roteiro e direção, cobrindo desde clássicos até lançamentos da temporada atual.
-                        </p>
-                        <p>
-                            Nosso conteúdo inclui análises de storytelling, comparações entre estúdios de animação (Ufotable, MAPPA, Bones), deep dives sobre diretores icônicos e cobertura de eventos como AnimeJapan e Comiket. Comunidade ativa com +10K seguidores engajados.
-                        </p>
-                        <div class="project-links">
-                            <a href="https://instagram.com/yumerollanimes" class="project-link" target="_blank" rel="noopener noreferrer">
-                                📱 Instagram
-                            </a>
-                            <a href="https://tiktok.com/@yumerollanimes" class="project-link" target="_blank" rel="noopener noreferrer">
-                                🎵 TikTok
-                            </a>
-                        </div>
-                    </article>
-
-                    <article class="project-card fade-in">
-                        <div class="project-status coming-soon">● Em breve</div>
-                        <h3>Escola de Autores</h3>
-                        <p>
-                            Programa de formação literária completo para escritores aspirantes e profissionais. Oferecemos cursos estruturados em narrativa, worldbuilding, desenvolvimento de personagens e técnicas de escrita para diferentes gêneros (ficção científica, fantasia, romance, thriller).
-                        </p>
-                        <p>
-                            Currículo desenvolvido por autores publicados e editores profissionais, incluindo masterclasses ao vivo, feedback personalizado de manuscritos, mentorias 1-on-1 e networking com agentes literários. Módulos sobre autopublicação, marketing de livros e construção de plataforma autoral. Primeira turma prevista para Q2 2025.
-                        </p>
-                        <div class="project-links">
-                            <span class="project-link" style="opacity: 0.6; cursor: default;">
-                                🚀 Lançamento em Abril
-                            </span>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <!-- Nossa Jornada Section -->
-        <section id="jornada">
-            <div class="container">
-                <div class="section-header fade-in">
-                    <div class="section-tag">Timeline</div>
-                    <h2 class="section-title">
-                        Nossa <span class="gradient-text">Jornada</span>
-                    </h2>
-                    <p class="section-subtitle">
-                        Do primeiro algoritmo à infraestrutura de produção. Veja como estamos construindo o futuro da IA no Brasil.
-                    </p>
-                </div>
-
-                <div class="timeline">
-                    <div class="timeline-item fade-in">
-                        <div class="timeline-date">Janeiro 2025</div>
-                        <h3>Fundação da AmplaAI</h3>
-                        <p>
-                            Início oficial das operações com foco em pesquisa e desenvolvimento de soluções de inteligência artificial. Montagem do time fundador e definição da visão de democratizar acesso a IA de qualidade no Brasil.
-                        </p>
-                    </div>
-
-                    <div class="timeline-item fade-in">
-                        <h3>Desenvolvimento da Sena</h3>
-                        <p>
-                            Primeiros protótipos da plataforma Sena, baseados em arquiteturas transformer. Testes iniciais com processamento de linguagem natural em português, alcançando 85% de precisão em tarefas de compreensão contextual.
-                        </p>
-                    </div>
-
-                    <div class="timeline-item fade-in">
-                        <h3>Lançamento do YumeRoll</h3>
-                        <p>
-                            Estreia do projeto YumeRoll Animes nas redes sociais, testando estratégias de conteúdo e engajamento de comunidade. Primeiros 1K seguidores alcançados em duas semanas, validando demanda por análises técnicas de anime.
-                        </p>
-                    </div>
-
-                    <div class="timeline-item fade-in">
-                        <div class="timeline-date">Fevereiro 2025</div>
-                        <h3>Sena Beta Release</h3>
-                        <p>
-                            Lançamento da versão beta da Sena para grupo seleto de early adopters. Coleta de feedback intensiva e iterações rápidas de produto. Infraestrutura escalando para 1K requisições diárias.
-                        </p>
-                    </div>
-
-                    <div class="timeline-item fade-in">
-                        <div class="timeline-date">Q2 2025</div>
-                        <h3>Escola de Autores - Lançamento</h3>
-                        <p>
-                            Abertura da primeira turma da Escola de Autores com 50 alunos. Parcerias firmadas com editoras e agentes literários. Plataforma LMS customizada com ferramentas de IA para análise automática de texto.
-                        </p>
-                    </div>
-
-                    <div class="timeline-item fade-in">
-                        <div class="timeline-date">Q3 2025</div>
-                        <h3>Expansão e Novos Produtos</h3>
-                        <p>
-                            Roadmap inclui: Sena API pública, ferramentas de IA para criadores de conteúdo, parcerias B2B com empresas de médio porte e início da captação de investimento seed para acelerar crescimento.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Terceiro Anúncio -->
-        <div class="ad-container">
-            <div class="ad-label">Publicidade</div>
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-4225779055216067"
-                 data-ad-slot="6027292570"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-        </div>
-
-        <!-- Sobre Section -->
-        <section id="sobre">
-            <div class="container">
-                <div class="section-header fade-in">
-                    <div class="section-tag">Quem Somos</div>
-                    <h2 class="section-title">
-                        Sobre a <span class="gradient-text">AmplaAI</span>
-                    </h2>
-                </div>
-
-                <div style="max-width: 900px; margin: 0 auto;">
-                    <p style="font-size: 1.2rem; color: var(--text-secondary); line-height: 1.9; margin-bottom: 2rem;" class="fade-in">
-                        A AmplaAI Platforms é uma startup brasileira de tecnologia nascida em 2025 com a missão audaciosa de democratizar o acesso à inteligência artificial de ponta. Fundada por entusiastas de IA e tecnologia, começamos nossa jornada desenvolvendo a Sena, nossa plataforma de processamento de linguagem natural.
-                    </p>
-
-                    <p style="font-size: 1.2rem; color: var(--text-secondary); line-height: 1.9; margin-bottom: 2rem;" class="fade-in">
-                        Acreditamos que a IA deve ser uma ferramenta de empoderamento, não de substituição. Por isso, todas as nossas soluções são projetadas pensando em ampliar capacidades humanas, facilitar o acesso ao conhecimento e resolver problemas reais de forma prática e eficiente.
-                    </p>
-
-                    <p style="font-size: 1.2rem; color: var(--text-secondary); line-height: 1.9; margin-bottom: 2rem;" class="fade-in">
-                        Nossa equipe multidisciplinar combina expertise em machine learning, engenharia de software, UX/UI design e linguística computacional. Trabalhamos em ciclos ágeis, priorizando experimentação rápida, feedback constante de usuários e iteração contínua de produto.
-                    </p>
-
-                    <p style="font-size: 1.2rem; color: var(--text-secondary); line-height: 1.9;" class="fade-in">
-                        Além da tecnologia, mantemos projetos paralelos que refletem nossa paixão por educação, cultura e comunidade. Do anime à literatura, buscamos conectar pessoas através de experiências significativas potencializadas por IA.
-                    </p>
-                </div>
-
-                <div class="section-header" style="margin-top: 5rem; margin-bottom: 3rem;">
-                    <h3 class="section-title" style="font-size: 2.5rem;">
-                        Nosso <span class="gradient-text">Time</span>
-                    </h3>
-                </div>
-
-                <div class="team-grid">
-                    <div class="team-member fade-in">
-                        <div class="team-avatar">AI</div>
-                        <h4>Naoto Dev</h4>
-                        <p class="team-role">CEO & Co-founder</p>
-                    </div>
-                    <div class="team-member fade-in">
-                        <div class="team-avatar">RC</div>
-                        <h4>Naoto Dev</h4>
-                        <p class="team-role">CTO & AI Lead</p>
-                    </div>
-                    <div class="team-member fade-in">
-                        <div class="team-avatar">MS</div>
-                        <h4>Naoto Dev</h4>
-                        <p class="team-role">Product Designer</p>
-                    </div>
-                    <div class="team-member fade-in">
-                        <div class="team-avatar">LP</div>
-                        <h4>Naoto Dev</h4>
-                        <p class="team-role">ML Engineer</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contato Section -->
-        <section id="contato">
-            <div class="container">
-                <div class="section-header fade-in">
-                    <div class="section-tag">Fale Conosco</div>
-                    <h2 class="section-title">
-                        Vamos Construir o <span class="gradient-text">Futuro</span> Juntos
-                    </h2>
-                    <p class="section-subtitle">
-                        Entre em contato para parcerias, oportunidades de carreira ou apenas para trocar uma ideia sobre IA e tecnologia.
-                    </p>
-                </div>
-
-                <div class="contact-grid">
-                    <div class="contact-info-list">
-                        <div class="contact-item fade-in">
-                            <div class="contact-icon">📧</div>
-                            <div class="contact-details">
-                                <strong>E-mail</strong>
-                                <a href="mailto:ampla.ai@outlook.com">ampla.ai@outlook.com</a>
-                            </div>
-                        </div>
-
-                        <div class="contact-item fade-in">
-                            <div class="contact-icon">📱</div>
-                            <div class="contact-details">
-                                <strong>Instagram</strong>
-                                <a href="https://instagram.com/ampla.ai" target="_blank" rel="noopener noreferrer">@ampla.ai</a>
-                            </div>
-                        </div>
-
-                        <div class="contact-item fade-in">
-                            <div class="contact-icon">💼</div>
-                            <div class="contact-details">
-                                <strong>Parcerias</strong>
-                                <a href="mailto:ampla.ai@outlook.com">ampla.ai@outlook.com</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <form class="contact-form fade-in" onsubmit="return false;">
-                        <div class="form-group">
-                            <label for="name">Nome</label>
-                            <input type="text" id="name" name="name" placeholder="Seu nome completo" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">E-mail</label>
-                            <input type="email" id="email" name="email" placeholder="seu@email.com" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Mensagem</label>
-                            <textarea id="message" name="message" placeholder="Como podemos ajudar?" required></textarea>
-                        </div>
-                        <button type="submit" class="btn-primary" style="width: 100%;">
-                            Enviar Mensagem
-                            <span>→</span>
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-brand">
-                <h3>AmplaAI</h3>
-                <p>
-                    Startup brasileira revolucionando a inteligência artificial. Construindo o futuro, uma linha de código por vez.
-                </p>
-                <div class="social-links">
-                    <a href="https://instagram.com/ampla.ai" class="social-link" target="_blank" rel="noopener noreferrer">📱</a>
-                    <a href="https://github.com/orpheostudio" class="social-link" target="_blank" rel="noopener noreferrer">💻</a>
-                    <a href="https://linkedin.com/company/amplaai" class="social-link" target="_blank" rel="noopener noreferrer">💼</a>
-                </div>
-            </div>
-
-            <div class="footer-section">
-                <h4>Produtos</h4>
-                <ul class="footer-links">
-                    <li><a href="#sena">Sena IA</a></li>
-                    <li><a href="https://aira.orpheostudio.com.br" target="_blank">Acessar Plataforma</a></li>
-                    <li><a href="#jornada">Nossa Jornada</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-section">
-                <h4>Projetos</h4>
-                <ul class="footer-links">
-                    <li><a href="https://instagram.com/yumerollanimes" target="_blank">YumeRoll Animes</a></li>
-                    <li><a href="#projetos">Escola de Autores</a></li>
-                    <li><a href="#sobre">Sobre Nós</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-section">
-                <h4>Legal</h4>
-                <ul class="footer-links">
-                    <li><a href="https://termos.orpheostudio.com.br" target="_blank">Termos de Uso</a></li>
-                    <li><a href="https://politicas.orpheostudio.com.br" target="_blank">Privacidade</a></li>
-                    <li><a href="#contato">Contato</a></li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="footer-bottom">
-            <p>&copy; 2025 AmplaAI Platforms. Todos os direitos reservados.</p>
-            <p>Feito com 💜 no Brasil</p>
-        </div>
-    </footer>
-
-    <!-- Scroll to top -->
-    <div class="scroll-top" id="scrollTop">↑</div>
-
-    <!-- Scripts -->
-    <script>
-        // Inicialização dos anúncios AdSense
-        window.addEventListener('load', function() {
-            (adsbygoogle = window.adsbygoogle || []).push({});
-            (adsbygoogle = window.adsbygoogle || []).push({});
-            (adsbygoogle = window.adsbygoogle || []).push({});
-        });
-
-        // Mobile menu toggle
-        const mobileToggle = document.getElementById('mobileToggle');
-        const navLinks = document.querySelector('.nav-links');
-        
-        mobileToggle.addEventListener('click', () => {
-            mobileToggle.classList.toggle('active');
-            navLinks.classList.toggle('active');
-        });
-
-        // Fechar menu ao clicar em link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileToggle.classList.remove('active');
-                navLinks.classList.remove('active');
-            });
-        });
-
-        // Header scroll effect
-        const header = document.getElementById('header');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    const headerOffset = 80;
-                    const elementPosition = target.getBoundingClientRect().top;
-                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-                    window.scrollTo({
-                        top: offsetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // Scroll to top button
-        const scrollTop = document.getElementById('scrollTop');
-        
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 500) {
-                scrollTop.classList.add('visible');
-            } else {
-                scrollTop.classList.remove('visible');
-            }
-        });
-
-        scrollTop.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-
-        // Intersection Observer para animações de entrada
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Formulário de contato (simulação)
-        document.querySelector('.contact-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Funcionalidade de envio em desenvolvimento! Por enquanto, entre em contato por e-mail: contato@amplaai.com');
-        });
-
-        // Animação dos números das estatísticas
-        const animateNumbers = () => {
-            const stats = document.querySelectorAll('.stat-number');
-            stats.forEach(stat => {
-                const target = stat.textContent;
-                if (target.includes('+') || target.includes('%')) {
-                    const numPart = target.match(/[\d.]+/)?.[0];
-                    if (numPart) {
-                        let current = 0;
-                        const increment = parseFloat(numPart) / 50;
-                        const timer = setInterval(() => {
-                            current += increment;
-                            if (current >= parseFloat(numPart)) {
-                                stat.textContent = target;
-                                clearInterval(timer);
-                            } else {
-                                stat.textContent = Math.floor(current) + (target.includes('+') ? '+' : '%');
-                            }
-                        }, 30);
-                    }
-                }
-            });
-        };
-
-        // Animar números quando a seção entra na viewport
-        const statsObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    animateNumbers();
-                    statsObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
-
-        const statsSection = document.querySelector('.stats-section');
-        if (statsSection) {
-            statsObserver.observe(statsSection);
-        }
-    </script>
+  <script src="script.js"></script>
 </body>
 </html>
