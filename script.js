@@ -1,407 +1,350 @@
-// NAVBAR SCROLL EFFECT
-const navbar = document.getElementById('navbar');
-const navLinks = document.querySelectorAll('.nav-link');
+/* ═══════════════════════════════════════════════════════════════
+CLAUDINEI · AmplaAI Platforms — script.js
+═══════════════════════════════════════════════════════════════ */
 
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 50) {
-    navbar.classList.add('scrolled');
-  } else {
-    navbar.classList.remove('scrolled');
-  }
-});
+‘use strict’;
 
-// ACTIVE NAV LINK ON SCROLL
-const sections = document.querySelectorAll('section[id]');
+// ── Cookie Consent ──────────────────────────────────────────────
+const COOKIE_KEY = ‘claudinei_cookie_consent’;
+const COOKIE_VERSION = ‘1’;
 
-function activeNavLink() {
-  const scrollY = window.pageYOffset;
-
-  sections.forEach(section => {
-    const sectionHeight = section.offsetHeight;
-    const sectionTop = section.offsetTop - 100;
-    const sectionId = section.getAttribute('id');
-    const navLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
-
-    if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-      navLinks.forEach(link => link.classList.remove('active'));
-      if (navLink) navLink.classList.add('active');
-    }
-  });
+function getCookieConsent() {
+try { return JSON.parse(localStorage.getItem(COOKIE_KEY)); } catch { return null; }
 }
 
-window.addEventListener('scroll', activeNavLink);
-
-// MOBILE MENU TOGGLE
-const mobileToggle = document.getElementById('mobile-toggle');
-const navMenu = document.getElementById('nav-menu');
-
-if (mobileToggle) {
-  mobileToggle.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-    mobileToggle.classList.toggle('active');
-  });
-
-  // Close menu when clicking a link
-  navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      navMenu.classList.remove('active');
-      mobileToggle.classList.remove('active');
-    });
-  });
+function setCookieConsent(data) {
+data.version = COOKIE_VERSION;
+data.date = new Date().toISOString();
+localStorage.setItem(COOKIE_KEY, JSON.stringify(data));
 }
 
-// TYPING EFFECT
-const typingText = document.getElementById('typing-text');
-const texts = [
-  'Ensino',
-  'Programação',
-  'Japonês',
-  'Cultura Japonesa',
-  'Idiomas'
-];
-let textIndex = 0;
-let charIndex = 0;
-let isDeleting = false;
-
-function typeEffect() {
-  const currentText = texts[textIndex];
-  
-  if (isDeleting) {
-    typingText.textContent = currentText.substring(0, charIndex - 1);
-    charIndex--;
-  } else {
-    typingText.textContent = currentText.substring(0, charIndex + 1);
-    charIndex++;
-  }
-
-  let typeSpeed = isDeleting ? 50 : 100;
-
-  if (!isDeleting && charIndex === currentText.length) {
-    typeSpeed = 2000;
-    isDeleting = true;
-  } else if (isDeleting && charIndex === 0) {
-    isDeleting = false;
-    textIndex = (textIndex + 1) % texts.length;
-    typeSpeed = 500;
-  }
-
-  setTimeout(typeEffect, typeSpeed);
+function hideCookieBanner() {
+const banner = document.getElementById(‘cookie-banner’);
+if (banner) banner.classList.add(‘hidden’);
 }
 
-if (typingText) {
-  typeEffect();
-}
-
-// SMOOTH SCROLL
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-    const href = this.getAttribute('href');
-    if (href !== '#' && href !== '#login' && href !== '#waitlist') {
-      e.preventDefault();
-      const target = document.querySelector(href);
-      if (target) {
-        const offsetTop = target.offsetTop - 80;
-        window.scrollTo({
-          top: offsetTop,
-          behavior: 'smooth'
-        });
-      }
-    }
-  });
-});
-
-// ANIMATED PARTICLES BACKGROUND
-const particlesBg = document.getElementById('particles-bg');
-
-function createParticle() {
-  const particle = document.createElement('div');
-  particle.style.position = 'absolute';
-  particle.style.width = Math.random() * 4 + 1 + 'px';
-  particle.style.height = particle.style.width;
-  particle.style.background = `rgba(${99 + Math.random() * 40}, ${102 + Math.random() * 40}, ${241}, ${Math.random() * 0.5})`;
-  particle.style.borderRadius = '50%';
-  particle.style.left = Math.random() * 100 + '%';
-  particle.style.top = Math.random() * 100 + '%';
-  particle.style.pointerEvents = 'none';
-  
-  const duration = Math.random() * 20 + 10;
-  const delay = Math.random() * 5;
-  
-  particle.style.animation = `particleFloat ${duration}s ${delay}s infinite ease-in-out`;
-  
-  particlesBg.appendChild(particle);
-}
-
-// Add particle float animation to CSS dynamically
-const style = document.createElement('style');
-style.textContent = `
-  @keyframes particleFloat {
-    0%, 100% {
-      transform: translate(0, 0) scale(1);
-      opacity: 0;
-    }
-    10% {
-      opacity: 0.5;
-    }
-    50% {
-      transform: translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px) scale(${Math.random() + 0.5});
-      opacity: 0.8;
-    }
-    90% {
-      opacity: 0.5;
-    }
-  }
-`;
-document.head.appendChild(style);
-
-// Create initial particles
-for (let i = 0; i < 30; i++) {
-  createParticle();
-}
-
-// INTERSECTION OBSERVER FOR ANIMATIONS
-const observerOptions = {
-  threshold: 0.1,
-  rootMargin: '0px 0px -100px 0px'
+window.acceptCookies = function() {
+setCookieConsent({ essential: true, analytics: true, ads: true, functional: true, all: true });
+hideCookieBanner();
+loadAnalytics();
+loadAds();
 };
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.style.opacity = '1';
-      entry.target.style.transform = 'translateY(0)';
-    }
-  });
-}, observerOptions);
+window.rejectCookies = function() {
+setCookieConsent({ essential: true, analytics: false, ads: false, functional: false, all: false });
+hideCookieBanner();
+};
 
-document.querySelectorAll('[data-aos]').forEach(el => {
-  el.style.opacity = '0';
-  el.style.transform = 'translateY(30px)';
-  el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-  observer.observe(el);
-});
+window.openCookieSettings = function() {
+const consent = getCookieConsent();
+if (consent) {
+document.getElementById(‘ck-analytics’).checked = !!consent.analytics;
+document.getElementById(‘ck-ads’).checked = !!consent.ads;
+document.getElementById(‘ck-func’).checked = !!consent.functional;
+}
+document.getElementById(‘cookie-modal’).classList.remove(‘hidden’);
+document.getElementById(‘cookie-banner’).classList.add(‘hidden’);
+};
 
-// FLOATING WINDOWS ANIMATION
-const floatingWindows = document.querySelectorAll('.floating-window');
+window.closeCookieSettings = function() {
+document.getElementById(‘cookie-modal’).classList.add(‘hidden’);
+};
 
-floatingWindows.forEach((window, index) => {
-  const randomX = (Math.random() - 0.5) * 20;
-  const randomY = (Math.random() - 0.5) * 20;
-  const randomRotate = (Math.random() - 0.5) * 5;
-  
-  window.style.setProperty('--random-x', `${randomX}px`);
-  window.style.setProperty('--random-y', `${randomY}px`);
-  window.style.setProperty('--random-rotate', `${randomRotate}deg`);
-});
+window.saveCustomCookies = function() {
+const analytics = document.getElementById(‘ck-analytics’).checked;
+const ads = document.getElementById(‘ck-ads’).checked;
+const func = document.getElementById(‘ck-func’).checked;
+setCookieConsent({ essential: true, analytics, ads, functional: func, all: analytics && ads && func });
+document.getElementById(‘cookie-modal’).classList.add(‘hidden’);
+if (analytics) loadAnalytics();
+if (ads) loadAds();
+};
 
-// Add custom float animation
-const floatStyle = document.createElement('style');
-floatStyle.textContent = `
-  @keyframes float {
-    0%, 100% {
-      transform: translate(0, 0) rotate(0deg);
-    }
-    33% {
-      transform: translate(var(--random-x, 10px), var(--random-y, -10px)) rotate(var(--random-rotate, 2deg));
-    }
-    66% {
-      transform: translate(calc(var(--random-x, 10px) * -1), var(--random-y, 10px)) rotate(calc(var(--random-rotate, 2deg) * -1));
-    }
-  }
-`;
-document.head.appendChild(floatStyle);
-
-// FEATURE CARDS HOVER EFFECT
-const featureCards = document.querySelectorAll('.feature-card');
-
-featureCards.forEach(card => {
-  card.addEventListener('mouseenter', function() {
-    this.style.setProperty('--mouse-x', '50%');
-    this.style.setProperty('--mouse-y', '50%');
-  });
-
-  card.addEventListener('mousemove', function(e) {
-    const rect = this.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width) * 100;
-    const y = ((e.clientY - rect.top) / rect.height) * 100;
-    
-    this.style.setProperty('--mouse-x', `${x}%`);
-    this.style.setProperty('--mouse-y', `${y}%`);
-  });
-});
-
-// STATS COUNTER ANIMATION
-function animateCounter(element, target, duration = 2000) {
-  let start = 0;
-  const increment = target / (duration / 16);
-  
-  const counter = setInterval(() => {
-    start += increment;
-    if (start >= target) {
-      element.textContent = target;
-      clearInterval(counter);
-    } else {
-      element.textContent = Math.floor(start);
-    }
-  }, 16);
+function loadAnalytics() {
+// Trigger Google Analytics if consent given
+if (typeof gtag !== ‘undefined’) {
+gtag(‘consent’, ‘update’, { analytics_storage: ‘granted’ });
+}
 }
 
-const statsObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
-      const number = entry.target.querySelector('.stat-number');
-      const target = number.textContent;
-      
-      if (!isNaN(target)) {
-        animateCounter(number, parseInt(target));
-        entry.target.classList.add('counted');
-      }
-    }
-  });
+function loadAds() {
+// Trigger AdSense if consent given
+if (typeof gtag !== ‘undefined’) {
+gtag(‘consent’, ‘update’, { ad_storage: ‘granted’, ad_user_data: ‘granted’, ad_personalization: ‘granted’ });
+}
+}
+
+// Close cookie modal on overlay click
+document.addEventListener(‘click’, function(e) {
+const modal = document.getElementById(‘cookie-modal’);
+if (modal && e.target === modal) window.closeCookieSettings();
+});
+
+// Init cookie consent on load
+(function initCookies() {
+const consent = getCookieConsent();
+if (!consent) {
+// Show banner after 800ms
+setTimeout(() => {
+const banner = document.getElementById(‘cookie-banner’);
+if (banner) banner.classList.remove(‘hidden-init’);
+}, 800);
+} else {
+hideCookieBanner();
+if (consent.analytics) loadAnalytics();
+if (consent.ads) loadAds();
+}
+})();
+
+// ── Navbar ──────────────────────────────────────────────────────
+const navbar = document.getElementById(‘navbar’);
+const mobileToggle = document.getElementById(‘mobile-toggle’);
+const navMenu = document.getElementById(‘nav-menu’);
+
+window.addEventListener(‘scroll’, () => {
+if (navbar) navbar.classList.toggle(‘scrolled’, window.scrollY > 30);
+}, { passive: true });
+
+if (mobileToggle && navMenu) {
+mobileToggle.addEventListener(‘click’, () => {
+const isOpen = navMenu.classList.toggle(‘open’);
+mobileToggle.classList.toggle(‘open’, isOpen);
+mobileToggle.setAttribute(‘aria-expanded’, isOpen);
+mobileToggle.setAttribute(‘aria-label’, isOpen ? ‘Fechar menu’ : ‘Abrir menu’);
+});
+}
+
+// Active nav link on scroll
+const sections = document.querySelectorAll(‘section[id]’);
+const navLinks = document.querySelectorAll(’.nav-link[href^=”#”]’);
+
+const sectionObserver = new IntersectionObserver(entries => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+navLinks.forEach(link => {
+link.classList.toggle(‘active’, link.getAttribute(‘href’) === ‘#’ + entry.target.id);
+});
+}
+});
+}, { rootMargin: ‘-30% 0px -60% 0px’ });
+
+sections.forEach(sec => sectionObserver.observe(sec));
+
+// Close mobile menu on link click
+navLinks.forEach(link => {
+link.addEventListener(‘click’, () => {
+navMenu.classList.remove(‘open’);
+mobileToggle.classList.remove(‘open’);
+mobileToggle.setAttribute(‘aria-expanded’, ‘false’);
+});
+});
+
+// Dropdown keyboard accessibility
+document.querySelectorAll(’.nav-dropdown-btn’).forEach(btn => {
+btn.addEventListener(‘click’, (e) => {
+e.stopPropagation();
+const isExpanded = btn.getAttribute(‘aria-expanded’) === ‘true’;
+btn.setAttribute(‘aria-expanded’, !isExpanded);
+});
+});
+
+document.addEventListener(‘click’, () => {
+document.querySelectorAll(’.nav-dropdown-btn’).forEach(btn => btn.setAttribute(‘aria-expanded’, ‘false’));
+});
+
+// ── Typing Text Animation ───────────────────────────────────────
+const typingEl = document.getElementById(‘typing-text’);
+const phrases = [
+‘Programação’,
+‘Japonês’,
+‘Matemática’,
+‘Cultura Japonesa’,
+‘Idiomas’,
+‘Lógica de Programação’,
+‘Inteligência Artificial’,
+];
+
+let phraseIdx = 0;
+let charIdx = 0;
+let isDeleting = false;
+let typingTimer = null;
+
+function typeWriter() {
+if (!typingEl) return;
+const current = phrases[phraseIdx];
+
+if (isDeleting) {
+charIdx–;
+typingEl.textContent = current.slice(0, charIdx);
+typingTimer = setTimeout(typeWriter, 60);
+} else {
+charIdx++;
+typingEl.textContent = current.slice(0, charIdx);
+typingTimer = setTimeout(typeWriter, charIdx < current.length ? 90 : 1800);
+}
+
+if (!isDeleting && charIdx === current.length) {
+isDeleting = true;
+clearTimeout(typingTimer);
+typingTimer = setTimeout(typeWriter, 1800);
+return;
+}
+
+if (isDeleting && charIdx === 0) {
+isDeleting = false;
+phraseIdx = (phraseIdx + 1) % phrases.length;
+}
+}
+
+// Start typing after fonts load
+document.fonts.ready.then(() => {
+setTimeout(typeWriter, 600);
+});
+
+// ── Scroll Reveal ───────────────────────────────────────────────
+const revealObserver = new IntersectionObserver(entries => {
+entries.forEach((entry, i) => {
+if (entry.isIntersecting) {
+setTimeout(() => entry.target.classList.add(‘visible’), i * 60);
+revealObserver.unobserve(entry.target);
+}
+});
+}, { threshold: 0.1 });
+
+document.querySelectorAll(’.feature-card, .value-card, .about-grid > *, .faq-item’).forEach(el => {
+el.classList.add(‘reveal’);
+revealObserver.observe(el);
+});
+
+// ── FAQ Accordion ───────────────────────────────────────────────
+document.querySelectorAll(’.faq-question’).forEach(btn => {
+btn.addEventListener(‘click’, () => {
+const isExpanded = btn.getAttribute(‘aria-expanded’) === ‘true’;
+const answerId = btn.getAttribute(‘aria-controls’);
+const answer = document.getElementById(answerId);
+
+```
+// Close all
+document.querySelectorAll('.faq-question').forEach(other => {
+  other.setAttribute('aria-expanded', 'false');
+  const id = other.getAttribute('aria-controls');
+  const el = document.getElementById(id);
+  if (el) el.hidden = true;
+});
+
+// Toggle current
+if (!isExpanded) {
+  btn.setAttribute('aria-expanded', 'true');
+  if (answer) answer.hidden = false;
+}
+```
+
+});
+});
+
+// ── Smooth scroll for anchor links ─────────────────────────────
+document.querySelectorAll(‘a[href^=”#”]’).forEach(anchor => {
+anchor.addEventListener(‘click’, function(e) {
+const target = document.querySelector(this.getAttribute(‘href’));
+if (target) {
+e.preventDefault();
+const offset = parseInt(getComputedStyle(document.documentElement).getPropertyValue(’–navbar-h’)) || 70;
+const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+window.scrollTo({ top, behavior: ‘smooth’ });
+}
+});
+});
+
+// ── Animated Counter ────────────────────────────────────────────
+function animateCounter(el, end, suffix = ‘’) {
+let start = 0;
+const duration = 1600;
+let startTime = null;
+
+function step(ts) {
+if (!startTime) startTime = ts;
+const progress = Math.min((ts - startTime) / duration, 1);
+const eased = 1 - Math.pow(1 - progress, 3);
+const val = Math.floor(eased * end);
+el.textContent = (val >= 1000 ? Math.floor(val / 1000) + ‘K’ : val) + suffix;
+if (progress < 1) requestAnimationFrame(step);
+else el.textContent = (end >= 1000 ? Math.floor(end / 1000) + ‘K’ : end) + suffix;
+}
+requestAnimationFrame(step);
+}
+
+const statsObs = new IntersectionObserver(entries => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+const nums = entry.target.querySelectorAll(’.stat-number’);
+const data = [10000, 5000, 3000];
+nums.forEach((el, i) => animateCounter(el, data[i] || 0, ‘+’));
+statsObs.disconnect();
+}
+});
 }, { threshold: 0.5 });
 
-document.querySelectorAll('.stat-item').forEach(stat => {
-  statsObserver.observe(stat);
-});
+const heroStats = document.querySelector(’.hero-stats’);
+if (heroStats) statsObs.observe(heroStats);
 
-// GRADIENT CURSOR EFFECT (Desktop only)
-if (window.innerWidth > 768) {
-  const cursor = document.createElement('div');
-  cursor.style.cssText = `
-    position: fixed;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(99, 102, 241, 0.4) 0%, transparent 70%);
-    pointer-events: none;
-    z-index: 9999;
-    transition: transform 0.1s ease;
-    mix-blend-mode: screen;
-  `;
-  document.body.appendChild(cursor);
+// ── Particles (canvas) ──────────────────────────────────────────
+(function initParticles() {
+const container = document.getElementById(‘particles-bg’);
+if (!container) return;
 
-  document.addEventListener('mousemove', (e) => {
-    cursor.style.left = e.clientX - 10 + 'px';
-    cursor.style.top = e.clientY - 10 + 'px';
-  });
+const canvas = document.createElement(‘canvas’);
+canvas.style.cssText = ‘position:absolute;inset:0;width:100%;height:100%;opacity:0.35’;
+container.appendChild(canvas);
+const ctx = canvas.getContext(‘2d’);
 
-  document.querySelectorAll('a, button').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      cursor.style.transform = 'scale(2)';
-    });
-    el.addEventListener('mouseleave', () => {
-      cursor.style.transform = 'scale(1)';
-    });
-  });
+let W, H, particles = [];
+const N = 55;
+
+function resize() {
+W = canvas.width = window.innerWidth;
+H = canvas.height = window.innerHeight;
 }
 
-// PERFORMANCE OPTIMIZATION: Lazy load images
-document.addEventListener('DOMContentLoaded', () => {
-  const images = document.querySelectorAll('img[data-src]');
-  
-  const imageObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const img = entry.target;
-        img.src = img.dataset.src;
-        img.removeAttribute('data-src');
-        imageObserver.unobserve(img);
-      }
-    });
-  });
-
-  images.forEach(img => imageObserver.observe(img));
-});
-
-// KEYBOARD NAVIGATION
-document.addEventListener('keydown', (e) => {
-  // Press '/' to focus on search (if implemented)
-  if (e.key === '/' && !e.ctrlKey && !e.metaKey) {
-    e.preventDefault();
-    // Focus search input if exists
-  }
-
-  // Press 'Escape' to close mobile menu
-  if (e.key === 'Escape') {
-    if (navMenu.classList.contains('active')) {
-      navMenu.classList.remove('active');
-      mobileToggle.classList.remove('active');
-    }
-  }
-});
-
-// SCROLL TO TOP BUTTON (appears after scrolling down)
-const scrollTopBtn = document.createElement('button');
-scrollTopBtn.innerHTML = `
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-    <path d="M18 15l-6-6-6 6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-  </svg>
-`;
-scrollTopBtn.style.cssText = `
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-  border: none;
-  color: white;
-  cursor: pointer;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 16px rgba(99, 102, 241, 0.4);
-  transition: all 0.3s ease;
-  z-index: 999;
-`;
-
-document.body.appendChild(scrollTopBtn);
-
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 500) {
-    scrollTopBtn.style.display = 'flex';
-  } else {
-    scrollTopBtn.style.display = 'none';
-  }
-});
-
-scrollTopBtn.addEventListener('click', () => {
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth'
-  });
-});
-
-scrollTopBtn.addEventListener('mouseenter', () => {
-  scrollTopBtn.style.transform = 'translateY(-4px)';
-  scrollTopBtn.style.boxShadow = '0 6px 24px rgba(99, 102, 241, 0.5)';
-});
-
-scrollTopBtn.addEventListener('mouseleave', () => {
-  scrollTopBtn.style.transform = 'translateY(0)';
-  scrollTopBtn.style.boxShadow = '0 4px 16px rgba(99, 102, 241, 0.4)';
-});
-
-// CONSOLE EASTER EGG
-console.log(
-  '%cClaudinei IA 🤖',
-  'color: #6366f1; font-size: 24px; font-weight: bold; text-shadow: 2px 2px 4px rgba(99, 102, 241, 0.3);'
-);
-console.log(
-  '%cDesenvolvido pela AmplaAI Platforms',
-  'color: #8b5cf6; font-size: 14px;'
-);
-console.log(
-  '%cCurioso? Estamos contratando! 🚀',
-  'color: #ec4899; font-size: 12px;'
-);
-
-// PERFORMANCE MONITORING
-if (window.performance) {
-  window.addEventListener('load', () => {
-    const perfData = window.performance.timing;
-    const pageLoadTime = perfData.loadEventEnd - perfData.navigationStart;
-    console.log(`⚡ Página carregada em ${pageLoadTime}ms`);
-  });
+function Particle() {
+this.x = Math.random() * W;
+this.y = Math.random() * H;
+this.r = Math.random() * 1.5 + 0.4;
+this.vx = (Math.random() - 0.5) * 0.3;
+this.vy = (Math.random() - 0.5) * 0.3;
+this.alpha = Math.random() * 0.6 + 0.2;
+this.color = Math.random() > 0.5 ? ‘108,60,225’ : ‘168,85,247’;
 }
+
+function init() {
+resize();
+particles = Array.from({ length: N }, () => new Particle());
+}
+
+function draw() {
+ctx.clearRect(0, 0, W, H);
+particles.forEach(p => {
+p.x += p.vx; p.y += p.vy;
+if (p.x < 0 || p.x > W) p.vx *= -1;
+if (p.y < 0 || p.y > H) p.vy *= -1;
+ctx.beginPath();
+ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+ctx.fillStyle = `rgba(${p.color},${p.alpha})`;
+ctx.fill();
+});
+requestAnimationFrame(draw);
+}
+
+window.addEventListener(‘resize’, resize, { passive: true });
+init();
+draw();
+})();
+
+// ── Keyboard trap for modals ────────────────────────────────────
+document.addEventListener(‘keydown’, e => {
+if (e.key === ‘Escape’) {
+window.closeCookieSettings && window.closeCookieSettings();
+}
+});
+
+// ── 404 redirect guard (for SPA-like navigation) ────────────────
+// If user navigates to unknown pages, handled by 404.html
