@@ -161,11 +161,11 @@ Allow: /assets/
 Allow: /static/
 
 # Sitemaps
-Sitemap: https://claudinei.ia.br/sitemap.xml
-Sitemap: https://claudinei.ia.br/sitemap-images.xml
-Sitemap: https://claudinei.ia.br/sitemap-videos.xml
-Sitemap: https://claudinei.ia.br/sitemap-news.xml
-Sitemap: https://claudinei.ia.br/sitemap-mobile.xml
+Sitemap: https://cici.net.br/sitemap.xml
+Sitemap: https://cici.net.br/sitemap-images.xml
+Sitemap: https://cici.net.br/sitemap-videos.xml
+Sitemap: https://cici.net.br/sitemap-news.xml
+Sitemap: https://cici.net.br/sitemap-mobile.xml
 
 # Configurações específicas para mobile
 User-agent: Googlebot-Mobile
@@ -176,4 +176,4 @@ Crawl-delay: 0
 Crawl-delay: 1
 
 # Host preference
-Host: https://claudinei.ia.br
+Host: https://cici.net.br
