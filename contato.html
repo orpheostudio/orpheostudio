@@ -1,405 +1,764 @@
 <!DOCTYPE html>
-
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contato - Claudinei | AmplaAI</title>
-    <meta name="robots" content="index, follow">
-
-```
-<!-- Google AdSense -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXXX"
- crossorigin="anonymous"></script>
-
-<style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
-    body {
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-        line-height: 1.8;
-        color: #2c3e50;
-        background: #f8f9fa;
-    }
-
-    .header {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-        padding: 60px 20px;
-        text-align: center;
-        margin-bottom: 40px;
-    }
-
-    .header h1 {
-        font-size: 2.5em;
-        margin-bottom: 10px;
-    }
-
-    .back-link {
-        display: inline-block;
-        color: white;
-        text-decoration: none;
-        margin-top: 20px;
-        padding: 10px 20px;
-        border: 2px solid white;
-        border-radius: 25px;
-        transition: all 0.3s ease;
-    }
-
-    .back-link:hover {
-        background: white;
-        color: #667eea;
-    }
-
-    .container {
-        max-width: 1000px;
-        margin: 0 auto;
-        padding: 40px 20px;
-    }
-
-    .contact-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 30px;
-        margin-bottom: 40px;
-    }
-
-    .contact-card {
-        background: white;
-        padding: 40px;
-        border-radius: 20px;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-        text-align: center;
-        transition: transform 0.3s ease;
-    }
-
-    .contact-card:hover {
-        transform: translateY(-5px);
-    }
-
-    .contact-icon {
-        font-size: 3em;
-        margin-bottom: 20px;
-    }
-
-    .contact-card h3 {
-        font-size: 1.5em;
-        color: #2c3e50;
-        margin-bottom: 15px;
-    }
-
-    .contact-card p {
-        color: #555;
-        margin-bottom: 10px;
-    }
-
-    .contact-card a {
-        color: #667eea;
-        text-decoration: none;
-        font-weight: 600;
-        transition: color 0.3s ease;
-    }
-
-    .contact-card a:hover {
-        color: #764ba2;
-    }
-
-    .form-container {
-        background: white;
-        padding: 50px;
-        border-radius: 20px;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-        margin-bottom: 40px;
-    }
-
-    .form-container h2 {
-        color: #2c3e50;
-        font-size: 2em;
-        margin-bottom: 30px;
-        text-align: center;
-    }
-
-    .form-group {
-        margin-bottom: 25px;
-    }
-
-    .form-group label {
-        display: block;
-        font-weight: 600;
-        color: #2c3e50;
-        margin-bottom: 8px;
-    }
-
-    .form-group input,
-    .form-group textarea,
-    .form-group select {
-        width: 100%;
-        padding: 15px;
-        border: 2px solid #e0e0e0;
-        border-radius: 10px;
-        font-size: 1em;
-        font-family: inherit;
-        transition: border-color 0.3s ease;
-    }
-
-    .form-group input:focus,
-    .form-group textarea:focus,
-    .form-group select:focus {
-        outline: none;
-        border-color: #667eea;
-    }
-
-    .form-group textarea {
-        min-height: 150px;
-        resize: vertical;
-    }
-
-    .submit-btn {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-        padding: 18px 50px;
-        border: none;
-        border-radius: 50px;
-        font-size: 1.1em;
-        font-weight: 700;
-        cursor: pointer;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        width: 100%;
-    }
-
-    .submit-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
-    }
-
-    .info-box {
-        background: #f0f7ff;
-        border-left: 4px solid #667eea;
-        padding: 20px;
-        margin: 30px 0;
-        border-radius: 5px;
-    }
-
-    .faq-section {
-        background: white;
-        padding: 50px;
-        border-radius: 20px;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-    }
-
-    .faq-section h2 {
-        color: #2c3e50;
-        font-size: 2em;
-        margin-bottom: 30px;
-        text-align: center;
-    }
-
-    .faq-item {
-        margin-bottom: 25px;
-        padding-bottom: 25px;
-        border-bottom: 1px solid #e0e0e0;
-    }
-
-    .faq-item:last-child {
-        border-bottom: none;
-    }
-
-    .faq-question {
-        font-size: 1.2em;
-        font-weight: 700;
-        color: #2c3e50;
-        margin-bottom: 10px;
-    }
-
-    .faq-answer {
-        color: #555;
-        line-height: 1.8;
-    }
-
-    @media (max-width: 768px) {
-        .form-container {
-            padding: 30px 20px;
+    <title>Contato · Telos Technologies — Fale com a equipe de IA</title>
+    <meta name="description" content="Entre em contato com a Telos Technologies. Suporte técnico, vendas, parcerias e imprensa. Respondemos em até 24h úteis.">
+    <meta name="keywords" content="contato, Telos, suporte, vendas, parcerias, IA brasileira, Alexis">
+    <meta name="author" content="Telos Technologies">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        .header h1 {
-            font-size: 1.8em;
+        body {
+            background-color: #010B14;
+            color: #EFF3F8;
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            line-height: 1.5;
+            overflow-x: hidden;
         }
 
+        #bgCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.4;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 32px;
+            position: relative;
+            z-index: 2;
+        }
+
+        h1, h2, h3, .logo, .nav-links a, .btn {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            line-height: 1.2;
+            font-weight: 600;
+            background: linear-gradient(135deg, #FFFFFF 0%, #C0D4F0 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 500;
+            margin: 2rem 0 1rem;
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin: 1rem 0 0.5rem;
+            color: #E5B83C;
+        }
+
+        .accent {
+            color: #E5B83C;
+        }
+
+        .section-subtitle {
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            font-size: 0.7rem;
+            color: #E5B83C;
+            margin-bottom: 1rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(12px);
+            background: rgba(1, 11, 20, 0.7);
+            border-bottom: 1px solid rgba(229, 184, 60, 0.15);
+        }
+
+        .header-scrolled {
+            background: rgba(1, 11, 20, 0.92);
+            border-bottom-color: rgba(229, 184, 60, 0.3);
+            padding: 0.6rem 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            height: 42px;
+            width: auto;
+            border-radius: 10px;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: white;
+        }
+
+        .logo-text span {
+            color: #E5B83C;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #B0C4DE;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #E5B83C;
+        }
+
+        .btn-outline-light {
+            border: 1px solid rgba(229, 184, 60, 0.6);
+            background: transparent;
+            padding: 0.6rem 1.4rem;
+            border-radius: 40px;
+            color: #E5B83C;
+            font-weight: 500;
+            font-size: 0.8rem;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn-outline-light:hover {
+            background: rgba(229, 184, 60, 0.1);
+            border-color: #E5B83C;
+        }
+
+        .btn-primary {
+            background: #E5B83C;
+            color: #010B14;
+            padding: 0.7rem 1.8rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background: #f5c65c;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid rgba(229, 184, 60, 0.5);
+            color: #E5B83C;
+            padding: 0.7rem 1.8rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(229, 184, 60, 0.1);
+            border-color: #E5B83C;
+        }
+
+        /* Hero */
+        .contact-hero {
+            padding: 140px 0 60px;
+            text-align: center;
+        }
+
+        .contact-hero p {
+            font-size: 1.1rem;
+            color: #B0C4DE;
+            max-width: 700px;
+            margin: 1rem auto 0;
+        }
+
+        /* Grid de contato */
         .contact-grid {
-            grid-template-columns: 1fr;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin: 3rem 0;
         }
-    }
-</style>
-```
 
+        /* Cards de informação */
+        .info-card {
+            background: rgba(10, 25, 40, 0.5);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(229, 184, 60, 0.15);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .info-card:hover {
+            border-color: rgba(229, 184, 60, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .info-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .info-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-detail {
+            color: #B0C4DE;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .info-detail a {
+            color: #E5B83C;
+            text-decoration: none;
+        }
+
+        .info-detail a:hover {
+            text-decoration: underline;
+        }
+
+        /* Formulário */
+        .form-card {
+            background: rgba(10, 25, 40, 0.5);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(229, 184, 60, 0.15);
+            border-radius: 24px;
+            padding: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #E5B83C;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            background: rgba(1, 11, 20, 0.6);
+            border: 1px solid rgba(229, 184, 60, 0.2);
+            border-radius: 12px;
+            color: white;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #E5B83C;
+            background: rgba(1, 11, 20, 0.8);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-message {
+            margin-top: 1rem;
+            padding: 0.8rem;
+            border-radius: 12px;
+            display: none;
+        }
+
+        .form-message.success {
+            background: rgba(74, 222, 128, 0.15);
+            border: 1px solid rgba(74, 222, 128, 0.3);
+            color: #4ade80;
+            display: block;
+        }
+
+        .form-message.error {
+            background: rgba(248, 113, 113, 0.15);
+            border: 1px solid rgba(248, 113, 113, 0.3);
+            color: #f87171;
+            display: block;
+        }
+
+        /* FAQ rápida */
+        .faq-quick {
+            margin: 3rem 0;
+        }
+
+        .faq-item {
+            background: rgba(10, 25, 40, 0.3);
+            border: 1px solid rgba(229, 184, 60, 0.1);
+            border-radius: 16px;
+            padding: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .faq-question {
+            font-weight: 600;
+            color: #E5B83C;
+            margin-bottom: 0.5rem;
+        }
+
+        .faq-answer {
+            color: #B0C4DE;
+            font-size: 0.85rem;
+        }
+
+        /* Mapa */
+        .map-container {
+            margin: 2rem 0;
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid rgba(229, 184, 60, 0.2);
+        }
+
+        .map-placeholder {
+            background: linear-gradient(135deg, #1B3A5C, #0f2239);
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 1rem;
+            text-align: center;
+        }
+
+        footer {
+            padding: 3rem 0;
+            border-top: 1px solid rgba(229, 184, 60, 0.15);
+            margin-top: 3rem;
+            font-size: 0.8rem;
+            color: #8ba0b0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            display: block;
+            color: #8ba0b0;
+            text-decoration: none;
+            margin-bottom: 0.6rem;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: #E5B83C;
+        }
+
+        @media (max-width: 900px) {
+            .container {
+                padding: 0 24px;
+            }
+            .nav-links {
+                display: none;
+            }
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 </head>
 <body>
-    <div class="header">
-        <h1>Entre em Contato</h1>
-        <p>Estamos aqui para ajudar você</p>
-        <a href="/" class="back-link">← Voltar ao Site</a>
-    </div>
+    <canvas id="bgCanvas"></canvas>
 
-```
-<div class="container">
-    <!-- Contact Cards -->
-    <div class="contact-grid">
-        <div class="contact-card">
-            <div class="contact-icon">📧</div>
-            <h3>E-mail</h3>
-            <p>Envie-nos uma mensagem</p>
-            <a href="mailto:ampla.ai@outlook.com">ampla.ai@outlook.com</a>
-            <p style="margin-top: 15px; font-size: 0.9em; color: #7f8c8d;">Resposta em até 48 horas</p>
-        </div>
-
-        <div class="contact-card">
-            <div class="contact-icon">💬</div>
-            <h3>Suporte Técnico</h3>
-            <p>Ajuda com problemas técnicos</p>
-            <a href="mailto:ampla.ai@outlook.com?subject=Suporte Técnico">Abrir Ticket</a>
-            <p style="margin-top: 15px; font-size: 0.9em; color: #7f8c8d;">Suporte prioritário</p>
-        </div>
-
-        <div class="contact-card">
-            <div class="contact-icon">📚</div>
-            <h3>Documentação</h3>
-            <p>Acesse nossa base de conhecimento</p>
-            <a href="https://docs.claudinei.ia.br">Ver Documentação</a>
-            <p style="margin-top: 15px; font-size: 0.9em; color: #7f8c8d;">Guias e tutoriais</p>
-        </div>
-    </div>
-
-    <!-- Contact Form -->
-    <div class="form-container">
-        <h2>Formulário de Contato</h2>
-        <form id="contactForm" action="#" method="POST">
-            <div class="form-group">
-                <label for="name">Nome Completo *</label>
-                <input type="text" id="name" name="name" required placeholder="Seu nome">
-            </div>
-
-            <div class="form-group">
-                <label for="email">E-mail *</label>
-                <input type="email" id="email" name="email" required placeholder="seu@email.com">
-            </div>
-
-            <div class="form-group">
-                <label for="subject">Assunto *</label>
-                <select id="subject" name="subject" required>
-                    <option value="">Selecione um assunto</option>
-                    <option value="suporte">Suporte Técnico</option>
-                    <option value="vendas">Vendas e Parcerias</option>
-                    <option value="feedback">Feedback e Sugestões</option>
-                    <option value="bug">Reportar Bug</option>
-                    <option value="geral">Dúvida Geral</option>
-                    <option value="outro">Outro</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="message">Mensagem *</label>
-                <textarea id="message" name="message" required placeholder="Descreva sua mensagem em detalhes..."></textarea>
-            </div>
-
-            <div class="info-box">
-                <strong>📋 Dica:</strong> Para nos ajudar a responder mais rapidamente, inclua o máximo de detalhes possível sobre sua questão ou problema.
-            </div>
-
-            <button type="submit" class="submit-btn">Enviar Mensagem</button>
-        </form>
-    </div>
-
-    <!-- FAQ Section -->
-    <div class="faq-section">
-        <h2>Perguntas Frequentes</h2>
-
-        <div class="faq-item">
-            <div class="faq-question">⏱️ Qual é o tempo de resposta?</div>
-            <div class="faq-answer">
-                Geralmente respondemos dentro de 24-48 horas em dias úteis. Para questões urgentes de suporte técnico, priorizamos o atendimento e tentamos responder em até 8 horas.
+    <header id="mainHeader">
+        <div class="container nav-container">
+            <a href="/" class="logo">
+                <img src="https://i.imgur.com/iQAVM5P.jpeg" alt="Telos Technologies Logo" class="logo-img" onerror="this.src='https://placehold.co/48x48/1B3A5C/E5B83C?text=T'">
+                <span class="logo-text">TELOS<span>·</span></span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="/">Início</a></li>
+                <li><a href="sobre.html">Sobre</a></li>
+                <li><a href="docs.html">Docs</a></li>
+                <li><a href="https://blog.cici.net.br">Blog</a></li>
+                <li><a href="precos.html">Preços</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contato.html" class="active">Contato</a></li>
+            </ul>
+            <div>
+                <a href="https://chat.cici.net.br" class="btn-outline-light" style="margin-right: 12px;">Alexis</a>
+                <a href="precos.html" class="btn-primary">Começar</a>
             </div>
         </div>
+    </header>
 
-        <div class="faq-item">
-            <div class="faq-question">💼 Como posso fazer parcerias com a AmplaAI?</div>
-            <div class="faq-answer">
-                Envie um e-mail para ampla.ai@outlook.com com o assunto "Parcerias" detalhando sua proposta. Nossa equipe comercial entrará em contato para discutir oportunidades de colaboração.
-            </div>
+    <main>
+        <div class="container contact-hero reveal">
+            <div class="section-subtitle">FALE CONOSCO</div>
+            <h1>Vamos <span class="accent">conversar</span> sobre IA</h1>
+            <p>Dúvidas técnicas, parcerias, imprensa ou apenas um bate-papo sobre o futuro da inteligência artificial no Brasil. Estamos aqui para ajudar.</p>
         </div>
 
-        <div class="faq-item">
-            <div class="faq-question">🐛 Como reporto um bug ou problema técnico?</div>
-            <div class="faq-answer">
-                Use o formulário acima selecionando "Reportar Bug" como assunto. Inclua o máximo de detalhes possível: o que estava fazendo, o que esperava que acontecesse, e o que realmente aconteceu. Screenshots são muito úteis!
+        <div class="container">
+            <div class="contact-grid">
+                <!-- Informações de contato -->
+                <div class="reveal">
+                    <div class="info-card">
+                        <div class="info-icon">📧</div>
+                        <div class="info-title">E-mail</div>
+                        <div class="info-detail">
+                            <a href="mailto:ampla.ai@outlook.com">ampla.ai@outlook.com</a><br>
+                            <span style="font-size: 0.75rem; color: #8ba0b0;">Resposta em até 24h úteis</span>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="info-icon">💬</div>
+                        <div class="info-title">Suporte Técnico</div>
+                        <div class="info-detail">
+                            <a href="mailto:suporte@telos.tec.br">suporte@telos.tec.br</a><br>
+                            <span style="font-size: 0.75rem; color: #8ba0b0;">Disponível seg-sex, 9h às 18h</span>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="info-icon">🤝</div>
+                        <div class="info-title">Parcerias e Imprensa</div>
+                        <div class="info-detail">
+                            <a href="mailto:parcerias@telos.tec.br">parcerias@telos.tec.br</a><br>
+                            <span style="font-size: 0.75rem; color: #8ba0b0;">Propostas comerciais e entrevistas</span>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="info-icon">📍</div>
+                        <div class="info-title">Localização</div>
+                        <div class="info-detail">
+                            Parque Tecnológico de São José dos Campos<br>
+                            Estrada Doutor Altino Bondesan, 500<br>
+                            São José dos Campos - SP, 12247-016<br>
+                            <span style="font-size: 0.75rem; color: #8ba0b0;">Brasil</span>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="info-icon">🌐</div>
+                        <div class="info-title">Redes e Comunidade</div>
+                        <div class="info-detail">
+                            <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem;">
+                                <a href="#" style="color: #E5B83C;">LinkedIn</a> ·
+                                <a href="#" style="color: #E5B83C;">GitHub</a> ·
+                                <a href="#" style="color: #E5B83C;">X (Twitter)</a> ·
+                                <a href="#" style="color: #E5B83C;">Discord</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Formulário de contato -->
+                <div class="reveal">
+                    <div class="form-card">
+                        <h3 style="margin-top: 0; margin-bottom: 1rem;">Envie uma mensagem</h3>
+                        <form id="contactForm" action="mailto:ampla.ai@outlook.com" method="post" enctype="text/plain">
+                            <div class="form-group">
+                                <label for="name">Nome completo *</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">E-mail *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Assunto *</label>
+                                <select id="subject" name="subject" required>
+                                    <option value="">Selecione...</option>
+                                    <option value="Dúvida sobre o Alexis">Dúvida sobre o Alexis</option>
+                                    <option value="Suporte técnico">Suporte técnico</option>
+                                    <option value="Proposta comercial">Proposta comercial</option>
+                                    <option value="Parceria">Parceria</option>
+                                    <option value="Imprensa">Imprensa</option>
+                                    <option value="Trabalhe conosco">Trabalhe conosco</option>
+                                    <option value="Outros">Outros</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Mensagem *</label>
+                                <textarea id="message" name="message" required placeholder="Conte-nos como podemos ajudar..."></textarea>
+                            </div>
+                            <div id="formStatus" class="form-message"></div>
+                            <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                                <button type="submit" class="btn-primary">Enviar mensagem →</button>
+                                <button type="reset" class="btn-secondary">Limpar</button>
+                            </div>
+                            <p style="font-size: 0.7rem; color: #8ba0b0; margin-top: 1rem;">
+                                Ao enviar, você concorda com nossa <a href="privacidade.html" style="color: #E5B83C;">Política de Privacidade</a>.
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Rápida -->
+            <div class="faq-quick reveal">
+                <div class="section-subtitle">DÚVIDAS FREQUENTES</div>
+                <h2>Respostas <span class="accent">rápidas</span></h2>
+                <div class="faq-item">
+                    <div class="faq-question">Como posso testar o Alexis gratuitamente?</div>
+                    <div class="faq-answer">Acesse <a href="https://chat.cici.net.br" style="color:#E5B83C;">chat.cici.net.br</a> e crie uma conta. O plano gratuito oferece 1.000 requisições mensais, sem necessidade de cartão de crédito.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Qual o prazo de resposta para suporte técnico?</div>
+                    <div class="faq-answer">Nosso time de suporte responde em até 24 horas úteis para clientes dos planos Gratuito e Profissional. Clientes Enterprise têm SLA de 4 horas.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Vocês oferecem treinamento ou consultoria?</div>
+                    <div class="faq-answer">Sim! Oferecemos workshops, consultoria para implementação de IA e programas de capacitação para empresas. Entre em contato pelo e-mail <strong>ampla.ai@outlook.com</strong> com o assunto "Consultoria".</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Como posso reportar um bug ou sugerir melhoria?</div>
+                    <div class="faq-answer">Utilize o formulário acima com o assunto "Feedback" ou envie um e-mail para <strong>ampla.ai@outlook.com</strong>. Adoramos ouvir nossa comunidade!</div>
+                </div>
+            </div>
+
+            <!-- Mapa -->
+            <div class="reveal">
+                <div class="section-subtitle">NOSSO ESPAÇO</div>
+                <h2>Onde <span class="accent">tudo começou</span></h2>
+                <div class="map-container">
+                    <div class="map-placeholder">
+                        <span style="font-size: 3rem;">📍</span>
+                        <p style="max-width: 300px;">Parque Tecnológico de São José dos Campos<br>SP - Brasil</p>
+                        <span style="font-size: 0.7rem; color: #8ba0b0;">Google Maps • Coordenadas: -23.2185, -45.8746</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Horário de atendimento -->
+            <div class="reveal" style="text-align: center; margin: 3rem 0; padding: 2rem; background: rgba(10, 25, 40, 0.3); border-radius: 24px;">
+                <span style="font-size: 2rem;">🕒</span>
+                <h3 style="margin: 0.5rem 0;">Horário de atendimento</h3>
+                <p style="color: #B0C4DE;">Segunda a sexta, 9h às 18h (horário de Brasília)</p>
+                <p style="font-size: 0.8rem; color: #8ba0b0;">E-mails respondidos em até 24h úteis. Emergências técnicas: <a href="mailto:suporte@telos.tec.br" style="color:#E5B83C;">suporte@telos.tec.br</a></p>
             </div>
         </div>
+    </main>
 
-        <div class="faq-item">
-            <div class="faq-question">💡 Posso sugerir novas funcionalidades?</div>
-            <div class="faq-answer">
-                Sim! Adoramos receber feedback dos nossos usuários. Use o formulário selecionando "Feedback e Sugestões" e descreva sua ideia em detalhes. Avaliamos todas as sugestões para futuras atualizações.
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="logo-text" style="margin-bottom: 1rem;">TELOS<span style="color:#E5B83C;">·</span></div>
+                    <p style="font-size: 0.75rem;">Inteligência artificial com identidade brasileira. Inovação, ética e performance.</p>
+                </div>
+                <div class="footer-links">
+                    <strong>Produto</strong>
+                    <a href="https://chat.cici.net.br">Alexis AI</a>
+                    <a href="docs.html">Documentação API</a>
+                    <a href="precos.html">Preços</a>
+                </div>
+                <div class="footer-links">
+                    <strong>Legal</strong>
+                    <a href="termos.html">Termos de Uso</a>
+                    <a href="privacidade.html">Política de Privacidade</a>
+                    <a href="faq.html">FAQ</a>
+                </div>
+                <div class="footer-links">
+                    <strong>Comunidade</strong>
+                    <a href="https://blog.cici.net.br">Blog</a>
+                    <a href="sobre.html">Sobre</a>
+                    <a href="contato.html">Contato</a>
+                </div>
+            </div>
+            <hr style="margin: 2rem 0 1rem; border-color: rgba(229,184,60,0.2);">
+            <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+                <span>© 2025 Telos Technologies — Tellos Tecnologia LTDA | CNPJ: 55.823.124/0001-70</span>
+                <span>📧 <a href="mailto:ampla.ai@outlook.com" style="color:#E5B83C;">ampla.ai@outlook.com</a></span>
             </div>
         </div>
+    </footer>
 
-        <div class="faq-item">
-            <div class="faq-question">🔒 Como são tratadas as informações que envio?</div>
-            <div class="faq-answer">
-                Todas as informações enviadas são tratadas com confidencialidade e de acordo com nossa Política de Privacidade. Usamos seus dados apenas para responder à sua solicitação e melhorar nossos serviços.
-            </div>
-        </div>
+    <script>
+        // Canvas particles
+        const canvas = document.getElementById('bgCanvas');
+        const ctx = canvas.getContext('2d');
+        let width, height, particles = [];
 
-        <div class="faq-item">
-            <div class="faq-question">📱 Vocês têm outros canais de suporte?</div>
-            <div class="faq-answer">
-                Atualmente, nosso principal canal de suporte é o e-mail. Estamos trabalhando para adicionar novos canais de atendimento em breve, incluindo chat ao vivo e suporte via WhatsApp.
-            </div>
-        </div>
+        function resizeCanvas() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            initParticles();
+        }
 
-        <div class="faq-item">
-            <div class="faq-question">🌍 Vocês atendem em outros idiomas?</div>
-            <div class="faq-answer">
-                No momento, oferecemos suporte principalmente em português brasileiro. Para solicitações em outros idiomas, faremos o possível para atendê-lo, mas o tempo de resposta pode ser maior.
-            </div>
-        </div>
+        function initParticles() {
+            particles = [];
+            const count = Math.min(100, Math.floor(width * height / 12000));
+            for (let i = 0; i < count; i++) {
+                particles.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    radius: Math.random() * 1.2 + 0.4,
+                    vx: (Math.random() - 0.5) * 0.15,
+                    vy: (Math.random() - 0.5) * 0.1,
+                    alpha: Math.random() * 0.4 + 0.2
+                });
+            }
+        }
 
-        <div class="faq-item">
-            <div class="faq-question">📞 Posso ligar para obter suporte?</div>
-            <div class="faq-answer">
-                Atualmente não oferecemos suporte telefônico. Nossa equipe atende exclusivamente por e-mail, o que nos permite documentar melhor as solicitações e fornecer respostas mais detalhadas.
-            </div>
-        </div>
-    </div>
+        function draw() {
+            ctx.clearRect(0, 0, width, height);
+            for (let p of particles) {
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(229, 184, 60, ${p.alpha * 0.5})`;
+                ctx.fill();
+                p.x += p.vx;
+                p.y += p.vy;
+                if (p.x < 0) p.x = width;
+                if (p.x > width) p.x = 0;
+                if (p.y < 0) p.y = height;
+                if (p.y > height) p.y = 0;
+            }
+            requestAnimationFrame(draw);
+        }
 
-    <div class="info-box" style="margin-top: 40px; text-align: center;">
-        <strong>🚀 Experimente o Claudinei</strong><br>
-        Não encontrou o que procurava? <a href="claudinei.ia.br" style="color: #667eea; font-weight: 600;">Experimente conversar diretamente com o Claudinei</a> para obter respostas instantâneas!
-    </div>
-</div>
+        window.addEventListener('resize', () => resizeCanvas());
+        resizeCanvas();
+        draw();
 
-<script>
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const subject = document.getElementById('subject').value;
-        const message = document.getElementById('message').value;
-        
-        // Criar link mailto com os dados do formulário
-        const mailtoLink = `mailto:ampla.ai@outlook.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Nome: ${name}\nEmail: ${email}\n\nMensagem:\n${message}`)}`;
-        
-        // Abrir cliente de email
-        window.location.href = mailtoLink;
-        
-        // Feedback visual
-        alert('Seu cliente de e-mail será aberto. Se não abrir automaticamente, envie um e-mail para ampla.ai@outlook.com');
-    });
-</script>
-```
+        // Header scroll
+        const header = document.getElementById('mainHeader');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 40) header.classList.add('header-scrolled');
+            else header.classList.remove('header-scrolled');
+        });
 
+        // Reveal
+        const reveals = document.querySelectorAll('.reveal');
+        const obs = new IntersectionObserver(entries => {
+            entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.1 });
+        reveals.forEach(el => obs.observe(el));
+
+        // Formulário com fallback para mailto
+        const form = document.getElementById('contactForm');
+        const statusDiv = document.getElementById('formStatus');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value.trim();
+
+            if (!name || !email || !subject || !message) {
+                statusDiv.className = 'form-message error';
+                statusDiv.textContent = 'Por favor, preencha todos os campos obrigatórios.';
+                return;
+            }
+
+            if (!email.includes('@') || !email.includes('.')) {
+                statusDiv.className = 'form-message error';
+                statusDiv.textContent = 'Por favor, insira um e-mail válido.';
+                return;
+            }
+
+            // Construir o corpo do e-mail
+            const body = `Nome: ${name}%0D%0A`;
+            body += `E-mail: ${email}%0D%0A`;
+            body += `Assunto: ${subject}%0D%0A`;
+            body += `Mensagem: ${message}%0D%0A`;
+            body += `%0D%0A---%0D%0A`;
+            body += `Enviado via formulário de contato - Telos Technologies`;
+
+            // Abrir cliente de e-mail
+            window.location.href = `mailto:ampla.ai@outlook.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+
+            statusDiv.className = 'form-message success';
+            statusDiv.textContent = 'Abrindo seu cliente de e-mail... Após o envio, entraremos em contato em breve!';
+            
+            // Limpar formulário após sucesso (opcional)
+            setTimeout(() => {
+                form.reset();
+                setTimeout(() => {
+                    statusDiv.style.display = 'none';
+                    statusDiv.className = 'form-message';
+                }, 5000);
+            }, 1000);
+        });
+    </script>
 </body>
 </html>
