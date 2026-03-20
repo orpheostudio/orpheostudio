@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ · Alexis — IA da Telos Technologies</title>
+    <meta name="description" content="Perguntas frequentes sobre o Alexis, o assistente de IA da Telos. Dúvidas sobre uso, privacidade, planos e integração.">
+    <meta name="keywords" content="Alexis, IA, Telos, FAQ, perguntas frequentes, chatbot, inteligência artificial">
+    <meta name="author" content="Telos Technologies">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #010B14;
+            color: #EFF3F8;
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        #bgCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.4;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 32px;
+            position: relative;
+            z-index: 2;
+        }
+
+        h1, h2, h3, .logo, .nav-links a, .btn {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            line-height: 1.2;
+            font-weight: 600;
+            background: linear-gradient(135deg, #FFFFFF 0%, #C0D4F0 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: clamp(1.5rem, 4vw, 2.2rem);
+            font-weight: 500;
+            margin: 2rem 0 1rem;
+        }
+
+        .accent {
+            color: #E5B83C;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(12px);
+            background: rgba(1, 11, 20, 0.7);
+            border-bottom: 1px solid rgba(229, 184, 60, 0.15);
+        }
+
+        .header-scrolled {
+            background: rgba(1, 11, 20, 0.92);
+            border-bottom-color: rgba(229, 184, 60, 0.3);
+            padding: 0.6rem 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            height: 42px;
+            width: auto;
+            border-radius: 10px;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: white;
+        }
+
+        .logo-text span {
+            color: #E5B83C;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #B0C4DE;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #E5B83C;
+        }
+
+        .btn-outline-light {
+            border: 1px solid rgba(229, 184, 60, 0.6);
+            background: transparent;
+            padding: 0.6rem 1.4rem;
+            border-radius: 40px;
+            color: #E5B83C;
+            font-weight: 500;
+            font-size: 0.8rem;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn-outline-light:hover {
+            background: rgba(229, 184, 60, 0.1);
+            border-color: #E5B83C;
+        }
+
+        .btn-primary {
+            background: #E5B83C;
+            color: #010B14;
+            padding: 0.7rem 1.8rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            background: #f5c65c;
+            transform: translateY(-2px);
+        }
+
+        /* Hero FAQ */
+        .faq-hero {
+            padding: 140px 0 60px;
+            text-align: center;
+        }
+
+        .faq-hero p {
+            font-size: 1.1rem;
+            color: #B0C4DE;
+            max-width: 700px;
+            margin: 1rem auto 0;
+        }
+
+        /* Busca */
+        .search-box {
+            max-width: 600px;
+            margin: 2rem auto;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            background: rgba(10, 25, 40, 0.7);
+            border: 1px solid rgba(229, 184, 60, 0.3);
+            border-radius: 60px;
+            color: white;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            backdrop-filter: blur(4px);
+            transition: all 0.2s;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #E5B83C;
+            background: rgba(10, 25, 40, 0.9);
+        }
+
+        .search-box input::placeholder {
+            color: #8ba0b0;
+        }
+
+        /* Categorias */
+        .categories {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.8rem;
+            margin-bottom: 3rem;
+        }
+
+        .cat-btn {
+            background: transparent;
+            border: 1px solid rgba(229, 184, 60, 0.3);
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            color: #B0C4DE;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .cat-btn.active, .cat-btn:hover {
+            background: rgba(229, 184, 60, 0.15);
+            border-color: #E5B83C;
+            color: #E5B83C;
+        }
+
+        /* Acordeão FAQ */
+        .faq-section {
+            margin-bottom: 4rem;
+        }
+
+        .faq-category-title {
+            font-size: 1.6rem;
+            margin: 2rem 0 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid rgba(229, 184, 60, 0.3);
+            display: inline-block;
+        }
+
+        .faq-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .faq-item {
+            background: rgba(10, 25, 40, 0.4);
+            border-radius: 20px;
+            border: 1px solid rgba(229, 184, 60, 0.15);
+            overflow: hidden;
+            transition: all 0.2s;
+        }
+
+        .faq-question {
+            padding: 1.2rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: background 0.2s;
+        }
+
+        .faq-question:hover {
+            background: rgba(229, 184, 60, 0.05);
+        }
+
+        .faq-question h3 {
+            font-size: 1rem;
+            font-weight: 500;
+            margin: 0;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .faq-icon {
+            color: #E5B83C;
+            font-size: 1.2rem;
+            transition: transform 0.3s;
+        }
+
+        .faq-item.open .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            padding: 0 1.5rem;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            color: #B0C4DE;
+            border-top: 0px solid transparent;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .faq-item.open .faq-answer {
+            max-height: 400px;
+            padding: 0 1.5rem 1.2rem 1.5rem;
+            border-top-color: rgba(229, 184, 60, 0.2);
+        }
+
+        .faq-answer a {
+            color: #E5B83C;
+            text-decoration: none;
+        }
+
+        .faq-answer a:hover {
+            text-decoration: underline;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 3rem;
+            color: #8ba0b0;
+        }
+
+        footer {
+            padding: 3rem 0;
+            border-top: 1px solid rgba(229, 184, 60, 0.15);
+            margin-top: 3rem;
+            font-size: 0.8rem;
+            color: #8ba0b0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            display: block;
+            color: #8ba0b0;
+            text-decoration: none;
+            margin-bottom: 0.6rem;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: #E5B83C;
+        }
+
+        @media (max-width: 900px) {
+            .container {
+                padding: 0 24px;
+            }
+            .nav-links {
+                display: none;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            .faq-question {
+                padding: 1rem;
+            }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <canvas id="bgCanvas"></canvas>
+
+    <header id="mainHeader">
+        <div class="container nav-container">
+            <a href="/" class="logo">
+                <img src="https://i.imgur.com/iQAVM5P.jpeg" alt="Telos Technologies Logo" class="logo-img" onerror="this.src='https://placehold.co/48x48/1B3A5C/E5B83C?text=T'">
+                <span class="logo-text">TELOS<span>·</span></span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="/">Início</a></li>
+                <li><a href="/#produto">Plataforma</a></li>
+                <li><a href="/#tecnologia">Tecnologia</a></li>
+                <li><a href="/#precos">Preços</a></li>
+                <li><a href="https://docs.cici.net.br">Docs</a></li>
+                <li><a href="https://blog.cici.net.br">Blog</a></li>
+                <li><a href="faq.html" class="active">FAQ</a></li>
+            </ul>
+            <div>
+                <a href="https://chat.cici.net.br" class="btn-outline-light" style="margin-right: 12px;">Alexis</a>
+                <a href="/#precos" class="btn-primary">Começar</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container faq-hero reveal">
+            <span class="accent" style="font-family: 'JetBrains Mono'; letter-spacing: 0.2em;">PERGUNTAS FREQUENTES</span>
+            <h1>Tudo o que você precisa saber sobre o <span class="accent">Alexis</span></h1>
+            <p>O assistente de IA da Telos foi projetado para responder dúvidas, automatizar tarefas e se integrar ao seu negócio. Encontre respostas rápidas abaixo.</p>
+        </div>
+
+        <div class="container reveal">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="🔍 Buscar perguntas... (ex: API, preço, LGPD)">
+            </div>
+            <div class="categories" id="categoryFilter">
+                <button class="cat-btn active" data-cat="all">Todas</button>
+                <button class="cat-btn" data-cat="geral">Geral</button>
+                <button class="cat-btn" data-cat="uso">Uso e recursos</button>
+                <button class="cat-btn" data-cat="privacidade">Privacidade e LGPD</button>
+                <button class="cat-btn" data-cat="tecnico">API e integração</button>
+                <button class="cat-btn" data-cat="planos">Planos e faturamento</button>
+            </div>
+        </div>
+
+        <div class="container" id="faqContainer">
+            <!-- As perguntas serão inseridas via JS para manter organização -->
+        </div>
+
+        <div class="container" style="text-align: center; margin: 2rem auto 4rem;">
+            <p>Ainda com dúvidas? Fale com a nossa equipe → <a href="mailto:ampla.ai@outlook.com" style="color: #E5B83C;">Entrar em contato</a></p>
+            <a href="https://chat.cici.net.br" class="btn-primary" style="margin-top: 1rem;">Conversar com o Alexis agora</a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="logo-text" style="margin-bottom: 1rem;">TELOS<span style="color:#E5B83C;">·</span></div>
+                    <p style="font-size: 0.75rem;">Inteligência artificial com identidade brasileira.</p>
+                </div>
+                <div class="footer-links">
+                    <strong>Produto</strong>
+                    <a href="https://chat.cici.net.br">Alexis AI</a>
+                    <a href="https://docs.cici.net.br">Documentação API</a>
+                    <a href="/#precos">Preços</a>
+                </div>
+                <div class="footer-links">
+                    <strong>Legal</strong>
+                    <a href="https://termos.cici.net.br">Termos de Uso</a>
+                    <a href="https://privacidade.cici.net.br">Política de Privacidade</a>
+                    <a href="faq.html">FAQ</a>
+                </div>
+                <div class="footer-links">
+                    <strong>Comunidade</strong>
+                    <a href="https://blog.cici.net.br">Blog</a>
+                    <a href="mailto:ampla.ai@outlook.com">Entrar em contato</a>
+                </div>
+            </div>
+            <hr style="margin: 2rem 0 1rem; border-color: rgba(229,184,60,0.2);">
+            <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+                <span>© 2025 Telos Technologies — Tellos Tecnologia LTDA</span>
+                <span>🇧🇷 100% infraestrutura nacional</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Canvas particles (igual ao site principal)
+        const canvas = document.getElementById('bgCanvas');
+        const ctx = canvas.getContext('2d');
+        let width, height, particles = [];
+
+        function resizeCanvas() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            initParticles();
+        }
+
+        function initParticles() {
+            particles = [];
+            const count = Math.min(100, Math.floor(width * height / 12000));
+            for (let i = 0; i < count; i++) {
+                particles.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    radius: Math.random() * 1.2 + 0.4,
+                    vx: (Math.random() - 0.5) * 0.15,
+                    vy: (Math.random() - 0.5) * 0.1,
+                    alpha: Math.random() * 0.4 + 0.2
+                });
+            }
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, width, height);
+            for (let p of particles) {
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(229, 184, 60, ${p.alpha * 0.5})`;
+                ctx.fill();
+                p.x += p.vx;
+                p.y += p.vy;
+                if (p.x < 0) p.x = width;
+                if (p.x > width) p.x = 0;
+                if (p.y < 0) p.y = height;
+                if (p.y > height) p.y = 0;
+            }
+            requestAnimationFrame(draw);
+        }
+
+        window.addEventListener('resize', () => resizeCanvas());
+        resizeCanvas();
+        draw();
+
+        // header scroll
+        const header = document.getElementById('mainHeader');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 40) header.classList.add('header-scrolled');
+            else header.classList.remove('header-scrolled');
+        });
+
+        // reveal on scroll
+        const reveals = document.querySelectorAll('.reveal');
+        const obs = new IntersectionObserver(entries => {
+            entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.1 });
+        reveals.forEach(el => obs.observe(el));
+
+        // ========== FAQ DATA ==========
+        const faqData = [
+            { cat: "geral", q: "O que é o Alexis e como ele se diferencia de outras IAs?", a: "Alexis é o assistente de IA da Telos, construído integralmente para o português brasileiro. Diferente de modelos estrangeiros traduzidos, ele entende regionalismos, contexto cultural e normas locais. Funciona via chat web, API e integrações nativas." },
+            { cat: "geral", q: "O Alexis é gratuito?", a: "Oferecemos um plano gratuito com 1.000 requisições mensais e modelo Standard. Para maior volume, recursos Pro e contexto expandido, há planos profissionais a partir de R$ 79/mês. Confira os detalhes na seção <a href='/#precos'>Preços</a>." },
+            { cat: "uso", q: "Como faço para começar a usar o Alexis?", a: "Basta acessar <a href='https://chat.cici.net.br'>chat.cici.net.br</a> e criar uma conta. Você pode testar diretamente no chat web ou gerar uma chave de API na área do desenvolvedor para integrar ao seu sistema." },
+            { cat: "uso", q: "Quais são os modelos disponíveis (Flash, Standard, Pro)?", a: "Flash: latência ultrarrápida (~180ms) para chatbots em tempo real. Standard: equilíbrio entre velocidade e capacidade. Pro: 128K tokens de contexto, ideal para análise de documentos longos e contratos." },
+            { cat: "uso", q: "O Alexis consegue processar documentos e arquivos?", a: "Sim, através da API você pode enviar arquivos (PDF, TXT, DOCX) para extração de texto e análise contextual. O modelo Pro suporta até 128K tokens, equivalente a cerca de 300 páginas." },
+            { cat: "privacidade", q: "Onde os dados são armazenados? A LGPD é respeitada?", a: "Toda a infraestrutura da Telos está hospedada em data centers localizados no Brasil. Seus dados nunca deixam o país. Seguimos rigorosamente a LGPD, com criptografia em trânsito e repouso, além de políticas claras de retenção." },
+            { cat: "privacidade", q: "Os meus dados são usados para treinar os modelos?", a: "Por padrão, não. Seus prompts e interações não são utilizados para aprimorar os modelos base, a menos que você autorize explicitamente em programas de melhoria. No plano Enterprise, você pode solicitar fine-tuning com seus dados em ambiente isolado." },
+            { cat: "tecnico", q: "A API do Alexis é compatível com a OpenAI?", a: "Sim, desenvolvemos uma camada de compatibilidade que permite migrar aplicações existentes com poucas alterações. Consulte a <a href='https://docs.cici.net.br'>documentação</a> para exemplos de migração." },
+            { cat: "tecnico", q: "Quais linguagens de programação são suportadas?", a: "Temos SDKs oficiais para Python e Node.js, além de exemplos em cURL, Java e Go. A API é RESTful e aceita chamadas de qualquer linguagem com suporte a HTTP." },
+            { cat: "tecnico", q: "Como funciona o streaming de respostas?", a: "Utilizamos Server-Sent Events (SSE) para enviar respostas token por token, proporcionando experiência fluida em tempo real. Exemplos de implementação estão disponíveis na documentação." },
+            { cat: "planos", q: "Qual a diferença entre os planos?", a: "Grátis: 1k req/mês, modelo Standard, 4K contexto. Profissional (R$79/mês): 50k req + pay-per-use, acesso a Flash/Standard/Pro, 128K contexto, suporte prioritário. Enterprise: modelo dedicado, fine-tuning, SLA personalizado." },
+            { cat: "planos", q: "Como funciona o faturamento? Aceitam cartão?", a: "Aceitamos cartões de crédito (Visa, Mastercard, Elo) e boleto para planos anuais. O faturamento é mensal com renovação automática. Planos Enterprise têm condições especiais com contrato." },
+            { cat: "geral", q: "Posso usar o Alexis para atendimento ao cliente no meu site?", a: "Sim! Muitos clientes utilizam nossa API para integrar um chatbot de suporte. Você pode personalizar o tom, a personalidade e até mesmo treinar o modelo com sua base de conhecimento." }
+        ];
+
+        function renderFAQ(filterCat = "all", searchTerm = "") {
+            const container = document.getElementById('faqContainer');
+            if (!container) return;
+            
+            let filtered = [...faqData];
+            if (filterCat !== "all") filtered = filtered.filter(item => item.cat === filterCat);
+            if (searchTerm.trim() !== "") {
+                const term = searchTerm.toLowerCase();
+                filtered = filtered.filter(item => 
+                    item.q.toLowerCase().includes(term) || 
+                    item.a.toLowerCase().includes(term) ||
+                    item.cat.includes(term)
+                );
+            }
+
+            if (filtered.length === 0) {
+                container.innerHTML = `<div class="no-results">Nenhuma pergunta encontrada para "${searchTerm || filterCat}". Tente outro termo ou veja todas as categorias.</div>`;
+                return;
+            }
+
+            // Agrupar por categoria para exibição mais clara
+            const grouped = {};
+            filtered.forEach(item => {
+                if (!grouped[item.cat]) grouped[item.cat] = [];
+                grouped[item.cat].push(item);
+            });
+
+            const categoryNames = {
+                geral: "Geral",
+                uso: "Uso e recursos",
+                privacidade: "Privacidade e LGPD",
+                tecnico: "API e integração",
+                planos: "Planos e faturamento"
+            };
+
+            let html = '';
+            for (const [cat, items] of Object.entries(grouped)) {
+                html += `<div class="faq-section" data-cat="${cat}">`;
+                html += `<h2 class="faq-category-title">${categoryNames[cat] || cat}</h2>`;
+                html += `<div class="faq-grid">`;
+                items.forEach((item, idx) => {
+                    const uniqueId = `faq-${cat}-${idx}`;
+                    html += `
+                        <div class="faq-item" id="${uniqueId}">
+                            <div class="faq-question" onclick="toggleFaq('${uniqueId}')">
+                                <h3>${item.q}</h3>
+                                <span class="faq-icon">+</span>
+                            </div>
+                            <div class="faq-answer">
+                                ${item.a}
+                            </div>
+                        </div>
+                    `;
+                });
+                html += `</div></div>`;
+            }
+            container.innerHTML = html;
+        }
+
+        window.toggleFaq = function(id) {
+            const el = document.getElementById(id);
+            if (el) el.classList.toggle('open');
+        };
+
+        // Filtros
+        let currentCat = "all";
+        let currentSearch = "";
+
+        const searchInput = document.getElementById('searchInput');
+        const catButtons = document.querySelectorAll('.cat-btn');
+
+        function applyFilters() {
+            renderFAQ(currentCat, currentSearch);
+        }
+
+        catButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                catButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentCat = btn.getAttribute('data-cat');
+                applyFilters();
+            });
+        });
+
+        searchInput.addEventListener('input', (e) => {
+            currentSearch = e.target.value;
+            applyFilters();
+        });
+
+        renderFAQ("all", "");
+    </script>
+</body>
+</html>
