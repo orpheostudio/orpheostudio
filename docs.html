@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentação · API Alexis — Telos Technologies</title>
+    <meta name="description" content="Documentação completa da API Alexis. Guias de integração, exemplos em Python, Node.js, cURL, parâmetros, modelos e boas práticas.">
+    <meta name="keywords" content="API, documentação, Alexis, Telos, integração, SDK, Python, Node.js, REST, streaming">
+    <meta name="author" content="Telos Technologies">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #010B14;
+            color: #EFF3F8;
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        #bgCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.35;
+        }
+
+        .docs-wrapper {
+            display: flex;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Sidebar */
+        .docs-sidebar {
+            position: fixed;
+            top: 80px;
+            left: 0;
+            width: 280px;
+            height: calc(100vh - 80px);
+            overflow-y: auto;
+            background: rgba(1, 11, 20, 0.85);
+            backdrop-filter: blur(8px);
+            border-right: 1px solid rgba(229, 184, 60, 0.15);
+            padding: 2rem 1.5rem;
+            z-index: 10;
+        }
+
+        .docs-sidebar::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .docs-sidebar::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.05);
+        }
+
+        .docs-sidebar::-webkit-scrollbar-thumb {
+            background: #E5B83C;
+            border-radius: 4px;
+        }
+
+        .sidebar-section {
+            margin-bottom: 2rem;
+        }
+
+        .sidebar-title {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #E5B83C;
+            margin-bottom: 1rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .sidebar-links {
+            list-style: none;
+        }
+
+        .sidebar-links li {
+            margin-bottom: 0.6rem;
+        }
+
+        .sidebar-links a {
+            color: #B0C4DE;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.2s;
+            display: block;
+            padding: 0.2rem 0;
+        }
+
+        .sidebar-links a:hover, .sidebar-links a.active {
+            color: #E5B83C;
+        }
+
+        /* Conteúdo principal */
+        .docs-content {
+            margin-left: 280px;
+            padding: 100px 48px 80px;
+            max-width: 1100px;
+            width: 100%;
+        }
+
+        .container {
+            max-width: 900px;
+        }
+
+        h1 {
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            font-weight: 600;
+            background: linear-gradient(135deg, #FFFFFF 0%, #C0D4F0 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin: 2rem 0 1rem;
+            padding-top: 1rem;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin: 1.5rem 0 0.8rem;
+            color: #E5B83C;
+        }
+
+        .accent {
+            color: #E5B83C;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(229, 184, 60, 0.12);
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-family: 'JetBrains Mono', monospace;
+            color: #E5B83C;
+            margin-right: 0.5rem;
+        }
+
+        .method {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 600;
+            padding: 0.2rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            display: inline-block;
+        }
+
+        .method.post { background: rgba(52, 168, 83, 0.2); color: #4ade80; border: 1px solid rgba(74, 222, 128, 0.3); }
+        .method.get { background: rgba(59, 130, 246, 0.2); color: #60a5fa; border: 1px solid rgba(96, 165, 250, 0.3); }
+        .method.delete { background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid rgba(248, 113, 113, 0.3); }
+
+        .endpoint {
+            background: rgba(10, 25, 40, 0.8);
+            border: 1px solid rgba(229, 184, 60, 0.2);
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .code-block {
+            background: #0a0f1a;
+            border-radius: 12px;
+            padding: 1.2rem;
+            margin: 1rem 0;
+            overflow-x: auto;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            border: 1px solid rgba(229, 184, 60, 0.2);
+        }
+
+        .code-block pre {
+            margin: 0;
+            color: #e2e8f0;
+        }
+
+        .param-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        .param-table th, .param-table td {
+            text-align: left;
+            padding: 0.75rem;
+            border-bottom: 1px solid rgba(229, 184, 60, 0.15);
+        }
+
+        .param-table th {
+            color: #E5B83C;
+            font-weight: 500;
+            width: 30%;
+        }
+
+        .param-table td {
+            color: #B0C4DE;
+        }
+
+        .param-table code {
+            font-family: 'JetBrains Mono', monospace;
+            background: rgba(229, 184, 60, 0.1);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+        }
+
+        .note {
+            background: rgba(229, 184, 60, 0.08);
+            border-left: 3px solid #E5B83C;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .btn-copy {
+            background: rgba(229, 184, 60, 0.1);
+            border: none;
+            color: #E5B83C;
+            padding: 0.3rem 0.8rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.7rem;
+            float: right;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .btn-copy:hover {
+            background: rgba(229, 184, 60, 0.2);
+        }
+
+        footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(229, 184, 60, 0.15);
+            font-size: 0.8rem;
+            color: #8ba0b0;
+        }
+
+        @media (max-width: 900px) {
+            .docs-sidebar {
+                display: none;
+            }
+            .docs-content {
+                margin-left: 0;
+                padding: 100px 24px 60px;
+            }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <canvas id="bgCanvas"></canvas>
+
+    <!-- Sidebar -->
+    <aside class="docs-sidebar">
+        <div class="sidebar-section">
+            <div class="sidebar-title">Começando</div>
+            <ul class="sidebar-links">
+                <li><a href="#intro" class="active">Introdução</a></li>
+                <li><a href="#authentication">Autenticação</a></li>
+                <li><a href="#models">Modelos</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-section">
+            <div class="sidebar-title">API Referência</div>
+            <ul class="sidebar-links">
+                <li><a href="#chat-completions">Chat Completions</a></li>
+                <li><a href="#streaming">Streaming</a></li>
+                <li><a href="#batch">Batch API</a></li>
+                <li><a href="#files">Arquivos</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-section">
+            <div class="sidebar-title">Guias</div>
+            <ul class="sidebar-links">
+                <li><a href="#python">Python SDK</a></li>
+                <li><a href="#nodejs">Node.js SDK</a></li>
+                <li><a href="#curl">cURL Exemplos</a></li>
+                <li><a href="#errors">Tratamento de Erros</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-section">
+            <div class="sidebar-title">Limites</div>
+            <ul class="sidebar-links">
+                <li><a href="#rate-limits">Rate Limits</a></li>
+                <li><a href="#pricing">Preços</a></li>
+            </ul>
+        </div>
+    </aside>
+
+    <!-- Conteúdo principal -->
+    <main class="docs-content">
+        <div class="container">
+            <div class="reveal visible">
+                <span class="badge">API v1.0</span>
+                <h1>Documentação da API <span class="accent">Alexis</span></h1>
+                <p style="font-size: 1.1rem; color: #B0C4DE; margin-bottom: 2rem;">Integre a IA brasileira de nova geração em suas aplicações. Respostas em tempo real, contexto longo e total conformidade com a LGPD.</p>
+            </div>
+
+            <!-- Introdução -->
+            <section id="intro" class="reveal">
+                <h2>Introdução</h2>
+                <p>A API do Alexis oferece acesso programático aos modelos de linguagem da Telos Technologies. Construída para desenvolvedores brasileiros, nossa API é compatível com os principais padrões do mercado e oferece baixíssima latência em território nacional.</p>
+                <div class="note">
+                    <strong>🌎 Base URL:</strong> <code style="background: rgba(229,184,60,0.1); padding: 0.2rem 0.4rem; border-radius: 4px;">https://api.cici.net.br/v1</code>
+                </div>
+                <p>Todos os endpoints exigem uma chave de API válida e utilizam autenticação via Bearer Token.</p>
+            </section>
+
+            <!-- Autenticação -->
+            <section id="authentication" class="reveal">
+                <h2>Autenticação</h2>
+                <p>Para autenticar suas requisições, inclua sua chave de API no cabeçalho <code>Authorization</code>:</p>
+                <div class="code-block">
+                    <pre>Authorization: Bearer sua-chave-api-aqui</pre>
+                    <button class="btn-copy" onclick="copyToClipboard('Authorization: Bearer sua-chave-api-aqui')">Copiar</button>
+                </div>
+                <p>Você pode gerar suas chaves de API no <a href="/dashboard" style="color:#E5B83C;">painel de controle</a> após criar uma conta. Chaves possuem escopos específicos e podem ser revogadas a qualquer momento.</p>
+            </section>
+
+            <!-- Modelos -->
+            <section id="models" class="reveal">
+                <h2>Modelos Disponíveis</h2>
+                <table class="param-table">
+                    <tr><th>Modelo</th><th>Contexto</th><th>Latência típica</th><th>Ideal para</th></tr>
+                    <tr><td><code>alexis-flash</code></td><td>8K tokens</td><td>&lt;180ms</td><td>Chatbots em tempo real, respostas rápidas</td></tr>
+                    <tr><td><code>alexis-standard</code></td><td>32K tokens</td><td>&lt;400ms</td><td>Uso geral, equilíbrio performance/capacidade</td></tr>
+                    <tr><td><code>alexis-pro</code></td><td>128K tokens</td><td>&lt;900ms</td><td>Análise de documentos longos, contratos</td></tr>
+                </table>
+            </section>
+
+            <!-- Chat Completions -->
+            <section id="chat-completions" class="reveal">
+                <h2>Chat Completions</h2>
+                <p>Endpoint principal para conversação com o Alexis.</p>
+                <div class="endpoint">
+                    <span class="method post">POST</span>
+                    <code>/chat/completions</code>
+                </div>
+
+                <h3>Parâmetros</h3>
+                <table class="param-table">
+                    <tr><th>Parâmetro</th><th>Tipo</th><th>Descrição</th></tr>
+                    <tr><td><code>model</code></td><td>string</td><td>O modelo a ser utilizado (ex: alexis-pro)</td></tr>
+                    <tr><td><code>messages</code></td><td>array</td><td>Lista de mensagens no formato {role, content}</td></tr>
+                    <tr><td><code>temperature</code></td><td>float</td><td>Controle de criatividade (0.0 a 1.0, padrão 0.7)</td></tr>
+                    <tr><td><code>max_tokens</code></td><td>int</td><td>Número máximo de tokens na resposta</td></tr>
+                    <tr><td><code>stream</code></td><td>boolean</td><td>Se true, retorna respostas em streaming</td></tr>
+                </table>
+
+                <h3>Exemplo de requisição</h3>
+                <div class="code-block">
+                    <pre>{
+  "model": "alexis-pro",
+  "messages": [
+    {"role": "system", "content": "Você é um assistente especializado em direito trabalhista brasileiro."},
+    {"role": "user", "content": "Quais são os principais direitos do trabalhador celetista?"}
+  ],
+  "temperature": 0.5,
+  "max_tokens": 500
+}</pre>
+                    <button class="btn-copy" onclick="copyToClipboard('{\n  \"model\": \"alexis-pro\",\n  \"messages\": [\n    {\"role\": \"system\", \"content\": \"Você é um assistente especializado em direito trabalhista brasileiro.\"},\n    {\"role\": \"user\", \"content\": \"Quais são os principais direitos do trabalhador celetista?\"}\n  ],\n  \"temperature\": 0.5,\n  \"max_tokens\": 500\n}')">Copiar</button>
+                </div>
+
+                <h3>Exemplo de resposta</h3>
+                <div class="code-block">
+                    <pre>{
+  "id": "chatcmpl-abc123",
+  "object": "chat.completion",
+  "created": 1700000000,
+  "model": "alexis-pro",
+  "choices": [{
+    "index": 0,
+    "message": {
+      "role": "assistant",
+      "content": "Os principais direitos do trabalhador celetista no Brasil incluem: registro em carteira, FGTS, 13º salário, férias remuneradas + 1/3, jornada de trabalho limitada a 44h semanais, horas extras com adicional mínimo de 50%, entre outros garantidos pela CLT."
+    },
+    "finish_reason": "stop"
+  }],
+  "usage": {
+    "prompt_tokens": 45,
+    "completion_tokens": 82,
+    "total_tokens": 127
+  }
+}</pre>
+                    <button class="btn-copy" onclick="copyToClipboard('{\n  \"id\": \"chatcmpl-abc123\",\n  \"object\": \"chat.completion\",\n  \"created\": 1700000000,\n  \"model\": \"alexis-pro\",\n  \"choices\": [{\n    \"index\": 0,\n    \"message\": {\n      \"role\": \"assistant\",\n      \"content\": \"Os principais direitos do trabalhador celetista no Brasil incluem: registro em carteira, FGTS, 13º salário, férias remuneradas + 1/3, jornada de trabalho limitada a 44h semanais, horas extras com adicional mínimo de 50%, entre outros garantidos pela CLT.\"\n    },\n    \"finish_reason\": \"stop\"\n  }],\n  \"usage\": {\n    \"prompt_tokens\": 45,\n    \"completion_tokens\": 82,\n    \"total_tokens\": 127\n  }\n}')">Copiar</button>
+                </div>
+            </section>
+
+            <!-- Streaming -->
+            <section id="streaming" class="reveal">
+                <h2>Streaming (SSE)</h2>
+                <p>Para respostas em tempo real, utilize o parâmetro <code>stream: true</code>. As respostas são enviadas via Server-Sent Events, token por token.</p>
+                <div class="code-block">
+                    <pre>curl -X POST https://api.cici.net.br/v1/chat/completions \
+  -H "Authorization: Bearer SUA_CHAVE" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "alexis-flash",
+    "messages": [{"role": "user", "content": "Explique o que é LGPD"}],
+    "stream": true
+  }'</pre>
+                    <button class="btn-copy" onclick="copyToClipboard(`curl -X POST https://api.cici.net.br/v1/chat/completions \\\n  -H \"Authorization: Bearer SUA_CHAVE\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\n    \"model\": \"alexis-flash\",\n    \"messages\": [{\"role\": \"user\", \"content\": \"Explique o que é LGPD\"}],\n    \"stream\": true\n  }'`)">Copiar</button>
+                </div>
+            </section>
+
+            <!-- Python SDK -->
+            <section id="python" class="reveal">
+                <h2>Python SDK</h2>
+                <p>Instale o pacote oficial:</p>
+                <div class="code-block">
+                    <pre>pip install telos-sdk</pre>
+                    <button class="btn-copy" onclick="copyToClipboard('pip install telos-sdk')">Copiar</button>
+                </div>
+                <div class="code-block">
+                    <pre>from telos import TelosClient
+
+client = TelosClient(api_key="sua-chave")
+
+response = client.chat.completions.create(
+    model="alexis-pro",
+    messages=[
+        {"role": "system", "content": "Você é um assistente útil."},
+        {"role": "user", "content": "Qual a capital do Brasil?"}
+    ]
+)
+
+print(response.choices[0].message.content)</pre>
+                    <button class="btn-copy" onclick="copyToClipboard(`from telos import TelosClient\n\nclient = TelosClient(api_key=\"sua-chave\")\n\nresponse = client.chat.completions.create(\n    model=\"alexis-pro\",\n    messages=[\n        {\"role\": \"system\", \"content\": \"Você é um assistente útil.\"},\n        {\"role\": \"user\", \"content\": \"Qual a capital do Brasil?\"}\n    ]\n)\n\nprint(response.choices[0].message.content)`)">Copiar</button>
+                </div>
+            </section>
+
+            <!-- Node.js SDK -->
+            <section id="nodejs" class="reveal">
+                <h2>Node.js SDK</h2>
+                <div class="code-block">
+                    <pre>npm install telos-sdk</pre>
+                    <button class="btn-copy" onclick="copyToClipboard('npm install telos-sdk')">Copiar</button>
+                </div>
+                <div class="code-block">
+                    <pre>import { Telos } from 'telos-sdk';
+
+const client = new Telos({ apiKey: 'sua-chave' });
+
+const response = await client.chat.completions.create({
+  model: 'alexis-pro',
+  messages: [
+    { role: 'system', content: 'Você é um assistente útil.' },
+    { role: 'user', content: 'Qual a capital do Brasil?' }
+  ]
+});
+
+console.log(response.choices[0].message.content);</pre>
+                    <button class="btn-copy" onclick="copyToClipboard(`import { Telos } from 'telos-sdk';\n\nconst client = new Telos({ apiKey: 'sua-chave' });\n\nconst response = await client.chat.completions.create({\n  model: 'alexis-pro',\n  messages: [\n    { role: 'system', content: 'Você é um assistente útil.' },\n    { role: 'user', content: 'Qual a capital do Brasil?' }\n  ]\n});\n\nconsole.log(response.choices[0].message.content);`)">Copiar</button>
+                </div>
+            </section>
+
+            <!-- Rate Limits -->
+            <section id="rate-limits" class="reveal">
+                <h2>Rate Limits</h2>
+                <table class="param-table">
+                    <tr><th>Plano</th><th>Requisições por minuto</th><th>Tokens por minuto</th></tr>
+                    <tr><td>Grátis</td><td>20</td><td>10.000</td></tr>
+                    <tr><td>Profissional</td><td>200</td><td>200.000</td></tr>
+                    <tr><td>Enterprise</td><td>Sob consulta</td><td>Sob consulta</td></tr>
+                </table>
+                <p>Cabeçalhos de resposta incluem informações sobre limites: <code>X-RateLimit-Limit</code>, <code>X-RateLimit-Remaining</code>, <code>X-RateLimit-Reset</code>.</p>
+            </section>
+
+            <!-- Erros -->
+            <section id="errors" class="reveal">
+                <h2>Tratamento de Erros</h2>
+                <table class="param-table">
+                    <tr><th>Código</th><th>Descrição</th></tr>
+                    <tr><td>401</td><td>Chave de API inválida ou ausente</td></tr>
+                    <tr><td>429</td><td>Limite de taxa excedido</td></tr>
+                    <tr><td>500</td><td>Erro interno do servidor</td></tr>
+                </table>
+                <div class="code-block">
+                    <pre>{
+  "error": {
+    "code": "rate_limit_exceeded",
+    "message": "Você excedeu seu limite de requisições por minuto. Tente novamente em alguns segundos."
+  }
+}</pre>
+                </div>
+            </section>
+
+            <!-- Preços -->
+            <section id="pricing" class="reveal">
+                <h2>Preços por Token</h2>
+                <table class="param-table">
+                    <tr><th>Modelo</th><th>Entrada (1K tokens)</th><th>Saída (1K tokens)</th></tr>
+                    <tr><td>alexis-flash</td><td>R$ 0,015</td><td>R$ 0,029</td></tr>
+                    <tr><td>alexis-standard</td><td>R$ 0,018</td><td>R$ 0,044</td></tr>
+                    <tr><td>alexis-pro</td><td>R$ 0,025</td><td>R$ 0,085</td></tr>
+                </table>
+                <div class="note">
+                    <strong>💡 Dica:</strong> O plano Profissional inclui 50.000 requisições mensais. O uso adicional é cobrado conforme a tabela acima.
+                </div>
+            </section>
+
+            <footer>
+                <p>Precisa de ajuda? <a href="mailto:ampla.ai@outlook.com" style="color:#E5B83C;">Enviar e-mail</a> | <a href="https://status.cici.net.br" style="color:#E5B83C;">Status do serviço</a></p>
+                <p>© 2025 Telos Technologies — Documentação da API Alexis v1.0</p>
+            </footer>
+        </div>
+    </main>
+
+    <script>
+        // Canvas particles
+        const canvas = document.getElementById('bgCanvas');
+        const ctx = canvas.getContext('2d');
+        let width, height, particles = [];
+
+        function resizeCanvas() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            initParticles();
+        }
+
+        function initParticles() {
+            particles = [];
+            const count = Math.min(100, Math.floor(width * height / 12000));
+            for (let i = 0; i < count; i++) {
+                particles.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    radius: Math.random() * 1.2 + 0.4,
+                    vx: (Math.random() - 0.5) * 0.15,
+                    vy: (Math.random() - 0.5) * 0.1,
+                    alpha: Math.random() * 0.4 + 0.2
+                });
+            }
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, width, height);
+            for (let p of particles) {
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(229, 184, 60, ${p.alpha * 0.5})`;
+                ctx.fill();
+                p.x += p.vx;
+                p.y += p.vy;
+                if (p.x < 0) p.x = width;
+                if (p.x > width) p.x = 0;
+                if (p.y < 0) p.y = height;
+                if (p.y > height) p.y = 0;
+            }
+            requestAnimationFrame(draw);
+        }
+
+        window.addEventListener('resize', () => resizeCanvas());
+        resizeCanvas();
+        draw();
+
+        // Scroll suave e marcação ativa na sidebar
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.sidebar-links a');
+
+        function updateActiveLink() {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 120;
+                const sectionBottom = sectionTop + section.offsetHeight;
+                if (window.scrollY >= sectionTop && window.scrollY < sectionBottom) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                const href = link.getAttribute('href');
+                if (href === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateActiveLink);
+        window.addEventListener('load', updateActiveLink);
+
+        // Scroll suave ao clicar nos links
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                const target = document.getElementById(targetId);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Função copiar
+        window.copyToClipboard = function(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Código copiado para a área de transferência!');
+            });
+        };
+
+        // Reveal
+        const reveals = document.querySelectorAll('.reveal');
+        const obs = new IntersectionObserver(entries => {
+            entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.1 });
+        reveals.forEach(el => obs.observe(el));
+    </script>
+</body>
+</html>
