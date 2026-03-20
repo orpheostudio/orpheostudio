@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre · Telos Technologies — IA com alma brasileira</title>
+    <meta name="description" content="Conheça a Telos Technologies, laboratório brasileiro de IA. Missão, valores, time e a história por trás do Alexis, a primeira IA nativa em português.">
+    <meta name="keywords" content="Telos, sobre, equipe, IA brasileira, laboratório, pesquisa, machine learning, Alexis">
+    <meta name="author" content="Telos Technologies">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #010B14;
+            color: #EFF3F8;
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        #bgCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.4;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 32px;
+            position: relative;
+            z-index: 2;
+        }
+
+        h1, h2, h3, .logo, .nav-links a, .btn {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            line-height: 1.2;
+            font-weight: 600;
+            background: linear-gradient(135deg, #FFFFFF 0%, #C0D4F0 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 500;
+            margin: 2rem 0 1rem;
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin: 1rem 0 0.5rem;
+            color: #E5B83C;
+        }
+
+        .accent {
+            color: #E5B83C;
+        }
+
+        .section-subtitle {
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            font-size: 0.7rem;
+            color: #E5B83C;
+            margin-bottom: 1rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(12px);
+            background: rgba(1, 11, 20, 0.7);
+            border-bottom: 1px solid rgba(229, 184, 60, 0.15);
+        }
+
+        .header-scrolled {
+            background: rgba(1, 11, 20, 0.92);
+            border-bottom-color: rgba(229, 184, 60, 0.3);
+            padding: 0.6rem 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            height: 42px;
+            width: auto;
+            border-radius: 10px;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: white;
+        }
+
+        .logo-text span {
+            color: #E5B83C;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #B0C4DE;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #E5B83C;
+        }
+
+        .btn-outline-light {
+            border: 1px solid rgba(229, 184, 60, 0.6);
+            background: transparent;
+            padding: 0.6rem 1.4rem;
+            border-radius: 40px;
+            color: #E5B83C;
+            font-weight: 500;
+            font-size: 0.8rem;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn-outline-light:hover {
+            background: rgba(229, 184, 60, 0.1);
+            border-color: #E5B83C;
+        }
+
+        .btn-primary {
+            background: #E5B83C;
+            color: #010B14;
+            padding: 0.7rem 1.8rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            background: #f5c65c;
+            transform: translateY(-2px);
+        }
+
+        /* Hero */
+        .about-hero {
+            padding: 140px 0 60px;
+            text-align: center;
+        }
+
+        .about-hero p {
+            font-size: 1.1rem;
+            color: #B0C4DE;
+            max-width: 700px;
+            margin: 1rem auto 0;
+        }
+
+        /* Missão, Visão, Valores */
+        .mvp-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .mvp-card {
+            background: rgba(10, 25, 40, 0.5);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(229, 184, 60, 0.15);
+            border-radius: 24px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .mvp-card:hover {
+            border-color: rgba(229, 184, 60, 0.4);
+            transform: translateY(-4px);
+        }
+
+        .mvp-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .mvp-card h3 {
+            margin-bottom: 1rem;
+        }
+
+        /* Timeline */
+        .timeline {
+            margin: 3rem 0;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, #E5B83C, transparent);
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .timeline-year {
+            width: 120px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #E5B83C;
+            text-align: right;
+            padding-right: 2rem;
+        }
+
+        .timeline-content {
+            width: calc(50% - 60px);
+            background: rgba(10, 25, 40, 0.4);
+            border: 1px solid rgba(229, 184, 60, 0.15);
+            border-radius: 16px;
+            padding: 1.2rem;
+        }
+
+        .timeline-content h4 {
+            font-size: 1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .timeline-content p {
+            font-size: 0.85rem;
+            color: #B0C4DE;
+        }
+
+        /* Equipe */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .team-card {
+            background: rgba(10, 25, 40, 0.5);
+            border: 1px solid rgba(229, 184, 60, 0.15);
+            border-radius: 24px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .team-card:hover {
+            border-color: rgba(229, 184, 60, 0.4);
+            transform: translateY(-4px);
+        }
+
+        .team-avatar {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #1B3A5C, #0f2239);
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            border: 2px solid rgba(229, 184, 60, 0.3);
+        }
+
+        .team-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+        }
+
+        .team-role {
+            color: #E5B83C;
+            font-size: 0.8rem;
+            font-family: 'JetBrains Mono', monospace;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-bio {
+            font-size: 0.8rem;
+            color: #B0C4DE;
+        }
+
+        /* Valores secundários */
+        .values-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .value-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .value-icon {
+            font-size: 1.5rem;
+        }
+
+        .value-text h4 {
+            font-size: 1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .value-text p {
+            font-size: 0.85rem;
+            color: #B0C4DE;
+        }
+
+        footer {
+            padding: 3rem 0;
+            border-top: 1px solid rgba(229, 184, 60, 0.15);
+            margin-top: 3rem;
+            font-size: 0.8rem;
+            color: #8ba0b0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            display: block;
+            color: #8ba0b0;
+            text-decoration: none;
+            margin-bottom: 0.6rem;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: #E5B83C;
+        }
+
+        @media (max-width: 900px) {
+            .container {
+                padding: 0 24px;
+            }
+            .nav-links {
+                display: none;
+            }
+            .mvp-grid, .values-list {
+                grid-template-columns: 1fr;
+            }
+            .timeline::before {
+                left: 30px;
+            }
+            .timeline-item {
+                flex-direction: column;
+                margin-left: 30px;
+            }
+            .timeline-year {
+                text-align: left;
+                width: auto;
+                padding-right: 0;
+                margin-bottom: 0.5rem;
+            }
+            .timeline-content {
+                width: 100%;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <canvas id="bgCanvas"></canvas>
+
+    <header id="mainHeader">
+        <div class="container nav-container">
+            <a href="/" class="logo">
+                <img src="https://i.imgur.com/iQAVM5P.jpeg" alt="Telos Technologies Logo" class="logo-img" onerror="this.src='https://placehold.co/48x48/1B3A5C/E5B83C?text=T'">
+                <span class="logo-text">TELOS<span>·</span></span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="/">Início</a></li>
+                <li><a href="sobre.html" class="active">Sobre</a></li>
+                <li><a href="docs.html">Docs</a></li>
+                <li><a href="https://blog.cici.net.br">Blog</a></li>
+                <li><a href="precos.html">Preços</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+            </ul>
+            <div>
+                <a href="https://chat.cici.net.br" class="btn-outline-light" style="margin-right: 12px;">Alexis</a>
+                <a href="precos.html" class="btn-primary">Começar</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container about-hero reveal">
+            <div class="section-subtitle">QUEM SOMOS</div>
+            <h1>Construindo a <span class="accent">primeira IA</span><br>com alma brasileira</h1>
+            <p>Na Telos Technologies, acreditamos que a inteligência artificial mais próxima dos brasileiros não deveria estar do outro lado do Atlântico. Deveria estar aqui — com dados aqui, servidores aqui e compreensão cultural aqui.</p>
+        </div>
+
+        <!-- Missão, Visão, Valores -->
+        <div class="container reveal">
+            <div class="mvp-grid">
+                <div class="mvp-card">
+                    <div class="mvp-icon">🎯</div>
+                    <h3>Missão</h3>
+                    <p>Democratizar o acesso à inteligência artificial de ponta no Brasil, oferecendo tecnologia que realmente entende o contexto, a cultura e as necessidades do povo brasileiro.</p>
+                </div>
+                <div class="mvp-card">
+                    <div class="mvp-icon">👁️</div>
+                    <h3>Visão</h3>
+                    <p>Ser o principal laboratório de IA da América Latina, reconhecido mundialmente pela excelência técnica e pelo compromisso com a soberania tecnológica brasileira.</p>
+                </div>
+                <div class="mvp-card">
+                    <div class="mvp-icon">⚡</div>
+                    <h3>Valores</h3>
+                    <p>Transparência, ética em IA, inovação com propósito, respeito à privacidade e compromisso com a educação tecnológica no Brasil.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Nossa História (Timeline) -->
+        <div class="container reveal">
+            <div class="section-subtitle">NOSSA TRAJETÓRIA</div>
+            <h2>Uma história de <span class="accent">inovação</span></h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">2022</div>
+                    <div class="timeline-content">
+                        <h4>Fundação da Telos</h4>
+                        <p>Pesquisadores brasileiros se unem com a missão de criar a primeira IA nativa em português, com infraestrutura nacional e compromisso com a LGPD.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2023</div>
+                    <div class="timeline-content">
+                        <h4>Motor Sena V0.1</h4>
+                        <p>Primeira versão do modelo experimental, treinada em corpus brasileiro curado de 50 bilhões de tokens. Resultados superiores a modelos estrangeiros em tarefas em português.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2024</div>
+                    <div class="timeline-content">
+                        <h4>Lançamento do Alexis</h4>
+                        <p>O assistente de IA é disponibilizado para o público, recebendo milhares de usuários em semanas. Parcerias com empresas de tecnologia e escritórios de advocacia.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2025</div>
+                    <div class="timeline-content">
+                        <h4>Motor Sena V1.0</h4>
+                        <p>Lançamento da arquitetura proprietária com 128K tokens de contexto, três variantes de modelo e API compatível. Expansão da equipe de pesquisa.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Time -->
+        <div class="container reveal">
+            <div class="section-subtitle">QUEM FAZ ACONTECER</div>
+            <h2>Criador <span class="accent">do ecossistema</span></h2>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-avatar">🔐</div>
+                    <div class="team-name">Naoto Developer</div>
+                    <div class="team-role">Estudante e entusiasta da Tecnologia</div>
+                    <div class="team-bio">Fundador da Telos.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Valores em detalhe -->
+        <div class="container reveal">
+            <div class="section-subtitle">PRINCÍPIOS QUE NOS GUIAM</div>
+            <h2>Mais do que tecnologia, <span class="accent">um compromisso</span></h2>
+            <div class="values-list">
+                <div class="value-item">
+                    <div class="value-icon">🇧🇷</div>
+                    <div class="value-text">
+                        <h4>Soberania de dados</h4>
+                        <p>Infraestrutura 100% nacional. Seus dados nunca deixam o Brasil. Conformidade nativa com a LGPD.</p>
+                    </div>
+                </div>
+                <div class="value-item">
+                    <div class="value-icon">🌱</div>
+                    <div class="value-text">
+                        <h4>IA ética e responsável</h4>
+                        <p>Compromisso com transparência, explicabilidade e mitigação de vieses em todos os nossos modelos.</p>
+                    </div>
+                </div>
+                <div class="value-item">
+                    <div class="value-icon">📚</div>
+                    <div class="value-text">
+                        <h4>Educação e comunidade</h4>
+                        <p>Programas de bolsas para pesquisadores brasileiros, eventos e conteúdo aberto sobre IA.</p>
+                    </div>
+                </div>
+                <div class="value-item">
+                    <div class="value-icon">🔓</div>
+                    <div class="value-text">
+                        <h4>Código aberto</h4>
+                        <p>Parte significativa de nossa pesquisa é publicada em acesso aberto, contribuindo para o avanço da IA no Brasil.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pesquisa e Publicações -->
+        <div class="container reveal">
+            <div class="section-subtitle">PESQUISA E INOVAÇÃO</div>
+            <h2>Últimas <span class="accent">publicações</span></h2>
+            <div style="display: grid; gap: 1rem; margin: 2rem 0;">
+                <div style="background: rgba(10, 25, 40, 0.5); border: 1px solid rgba(229,184,60,0.15); border-radius: 16px; padding: 1.2rem;">
+                    <span class="accent" style="font-family: 'JetBrains Mono';">arXiv:2503.01234</span>
+                    <h4 style="margin: 0.5rem 0;">Sena 1.0: A Brazilian Portuguese Large Language Model with 128K Context Window</h4>
+                    <p style="font-size: 0.85rem; color: #B0C4DE;">Ana Clara Mendes, Ricardo Alves, et al. — Apresentamos a arquitetura do Motor Sena V1.0, alcançando SOTA em benchmarks de compreensão de texto em português.</p>
+                </div>
+                <div style="background: rgba(10, 25, 40, 0.5); border: 1px solid rgba(229,184,60,0.15); border-radius: 16px; padding: 1.2rem;">
+                    <span class="accent" style="font-family: 'JetBrains Mono';">Telos Technical Report #02</span>
+                    <h4 style="margin: 0.5rem 0;">Privacidade por Design: Implementando LGPD em Modelos de Linguagem</h4>
+                    <p style="font-size: 0.85rem; color: #B0C4DE;">Pedro Henrique, Mariana Siqueira — Abordagens técnicas para garantir conformidade com a LGPD em pipelines de IA generativa.</p>
+                </div>
+            </div>
+            <div style="text-align: center; margin: 2rem 0;">
+                <a href="https://blog.cici.net.br" class="btn-outline-light">Ver todas as publicações →</a>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="container reveal" style="text-align: center; margin: 3rem 0;">
+            <div style="background: linear-gradient(135deg, rgba(229,184,60,0.1), rgba(1,11,20,0)); border-radius: 32px; padding: 3rem 2rem;">
+                <h2 style="margin: 0 0 1rem;">Junte-se a nós</h2>
+                <p style="max-width: 600px; margin: 0 auto 1.5rem;">Estamos sempre em busca de pesquisadores, engenheiros e visionários que queiram construir o futuro da IA no Brasil.</p>
+                <a href="mailto:carreiras@telos.tec.br" class="btn-primary">Trabalhe conosco →</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="logo-text" style="margin-bottom: 1rem;">TELOS<span style="color:#E5B83C;">·</span></div>
+                    <p style="font-size: 0.75rem;">Inteligência artificial com identidade brasileira. Inovação, ética e performance.</p>
+                </div>
+                <div class="footer-links">
+                    <strong>Produto</strong>
+                    <a href="https://chat.cici.net.br">Alexis AI</a>
+                    <a href="docs.html">Documentação API</a>
+                    <a href="precos.html">Preços</a>
+                </div>
+                <div class="footer-links">
+                    <strong>Legal</strong>
+                    <a href="termos.html">Termos de Uso</a>
+                    <a href="privacidade.html">Política de Privacidade</a>
+                    <a href="faq.html">FAQ</a>
+                </div>
+                <div class="footer-links">
+                    <strong>Comunidade</strong>
+                    <a href="https://blog.cici.net.br">Blog</a>
+                    <a href="sobre.html">Sobre</a>
+                    <a href="mailto:ampla.ai@outlook.com">ampla.ai@outlook.com</a>
+                </div>
+            </div>
+            <hr style="margin: 2rem 0 1rem; border-color: rgba(229,184,60,0.2);">
+            <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+                <span>© 2025 Telos Technologies — Tellos Tecnologia LTDA | CNPJ: 55.823.124/0001-70</span>
+                <span>🇧🇷 100% infraestrutura nacional</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Canvas particles
+        const canvas = document.getElementById('bgCanvas');
+        const ctx = canvas.getContext('2d');
+        let width, height, particles = [];
+
+        function resizeCanvas() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            initParticles();
+        }
+
+        function initParticles() {
+            particles = [];
+            const count = Math.min(100, Math.floor(width * height / 12000));
+            for (let i = 0; i < count; i++) {
+                particles.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    radius: Math.random() * 1.2 + 0.4,
+                    vx: (Math.random() - 0.5) * 0.15,
+                    vy: (Math.random() - 0.5) * 0.1,
+                    alpha: Math.random() * 0.4 + 0.2
+                });
+            }
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, width, height);
+            for (let p of particles) {
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(229, 184, 60, ${p.alpha * 0.5})`;
+                ctx.fill();
+                p.x += p.vx;
+                p.y += p.vy;
+                if (p.x < 0) p.x = width;
+                if (p.x > width) p.x = 0;
+                if (p.y < 0) p.y = height;
+                if (p.y > height) p.y = 0;
+            }
+            requestAnimationFrame(draw);
+        }
+
+        window.addEventListener('resize', () => resizeCanvas());
+        resizeCanvas();
+        draw();
+
+        const header = document.getElementById('mainHeader');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 40) header.classList.add('header-scrolled');
+            else header.classList.remove('header-scrolled');
+        });
+
+        const reveals = document.querySelectorAll('.reveal');
+        const obs = new IntersectionObserver(entries => {
+            entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.1 });
+        reveals.forEach(el => obs.observe(el));
+    </script>
+</body>
+</html>
