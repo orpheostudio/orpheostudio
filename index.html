@@ -4,35 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Telos Technologies · IA com alma brasileira</title>
-    <meta name="description" content="Telos desenvolve inteligência artificial nativa em português. Modelos proprietários, infraestrutura no Brasil e compromisso com a inovação ética.">
-    <meta name="keywords" content="IA brasileira, inteligência artificial, telos, claudinei, machine learning, nlp, lgpd, api de ia">
-    <meta name="author" content="Telos Technologies">
+    <meta name="description" content="Telos desenvolve inteligência artificial nativa em português brasileiro. Conheça o Alexis, nossa IA de alto desempenho com infraestrutura 100% nacional, conformidade LGPD e modelos proprietários para empresas brasileiras.">
+    <meta name="keywords" content="IA brasileira, inteligência artificial, telos, alexis, machine learning, nlp, lgpd, api de ia, processamento de linguagem natural, automação empresarial">
+    <meta name="author" content="Telos Technologies — Tellos Tecnologia LTDA">
+    <meta property="og:title" content="Telos Technologies · IA com alma brasileira">
+    <meta property="og:description" content="O Alexis é a primeira IA de alto desempenho construída integralmente para o português brasileiro, com dados que nunca saem do país.">
+    <meta property="og:type" content="website">
+    <meta name="robots" content="index, follow">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             background-color: #010B14;
             color: #EFF3F8;
             font-family: 'Inter', sans-serif;
             font-weight: 300;
-            line-height: 1.5;
+            line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* canvas de fundo mais sutil e elegante */
         #bgCanvas {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             pointer-events: none;
             z-index: 0;
             opacity: 0.5;
@@ -46,7 +43,6 @@
             z-index: 2;
         }
 
-        /* tipografia refinada */
         h1, h2, h3, .logo, .nav-links a, .btn, .stat-number, .card-badge {
             font-family: 'Space Grotesk', sans-serif;
             font-weight: 500;
@@ -54,7 +50,7 @@
         }
 
         h1 {
-            font-size: clamp(3rem, 8vw, 5.5rem);
+            font-size: clamp(2.8rem, 7vw, 5rem);
             line-height: 1.1;
             font-weight: 600;
             background: linear-gradient(135deg, #FFFFFF 0%, #C0D4F0 100%);
@@ -65,21 +61,25 @@
         }
 
         h2 {
-            font-size: clamp(2rem, 5vw, 3rem);
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
             font-weight: 500;
             letter-spacing: -0.02em;
             margin-bottom: 1rem;
         }
 
-        .accent {
-            color: #E5B83C;
+        h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 0.6rem;
         }
 
-        /* header/nav */
+        p { line-height: 1.7; color: #C0D4F0; }
+
+        .accent { color: #E5B83C; }
+
         header {
             position: fixed;
-            top: 0;
-            left: 0;
+            top: 0; left: 0;
             width: 100%;
             z-index: 100;
             padding: 1rem 0;
@@ -115,9 +115,7 @@
             transition: transform 0.2s ease;
         }
 
-        .logo:hover .logo-img {
-            transform: scale(1.02);
-        }
+        .logo:hover .logo-img { transform: scale(1.02); }
 
         .logo-text {
             font-size: 1.5rem;
@@ -126,9 +124,7 @@
             letter-spacing: -0.02em;
         }
 
-        .logo-text span {
-            color: #E5B83C;
-        }
+        .logo-text span { color: #E5B83C; }
 
         .nav-links {
             display: flex;
@@ -146,9 +142,7 @@
             transition: color 0.2s;
         }
 
-        .nav-links a:hover, .nav-links a.active {
-            color: #E5B83C;
-        }
+        .nav-links a:hover, .nav-links a.active { color: #E5B83C; }
 
         .btn-outline-light {
             border: 1px solid rgba(229, 184, 60, 0.6);
@@ -160,6 +154,7 @@
             font-size: 0.8rem;
             text-decoration: none;
             transition: all 0.2s;
+            font-family: 'Space Grotesk', sans-serif;
         }
 
         .btn-outline-light:hover {
@@ -179,6 +174,7 @@
             transition: all 0.2s;
             border: none;
             display: inline-block;
+            font-family: 'Space Grotesk', sans-serif;
         }
 
         .btn-primary:hover {
@@ -196,6 +192,7 @@
             text-decoration: none;
             font-weight: 500;
             transition: all 0.2s;
+            font-family: 'Space Grotesk', sans-serif;
         }
 
         .btn-secondary:hover {
@@ -203,7 +200,7 @@
             color: #E5B83C;
         }
 
-        /* hero */
+        /* HERO */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -256,9 +253,9 @@
             letter-spacing: 0.05em;
         }
 
-        /* cards e seções */
+        /* SEÇÕES */
         .section {
-            padding: 80px 0;
+            padding: 90px 0;
             border-top: 1px solid rgba(229, 184, 60, 0.1);
         }
 
@@ -271,6 +268,7 @@
             font-family: 'JetBrains Mono', monospace;
         }
 
+        /* CARDS */
         .cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -293,21 +291,19 @@
             background: rgba(15, 35, 55, 0.7);
         }
 
-        .card-icon {
-            font-size: 2rem;
-            margin-bottom: 1.2rem;
-        }
+        .card-icon { font-size: 2rem; margin-bottom: 1.2rem; }
 
         .card-title {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: 600;
             margin-bottom: 0.75rem;
+            font-family: 'Space Grotesk', sans-serif;
         }
 
         .card-text {
             color: #B0C4DE;
             font-size: 0.9rem;
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
         .tech-badge {
@@ -325,7 +321,7 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 3rem;
-            align-items: center;
+            align-items: start;
         }
 
         .feature-list {
@@ -334,17 +330,106 @@
         }
 
         .feature-list li {
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.9rem;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             gap: 0.6rem;
+            color: #C0D4F0;
+            font-size: 0.92rem;
+            line-height: 1.5;
         }
 
         .feature-list li::before {
             content: "▹";
             color: #E5B83C;
+            flex-shrink: 0;
+            margin-top: 2px;
         }
 
+        /* USO-CASES — nova seção */
+        .use-cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .use-case-card {
+            background: rgba(5, 18, 30, 0.6);
+            border: 1px solid rgba(229,184,60,0.12);
+            border-radius: 20px;
+            padding: 1.6rem;
+            transition: all 0.2s;
+        }
+
+        .use-case-card:hover {
+            border-color: rgba(229,184,60,0.35);
+            transform: translateY(-3px);
+        }
+
+        .use-case-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.6rem;
+            color: #E5B83C;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.6rem;
+            display: block;
+        }
+
+        .use-case-card p {
+            font-size: 0.88rem;
+            color: #9aaebf;
+            margin-top: 0.4rem;
+        }
+
+        /* FAQ */
+        .faq-list { margin-top: 2.5rem; }
+
+        .faq-item {
+            border-bottom: 1px solid rgba(229,184,60,0.12);
+            padding: 1.4rem 0;
+        }
+
+        .faq-question {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #EFF3F8;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .faq-question::after {
+            content: "+";
+            color: #E5B83C;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+            transition: transform 0.2s;
+        }
+
+        .faq-item.open .faq-question::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            font-size: 0.9rem;
+            color: #9aaebf;
+            line-height: 1.7;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease, padding 0.2s;
+        }
+
+        .faq-item.open .faq-answer {
+            max-height: 400px;
+            padding-top: 0.8rem;
+        }
+
+        /* PRICING */
         .pricing-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -362,14 +447,26 @@
 
         .pricing-card.featured {
             border-color: #E5B83C;
-            background: rgba(10, 28, 40, 0.9);
+            background: rgba(10, 28, 40, 0.95);
             transform: scale(1.02);
         }
 
+        .plan-badge {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.6rem;
+            background: rgba(229,184,60,0.2);
+            color: #E5B83C;
+            padding: 0.2rem 0.6rem;
+            border-radius: 10px;
+            display: inline-block;
+            margin-bottom: 0.6rem;
+        }
+
         .price {
-            font-size: 2.5rem;
+            font-size: 2.4rem;
             font-weight: 700;
-            margin: 1rem 0;
+            margin: 0.8rem 0 0.3rem;
+            font-family: 'Space Grotesk', sans-serif;
         }
 
         .price small {
@@ -378,11 +475,136 @@
             color: #9aaebf;
         }
 
-        hr {
-            border-color: rgba(229, 184, 60, 0.2);
-            margin: 2rem 0;
+        .plan-desc {
+            font-size: 0.8rem;
+            color: #9aaebf;
+            margin-bottom: 1.2rem;
         }
 
+        hr {
+            border: none;
+            border-top: 1px solid rgba(229, 184, 60, 0.15);
+            margin: 1.2rem 0;
+        }
+
+        /* COMPARATIVO */
+        .compare-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 3rem;
+            font-size: 0.88rem;
+        }
+
+        .compare-table th {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 500;
+            color: #E5B83C;
+            text-align: left;
+            padding: 0.8rem 1rem;
+            border-bottom: 1px solid rgba(229,184,60,0.2);
+        }
+
+        .compare-table td {
+            padding: 0.8rem 1rem;
+            border-bottom: 1px solid rgba(229,184,60,0.07);
+            color: #C0D4F0;
+            vertical-align: middle;
+        }
+
+        .compare-table tr:hover td {
+            background: rgba(229,184,60,0.03);
+        }
+
+        .check { color: #4caf83; font-size: 1rem; }
+        .cross { color: #6b7a8a; font-size: 0.8rem; }
+
+        /* BLOG PREVIEW */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.8rem;
+            margin-top: 3rem;
+        }
+
+        .blog-card {
+            background: rgba(8, 20, 32, 0.7);
+            border: 1px solid rgba(229,184,60,0.12);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.2s;
+        }
+
+        .blog-card:hover {
+            border-color: rgba(229,184,60,0.35);
+            transform: translateY(-3px);
+        }
+
+        .blog-card-body { padding: 1.4rem; }
+
+        .blog-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.6rem;
+            color: #E5B83C;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .blog-card h3 {
+            font-size: 1rem;
+            margin: 0.5rem 0;
+            color: white;
+            line-height: 1.4;
+        }
+
+        .blog-card p {
+            font-size: 0.82rem;
+            color: #8ba0b0;
+            line-height: 1.55;
+        }
+
+        .blog-meta {
+            font-size: 0.72rem;
+            color: #6b7a8a;
+            margin-top: 0.8rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* TESTIMONIALS */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial-card {
+            background: rgba(8, 22, 36, 0.7);
+            border: 1px solid rgba(229,184,60,0.12);
+            border-radius: 20px;
+            padding: 1.6rem;
+        }
+
+        .testimonial-text {
+            font-size: 0.92rem;
+            color: #C0D4F0;
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        .testimonial-text::before { content: """; color: #E5B83C; font-size: 1.8rem; line-height: 0; vertical-align: -0.5rem; margin-right: 2px; }
+        .testimonial-text::after  { content: """; color: #E5B83C; font-size: 1.8rem; line-height: 0; vertical-align: -0.5rem; margin-left:  2px; }
+
+        .testimonial-author {
+            margin-top: 1rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #E5B83C;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .testimonial-role { color: #6b7a8a; font-weight: 400; font-size: 0.75rem; }
+
+        /* FOOTER */
         footer {
             padding: 3rem 0;
             border-top: 1px solid rgba(229, 184, 60, 0.15);
@@ -405,33 +627,79 @@
             transition: color 0.2s;
         }
 
-        .footer-links a:hover {
-            color: #E5B83C;
-        }
+        .footer-links a:hover { color: #E5B83C; }
+        .footer-links strong { color: #EFF3F8; display: block; margin-bottom: 0.6rem; }
 
         @media (max-width: 900px) {
-            .container {
-                padding: 0 24px;
-            }
-            .hero-grid, .two-columns, .pricing-grid, .footer-grid {
-                grid-template-columns: 1fr;
-            }
-            .nav-links {
-                display: none;
-            }
-            .hero-stats {
-                flex-wrap: wrap;
-            }
+            .container { padding: 0 20px; }
+            .hero-grid, .two-columns, .pricing-grid, .footer-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .hero-stats { flex-wrap: wrap; }
+            .pricing-card.featured { transform: none; }
         }
 
         .reveal {
             opacity: 0;
-            transform: translateY(28px);
-            transition: all 0.7s ease;
+            transform: translateY(24px);
+            transition: all 0.65s ease;
         }
+
         .reveal.visible {
             opacity: 1;
             transform: translateY(0);
+        }
+
+        /* inline chat demo */
+        .chat-demo {
+            background: rgba(0,0,0,0.35);
+            border-radius: 1.5rem;
+            padding: 1.4rem;
+            border: 1px solid rgba(229,184,60,0.2);
+        }
+
+        .chat-header {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.68rem;
+            color: #E5B83C;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .dot {
+            width: 7px; height: 7px;
+            background: #4caf83;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .chat-bubble {
+            border-radius: 1rem;
+            padding: 0.9rem 1rem;
+            margin-bottom: 0.7rem;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        .chat-user {
+            background: rgba(255,255,255,0.04);
+            color: #EFF3F8;
+        }
+
+        .chat-ai {
+            background: rgba(229,184,60,0.06);
+            border-left: 2px solid #E5B83C;
+            color: #C0D4F0;
+        }
+
+        .cta-banner {
+            background: linear-gradient(135deg, rgba(229,184,60,0.08) 0%, rgba(1,11,20,0) 60%);
+            border: 1px solid rgba(229,184,60,0.2);
+            border-radius: 28px;
+            padding: 3rem;
+            text-align: center;
+            margin: 40px 0;
         }
     </style>
 </head>
@@ -447,27 +715,29 @@
             <ul class="nav-links">
                 <li><a href="/" class="active">Início</a></li>
                 <li><a href="#produto">Plataforma</a></li>
+                <li><a href="#casos-de-uso">Casos de Uso</a></li>
                 <li><a href="#tecnologia">Tecnologia</a></li>
                 <li><a href="#precos">Preços</a></li>
                 <li><a href="https://docs.cici.net.br" target="_blank">Docs</a></li>
                 <li><a href="https://blog.cici.net.br" target="_blank">Blog</a></li>
             </ul>
             <div>
-                <a href="https://chat.cici.net.br" class="btn-outline-light" style="margin-right: 12px;">Chat</a>
-                <a href="#precos" class="btn-primary">Começar</a>
+                <a href="https://chat.cici.net.br" class="btn-outline-light" style="margin-right: 12px;">Acessar</a>
+                <a href="#precos" class="btn-primary">Começar grátis</a>
             </div>
         </div>
     </header>
 
     <main>
+        <!-- ═══════════════════ HERO ═══════════════════ -->
         <div class="container hero">
             <div class="hero-grid">
                 <div>
-                    <span class="hero-badge">Motor Sena · Arquitetura proprietária</span>
+                    <span class="hero-badge">Motor Sena · Arquitetura proprietária brasileira</span>
                     <h1>Inteligência artificial<br>que <span class="accent">nasceu no Brasil</span></h1>
-                    <p style="font-size: 1.1rem; color: #C0D4F0; max-width: 90%; margin: 1.5rem 0 2rem;">O Alexis é a primeira IA de alto desempenho construída integralmente para o português brasileiro. Modelos de contexto longo, latência ultrarrápida e dados que nunca saem do país.</p>
-                    <div>
-                        <a href="#precos" class="btn-primary" style="margin-right: 1rem;">Experimentar agora</a>
+                    <p style="font-size: 1.05rem; max-width: 90%; margin: 1.2rem 0 2rem;">O <strong style="color:white;">Alexis</strong> é uma IA de alto desempenho criada integralmente para o português brasileiro. Modelos de contexto longo, latência ultrarrápida e dados processados exclusivamente em servidores nacionais — em conformidade total com a LGPD.</p>
+                    <div style="display:flex; gap: 1rem; flex-wrap:wrap;">
+                        <a href="#precos" class="btn-primary">Experimentar agora</a>
                         <a href="https://docs.cici.net.br" class="btn-secondary" target="_blank">Documentação →</a>
                     </div>
                     <div class="hero-stats">
@@ -476,119 +746,337 @@
                         <div class="stat-item"><div class="stat-number">LGPD</div><div class="stat-label">Compliance nativo</div></div>
                     </div>
                 </div>
-                <div style="background: radial-gradient(circle at 30% 20%, rgba(229,184,60,0.08), transparent); border-radius: 2rem; padding: 1rem;">
-                    <div style="background: rgba(0,0,0,0.3); border-radius: 1.5rem; padding: 1.2rem; border: 1px solid rgba(229,184,60,0.2);">
-                        <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: #E5B83C; margin-bottom: 12px;">Alexis — resposta em tempo real</div>
-                        <div style="background: rgba(255,255,255,0.03); padding: 1rem; border-radius: 1rem; margin-bottom: 0.8rem;">
-                            <span style="color:#E5B83C;">›</span> Como a Telos garante privacidade dos dados?
-                        </div>
-                        <div style="background: rgba(229,184,60,0.05); padding: 1rem; border-radius: 1rem; border-left: 2px solid #E5B83C;">
-                            Nossa infraestrutura 100% nacional, criptografia ponta a ponta e conformidade com a LGPD desde a coleta. Seus dados são processados apenas em servidores brasileiros e você mantém total controle.
-                        </div>
+                <div style="background: radial-gradient(circle at 30% 20%, rgba(229,184,60,0.07), transparent); border-radius: 2rem; padding: 0.5rem;">
+                    <div class="chat-demo">
+                        <div class="chat-header"><span class="dot"></span> Alexis — resposta em tempo real</div>
+                        <div class="chat-bubble chat-user">Como a Telos garante privacidade dos meus dados?</div>
+                        <div class="chat-bubble chat-ai">Nossa infraestrutura é 100% nacional, com servidores em data centers certificados no Brasil. Utilizamos criptografia AES-256 em repouso e TLS 1.3 em trânsito. Nenhum dado de usuário é enviado ao exterior, e estamos em plena conformidade com a LGPD desde a coleta até o descarte. Você mantém total controle e pode solicitar exclusão a qualquer momento.</div>
+                        <div class="chat-bubble chat-user">Qual a diferença do Alexis para outras IAs?</div>
+                        <div class="chat-bubble chat-ai">O Alexis foi treinado com curadoria de dados em português brasileiro — não é uma tradução ou adaptação. Isso significa que ele entende regionalismos, gírias, termos jurídicos brasileiros e o contexto cultural local com muito mais precisão do que modelos treinados prioritariamente em inglês.</div>
                     </div>
                 </div>
             </div>
         </div>
 
+        <!-- ═══════════════════ PRODUTO ═══════════════════ -->
         <div class="container section" id="produto">
-            <div class="section-subtitle">Produto principal</div>
+            <div class="section-subtitle">Plataforma Alexis</div>
             <div class="two-columns">
                 <div>
                     <h2>Alexis: <span class="accent">IA nativa</span> em português</h2>
-                    <p style="margin-bottom: 1rem;">Não é uma tradução, é uma criação original. Treinado com curadoria de dados brasileiros, o Alexis compreende regionalismos, contexto cultural e normas jurídicas locais.</p>
-                    <ul class="feature-list">
-                        <li>Atendimento automatizado com tom e sotaque regionais</li>
-                        <li>Análise de contratos e documentos no padrão brasileiro</li>
-                        <li>Geração de conteúdo alinhado à comunicação local</li>
-                        <li>Privacidade por design — nenhum dado usado para treinamento sem consentimento explícito</li>
+                    <p>O Alexis não é uma tradução, é uma criação original. Desenvolvido pela equipe de P&D da Telos, o modelo foi treinado com conjuntos de dados brasileiros cuidadosamente curados, cobrindo linguagem jurídica, vocabulário regional, cultura popular e comunicação empresarial local.</p>
+                    <p style="margin-top: 1rem;">O resultado é uma IA que realmente "fala brasileiro" — entendendo nuances, contextos implícitos e expressões idiomáticas que nenhum modelo genérico consegue capturar com a mesma precisão.</p>
+                    <ul class="feature-list" style="margin-top: 1.5rem;">
+                        <li>Atendimento ao cliente com compreensão de regionalismos de todas as regiões do Brasil</li>
+                        <li>Análise de contratos e documentos no padrão do Direito brasileiro (NBR, CLT, LGPD)</li>
+                        <li>Geração de conteúdo editorial e marketing alinhado à cultura local</li>
+                        <li>Sumarização de documentos extensos com contexto de até 128K tokens</li>
+                        <li>Privacidade por design — dados não são usados para retreinamento sem consentimento explícito</li>
+                        <li>API compatível com padrões OpenAI para migração simplificada</li>
                     </ul>
-                    <a href="https://chat.cici.net.br" class="btn-primary" style="margin-top: 1rem; display: inline-block;">Testar Alexis agora</a>
+                    <a href="https://chat.cici.net.br" class="btn-primary" style="margin-top: 1.5rem; display: inline-block;">Testar o Alexis agora →</a>
                 </div>
                 <div>
-                    <div class="card" style="padding: 1.8rem;">
+                    <div class="card" style="padding: 1.8rem; margin-bottom: 1.2rem;">
                         <div class="card-icon">⚡</div>
                         <div class="card-title">Motor Sena V1.0</div>
-                        <div class="card-text">Modelo Transformer Decoder com 7B parâmetros, otimizado para baixa latência e contexto de até 128K tokens. Disponível em três variações: Flash (alta velocidade), Standard (equilíbrio) e Pro (máximo contexto).</div>
-                        <div class="tech-badge">REST API + Streaming SSE</div>
+                        <div class="card-text">Arquitetura Transformer Decoder com 7 bilhões de parâmetros, otimizado para baixa latência e contexto de até 128K tokens. Disponível em três variações: <strong style="color:#E5B83C;">Flash</strong> (alta velocidade, ideal para chatbots), <strong style="color:#E5B83C;">Standard</strong> (equilíbrio custo-performance) e <strong style="color:#E5B83C;">Pro</strong> (máximo contexto e raciocínio).</div>
+                        <div class="tech-badge">REST API · Streaming SSE · Batch</div>
+                    </div>
+                    <div class="card" style="padding: 1.8rem;">
+                        <div class="card-icon">📊</div>
+                        <div class="card-title">Benchmarks em Português</div>
+                        <div class="card-text">Em tarefas de compreensão de leitura (FAQUAD-NLI), classificação de sentimento (HatEval PT) e geração de texto jurídico, o Sena V1.0 supera modelos multilíngues de porte similar em até 18% nas métricas F1, segundo avaliações internas.</div>
+                        <div class="tech-badge">Avaliação independente em andamento</div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="container section" id="tecnologia">
-            <div class="section-subtitle">Arquitetura</div>
-            <h2>Engenharia de precisão<br>para <span class="accent">escala e segurança</span></h2>
-            <div class="cards-grid">
-                <div class="card"><div class="card-icon">🇧🇷</div><div class="card-title">Infraestrutura soberana</div><div class="card-text">Servidores em data centers brasileiros, latência mínima em todo território nacional e aderência plena à LGPD.</div></div>
-                <div class="card"><div class="card-icon">🔐</div><div class="card-title">Privacidade por design</div><div class="card-text">Criptografia em trânsito e repouso, chaves gerenciadas pelo cliente no plano Enterprise, isolamento de tenant.</div></div>
-                <div class="card"><div class="card-icon">📡</div><div class="card-title">API compatível</div><div class="card-text">Migração simplificada de outras plataformas. SDKs em Python, Node.js e integração nativa com ferramentas de dados.</div></div>
-                <div class="card"><div class="card-icon">📊</div><div class="card-title">Observabilidade total</div><div class="card-text">Métricas de latência, uso e custo por endpoint. Alertas customizáveis e logs estruturados.</div></div>
-                <div class="card"><div class="card-icon">🔄</div><div class="card-title">Batch assíncrono</div><div class="card-text">Processamento de grandes volumes de documentos, enriquecimento de dados e pipelines de IA com custo reduzido.</div></div>
-                <div class="card"><div class="card-icon">🧪</div><div class="card-title">Fine-tuning dedicado</div><div class="card-text">Adapte o modelo com seus próprios dados em ambiente isolado. Ideal para domínios jurídicos, médicos ou proprietários.</div></div>
+        <!-- ═══════════════════ CASOS DE USO ═══════════════════ -->
+        <div class="container section" id="casos-de-uso">
+            <div class="section-subtitle">Aplicações reais</div>
+            <h2>O que você pode construir<br>com o <span class="accent">Alexis</span></h2>
+            <p style="max-width: 600px; margin-top: 0.5rem;">A plataforma Telos é projetada para casos de uso empresariais reais. Veja como diferentes setores estão usando o Alexis para automatizar processos e melhorar a experiência dos seus clientes.</p>
+
+            <div class="use-cases-grid">
+                <div class="use-case-card">
+                    <span class="use-case-tag">Jurídico</span>
+                    <h3>Análise e Revisão de Contratos</h3>
+                    <p>Automatize a leitura de contratos de prestação de serviço, identificando cláusulas de risco, inconsistências com a legislação brasileira e pontos de negociação. Reduza de horas para minutos a análise inicial.</p>
+                </div>
+                <div class="use-case-card">
+                    <span class="use-case-tag">Atendimento ao cliente</span>
+                    <h3>Chatbot Multicanal</h3>
+                    <p>Implante um assistente virtual treinado com o tom da sua marca, capaz de resolver dúvidas frequentes, abrir chamados, consultar pedidos e escalar para humanos apenas quando necessário — 24 horas por dia.</p>
+                </div>
+                <div class="use-case-card">
+                    <span class="use-case-tag">E-commerce</span>
+                    <h3>Descrições de Produto em Escala</h3>
+                    <p>Gere centenas de descrições de produto por hora, otimizadas para SEO em português e adaptadas ao tom da sua loja. Reduza o custo com criação de conteúdo mantendo consistência e qualidade.</p>
+                </div>
+                <div class="use-case-card">
+                    <span class="use-case-tag">Saúde</span>
+                    <h3>Triagem e Documentação Clínica</h3>
+                    <p>Auxílio na elaboração de resumos de prontuário, triagem de sintomas em linguagem natural e geração de relatórios padronizados conforme as normas do CFM — sempre com supervisão médica.</p>
+                </div>
+                <div class="use-case-card">
+                    <span class="use-case-tag">Finanças</span>
+                    <h3>Análise de Dados e Relatórios</h3>
+                    <p>Interprete dados financeiros, gere narrativas explicativas para relatórios de gestão e responda perguntas em linguagem natural sobre planilhas e dashboards integrados via API.</p>
+                </div>
+                <div class="use-case-card">
+                    <span class="use-case-tag">Educação</span>
+                    <h3>Tutoria Adaptativa</h3>
+                    <p>Crie experiências de aprendizado personalizadas em português, com exercícios gerados dinamicamente, feedback imediato e adaptação ao nível de cada aluno — da alfabetização ao ensino superior.</p>
+                </div>
             </div>
         </div>
 
+        <!-- ═══════════════════ TECNOLOGIA ═══════════════════ -->
+        <div class="container section" id="tecnologia">
+            <div class="section-subtitle">Arquitetura técnica</div>
+            <h2>Engenharia de precisão<br>para <span class="accent">escala e segurança</span></h2>
+            <p style="max-width: 580px; margin-top: 0.5rem;">Construímos a Telos do zero com os princípios de soberania de dados, observabilidade e segurança como requisitos não negociáveis — não como adicionais pagos.</p>
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-icon">🇧🇷</div>
+                    <div class="card-title">Infraestrutura soberana</div>
+                    <div class="card-text">Todos os modelos são treinados, armazenados e inferidos em data centers certificados ISO 27001 localizados no Brasil. Nenhum dado transita por servidores internacionais. Latência média inferior a 200ms em todo o território nacional.</div>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🔐</div>
+                    <div class="card-title">Privacidade por design</div>
+                    <div class="card-text">Criptografia AES-256 em repouso e TLS 1.3 em trânsito. Gerenciamento de chaves pelo cliente (BYOK) disponível no plano Enterprise. Isolamento completo de tenant por organização. Logs de auditoria imutáveis.</div>
+                </div>
+                <div class="card">
+                    <div class="card-icon">📡</div>
+                    <div class="card-title">API compatível com padrões abertos</div>
+                    <div class="card-text">Migração simplificada de OpenAI, Anthropic ou outras plataformas. SDKs oficiais em Python e Node.js. Suporte a function calling, streaming SSE e structured outputs. Documentação interativa no padrão OpenAPI 3.1.</div>
+                </div>
+                <div class="card">
+                    <div class="card-icon">📊</div>
+                    <div class="card-title">Observabilidade total</div>
+                    <div class="card-text">Dashboard em tempo real com métricas de latência por percentil (p50, p90, p99), custo por endpoint, taxa de erros e uso de tokens. Alertas customizáveis via webhook ou e-mail. Exportação para Datadog, Grafana e Prometheus.</div>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🔄</div>
+                    <div class="card-title">Processamento em lote (Batch)</div>
+                    <div class="card-text">Processar grandes volumes — análise de milhares de documentos, enriquecimento de bases de dados ou geração de conteúdo em escala — com custo 40% menor que a API síncrona e garantia de entrega assíncrona.</div>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🧪</div>
+                    <div class="card-title">Fine-tuning dedicado</div>
+                    <div class="card-text">Adapte o Sena V1.0 com os seus dados em ambiente completamente isolado. Ideal para domínios jurídicos, médicos ou com vocabulário proprietário. O modelo fine-tunado pertence exclusivamente à sua organização e não é compartilhado.</div>
+                </div>
+            </div>
+
+            <!-- Tabela comparativa -->
+            <div class="section-subtitle" style="margin-top: 4rem;">Comparativo de plataformas</div>
+            <h3 style="font-size:1.4rem; font-weight:500; margin-bottom: 0.5rem;">Telos vs. alternativas internacionais</h3>
+            <p style="font-size:0.88rem; color:#9aaebf;">Para empresas brasileiras, os diferenciais de soberania e conformidade legal têm peso crítico.</p>
+            <table class="compare-table" aria-label="Comparativo entre plataformas de IA">
+                <thead>
+                    <tr>
+                        <th>Recurso</th>
+                        <th>Telos / Alexis</th>
+                        <th>Plataformas globais</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Dados processados no Brasil</td>
+                        <td><span class="check">✔ Sempre</span></td>
+                        <td><span class="cross">✗ Não garantido</span></td>
+                    </tr>
+                    <tr>
+                        <td>Conformidade LGPD nativa</td>
+                        <td><span class="check">✔ Sim — por arquitetura</span></td>
+                        <td><span class="cross">✗ Exige configuração adicional</span></td>
+                    </tr>
+                    <tr>
+                        <td>Português como idioma primário</td>
+                        <td><span class="check">✔ Treinamento nativo PT-BR</span></td>
+                        <td><span class="cross">✗ Tradução / multilíngue</span></td>
+                    </tr>
+                    <tr>
+                        <td>Fine-tuning com dados próprios</td>
+                        <td><span class="check">✔ Disponível a partir do plano Pro</span></td>
+                        <td>Depende da plataforma</td>
+                    </tr>
+                    <tr>
+                        <td>Preço em reais (sem variação cambial)</td>
+                        <td><span class="check">✔ BRL fixo</span></td>
+                        <td><span class="cross">✗ USD/EUR com variação</span></td>
+                    </tr>
+                    <tr>
+                        <td>Suporte em português</td>
+                        <td><span class="check">✔ Equipe brasileira</span></td>
+                        <td><span class="cross">✗ Suporte em inglês</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ═══════════════════ PREÇOS ═══════════════════ -->
         <div class="container section" id="precos">
             <div class="section-subtitle">Planos transparentes</div>
             <h2>Comece grátis, <span class="accent">escala sem surpresas</span></h2>
+            <p style="max-width: 500px; margin-top: 0.5rem;">Todos os planos incluem acesso à API do Alexis, painel de uso e suporte técnico. Sem taxas ocultas, sem cobrança em dólar.</p>
             <div class="pricing-grid">
+                <!-- Explorar -->
                 <div class="pricing-card">
+                    <div class="plan-badge">FREE</div>
                     <div class="card-title">Explorar</div>
                     <div class="price">Grátis</div>
-                    <div>1.000 requisições/mês</div>
+                    <div class="plan-desc">Para experimentar e desenvolver protótipos</div>
                     <hr>
                     <ul class="feature-list" style="margin-top: 0;">
-                        <li>Modelo Standard</li>
-                        <li>4K tokens contexto</li>
-                        <li>Suporte comunidade</li>
-                        <li>API pública</li>
+                        <li>1.000 requisições por mês</li>
+                        <li>Modelo Sena Standard</li>
+                        <li>Contexto de até 4K tokens</li>
+                        <li>Acesso à API pública</li>
+                        <li>Documentação completa</li>
+                        <li>Suporte via comunidade</li>
                     </ul>
-                    <a href="https://chat.cici.net.br" class="btn-secondary" style="margin-top: 1.5rem; display: block; text-align: center;">Começar agora</a>
+                    <a href="https://chat.cici.net.br" class="btn-secondary" style="margin-top: 1.5rem; display: block; text-align: center;">Criar conta gratuita</a>
                 </div>
+                <!-- Profissional -->
                 <div class="pricing-card featured">
+                    <div class="plan-badge">MAIS POPULAR</div>
                     <div class="card-title">Profissional</div>
-                    <div class="price">R$ 79<span><small>/mês</small></span></div>
-                    <div>50k req/mês + pay-per-use</div>
+                    <div class="price">R$&nbsp;79 <small>/mês</small></div>
+                    <div class="plan-desc">Para produtos em produção e times pequenos</div>
                     <hr>
                     <ul class="feature-list">
-                        <li>Flash + Standard + Pro</li>
-                        <li>128K tokens contexto</li>
-                        <li>Suporte prioritário</li>
-                        <li>Métricas avançadas</li>
+                        <li>50.000 requisições/mês incluídas</li>
+                        <li>Flash + Standard + Pro (todos os modelos)</li>
+                        <li>Contexto de até 128K tokens</li>
+                        <li>Processamento batch assíncrono</li>
+                        <li>Métricas e observabilidade avançadas</li>
+                        <li>Suporte por e-mail prioritário (resp. em 24h)</li>
+                        <li>SLA de 99,5% de disponibilidade</li>
                     </ul>
-                    <a href="#precos" class="btn-primary" style="margin-top: 1.5rem; display: block; text-align: center;">Assinar</a>
+                    <a href="https://chat.cici.net.br" class="btn-primary" style="margin-top: 1.5rem; display: block; text-align: center;">Assinar agora</a>
                 </div>
+                <!-- Enterprise -->
                 <div class="pricing-card">
-                    <div class="card-title">Enterprise</div>
-                    <div class="price>Sob consulta</div>
-                    <div>Modelo dedicado + SLA</div>
+                    <div class="plan-badge">ENTERPRISE</div>
+                    <div class="card-title">Corporativo</div>
+                    <div class="price" style="font-size:1.8rem;">Sob consulta</div>
+                    <div class="plan-desc">Para grandes volumes, compliance avançado e customizações</div>
                     <hr>
                     <ul class="feature-list">
-                        <li>Instância isolada</li>
-                        <li>Fine-tuning proprietário</li>
-                        <li>On-prem ou VPC</li>
-                        <li>Suporte 24/7</li>
+                        <li>Instância de modelo dedicada e isolada</li>
+                        <li>Fine-tuning com dados proprietários</li>
+                        <li>Deploy on-premise ou VPC privada</li>
+                        <li>BYOK (Bring Your Own Key)</li>
+                        <li>Suporte técnico dedicado 24/7</li>
+                        <li>SLA personalizado (até 99,99%)</li>
+                        <li>Contrato com DPA LGPD e NDA</li>
                     </ul>
-                    <a href="mailto:comercial@telos.tec.br" class="btn-secondary" style="margin-top: 1.5rem; display: block; text-align: center;">Falar com equipe</a>
+                    <a href="mailto:comercial@telos.tec.br" class="btn-secondary" style="margin-top: 1.5rem; display: block; text-align: center;">Falar com equipe comercial</a>
                 </div>
             </div>
         </div>
 
+        <!-- ═══════════════════ DEPOIMENTOS ═══════════════════ -->
         <div class="container section">
-            <div class="two-columns">
-                <div>
-                    <div class="section-subtitle">Pesquisa e desenvolvimento</div>
-                    <h2>Um laboratório de IA com <span class="accent">responsabilidade</span></h2>
-                    <p>Publicamos artigos técnicos, métricas de benchmarks em português e contribuímos para a comunidade open source. Nossa equipe é formada por pesquisadores e engenheiros que acreditam em IA ética, transparente e acessível.</p>
-                    <a href="https://blog.cici.net.br" class="btn-outline-light" style="margin-top: 1.2rem; display: inline-block;">Acessar research →</a>
+            <div class="section-subtitle">O que dizem os usuários</div>
+            <h2>Construído com e para <span class="accent">empresas brasileiras</span></h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">A qualidade do Alexis em entender contratos no formato brasileiro foi surpreendente. Ele identifica cláusulas abusivas com uma precisão que ferramentas gringas simplesmente não conseguem porque não conhecem o contexto jurídico local.</p>
+                    <div class="testimonial-author">Ana Paula M. <span class="testimonial-role">— Advogada, São Paulo – SP</span></div>
                 </div>
-                <div>
-                    <div class="card">
-                        <div class="card-icon">📄</div>
-                        <div class="card-title">Último paper: Sena 1.0</div>
-                        <div class="card-text">Arquitetura eficiente para inferência em português, alcançando estado da arte em tarefas de compreensão de contexto longo e análise de sentimentos em textos jurídicos.</div>
-                        <div class="tech-badge">arXiv:2503.01234</div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">A latência é excelente para um produto 100% nacional. Integramos na nossa plataforma de atendimento e o ganho em qualidade das respostas — sem os anglicismos que outros modelos sempre colocavam — foi imediato.</p>
+                    <div class="testimonial-author">Lucas F. <span class="testimonial-role">— CTO, startup de fintech – Recife, PE</span></div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">Finalmente uma API de IA que cobra em reais e processa os dados aqui. Para o nosso DPO, isso eliminou uma série de questionamentos de compliance que tínhamos com as alternativas americanas.</p>
+                    <div class="testimonial-author">Camila R. <span class="testimonial-role">— Head of Product, empresa de saúde – Belo Horizonte, MG</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════════════ BLOG ═══════════════════ -->
+        <div class="container section">
+            <div class="section-subtitle">Conteúdo técnico</div>
+            <h2>Blog e pesquisa <span class="accent">Telos</span></h2>
+            <p style="max-width: 500px; margin-top: 0.5rem;">Publicamos artigos sobre IA aplicada, arquitetura de sistemas, LGPD e processamento de linguagem natural em português.</p>
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <div class="blog-card-body">
+                        <span class="blog-tag">Arquitetura · 12 min leitura</span>
+                        <h3>Como o Motor Sena foi otimizado para inferência em português</h3>
+                        <p>Detalhamos as decisões de pré-treinamento, curadoria de dados e técnicas de quantização que tornaram o Sena V1.0 competitivo com modelos estrangeiros de porte similar em tarefas nativas em PT-BR.</p>
+                        <div class="blog-meta">Publicado em Jan 2025 · Equipe de P&D Telos</div>
                     </div>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-card-body">
+                        <span class="blog-tag">LGPD · 8 min leitura</span>
+                        <h3>O que a LGPD exige de sistemas de IA? Um guia prático</h3>
+                        <p>Explicamos como a Lei Geral de Proteção de Dados se aplica a produtos que utilizam IA — desde a coleta de dados de treinamento até o direito de explicação das decisões automatizadas.</p>
+                        <div class="blog-meta">Publicado em Fev 2025 · Equipe Jurídica Telos</div>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-card-body">
+                        <span class="blog-tag">Tutorial · 15 min leitura</span>
+                        <h3>Integrando o Alexis em 30 minutos: do zero ao chatbot</h3>
+                        <p>Guia passo a passo para criar seu primeiro chatbot em produção usando a API do Alexis com Node.js, incluindo autenticação, streaming de respostas e tratamento de erros.</p>
+                        <div class="blog-meta">Publicado em Mar 2025 · Equipe de Engenharia Telos</div>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align:center; margin-top: 2rem;">
+                <a href="https://blog.cici.net.br" class="btn-outline-light" target="_blank">Ver todos os artigos →</a>
+            </div>
+        </div>
+
+        <!-- ═══════════════════ FAQ ═══════════════════ -->
+        <div class="container section" id="faq">
+            <div class="section-subtitle">Dúvidas frequentes</div>
+            <h2>Perguntas e <span class="accent">respostas</span></h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">O Alexis pode ser integrado a sistemas existentes?</div>
+                    <div class="faq-answer">Sim. A API do Alexis segue o padrão REST com autenticação por API Key e suporta streaming via SSE (Server-Sent Events). Disponibilizamos SDKs para Python e Node.js, além de documentação completa no padrão OpenAPI 3.1. A compatibilidade com o padrão de mensagens da OpenAI facilita a migração de sistemas já existentes.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Os dados da minha empresa podem ser usados para treinar os modelos da Telos?</div>
+                    <div class="faq-answer">Não, por padrão. Os dados enviados via API não são utilizados para retreinamento dos modelos sem consentimento explícito e contratual. No plano Enterprise, isso é garantido via cláusula contratual de não uso. Seus dados pertencem à sua empresa.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Qual é a diferença entre os modelos Flash, Standard e Pro?</div>
+                    <div class="faq-answer">O <strong>Flash</strong> é otimizado para latência mínima (abaixo de 180ms no p50), ideal para chatbots e interações em tempo real. O <strong>Standard</strong> oferece equilíbrio entre velocidade e qualidade, sendo a escolha padrão para a maioria das aplicações. O <strong>Pro</strong> maximiza a janela de contexto (128K tokens) e a qualidade de raciocínio, sendo indicado para análise de documentos longos e tarefas complexas.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Como funciona a cobrança do plano Profissional?</div>
+                    <div class="faq-answer">O plano Profissional inclui 50.000 requisições por mês pela taxa fixa de R$79/mês. Acima desse volume, é cobrado um valor por requisição adicional (pay-per-use), proporcional ao modelo utilizado e ao número de tokens. O faturamento é detalhado no painel de controle em tempo real, sem surpresas na fatura.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">A Telos atende requisitos de compliance para setores regulados (saúde, financeiro)?</div>
+                    <div class="faq-answer">Sim. Para setores regulados, recomendamos o plano Enterprise, que inclui contrato com DPA (Data Processing Agreement) alinhado à LGPD, logs de auditoria imutáveis, isolamento de tenant e opção de deploy em VPC privada. Nossa equipe jurídica pode assessorar na elaboração de documentos de compliance específicos para o seu setor.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Como faço para cancelar meu plano?</div>
+                    <div class="faq-answer">O cancelamento pode ser feito a qualquer momento diretamente no painel da sua conta, sem necessidade de contato com suporte. Não há multa por cancelamento antecipado. O acesso permanece ativo até o final do período pago.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════════════ CTA FINAL ═══════════════════ -->
+        <div class="container" style="padding-bottom: 60px;">
+            <div class="cta-banner">
+                <div class="section-subtitle" style="text-align:center;">Comece agora</div>
+                <h2 style="text-align:center; max-width: 500px; margin: 0 auto 1rem;">Pronto para usar IA que<br><span class="accent">realmente fala brasileiro?</span></h2>
+                <p style="text-align:center; max-width: 480px; margin: 0 auto 2rem;">Crie sua conta gratuita em menos de 2 minutos e faça sua primeira chamada à API do Alexis — sem cartão de crédito.</p>
+                <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+                    <a href="https://chat.cici.net.br" class="btn-primary">Criar conta gratuita</a>
+                    <a href="https://docs.cici.net.br" class="btn-secondary" target="_blank">Ver documentação →</a>
                 </div>
             </div>
         </div>
@@ -598,38 +1086,41 @@
         <div class="container">
             <div class="footer-grid">
                 <div>
-                    <div class="logo-text" style="margin-bottom: 1rem;">TELOS<span style="color:#E5B83C;">·</span></div>
-                    <p style="font-size: 0.75rem;">Inteligência artificial com identidade brasileira. Inovação, ética e performance.</p>
+                    <div class="logo-text" style="margin-bottom: 0.8rem; font-size: 1.2rem;">TELOS<span style="color:#E5B83C;">·</span></div>
+                    <p style="font-size: 0.78rem; color: #6b7a8a; line-height: 1.6; max-width: 240px;">Inteligência artificial com identidade brasileira. Inovação, ética e performance para empresas que não podem abrir mão de privacidade.</p>
+                    <p style="margin-top: 0.8rem; font-size: 0.72rem; color: #4a5a68;">CNPJ: a confirmar · Tellos Tecnologia LTDA</p>
                 </div>
                 <div class="footer-links">
                     <strong>Produto</strong>
                     <a href="https://chat.cici.net.br">Alexis AI</a>
                     <a href="https://docs.cici.net.br">Documentação API</a>
                     <a href="#precos">Preços</a>
+                    <a href="#casos-de-uso">Casos de uso</a>
                 </div>
                 <div class="footer-links">
                     <strong>Legal</strong>
                     <a href="https://termos.cici.net.br">Termos de Uso</a>
                     <a href="https://privacidade.cici.net.br">Política de Privacidade</a>
                     <a href="https://faq.cici.net.br">FAQ</a>
+                    <a href="#">Status da plataforma</a>
                 </div>
                 <div class="footer-links">
                     <strong>Comunidade</strong>
-                    <a href="https://blog.cici.net.br">Blog</a>
+                    <a href="https://blog.cici.net.br">Blog técnico</a>
                     <a href="mailto:ampla.ai@outlook.com">ampla.ai@outlook.com</a>
-                    <a href="#">Status</a>
+                    <a href="mailto:comercial@telos.tec.br">comercial@telos.tec.br</a>
                 </div>
             </div>
             <hr>
             <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
-                <span>© 2025 Telos Technologies — Tellos Tecnologia LTDA | AI INNOVATION PARTNER</span>
-                <span>🇧🇷 100% infraestrutura nacional</span>
+                <span>© 2025 Telos Technologies — Tellos Tecnologia LTDA · Todos os direitos reservados</span>
+                <span>🇧🇷 Infraestrutura 100% nacional · LGPD compliant</span>
             </div>
         </div>
     </footer>
 
     <script>
-        // Canvas com efeito sutil de partículas 
+        // Canvas com partículas sutis
         const canvas = document.getElementById('bgCanvas');
         const ctx = canvas.getContext('2d');
         let width, height, particles = [];
@@ -642,15 +1133,15 @@
 
         function initParticles() {
             particles = [];
-            const count = Math.min(120, Math.floor(width * height / 10000));
+            const count = Math.min(100, Math.floor(width * height / 12000));
             for (let i = 0; i < count; i++) {
                 particles.push({
                     x: Math.random() * width,
                     y: Math.random() * height,
-                    radius: Math.random() * 1.5 + 0.5,
-                    vx: (Math.random() - 0.5) * 0.2,
+                    radius: Math.random() * 1.2 + 0.4,
+                    vx: (Math.random() - 0.5) * 0.18,
                     vy: (Math.random() - 0.5) * 0.1,
-                    alpha: Math.random() * 0.4 + 0.2
+                    alpha: Math.random() * 0.35 + 0.15
                 });
             }
         }
@@ -660,7 +1151,7 @@
             for (let p of particles) {
                 ctx.beginPath();
                 ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(229, 184, 60, ${p.alpha * 0.6})`;
+                ctx.fillStyle = `rgba(229, 184, 60, ${p.alpha * 0.55})`;
                 ctx.fill();
                 p.x += p.vx;
                 p.y += p.vy;
@@ -672,19 +1163,17 @@
             requestAnimationFrame(draw);
         }
 
-        window.addEventListener('resize', () => { resizeCanvas(); });
+        window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
         draw();
 
-        // header scroll effect
+        // Header scroll
         const header = document.getElementById('mainHeader');
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 40) header.classList.add('header-scrolled');
-            else header.classList.remove('header-scrolled');
+            header.classList.toggle('header-scrolled', window.scrollY > 40);
         });
 
-        // reveal on scroll
-        const reveals = document.querySelectorAll('.reveal');
+        // Reveal on scroll
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -692,10 +1181,21 @@
                     observer.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.card, .two-columns, .pricing-card, .hero-grid, .section-subtitle, h2').forEach(el => {
+        }, { threshold: 0.08 });
+
+        document.querySelectorAll('.card, .use-case-card, .blog-card, .testimonial-card, .pricing-card, .two-columns > *, .section-subtitle, h2, .faq-item, .cta-banner').forEach(el => {
             el.classList.add('reveal');
             observer.observe(el);
+        });
+
+        // FAQ toggle
+        document.querySelectorAll('.faq-question').forEach(q => {
+            q.addEventListener('click', () => {
+                const item = q.parentElement;
+                const isOpen = item.classList.contains('open');
+                document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+                if (!isOpen) item.classList.add('open');
+            });
         });
     </script>
 </body>
