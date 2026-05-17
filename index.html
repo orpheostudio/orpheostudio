@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Telos — AI INNOVATION PARTNER</title>
-  <meta name="description" content="Theo é o assistente de inteligência artificial desenvolvido pela Telos AI para o português brasileiro. Converse, crie e automatize com uma IA que entende o contexto brasileiro.">
-  <meta name="keywords" content="assistente IA, inteligência artificial, português, alexis, telos, chatbot, automação, LGPD">
-  <meta name="author" content="Telos AI — Tellos Tecnologia LTDA">
-  <meta property="og:title" content="Theo — Assistente de IA para o Brasil">
+  <title>Intelliski — Sena, IA que pensa em português</title>
+  <meta name="description" content="Sena é o assistente de inteligência artificial desenvolvido pela Intelliski para o português brasileiro. Converse, crie e automatize com uma IA que entende o contexto brasileiro.">
+  <meta name="keywords" content="assistente IA, inteligência artificial, português, sena, intelliski, chatbot, automação, LGPD, universo tsukiyo, nostalk">
+  <meta name="author" content="Intelliski Apps">
+  <meta property="og:title" content="Sena — Assistente de IA para o Brasil · Intelliski">
   <meta property="og:description" content="Uma IA conversacional desenvolvida para o português brasileiro. Rápida, privada e pronta para o seu negócio.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://claudinei.ia.br">
@@ -16,22 +16,26 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Instrument+Sans:wght@300;400;500;600&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Instrument+Sans:wght@300;400;500;600&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --ink:    #0D0D0F;
-      --paper:  #F5F2EC;
-      --gold:   #B8922A;
-      --gold-l: #C4973A;
-      --cream:  #EAE6DD;
-      --mist:   #6B6660;
-      --wire:   rgba(184,146,42,0.18);
-      --wire-s: rgba(184,146,42,0.08);
+      --ink:      #0D0D0F;
+      --ink-2:    #131317;
+      --paper:    #F5F2EC;
+      --gold:     #B8922A;
+      --gold-l:   #C4973A;
+      --gold-xl:  #D4A84A;
+      --cream:    #EAE6DD;
+      --mist:     #6B6660;
+      --wire:     rgba(184,146,42,0.18);
+      --wire-s:   rgba(184,146,42,0.07);
+      --sakura:   #E8B4B8;
+      --indigo:   #2B2D5B;
+      --rose:     rgba(232,180,184,0.12);
     }
 
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
     html { scroll-behavior: smooth; }
 
     body {
@@ -47,17 +51,16 @@
     .display {
       font-family: 'Cormorant Garamond', serif;
       font-weight: 300;
-      font-size: clamp(3rem, 8vw, 6.5rem);
+      font-size: clamp(3rem, 7.5vw, 6rem);
       line-height: 1.05;
       letter-spacing: -0.01em;
     }
-
     .display em { font-style: italic; color: var(--gold-l); }
 
     h2 {
       font-family: 'Cormorant Garamond', serif;
       font-weight: 400;
-      font-size: clamp(1.9rem, 4vw, 3rem);
+      font-size: clamp(1.9rem, 3.8vw, 2.9rem);
       line-height: 1.15;
       letter-spacing: -0.01em;
     }
@@ -65,52 +68,40 @@
     h3 {
       font-family: 'Instrument Sans', sans-serif;
       font-weight: 500;
-      font-size: 1.05rem;
+      font-size: 1rem;
       letter-spacing: 0.01em;
     }
 
     .label {
       font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.2em;
+      font-size: 0.62rem;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--gold);
     }
 
-    p { color: var(--cream); font-size: 0.95rem; line-height: 1.75; }
-
+    p { color: var(--cream); font-size: 0.94rem; line-height: 1.78; }
     .accent { color: var(--gold-l); }
 
     /* ─── LAYOUT ─── */
-    .wrap {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 40px;
-    }
-
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
     section { padding: 100px 0; }
-
-    .divider {
-      width: 100%;
-      height: 1px;
-      background: var(--wire);
-    }
+    .divider { width: 100%; height: 1px; background: var(--wire); }
 
     /* ─── HEADER ─── */
     header {
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 900;
-      padding: 1.2rem 0;
+      padding: 1.1rem 0;
       transition: background 0.4s, border-color 0.4s, padding 0.3s;
       border-bottom: 1px solid transparent;
     }
-
     header.scrolled {
-      background: rgba(13,13,15,0.92);
-      backdrop-filter: blur(16px);
+      background: rgba(13,13,15,0.94);
+      backdrop-filter: blur(18px);
       border-color: var(--wire);
-      padding: 0.8rem 0;
+      padding: 0.7rem 0;
     }
 
     .nav-row {
@@ -126,50 +117,28 @@
       gap: 10px;
       text-decoration: none;
     }
-
-    .logo-mark {
-      width: 34px; height: 34px;
-      border: 1px solid var(--gold);
-      border-radius: 8px;
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.1rem;
-      color: var(--gold);
-      font-weight: 600;
-      flex-shrink: 0;
-    }
-
+    .logo-img { width: 36px; height: 36px; border-radius: 6px; object-fit: cover; flex-shrink: 0; }
     .logo-name {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.3rem;
+      font-size: 1.25rem;
       font-weight: 500;
       color: var(--paper);
-      letter-spacing: 0.04em;
+      letter-spacing: 0.05em;
     }
-    .logo-mark {
-  width: 40px;
-  height: 40px;
-}
 
-    nav { display: flex; gap: 2.2rem; list-style: none; }
-
+    nav { display: flex; gap: 2rem; list-style: none; }
     nav a {
       color: var(--cream);
-      font-size: 0.78rem;
+      font-size: 0.76rem;
       font-weight: 400;
       text-decoration: none;
-      letter-spacing: 0.07em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       transition: color 0.2s;
     }
-
     nav a:hover { color: var(--gold-l); }
 
-    .header-cta {
-      display: flex;
-      gap: 0.8rem;
-      align-items: center;
-    }
+    .header-cta { display: flex; gap: 0.8rem; align-items: center; }
 
     /* ─── BUTTONS ─── */
     .btn {
@@ -179,46 +148,47 @@
       padding: 0.65rem 1.6rem;
       border-radius: 2px;
       font-family: 'Instrument Sans', sans-serif;
-      font-size: 0.78rem;
+      font-size: 0.76rem;
       font-weight: 500;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.07em;
       text-transform: uppercase;
       text-decoration: none;
       cursor: pointer;
       border: none;
       transition: all 0.22s;
     }
-
     .btn-gold {
       background: var(--gold);
       color: var(--ink);
     }
-
     .btn-gold:hover {
       background: var(--gold-l);
       transform: translateY(-1px);
-      box-shadow: 0 4px 18px rgba(184,146,42,0.3);
+      box-shadow: 0 4px 20px rgba(184,146,42,0.32);
     }
-
     .btn-outline {
       border: 1px solid var(--wire);
       background: transparent;
       color: var(--cream);
     }
-
-    .btn-outline:hover {
-      border-color: var(--gold);
-      color: var(--gold-l);
-    }
-
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold-l); }
     .btn-ghost {
       background: transparent;
       color: var(--mist);
       border: 1px solid transparent;
       padding: 0.65rem 1rem;
     }
-
     .btn-ghost:hover { color: var(--paper); }
+    .btn-sakura {
+      background: rgba(232,180,184,0.12);
+      color: var(--sakura);
+      border: 1px solid rgba(232,180,184,0.25);
+    }
+    .btn-sakura:hover {
+      background: rgba(232,180,184,0.2);
+      border-color: var(--sakura);
+      transform: translateY(-1px);
+    }
 
     /* ─── HERO ─── */
     .hero {
@@ -229,8 +199,6 @@
       position: relative;
       overflow: hidden;
     }
-
-    /* Grain texture overlay */
     .hero::before {
       content: '';
       position: absolute;
@@ -238,16 +206,22 @@
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
       pointer-events: none;
       z-index: 0;
-      opacity: 0.4;
+      opacity: 0.45;
     }
-
-    /* Ambient glow */
     .hero::after {
       content: '';
       position: absolute;
-      top: -20%; left: 30%;
-      width: 60vw; height: 70vh;
-      background: radial-gradient(ellipse, rgba(184,146,42,0.06) 0%, transparent 70%);
+      top: -20%; left: 28%;
+      width: 65vw; height: 75vh;
+      background: radial-gradient(ellipse, rgba(184,146,42,0.055) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .hero-glow-sakura {
+      position: absolute;
+      bottom: 10%; right: 5%;
+      width: 40vw; height: 50vh;
+      background: radial-gradient(ellipse, rgba(232,180,184,0.035) 0%, transparent 70%);
       pointer-events: none;
       z-index: 0;
     }
@@ -267,11 +241,15 @@
       gap: 8px;
       margin-bottom: 2rem;
     }
-
     .hero-kicker-dot {
       width: 5px; height: 5px;
       border-radius: 50%;
       background: var(--gold);
+      animation: pulse-dot 2.5s ease-in-out infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.7); }
     }
 
     .hero-subline {
@@ -279,90 +257,91 @@
       max-width: 520px;
       font-size: 1.05rem;
       color: var(--cream);
-      line-height: 1.7;
+      line-height: 1.75;
     }
-
     .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
 
-    /* Terminal card */
-    .terminal {
-      background: rgba(255,255,255,0.026);
+    /* Terminal / Sena Card */
+    .sena-card {
+      background: rgba(255,255,255,0.024);
       border: 1px solid var(--wire);
       border-radius: 4px;
       overflow: hidden;
+      position: relative;
     }
-
-    .terminal-bar {
+    .sena-card-header {
       display: flex;
       align-items: center;
-      gap: 6px;
-      padding: 10px 14px;
-      background: rgba(255,255,255,0.035);
+      gap: 10px;
+      padding: 12px 16px;
+      background: rgba(255,255,255,0.03);
       border-bottom: 1px solid var(--wire);
     }
-
-    .terminal-dot {
-      width: 8px; height: 8px;
+    .sena-avatar {
+      width: 28px; height: 28px;
       border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid var(--wire);
+    }
+    .sena-name-badge {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+    }
+    .sena-online {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.58rem;
+      color: #27C93F;
+      letter-spacing: 0.08em;
+    }
+    .sena-online-dot {
+      width: 6px; height: 6px;
+      background: #27C93F;
+      border-radius: 50%;
+      animation: pulse-dot 2s ease-in-out infinite;
     }
 
+    .terminal-dots { display: flex; gap: 6px; }
+    .terminal-dot { width: 8px; height: 8px; border-radius: 50%; }
     .d-red   { background: #FF5F56; }
     .d-amber { background: #FFBD2E; }
     .d-green { background: #27C93F; }
 
-    .terminal-label {
-      margin-left: 8px;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.6rem;
-      color: var(--mist);
-      letter-spacing: 0.1em;
-    }
-
-    .terminal-body { padding: 1.4rem; }
-
-    .chat-msg {
-      margin-bottom: 1rem;
-      font-size: 0.82rem;
-      font-family: 'Instrument Sans', sans-serif;
-      line-height: 1.55;
-    }
-
+    .chat-body { padding: 1.4rem; display: flex; flex-direction: column; gap: 0.9rem; }
+    .chat-msg { font-size: 0.81rem; font-family: 'Instrument Sans', sans-serif; line-height: 1.55; }
     .chat-msg .role {
       font-family: 'DM Mono', monospace;
-      font-size: 0.58rem;
+      font-size: 0.57rem;
       letter-spacing: 0.12em;
       margin-bottom: 4px;
       display: block;
     }
-
     .user-role { color: var(--mist); }
     .ai-role   { color: var(--gold); }
-
-    .chat-msg .text {
-      color: var(--cream);
-      padding: 0.7rem 0.9rem;
-      border-radius: 2px;
-    }
-
-    .user-text { background: rgba(255,255,255,0.04); border-left: 2px solid rgba(255,255,255,0.1); }
+    .chat-msg .text { color: var(--cream); padding: 0.7rem 0.9rem; border-radius: 2px; }
+    .user-text { background: rgba(255,255,255,0.038); border-left: 2px solid rgba(255,255,255,0.1); }
     .ai-text   { background: rgba(184,146,42,0.07); border-left: 2px solid var(--gold); }
 
     .cursor-blink {
       display: inline-block;
-      width: 2px; height: 13px;
+      width: 2px; height: 12px;
       background: var(--gold);
       margin-left: 2px;
       vertical-align: middle;
       animation: blink 1s step-end infinite;
     }
-
     @keyframes blink { 50% { opacity: 0; } }
 
     /* ─── SECTION HEADER ─── */
     .section-head { margin-bottom: 3.5rem; }
-    .section-head .label { margin-bottom: 1rem; display: block; }
+    .section-head .label { margin-bottom: 0.9rem; display: block; }
 
-    /* ─── FEATURES ─── */
+    /* ─── FEATURES GRID ─── */
     .features-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -370,7 +349,6 @@
       background: var(--wire);
       border: 1px solid var(--wire);
     }
-
     .feature-cell {
       background: var(--ink);
       padding: 2.4rem 2rem;
@@ -378,7 +356,6 @@
       position: relative;
       overflow: hidden;
     }
-
     .feature-cell::before {
       content: '';
       position: absolute;
@@ -387,10 +364,8 @@
       opacity: 0;
       transition: opacity 0.3s;
     }
-
-    .feature-cell:hover { background: rgba(255,255,255,0.018); }
+    .feature-cell:hover { background: rgba(255,255,255,0.016); }
     .feature-cell:hover::before { opacity: 1; }
-
     .feature-icon {
       width: 42px; height: 42px;
       border: 1px solid var(--wire);
@@ -399,9 +374,8 @@
       margin-bottom: 1.4rem;
       font-size: 1.1rem;
     }
-
-    .feature-cell h3 { margin-bottom: 0.6rem; font-size: 0.98rem; }
-    .feature-cell p  { font-size: 0.85rem; color: var(--mist); line-height: 1.65; }
+    .feature-cell h3 { margin-bottom: 0.6rem; font-size: 0.96rem; }
+    .feature-cell p  { font-size: 0.84rem; color: var(--mist); line-height: 1.65; }
 
     /* ─── USE CASES ─── */
     .cases-list {
@@ -412,27 +386,284 @@
       border: 1px solid var(--wire);
       margin-top: 3rem;
     }
-
     .case-item {
       background: var(--ink);
       padding: 2rem 2.2rem;
       transition: background 0.2s;
     }
-
-    .case-item:hover { background: rgba(255,255,255,0.016); }
-
+    .case-item:hover { background: rgba(255,255,255,0.015); }
     .case-sector {
       font-family: 'DM Mono', monospace;
-      font-size: 0.58rem;
+      font-size: 0.57rem;
       letter-spacing: 0.15em;
       text-transform: uppercase;
       color: var(--gold);
       margin-bottom: 0.5rem;
       display: block;
     }
-
     .case-item h3 { margin-bottom: 0.5rem; }
-    .case-item p  { font-size: 0.84rem; color: var(--mist); line-height: 1.6; }
+    .case-item p  { font-size: 0.83rem; color: var(--mist); line-height: 1.62; }
+
+    /* ─── UNIVERSO TSUKIYO ─── */
+    .tsukiyo-section {
+      background: linear-gradient(180deg, var(--ink) 0%, #0e0b14 50%, var(--ink) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .tsukiyo-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(ellipse at 50% 30%, rgba(232,180,184,0.06) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .tsukiyo-section::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+
+    .tsukiyo-head {
+      position: relative;
+      z-index: 1;
+      margin-bottom: 3rem;
+    }
+    .tsukiyo-head .label { color: var(--sakura); margin-bottom: 0.9rem; display: block; }
+    .tsukiyo-head h2 em { color: var(--sakura); font-style: italic; }
+
+    .books-row {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+
+    .book-card {
+      border: 1px solid rgba(232,180,184,0.15);
+      border-radius: 3px;
+      overflow: hidden;
+      transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+      background: rgba(255,255,255,0.015);
+      position: relative;
+    }
+    .book-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(232,180,184,0.4);
+      box-shadow: 0 16px 40px rgba(232,180,184,0.1);
+    }
+    .book-cover {
+      width: 100%;
+      aspect-ratio: 2/3;
+      object-fit: cover;
+      display: block;
+      background: linear-gradient(135deg, #1a0f1a 0%, #2b1a2e 100%);
+    }
+    .book-cover-placeholder {
+      width: 100%;
+      aspect-ratio: 2/3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      background: linear-gradient(135deg, #140f1a 0%, #1e1228 50%, #0f0d14 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .book-cover-placeholder::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 40%, rgba(232,180,184,0.08) 0%, transparent 70%);
+    }
+    .book-cover-placeholder .book-title-art {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.9rem;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--sakura);
+      text-align: center;
+      padding: 0 1rem;
+      line-height: 1.3;
+      position: relative;
+      z-index: 1;
+    }
+    .book-cover-placeholder .book-genre-art {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.5rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(232,180,184,0.5);
+      position: relative;
+      z-index: 1;
+    }
+    .book-cover-placeholder .sakura-ornament {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 4rem;
+      opacity: 0.04;
+    }
+
+    .book-info { padding: 1rem 1rem 1.2rem; }
+    .book-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.55rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--sakura);
+      opacity: 0.7;
+      margin-bottom: 0.35rem;
+      display: block;
+    }
+    .book-info h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--paper);
+      margin-bottom: 0.25rem;
+      line-height: 1.25;
+    }
+    .book-info .book-author {
+      font-size: 0.73rem;
+      color: var(--mist);
+      font-style: italic;
+    }
+    .book-actions { padding: 0 1rem 1rem; }
+    .btn-book {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--sakura);
+      text-decoration: none;
+      padding: 0.4rem 0.8rem;
+      border: 1px solid rgba(232,180,184,0.2);
+      border-radius: 2px;
+      transition: all 0.2s;
+    }
+    .btn-book:hover { background: rgba(232,180,184,0.08); border-color: rgba(232,180,184,0.5); }
+
+    .tsukiyo-cta {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid rgba(232,180,184,0.1);
+    }
+    .tsukiyo-cta p {
+      color: var(--mist);
+      font-size: 0.85rem;
+      margin-bottom: 1.2rem;
+    }
+
+    /* ─── NOSTALK ─── */
+    .nostalk-section {
+      position: relative;
+      overflow: hidden;
+    }
+    .nostalk-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -10%; right: -10%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--wire), transparent);
+    }
+
+    .nostalk-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .nostalk-visual {
+      position: relative;
+    }
+    .nostalk-mockup {
+      background: rgba(255,255,255,0.023);
+      border: 1px solid var(--wire);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .nostalk-bar {
+      padding: 10px 14px;
+      background: rgba(255,255,255,0.03);
+      border-bottom: 1px solid var(--wire);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .nostalk-bar-title {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.58rem;
+      color: var(--mist);
+      letter-spacing: 0.1em;
+      margin-left: 6px;
+    }
+    .nostalk-feed { padding: 1rem; display: flex; flex-direction: column; gap: 0.7rem; }
+    .nostalk-post {
+      padding: 0.9rem 1rem;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--wire-s);
+      border-radius: 2px;
+      transition: background 0.2s;
+    }
+    .nostalk-post:hover { background: rgba(255,255,255,0.035); }
+    .nostalk-post-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 0.5rem;
+    }
+    .nostalk-avatar {
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--indigo), #4a3070);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.6rem;
+      color: var(--sakura);
+      font-family: 'Cormorant Garamond', serif;
+    }
+    .nostalk-author {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--gold);
+      letter-spacing: 0.06em;
+    }
+    .nostalk-time {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.55rem;
+      color: var(--mist);
+      margin-left: auto;
+      letter-spacing: 0.04em;
+    }
+    .nostalk-post-text {
+      font-size: 0.78rem;
+      color: var(--cream);
+      line-height: 1.55;
+    }
+    .nostalk-post-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.55rem;
+      color: var(--sakura);
+      opacity: 0.6;
+      margin-top: 0.35rem;
+      display: block;
+      letter-spacing: 0.08em;
+    }
+
+    .nostalk-label { color: var(--sakura); }
 
     /* ─── PRICING ─── */
     .pricing-grid {
@@ -441,7 +672,6 @@
       gap: 1.5rem;
       margin-top: 3.5rem;
     }
-
     .plan-card {
       border: 1px solid var(--wire);
       padding: 2.2rem;
@@ -449,65 +679,42 @@
       position: relative;
       transition: border-color 0.25s;
     }
-
     .plan-card:hover { border-color: rgba(184,146,42,0.4); }
-
     .plan-card.featured {
       border-color: var(--gold);
       background: rgba(184,146,42,0.04);
     }
-
     .plan-tag {
       font-family: 'DM Mono', monospace;
-      font-size: 0.58rem;
+      font-size: 0.57rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--gold);
       margin-bottom: 0.8rem;
       display: block;
     }
-
     .plan-name {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.6rem;
+      font-size: 1.55rem;
       font-weight: 500;
       margin-bottom: 0.4rem;
     }
-
     .plan-price {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 2.8rem;
+      font-size: 2.7rem;
       font-weight: 300;
       line-height: 1;
       margin: 1rem 0 0.3rem;
     }
-
-    .plan-price sub {
-      font-size: 1rem;
-      vertical-align: bottom;
-      margin-right: 2px;
-    }
-
+    .plan-price sub { font-size: 1rem; vertical-align: bottom; margin-right: 2px; }
     .plan-price small {
       font-size: 0.9rem;
       font-family: 'Instrument Sans', sans-serif;
       font-weight: 300;
       color: var(--mist);
     }
-
-    .plan-desc {
-      font-size: 0.8rem;
-      color: var(--mist);
-      margin-bottom: 1.5rem;
-      line-height: 1.55;
-    }
-
-    .plan-divider {
-      height: 1px;
-      background: var(--wire);
-      margin: 1.5rem 0;
-    }
-
+    .plan-desc { font-size: 0.79rem; color: var(--mist); margin-bottom: 1.5rem; line-height: 1.55; }
+    .plan-divider { height: 1px; background: var(--wire); margin: 1.5rem 0; }
     .plan-items {
       list-style: none;
       display: flex;
@@ -515,16 +722,14 @@
       gap: 0.7rem;
       margin-bottom: 2rem;
     }
-
     .plan-items li {
-      font-size: 0.82rem;
+      font-size: 0.81rem;
       color: var(--cream);
       display: flex;
       align-items: flex-start;
       gap: 0.6rem;
       line-height: 1.5;
     }
-
     .plan-items li::before {
       content: '·';
       color: var(--gold);
@@ -533,29 +738,29 @@
       flex-shrink: 0;
       margin-top: 2px;
     }
-
-    /* Stripe checkout button */
-    .stripe-btn {
-      width: 100%;
-      text-align: center;
-      justify-content: center;
+    .stripe-btn { width: 100%; text-align: center; justify-content: center; display: flex; }
+    .stripe-note {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.61rem;
+      color: var(--mist);
+      letter-spacing: 0.06em;
+      margin-top: 0.5rem;
       display: flex;
+      align-items: center;
+      gap: 5px;
     }
+    .stripe-note svg { flex-shrink: 0; }
 
     /* ─── FAQ ─── */
     .faq { margin-top: 3rem; }
-
-    .faq-item {
-      border-bottom: 1px solid var(--wire);
-    }
-
+    .faq-item { border-bottom: 1px solid var(--wire); }
     .faq-q {
       width: 100%;
       background: none;
       border: none;
       color: var(--paper);
       font-family: 'Instrument Sans', sans-serif;
-      font-size: 0.95rem;
+      font-size: 0.94rem;
       font-weight: 400;
       text-align: left;
       padding: 1.4rem 0;
@@ -566,9 +771,7 @@
       gap: 1rem;
       transition: color 0.2s;
     }
-
     .faq-q:hover { color: var(--gold-l); }
-
     .faq-arrow {
       width: 20px; height: 20px;
       border: 1px solid var(--wire);
@@ -578,23 +781,10 @@
       font-size: 0.7rem;
       transition: transform 0.3s, border-color 0.2s;
     }
-
     .faq-item.open .faq-arrow { transform: rotate(45deg); border-color: var(--gold); }
-
-    .faq-a {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.35s ease;
-    }
-
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
     .faq-item.open .faq-a { max-height: 300px; }
-
-    .faq-a p {
-      padding-bottom: 1.4rem;
-      font-size: 0.88rem;
-      color: var(--mist);
-      line-height: 1.75;
-    }
+    .faq-a p { padding-bottom: 1.4rem; font-size: 0.87rem; color: var(--mist); line-height: 1.75; }
 
     /* ─── CTA STRIP ─── */
     .cta-strip {
@@ -604,7 +794,6 @@
       position: relative;
       overflow: hidden;
     }
-
     .cta-strip::before {
       content: '';
       position: absolute;
@@ -614,9 +803,14 @@
       background: radial-gradient(ellipse, rgba(184,146,42,0.07) 0%, transparent 70%);
       pointer-events: none;
     }
-
     .cta-strip h2 { margin-bottom: 1rem; position: relative; }
-    .cta-strip p  { margin-bottom: 2rem; position: relative; max-width: 460px; margin-left: auto; margin-right: auto; }
+    .cta-strip p {
+      margin-bottom: 2rem;
+      position: relative;
+      max-width: 460px;
+      margin-left: auto;
+      margin-right: auto;
+    }
     .cta-strip .actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; position: relative; }
 
     /* ─── FOOTER ─── */
@@ -624,43 +818,51 @@
       padding: 3rem 0 2rem;
       border-top: 1px solid var(--wire);
     }
-
     .footer-grid {
       display: grid;
       grid-template-columns: 2fr 1fr 1fr 1fr;
       gap: 3rem;
       margin-bottom: 3rem;
     }
-
     .footer-brand p {
-      font-size: 0.8rem;
+      font-size: 0.79rem;
       color: var(--mist);
-      max-width: 220px;
+      max-width: 230px;
       margin-top: 0.8rem;
       line-height: 1.65;
     }
-
     .footer-col strong {
       font-family: 'DM Mono', monospace;
-      font-size: 0.6rem;
+      font-size: 0.58rem;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--gold);
       display: block;
       margin-bottom: 1rem;
     }
-
     .footer-col a {
       display: block;
       color: var(--mist);
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       text-decoration: none;
       margin-bottom: 0.5rem;
       transition: color 0.2s;
     }
-
     .footer-col a:hover { color: var(--paper); }
-
+    .footer-logo-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 0.6rem;
+    }
+    .footer-logo-img { width: 30px; height: 30px; border-radius: 5px; object-fit: cover; }
+    .footer-logo-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--paper);
+      letter-spacing: 0.04em;
+    }
     .footer-bottom {
       display: flex;
       align-items: center;
@@ -669,60 +871,61 @@
       gap: 1rem;
       padding-top: 1.5rem;
       border-top: 1px solid var(--wire);
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       color: var(--mist);
       font-family: 'DM Mono', monospace;
       letter-spacing: 0.04em;
     }
 
-    /* ─── SCROLL REVEAL ─── */
+    /* ─── REVEAL ─── */
     .reveal {
       opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
+      transform: translateY(22px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
     }
-
     .reveal.in { opacity: 1; transform: none; }
 
     /* ─── RESPONSIVE ─── */
+    @media (max-width: 1024px) {
+      .books-row { grid-template-columns: repeat(2, 1fr); }
+    }
     @media (max-width: 960px) {
       .hero-inner { grid-template-columns: 1fr; }
-      .terminal { display: none; }
+      .sena-card { display: none; }
       .features-grid { grid-template-columns: 1fr 1fr; }
       .cases-list { grid-template-columns: 1fr; }
       .pricing-grid { grid-template-columns: 1fr; }
       .footer-grid { grid-template-columns: 1fr 1fr; }
+      .nostalk-inner { grid-template-columns: 1fr; }
       nav { display: none; }
       .wrap { padding: 0 20px; }
       section { padding: 70px 0; }
+      .books-row { grid-template-columns: repeat(2, 1fr); }
     }
-
     @media (max-width: 600px) {
       .features-grid { grid-template-columns: 1fr; }
       .footer-grid { grid-template-columns: 1fr; }
       .hero-actions { flex-direction: column; }
       .cta-strip { padding: 2.5rem 1.5rem; }
+      .books-row { grid-template-columns: 1fr 1fr; gap: 1rem; }
     }
 
-    /* ─── STRIPE NOTICE ─── */
-    .stripe-note {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.62rem;
-      color: var(--mist);
-      letter-spacing: 0.06em;
-      margin-top: 0.5rem;
-      display: flex;
+    .btn[data-loading='true'] { pointer-events: none; opacity: 0.65; }
+
+    /* ─── INTELLISKI BADGE ─── */
+    .intelliski-badge {
+      display: inline-flex;
       align-items: center;
-      gap: 5px;
+      gap: 6px;
+      padding: 0.25rem 0.7rem;
+      border: 1px solid var(--wire);
+      border-radius: 20px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.58rem;
+      color: var(--mist);
+      letter-spacing: 0.08em;
     }
-
-    .stripe-note svg { flex-shrink: 0; }
-
-    /* ─── LOADING STATE for Stripe ─── */
-    .btn[data-loading='true'] {
-      pointer-events: none;
-      opacity: 0.65;
-    }
+    .intelliski-badge img { width: 14px; height: 14px; border-radius: 3px; }
   </style>
 </head>
 <body>
@@ -730,16 +933,17 @@
 <!-- ═══════════ HEADER ═══════════ -->
 <header id="hdr">
   <div class="wrap nav-row">
-    <a href="/" class="logo" aria-label="Theo — Página inicial">
-      <img src="https://i.imgur.com/2NPv6lR.jpeg" alt="Logo Theo" class="logo-mark">
-      <span class="logo-name">Theo</span>
+    <a href="/" class="logo" aria-label="Intelliski — Página inicial">
+      <img src="https://i.imgur.com/QxwGbPr.jpeg" alt="Logo Intelliski" class="logo-img">
+      <span class="logo-name">Intelliski</span>
     </a>
 
     <nav aria-label="Navegação principal">
-      <a href="#produto">Produto</a>
+      <a href="#produto">Sena</a>
       <a href="#casos">Aplicações</a>
+      <a href="#universo">Universo Tsukiyo</a>
+      <a href="#nostalk">Nostalk</a>
       <a href="#precos">Planos</a>
-      <a href="#faq">Ajuda</a>
     </nav>
 
     <div class="header-cta">
@@ -752,12 +956,13 @@
 <main>
   <!-- ═══════════ HERO ═══════════ -->
   <div class="hero" id="inicio">
+    <div class="hero-glow-sakura"></div>
     <div class="wrap">
       <div class="hero-inner">
         <div>
           <div class="hero-kicker">
             <span class="hero-kicker-dot"></span>
-            <span class="label">Telos AI · Assistente inteligente</span>
+            <span class="label">Intelliski · Assistente inteligente</span>
           </div>
 
           <h1 class="display">
@@ -766,7 +971,7 @@
           </h1>
 
           <p class="hero-subline">
-            Theo é o assistente de inteligência artificial desenvolvido pela Telos para atender às necessidades reais de pessoas e empresas brasileiras com privacidade, velocidade e precisão cultural que modelos genéricos não oferecem.
+            Sena é o assistente de inteligência artificial da Intelliski, desenvolvido para atender às necessidades reais de pessoas e empresas brasileiras — com privacidade, velocidade e compreensão cultural que modelos genéricos não oferecem.
           </p>
 
           <div class="hero-actions">
@@ -775,22 +980,37 @@
           </div>
         </div>
 
-        <!-- Live demo terminal -->
-        <div class="terminal" aria-hidden="true">
-          <div class="terminal-bar">
-            <span class="terminal-dot d-red"></span>
-            <span class="terminal-dot d-amber"></span>
-            <span class="terminal-dot d-green"></span>
-            <span class="terminal-label">Theo · chat ao vivo</span>
+        <!-- Sena Chat Card -->
+        <div class="sena-card" aria-hidden="true">
+          <div class="sena-card-header">
+            <div class="terminal-dots">
+              <span class="terminal-dot d-red"></span>
+              <span class="terminal-dot d-amber"></span>
+              <span class="terminal-dot d-green"></span>
+            </div>
+            <img src="https://i.imgur.com/UK036hs.png" alt="Sena" class="sena-avatar">
+            <span class="sena-name-badge">SENA · Intelliski AI</span>
+            <div class="sena-online">
+              <span class="sena-online-dot"></span>
+              online
+            </div>
           </div>
-          <div class="terminal-body">
+          <div class="chat-body">
             <div class="chat-msg">
               <span class="role user-role">você</span>
-              <div class="text user-text">Preciso redigir um contrato de prestação de serviço simples para um freelancer.</div>
+              <div class="text user-text">Preciso redigir um contrato de prestação de serviço para um freelancer.</div>
             </div>
             <div class="chat-msg">
-              <span class="role ai-role">Theo</span>
-              <div class="text ai-text">Claro. Me diga o nome das partes, o objeto do serviço, o prazo de entrega e o valor combinado. Com esses dados, gero o contrato formatado conforme a legislação brasileira em instantes.<span class="cursor-blink"></span></div>
+              <span class="role ai-role">Sena</span>
+              <div class="text ai-text">Claro. Me diga o nome das partes, o objeto do serviço, o prazo de entrega e o valor combinado. Gero o contrato formatado conforme a legislação brasileira em instantes.<span class="cursor-blink"></span></div>
+            </div>
+            <div class="chat-msg">
+              <span class="role user-role">você</span>
+              <div class="text user-text">Também pode me ajudar com textos criativos?</div>
+            </div>
+            <div class="chat-msg">
+              <span class="role ai-role">Sena</span>
+              <div class="text ai-text">Com prazer — desde contos e roteiros até títulos de light novel e copy de marketing. Me conte o que tem em mente.<span class="cursor-blink"></span></div>
             </div>
           </div>
         </div>
@@ -805,39 +1025,39 @@
     <div class="wrap">
       <div class="section-head reveal">
         <span class="label">Plataforma</span>
-        <h2>Um assistente completo,<br>feito para o <span class="accent">contexto brasileiro</span></h2>
+        <h2>Uma assistente completa,<br>feita para o <span class="accent">contexto brasileiro</span></h2>
       </div>
 
       <div class="features-grid">
         <div class="feature-cell reveal">
           <div class="feature-icon">🇧🇷</div>
           <h3>Português como idioma nativo</h3>
-          <p>Theo compreende regionalismos, expressões idiomáticas e o contexto jurídico e cultural do Brasil — sem traduções nem adaptações genéricas.</p>
+          <p>Sena compreende regionalismos, expressões idiomáticas e o contexto jurídico e cultural do Brasil — sem traduções genéricas.</p>
         </div>
         <div class="feature-cell reveal">
           <div class="feature-icon">🔐</div>
           <h3>Privacidade por arquitetura</h3>
-          <p>Seus dados são processados em infraestrutura nacional, em conformidade integral com a LGPD. Nenhuma informação é enviada para servidores estrangeiros.</p>
+          <p>Seus dados são processados com conformidade integral à LGPD. Nenhuma informação pessoal é usada sem seu consentimento explícito.</p>
         </div>
         <div class="feature-cell reveal">
           <div class="feature-icon">⚡</div>
           <h3>Respostas em tempo real</h3>
-          <p>Theo transmite respostas via streaming, oferecendo uma experiência conversacional fluida e sem longos tempos de espera.</p>
+          <p>Sena transmite respostas via streaming, oferecendo uma experiência conversacional fluida e sem longos tempos de espera.</p>
         </div>
         <div class="feature-cell reveal">
           <div class="feature-icon">📄</div>
           <h3>Documentos e análises</h3>
-          <p>Redija contratos, relatórios, e-mails e documentos com sugestões precisas baseadas no contexto fornecido por você.</p>
+          <p>Redija contratos, relatórios, e-mails e documentos com sugestões precisas baseadas no contexto que você fornece.</p>
         </div>
         <div class="feature-cell reveal">
           <div class="feature-icon">🔗</div>
-          <h3>API para desenvolvedores(em breve)</h3>
-          <p>Integre o Theo em seus sistemas com nossa API REST documentada, compatível com padrões modernos e disponível a partir do plano Profissional.</p>
+          <h3>API para desenvolvedores <span style="font-size:0.7em;color:var(--mist)">(em breve)</span></h3>
+          <p>Integre a Sena em seus sistemas com nossa API REST documentada, compatível com padrões modernos — disponível no plano Profissional.</p>
         </div>
         <div class="feature-cell reveal">
-          <div class="feature-icon">📊</div>
-          <h3>Painel de uso detalhado(em breve)</h3>
-          <p>Acompanhe em tempo real o consumo de conversas, histórico de interações e limites de uso do seu plano diretamente no painel de controle.</p>
+          <div class="feature-icon">✍️</div>
+          <h3>Criação literária</h3>
+          <p>Da sinopse ao capítulo final: a Sena entende convenções de light novels, romances e narrativas de ficção científica em português.</p>
         </div>
       </div>
     </div>
@@ -850,8 +1070,8 @@
     <div class="wrap">
       <div class="section-head reveal">
         <span class="label">Aplicações</span>
-        <h2>Como o Theo pode<br><span class="accent">ajudar você</span></h2>
-        <p style="max-width:540px; margin-top:0.8rem;">O Theo é versátil. Veja como profissionais e empresas brasileiras estão usando o assistente no dia a dia.</p>
+        <h2>Como a Sena pode<br><span class="accent">ajudar você</span></h2>
+        <p style="max-width:540px; margin-top:0.8rem;">Versátil e culturalmente contextualizada. Veja como profissionais e criadores brasileiros usam a Sena no dia a dia.</p>
       </div>
 
       <div class="cases-list">
@@ -891,13 +1111,195 @@
 
   <div class="divider"></div>
 
-  <!-- ═══════════ PREÇOS + STRIPE ═══════════ -->
+  <!-- ═══════════ UNIVERSO TSUKIYO ═══════════ -->
+  <section id="universo" class="tsukiyo-section">
+    <div class="wrap">
+      <div class="tsukiyo-head reveal">
+        <span class="label" style="color:var(--sakura)">Intelliski · Vitrine Literária</span>
+        <h2 style="margin-top:0.9rem;">Universo <em style="color:var(--sakura); font-style:italic;">Tsukiyo</em></h2>
+        <p style="max-width:520px; margin-top:0.8rem; color:var(--mist);">Histórias criadas com alma: light novels, romances e fantasia sombria em português, disponíveis no Wattpad e Amazon KDP.</p>
+      </div>
+
+      <div class="books-row">
+
+        <!-- Livro 1 -->
+        <div class="book-card reveal">
+          <div class="book-cover-placeholder">
+            <span class="sakura-ornament">桜</span>
+            <span class="book-title-art">Koi to Meirei</span>
+            <span class="book-genre-art">Romance · Light Novel</span>
+          </div>
+          <div class="book-info">
+            <span class="book-tag">Romance · Light Novel</span>
+            <h4>Koi to Meirei</h4>
+            <p class="book-author">Ren Tsukiyo</p>
+          </div>
+          <div class="book-actions">
+            <a href="https://www.wattpad.com" class="btn-book" target="_blank" rel="noopener">Ler no Wattpad →</a>
+          </div>
+        </div>
+
+        <!-- Livro 2 -->
+        <div class="book-card reveal">
+          <div class="book-cover-placeholder">
+            <span class="sakura-ornament">月</span>
+            <span class="book-title-art">Abunai Aisuru</span>
+            <span class="book-genre-art">Romance · Drama</span>
+          </div>
+          <div class="book-info">
+            <span class="book-tag">Romance · Drama</span>
+            <h4>Abunai Aisuru</h4>
+            <p class="book-author">Ren Tsukiyo</p>
+          </div>
+          <div class="book-actions">
+            <a href="https://www.wattpad.com" class="btn-book" target="_blank" rel="noopener">Ler no Wattpad →</a>
+          </div>
+        </div>
+
+        <!-- Livro 3 -->
+        <div class="book-card reveal">
+          <div class="book-cover-placeholder">
+            <span class="sakura-ornament">星</span>
+            <span class="book-title-art">I Became The Villain I Hated</span>
+            <span class="book-genre-art">Isekai · Dark Fantasy</span>
+          </div>
+          <div class="book-info">
+            <span class="book-tag">Isekai · Dark Fantasy</span>
+            <h4>I Became The Villain I Hated</h4>
+            <p class="book-author">Ren Tsukiyo</p>
+          </div>
+          <div class="book-actions">
+            <a href="https://www.wattpad.com" class="btn-book" target="_blank" rel="noopener">Ler no Wattpad →</a>
+          </div>
+        </div>
+
+        <!-- Livro 4 -->
+        <div class="book-card reveal">
+          <div class="book-cover-placeholder">
+            <span class="sakura-ornament">夢</span>
+            <span class="book-title-art">Wasureru Mae ni</span>
+            <span class="book-genre-art">Romance · Amnésia</span>
+          </div>
+          <div class="book-info">
+            <span class="book-tag">Romance · Drama</span>
+            <h4>Wasureru Mae ni</h4>
+            <p class="book-author">Ren Tsukiyo</p>
+          </div>
+          <div class="book-actions">
+            <a href="https://www.wattpad.com" class="btn-book" target="_blank" rel="noopener">Ler no Wattpad →</a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="tsukiyo-cta reveal">
+        <p>Descubra todas as obras do Universo Tsukiyo no Wattpad e Amazon KDP.</p>
+        <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+          <a href="https://www.wattpad.com" class="btn btn-sakura" target="_blank" rel="noopener">Ver no Wattpad</a>
+          <a href="https://amazon.com.br" class="btn btn-outline" target="_blank" rel="noopener">Amazon KDP →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══════════ NOSTALK ═══════════ -->
+  <section id="nostalk" class="nostalk-section">
+    <div class="wrap">
+      <div class="nostalk-inner">
+
+        <div>
+          <div class="section-head reveal" style="margin-bottom:2rem;">
+            <span class="label" style="color:var(--sakura)">Intelliski · Comunidade</span>
+            <h2 style="margin-top:0.9rem;">Nostalk — <em style="font-style:italic;">a rede social<br>dos escritores</em></h2>
+            <p style="max-width:440px; margin-top:1rem;">Um espaço criado para quem vive de palavras. Compartilhe trechos, conecte-se com leitores, participe de desafios e construa sua audiência como autor.</p>
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap:0.8rem; margin-bottom:2.5rem;">
+            <div class="reveal" style="display:flex; align-items:flex-start; gap:0.9rem;">
+              <div style="width:32px; height:32px; border:1px solid rgba(232,180,184,0.2); border-radius:2px; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:0.9rem;">✍️</div>
+              <div>
+                <h3 style="font-size:0.9rem; margin-bottom:0.2rem;">Feed de escritores</h3>
+                <p style="font-size:0.82rem; color:var(--mist);">Publique trechos, poemas, sinopses e atualizações de capítulos diretamente no feed da comunidade.</p>
+              </div>
+            </div>
+            <div class="reveal" style="display:flex; align-items:flex-start; gap:0.9rem;">
+              <div style="width:32px; height:32px; border:1px solid rgba(232,180,184,0.2); border-radius:2px; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:0.9rem;">📚</div>
+              <div>
+                <h3 style="font-size:0.9rem; margin-bottom:0.2rem;">Biblioteca pessoal</h3>
+                <p style="font-size:0.82rem; color:var(--mist);">Organize seus projetos literários, capítulos e rascunhos em um portfólio acessível para leitores e editores.</p>
+              </div>
+            </div>
+            <div class="reveal" style="display:flex; align-items:flex-start; gap:0.9rem;">
+              <div style="width:32px; height:32px; border:1px solid rgba(232,180,184,0.2); border-radius:2px; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:0.9rem;">🏆</div>
+              <div>
+                <h3 style="font-size:0.9rem; margin-bottom:0.2rem;">Desafios e comunidade</h3>
+                <p style="font-size:0.82rem; color:var(--mist);">Participe de desafios de escrita mensais, receba feedback de outros autores e expanda seu alcance.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="reveal" style="display:flex; gap:1rem; flex-wrap:wrap;">
+            <a href="https://nostalk.orpheostudio.com.br" class="btn btn-sakura" target="_blank" rel="noopener">Acessar o Nostalk</a>
+            <a href="https://nostalk.orpheostudio.com.br" class="btn btn-outline" target="_blank" rel="noopener">Saiba mais →</a>
+          </div>
+        </div>
+
+        <!-- Nostalk mockup -->
+        <div class="reveal nostalk-visual">
+          <div class="nostalk-mockup">
+            <div class="nostalk-bar">
+              <span class="terminal-dot d-red"></span>
+              <span class="terminal-dot d-amber"></span>
+              <span class="terminal-dot d-green"></span>
+              <span class="nostalk-bar-title">nostalk.orpheostudio.com.br · feed</span>
+            </div>
+            <div class="nostalk-feed">
+              <div class="nostalk-post">
+                <div class="nostalk-post-meta">
+                  <div class="nostalk-avatar">R</div>
+                  <span class="nostalk-author">@ren_tsukiyo</span>
+                  <span class="nostalk-time">2h atrás</span>
+                </div>
+                <p class="nostalk-post-text">"O silêncio entre nós era mais honesto do que qualquer palavra que eu poderia ter dito." — trecho do cap. 61 de Abunai Aisuru</p>
+                <span class="nostalk-post-tag">#AbunaiAisuru · #LightNovel · #UniversoTsukiyo</span>
+              </div>
+              <div class="nostalk-post">
+                <div class="nostalk-post-meta">
+                  <div class="nostalk-avatar" style="background:linear-gradient(135deg,#2d1b4e,#5a3070);">K</div>
+                  <span class="nostalk-author">@kaoru_escrita</span>
+                  <span class="nostalk-time">5h atrás</span>
+                </div>
+                <p class="nostalk-post-text">Capítulo novo de Kimi ni Ochichatta! no ar. A confissão finalmente aconteceu — e não foi como ninguém esperava. 🌸</p>
+                <span class="nostalk-post-tag">#KimiNiOchichatta · #RomCom · #Wattpad</span>
+              </div>
+              <div class="nostalk-post">
+                <div class="nostalk-post-meta">
+                  <div class="nostalk-avatar" style="background:linear-gradient(135deg,#1a2a3a,#2a4060);">L</div>
+                  <span class="nostalk-author">@lunos_writer</span>
+                  <span class="nostalk-time">1d atrás</span>
+                </div>
+                <p class="nostalk-post-text">Acabei o arco 2 de I Became The Villain I Hated. Lucien finalmente entende por que o vilão que ele odiava fez tudo aquilo.</p>
+                <span class="nostalk-post-tag">#Isekai · #DarkFantasy · #Valtheria</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══════════ PREÇOS ═══════════ -->
   <section id="precos">
     <div class="wrap">
       <div class="section-head reveal">
         <span class="label">Planos</span>
         <h2>Simples, transparente,<br><span class="accent">em reais</span></h2>
-        <p style="max-width:480px; margin-top:0.8rem;">Sem cobranças em dólar, sem taxas ocultas. Cancele quando quiser. Todos os planos incluem acesso completo ao assistente.</p>
+        <p style="max-width:480px; margin-top:0.8rem;">Sem cobranças em dólar, sem taxas ocultas. Cancele quando quiser. Todos os planos incluem acesso completo à Sena.</p>
       </div>
 
       <div class="pricing-grid">
@@ -907,7 +1309,7 @@
           <span class="plan-tag">Gratuito</span>
           <div class="plan-name">Explorar</div>
           <div class="plan-price">R$&nbsp;0</div>
-          <p class="plan-desc">Para experimentar o Alexis sem compromisso.</p>
+          <p class="plan-desc">Para experimentar a Sena sem compromisso.</p>
           <div class="plan-divider"></div>
           <ul class="plan-items">
             <li>30 conversas por mês</li>
@@ -930,11 +1332,10 @@
           <ul class="plan-items">
             <li>Conversas ilimitadas</li>
             <li>Histórico completo de conversas</li>
-            <li>Respostas prioritárias (fila dedicada)</li>
+            <li>Respostas prioritárias</li>
             <li>Suporte por e-mail em até 48h</li>
             <li>Exportação de histórico em PDF</li>
           </ul>
-          <!-- Botão conectado ao Stripe — substitua o link pelo seu Payment Link do Stripe -->
           <a
             href="https://checkout.stripe.com/g/pay/cs_live_a1g72LnjsVT1Ru0Ls1HyPAxcxMdtg4jogKPQJ9VR3R3lrhB37XbZe2DNxd#fid1d2BpamRhQ2prcSc%2FJ1dkaWByZHwnKSdnandhYHdWcXxpYCc%2FJ3dqcGthJykndnBndmZ3bHVxbGprUGtsdHBga2B2dkBrZGdpYGEnP2NkaXZgKSdkdWxOYHwnPyd1blppbHNgWjA0UUhrS0RGVkp%2FMUw2UU1JNktjcDI9bkNnUWNqVVJwdVVrMnFhVU5pdkBKMXZscXx2UkhpS2p8d0h%2FZE9VVGlxMFVNbVVfdHNRZE5iYVR3MW9SNG5dMWt9NTU1SWRrdGtCMScpJ2N3amhWYHdzYHcnP3F3cGApJ2dkZm5id2pwa2FGamlqdyc%2FJyY8Zjc3ZzEnKSdpZHxqcHFRfHVgJz8ndmxrYmlgWmxxYGgnKSdga2RnaWBVaWRmYG1qaWFgd3YnP3F3cGB4JSUl"
             class="btn btn-gold stripe-btn"
@@ -956,7 +1357,7 @@
           <span class="plan-tag">Empresas</span>
           <div class="plan-name">Corporativo</div>
           <div class="plan-price" style="font-size:2rem;">Sob consulta</div>
-          <p class="plan-desc">Para times maiores, integrações customizadas e compliance avançado.</p>
+          <p class="plan-desc">Para equipes maiores, integrações customizadas e compliance avançado.</p>
           <div class="plan-divider"></div>
           <ul class="plan-items">
             <li>Tudo do plano Profissional</li>
@@ -967,7 +1368,7 @@
             <li>Suporte técnico prioritário</li>
           </ul>
           <a
-            href="mailto:ampla.ai@outlook.com?subject=Interesse%20no%20plano%20Corporativo%20Theo"
+            href="mailto:ampla.ai@outlook.com?subject=Interesse%20no%20plano%20Corporativo%20Sena%20Intelliski"
             class="btn btn-outline stripe-btn"
           >
             Falar com a equipe
@@ -992,11 +1393,11 @@
 
         <div class="faq-item reveal">
           <button class="faq-q" aria-expanded="false">
-            O Theo está disponível como aplicativo?
+            A Sena está disponível como aplicativo?
             <span class="faq-arrow">+</span>
           </button>
           <div class="faq-a" role="region">
-            <p>Sim. O Theo pode ser acessado pelo navegador em <strong>claudinei.ia.br</strong>, e está disponível para instalação como Progressive Web App (PWA) em dispositivos Android e iOS — sem necessidade de lojas de aplicativos.</p>
+            <p>Sim. A Sena pode ser acessada pelo navegador e está disponível para instalação como Progressive Web App (PWA) em dispositivos Android e iOS — sem necessidade de lojas de aplicativos.</p>
           </div>
         </div>
 
@@ -1016,27 +1417,27 @@
             <span class="faq-arrow">+</span>
           </button>
           <div class="faq-a" role="region">
-            <p>O pagamento é processado com segurança pelo Stripe, aceitando cartão de crédito e débito. A cobrança é mensal. Você pode cancelar a qualquer momento pelo painel da sua conta, sem multas ou burocracia, e o acesso permanece ativo até o fim do período pago.</p>
+            <p>O pagamento é processado com segurança pelo Stripe, aceitando cartão de crédito e débito. A cobrança é mensal. Você pode cancelar a qualquer momento pelo painel da sua conta, sem multas ou burocracia.</p>
           </div>
         </div>
 
         <div class="faq-item reveal">
           <button class="faq-q" aria-expanded="false">
-            Posso usar o Theo em português de Portugal?
+            O Nostalk é gratuito?
             <span class="faq-arrow">+</span>
           </button>
           <div class="faq-a" role="region">
-            <p>O Theo é otimizado para o português brasileiro (PT-BR). Ele funciona razoavelmente bem com português europeu, mas o foco do desenvolvimento e dos dados de treinamento é voltado ao Brasil, suas normas e seu vocabulário.</p>
+            <p>Sim. O Nostalk é uma rede social gratuita para escritores. Crie sua conta em <strong>nostalk.orpheostudio.com.br</strong> e comece a publicar e conectar-se com outros autores.</p>
           </div>
         </div>
 
         <div class="faq-item reveal">
           <button class="faq-q" aria-expanded="false">
-            O plano gratuito tem limite de tempo ou expira?
+            O plano gratuito da Sena tem limite de tempo ou expira?
             <span class="faq-arrow">+</span>
           </button>
           <div class="faq-a" role="region">
-            <p>O plano gratuito não expira. Você pode usar o Theo com 30 conversas por mês indefinidamente. Quando quiser mais, basta fazer upgrade para o plano Profissional diretamente pelo painel.</p>
+            <p>O plano gratuito não expira. Você pode usar a Sena com 30 conversas por mês indefinidamente. Quando quiser mais, basta fazer upgrade para o plano Profissional diretamente pelo painel.</p>
           </div>
         </div>
 
@@ -1046,7 +1447,7 @@
             <span class="faq-arrow">+</span>
           </button>
           <div class="faq-a" role="region">
-            <p>O Stripe envia um recibo automaticamente para o e-mail cadastrado após cada cobrança. Para notas fiscais no formato exigido por empresas, entre em contato com <a href="mailto:financeiro@telos.tec.br" style="color:var(--gold-l)">financeiro@telos.tec.br</a>.</p>
+            <p>O Stripe envia um recibo automaticamente para o e-mail cadastrado após cada cobrança. Para notas fiscais, entre em contato com <a href="mailto:ampla.ai@outlook.com" style="color:var(--gold-l)">ampla.ai@outlook.com</a>.</p>
           </div>
         </div>
 
@@ -1062,7 +1463,7 @@
       <div class="cta-strip reveal">
         <span class="label" style="display:block; margin-bottom:1rem;">Comece agora</span>
         <h2>Pronto para conversar<br>com uma IA que <em style="font-style:italic; color:var(--gold-l)">te entende</em>?</h2>
-        <p>Crie sua conta gratuita em menos de dois minutos. Sem cartão de crédito.</p>
+        <p style="margin-bottom:2rem;">Crie sua conta gratuita em menos de dois minutos. Sem cartão de crédito.</p>
         <div class="actions">
           <a href="https://claudinei.ia.br" class="btn btn-gold">Criar conta gratuita</a>
           <a href="https://docs.claudinei.ia.br" class="btn btn-outline" target="_blank" rel="noopener">Ver documentação →</a>
@@ -1077,41 +1478,40 @@
   <div class="wrap">
     <div class="footer-grid">
       <div class="footer-brand">
-        <div class="logo">
-          <img src="https://i.imgur.com/2NPv6lR.jpeg" alt="Logo Theo" class="logo-mark">
-          <span class="logo-name">Theo</span>
+        <div class="footer-logo-row">
+          <img src="https://i.imgur.com/QxwGbPr.jpeg" alt="Logo Intelliski" class="footer-logo-img">
+          <span class="footer-logo-name">Intelliski</span>
         </div>
-        <p>Assistente de inteligência artificial desenvolvido pela Telos AI para o português brasileiro. Ética, privacidade e performance.</p>
-        <p style="margin-top:0.6rem; font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--mist); letter-spacing:0.06em;">Tellos Tecnologia LTDA</p>
+        <p>Assistente de inteligência artificial desenvolvido para o português brasileiro. Ética, privacidade e performance.</p>
+        <p style="margin-top:0.6rem; font-family:'DM Mono',monospace; font-size:0.58rem; color:var(--mist); letter-spacing:0.06em;">Intelliski Apps · Intelliski PBC</p>
       </div>
 
       <div class="footer-col">
         <strong>Produto</strong>
-        <a href="https://claudinei.ia.br">Acessar Theo</a>
+        <a href="https://claudinei.ia.br">Acessar a Sena</a>
         <a href="https://docs.claudinei.ia.br">Documentação API</a>
         <a href="#precos">Planos e preços</a>
         <a href="#casos">Casos de uso</a>
       </div>
 
       <div class="footer-col">
-        <strong>Legal</strong>
-        <a href="https://termos.cici.net.br">Termos de Uso</a>
-        <a href="https://privacidade.cici.net.br">Política de Privacidade</a>
-        <a href="https://cici.net.br/lgpd">Conformidade LGPD</a>
-        <a href="https://status.claudinei.ia.br">Status da plataforma</a>
+        <strong>Comunidade</strong>
+        <a href="https://nostalk.orpheostudio.com.br" target="_blank" rel="noopener">Nostalk — rede de escritores</a>
+        <a href="https://www.wattpad.com" target="_blank" rel="noopener">Universo Tsukiyo no Wattpad</a>
+        <a href="https://amazon.com.br" target="_blank" rel="noopener">Livros na Amazon KDP</a>
       </div>
 
       <div class="footer-col">
-        <strong>Contato</strong>
+        <strong>Legal</strong>
+        <a href="https://terms.orpheostudio.com.br" target="_blank" rel="noopener">Termos de Uso</a>
+        <a href="https://policies.orpheostudio.com.br" target="_blank" rel="noopener">Política de Privacidade</a>
         <a href="mailto:ampla.ai@outlook.com">ampla.ai@outlook.com</a>
-        <a href="mailto:ampla.ai@outlook.com">ampla.ai@outlook.com</a>
-        <a href="https://discord.gg/SEU_SERVIDOR" target="_blank" rel="noopener">Comunidade Discord</a>
       </div>
     </div>
 
     <div class="footer-bottom">
-      <span>© 2025 Tellos Tecnologia LTDA — Todos os direitos reservados</span>
-      <span>🇧🇷 Infraestrutura nacional · Conformidade LGPD</span>
+      <span>© 2025 Intelliski Apps — Todos os direitos reservados</span>
+      <span>🇧🇷 Conformidade LGPD · Pagamento seguro Stripe</span>
     </div>
   </div>
 </footer>
@@ -1131,7 +1531,7 @@
         observer.unobserve(e.target);
       }
     });
-  }, { threshold: 0.1 });
+  }, { threshold: 0.08 });
 
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
@@ -1155,7 +1555,6 @@
   function handleStripeClick(el) {
     el.setAttribute('data-loading', 'true');
     el.textContent = 'Redirecionando…';
-    // Restaura o botão depois de 5s caso o usuário volte
     setTimeout(() => {
       el.removeAttribute('data-loading');
       el.textContent = 'Assinar agora';
